@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+<div id="admin-instructions">
+  {icon}
+  <p id="menu_fields">
+    {menu_fields_pre}{menu_fields}{menu_fields_aft}
+  </p>
+  <div id="instructions">{lang_instructions}</div>
+</div>
+
+{# end {templatelocation} #}

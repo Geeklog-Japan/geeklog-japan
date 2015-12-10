@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+<li><a {csscurrent} class="clearfix" href="{link}{parms}"{onclick}><span class="label">{label}</span></a></li>
+
+{# end {templatelocation} #}

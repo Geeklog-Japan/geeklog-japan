@@ -1,0 +1,9 @@
+{# begin {templatelocation} #}
+
+{top_menu}
+
+<ul id="admin-topiclist">
+  {list_row}
+</ul>
+
+{# end {templatelocation} #}

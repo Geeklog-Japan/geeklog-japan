@@ -1,0 +1,19 @@
+{# begin {templatelocation} #}
+
+{start_block_results}
+
+<table class="searchblock">
+  <thead>
+    <tr>
+      {headings}
+    </tr>
+  </thead>
+
+  <tbody>
+    {results}
+  </tbody>
+</table>
+
+{end_block}
+
+{# end {templatelocation} #}

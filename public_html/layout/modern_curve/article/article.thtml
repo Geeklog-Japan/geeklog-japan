@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+{formatted_article}
+
+{whats_related}
+{story_options}
+
+{trackback}
+{commentbar}
+
+{# end {templatelocation} #}

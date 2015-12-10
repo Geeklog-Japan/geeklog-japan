@@ -1,0 +1,27 @@
+{# begin {templatelocation} #}
+
+<form action="{site_url}/users.php" method="post" id="loginform" class="basic">
+  <div>
+    <dl>
+      <dt><label for="loginform-loginname">{lang_username}</label></dt>
+      <dd><input type="text" size="12" value="" name="loginname" id="loginform-loginname" class="text"{xhtml}></dd>
+
+      {services}
+
+      <dt><label for="loginform-passwd">{lang_password}</label></dt>
+      <dd><input type="password" size="12" name="passwd" id="loginform-passwd" class="text"{xhtml}></dd>
+    </dl>
+
+    <ul class="submit">
+      <li><input type="submit" value="{lang_login}" class="submit"{xhtml}></li>
+    </ul>
+  </div>
+  <ul class="navi">
+    <li>{lang_signup}</li>
+    <li>{lang_forgetpassword}</li>
+  </ul>
+</form>
+{oauth_login}
+{openid_login}
+
+{# end {templatelocation} #}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Geeklog-PEAR" default="ship">
+
+    <target name="update">
+        <echo msg="Updating local repository ..." />
+        <exec command="hg pull -u" />
+    </target>
+
+    <target name="clean">
+        <echo msg="Cleaning up ..." />
+        <delete file="geeklog-ship.tar.gz" quiet="true"/>
+    </target>
+
+    <target name="ship" depends="update">
+
+        <tar destfile="geeklog-pear.tar.gz" compression="gzip">
+            <fileset dir=".">
+                <include name="*" />
+                <exclude name="build.xml" />
+                <exclude name=".*" />
+                <exclude name="geeklog-pear.tar.gz" />
+            </fileset>
+        </tar>
+    </target>
+
+    <target name="deploy">
+        <copy file="geeklog-pear.tar.gz"
+              tofile="/usr/home/geeklog2/public_html/www/nightly"
+              overwrite="true" />
+    </target>
+
+</project>

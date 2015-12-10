@@ -1,0 +1,6 @@
+{# begin {templatelocation} #}
+
+{select_service}
+<label for="service">{lang_service}</label>
+
+{# end {templatelocation} #}

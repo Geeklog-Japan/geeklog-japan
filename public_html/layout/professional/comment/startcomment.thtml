@@ -1,0 +1,6 @@
+<div id="{area_id}">
+{commentbar}
+{comments}
+<div class="aligncenter">{pagenav}</div>
+{commenteditor}
+</div>

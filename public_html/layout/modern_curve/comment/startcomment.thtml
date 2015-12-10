@@ -1,0 +1,13 @@
+{# begin {templatelocation} #}
+
+<div id="{area_id}">
+  <div id="comments" class="comments">
+    {commentbar}
+    {comments}
+
+    <p class="pagenav">{pagenav}</p>
+  </div>
+  {commenteditor}
+</div>
+
+{# end {templatelocation} #}
