@@ -204,6 +204,10 @@ if ($maxstories == 0) {
     $maxstories = $_CONF['limitnews'];
 }
 
+if(function_exists('CUSTOM_MOBILE_is_cellular') && CUSTOM_MOBILE_is_cellular()) {
+    $maxstories = $CUSTOM_MOBILE_CONF['max_stories'];
+}
+
 $limit = $maxstories;
 if ($limit < 1) {
     $limit = 1;
