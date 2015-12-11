@@ -1,0 +1,634 @@
+2012-04-30  Takahiro Kambe  <tacahi>
+
+	* NEWSとREADME.jpをgeeklog-1.8.1-jp-1.1のリリースに向けて更新しました。
+
+	* README.jpのプラグインのバージョンの記述を、現在のバージョンに合わせ
+	  て更新しました。
+
+2012-04-14  mystral-kk <mystral-kk>
+
+	* Dbmanプラグイン、テーマエディタープラグインで、環境によっては、アンイン
+	  ストール時に、エラーが発生するバグを修正しました。
+
+2012-04-14  mystral-kk <mystral-kk>
+
+	* nmoxqrblockプラグインのエラー処理を強化しました。
+
+2012-04-14  mystral-kk <mystral-kk>
+
+	* nmoxqrblockプラグインを自動インストールに対応させました。
+
+2012-04-08  Takahiro Kambe  <tacahi>
+
+	* release_jp.php: CVSのキーワード展開に依存しない更新方法に変更
+	  しました。
+
+	* SubversionからMercurialにリポジトリを移行しました。これに伴い、
+	  CVSのキーワード展開を期待している行を削除しました。
+
+2012-03-24  Takahiro Kambe  <tacahi>
+
+	* ディレクトリ構成を変更して、trunk/geeklog-jp以下の内容をtrunkに
+	  移動しました。
+
+2012-01-30  Yoshinori Tahara  <dengen>
+
+	* professional_cssテーマのlayout.cssへの変更を、派生テーマへの影響を
+	  避けるため、元に戻しました。
+
+2012-01-29  Yoshinori Tahara  <dengen>
+
+	* professional_cssテーマ及びWAIproCSSテーマの複数の軽微な問題を修正しま
+	  した。
+
+2012-01-26  Masuko Koeda  <milk851>
+
+	* WAIproCSSテーマで、Navmanプラグインの
+	  多階層メニューが表示されなかった為
+	  表示されるよう修正しました。
+
+2012-01-17  Masuko Koeda  <milk851>
+
+	* WAIproCSSテーマで、管理画面の上部左の余白調整と
+	  コンフィギュレーション変更後のメッセージ部分の
+	  レイアウト崩れを修正しました。
+
+2011-12-25  Yoshinori Tahara  <dengen>
+
+	* professional_cssテーマ及びWAIproCSSテーマの軽微な修正。
+
+2011-12-03  Tetsuko Komma  <ivy>
+
+	* インストール用言語ファイルの、インストール完了後表示される文章を
+	  修正しました。
+
+	* プラグインアップロードからインストールする機能の呼称を、自動イン
+	  ストールから日本語コア言語ファイルに合わせてプラグインアップロード
+	  に変更しました。
+
+2011-11-30  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.0をリリースします。
+
+2011-11-29  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.0rc7をリリースします。
+
+2011-11-25  Tetsuko Komma  <ivy>
+
+        * NEWSを修正しました。
+
+2011-11-25  mystral-kk <mystral-kk>
+
+	* Precheckでインストールが失敗する問題(Issue #186)に最終的に対処しまし
+	  た。
+
+2011-11-24  mystral-kk <mystral-kk>
+
+	* r3242でpath_htmlに関して不完全だった処理を再度、修正しました。
+
+	* r3242でpath_htmlに関して不完全だった処理を修正しました。
+
+	* Precheckでインストールが失敗する問題(Issue #186)により根本的に対処し
+	  ました。
+
+2011-11-23  mystral-kk <mystral-kk>
+
+	* Precheckでインストールが失敗する問題(Issue #186)に対処しました。
+
+2011-11-23  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.0rc6をリリースします。
+
+2011-11-22  Takahiro Kambe  <tacahi>
+
+	* リリースのGNUmakefileの内容を整理しました。
+
+		- リリース処理前に削除できていないディレクトリを削除
+		- pax(1)に代えてtar(1)を使用
+
+2011-11-19  mystral-kk <mystral-kk>
+
+	* phpblock_lastarticles.phpで画像ファイルの表示をサポートしました。
+
+2011-11-19  Masuko Koeda  <milk851>
+
+	* WAIproCSSテーマで、professional_cssに合わせて管理画面のファイルを
+	  修正していただいた中で、スクリーンリーダーの読み上げを考慮して記述順を
+	  変更している箇所は元に戻しました。
+
+	* Windows7 Internet Explorer9 で文字サイズが変更できないの
+	  でCSSでbodyに指定しているフォントサイズを変更しました。
+
+	* テーマWAIproCSSのバージョンを2.5.1にあげ、
+	  更新履歴等をREADMEに記載しました。
+
+2011-11-18  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイルのクリックジャックの選択肢を修正しました。
+
+        * NEWS README.jpを修正しました。
+
+2011-11-17  Yoshinori Tahara  <dengen>
+
+	* custommenuプラグイン: バージョン0.6.1に更新します。
+	  インストール時に初期登録メニューアイテムのグループが正しく設定されな
+	  い問題を修正しました。
+
+2011-11-17  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.0rc5をリリースします。
+
+2011-11-17  Tetsuko Komma  <ivy>
+
+	* ブラウザーのユーザーエージェントを判別するクラス(useragent.class.php)を
+	  日本語拡張版に追加しました。
+
+2011-11-16  mystral-kk <mystral-kk>
+
+	* Useragentクラスで、テンプレート変数の接頭辞を引数で指定できるようにし
+	  ました。
+
+	* UseragentクラスのライセンスをMITに変更しました。
+
+2011-11-14  Masuko Koeda  <milk851>
+
+	* WAIproCSSテーマで、記事投稿や編集に関わる日本語版独自のテンプレートを
+	  修正していただいた中で、スクリーンリーダーの読み上げを考慮して記述順を
+	  変更したりしている箇所のみ元に戻しました。
+
+	* WAIproCSSテーマで、記事投稿や編集に関わる日本語版独自のテンプレートを
+	  再修正しました。(alt属性追記等)
+
+2011-11-13  mystral-kk <mystral-kk>
+
+	* ブラウザーのユーザーエージェントを判別するクラス(useragent.class.php)を
+	  追加しました。(Issue #181)
+
+2011-11-10  Tetsuko Komma  <ivy>
+
+	* custom_templatesetvars.phpで、関数COM_isFrontpageの代わりに、
+	  推奨されている COM_onFrontpage を使うようにしました。
+
+2011-11-09  Tetsuko Komma  <ivy>
+
+	* WAIproCSSテーマで、記事投稿や編集に関わる日本語版独自のテンプレートが
+	  古く、JavaScriptのシンタックスエラーが発生する問題を修正しました。
+
+	* WAIproCSSテーマの管理画面すべてをprofessional_cssに合わせました。
+
+	* mobleテーマの不要なファイブを削除しました。
+
+        * NEWS README.jpを修正しました。
+
+2011-11-07  mystral-kk <mystral-kk>
+
+	* インストール前チェック(Precheck)をGeeklog-1.8.1に対応させ、かつ
+	  Issue #162に暫定的に対応しました。
+
+2011-11-07  Yoshinori Tahara  <dengen>
+
+	* GZip形式の圧縮ファイル(.tar.gz, .tgz)をアップロードしてプラグインを
+	  インストールできない場合がある問題を修正しました。
+
+2011-11-06  mystral-kk <mystral-kk>
+
+	* テーマエディタープラグイン(themedit)をGeeklog-1.6以降の自動インストール
+	  に対応させました。
+
+2011-11-06  mystral-kk <mystral-kk>
+
+	* 話題譲渡プラグイン(nmoxtopicown)をGeekog-1.6以降の自動インストールに
+	  対応させました。
+
+2011-11-05  mystral-kk <mystral-kk>
+
+	* サイトマッププラグインを自動インストールに対応させました。また、
+	  DataProxyプラグインがインストールされていない、ないし無効になっている
+	  場合でもエラーにならないようにしました。
+
+2011-11-05  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.0rc4をリリースします。
+
+2011-10-31  Tetsuko Komma  <ivy>
+
+	* DbmanプラグインのアップグレードをNEWS、README.jpに記述しました。
+
+2011-10-31  mystral-kk <mystral-kk>
+
+	* Dbmanプラグイン-0.6.0で、旧バージョンからのアップグレードがうまくい
+	  かなかったバグ(Issue #183)に対応しました。
+
+2011-10-30  Tetsuko Komma  <ivy>
+
+	* Dbmanプラグインをアップグレードして、圧縮ファイルによる自動インストー
+	  ルに対応したことなどをNEWS、README.jpに記述しました。
+
+2011-10-29  mystral-kk <mystral-kk>
+
+	* DbmanプラグインをGeeklog-1.8.0に対応させました。
+
+2011-10-29  mystral-kk <mystral-kk>
+
+	* Japanizeプラグインでゲストユーザーの場合、警告が発生していたバグを修
+	  正しました。
+
+2011-10-29  mystral-kk <mystral-kk>
+
+	* Japanizeプラグインでインストール前のプラグインバージョンが'N/A'と表示
+	  される問題と管理画面で警告が表示される問題に対応しました。
+
+2011-10-29  mystral-kk <mystral-kk>
+
+	* Dbmanプラグインをアンインストール後にコンフィギュレーションパネルへ行
+	  くとエラーになっていたバグを修正しました。
+
+2011-10-29  mystral-kk <mystral-kk>
+
+	* Issue #182(Sitemapプラグインで'Deprecated'の警告メッセージが表示され
+	  る)に対応しました。
+
+2011-10-26  mystral-kk <mystral-kk>
+
+	* MySQL-5.5以降で"SHOW TABLE TYPES"がエラーを起こす問題に対応しました。
+
+2011-10-26  mystral-kk <mystral-kk>
+
+	* MySQL-5.5以降でテーブル定義に含まれる"TYPE=MyIsam"オプションがエラー
+	  を起こす問題に対応しました(Geeklog本体及び同梱プラグイン)。
+
+2011-10-26  mystral-kk <mystral-kk>
+
+	* MySQL-5.5以降でテーブル定義に含まれる"TYPE=MyIsam"オプションがエラー
+	  を起こす問題に対応しました(Geeklog.jpで追加したプラグインのみ)。
+
+2011-10-25  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.1rc3をリリースします。
+
+2011-10-24  mystral-kk <mystral-kk>
+
+	* Dataproxyプラグインを使用する際、DownloadsプラグインとMediagalleryプ
+	  ラグインで発生したエラーに対応しました。
+
+2011-10-23  Yoshinori Tahara  <dengen>
+
+	* public_html/imageresizer.phpの機能を拡張し、出力画像形式を指定できる
+	  ようにしました。
+
+2011-10-22  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.1rc2をリリースします。
+
+2011-10-21  Yoshinori Tahara  <dengen>
+
+	* forum 2.8.0 へのアップグレードに伴う追加漏れのファイルを追加し、
+	  削除漏れの不要ファイルを削除しました。
+
+2011-10-19  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.1-jp-1.1rc1をリリースします。
+
+	* forum 2.8.0のリリース処理を行うためのGNUmakefileを更新しました。
+
+2011-10-19  Tetsuko Komma  <ivy>
+
+	* forum 2.8.0 アップグレードにともない不要になったディレクトリ
+	  themefiles を削除しました。
+
+2011-10-19  Takahiro Kambe  <tacahi>
+
+	* plugins-jp/forum/GNUmakefile: 過去のリビジョンから復元しました。
+
+2011-10-18  Tetsuko Komma  <ivy>
+
+	* forum 2.8.0 アップグレードにともない不要になったファイルを削除しま
+	  した。
+
+	* forum 2.8.0 をアップグレードしました。
+
+	* NEWS readme.jp README.jp 現行の状態に合わせた修正と、日付を修正しま
+	  した。
+
+	* 「グループメール」を「メール」に用語変更しました。
+
+2011-10-12  Tetsuko Komma  <ivy>
+
+	* NEWS readme.ja README.jp を修正しました。
+
+	* テーマprofessionalの記事編集テンプレートを修正しました。
+
+2011-10-10  Tetsuko Komma  <ivy>
+
+	* 拡張版　lib-custom.php のphpblock_showrights 二重定義を解消しました。
+
+2011-10-10  Takahiro Kambe  <tacahi>
+
+	* Geeklgo 1.8.1のドキュメントの変更部分を翻訳してみました。
+
+	* Geeklgo 1.8.1をマージしました。
+
+2011-09-19  Tetsuko Komma  <ivy>
+
+	* 拡張版のlib-custom.phpをマージしました。
+
+	* 標準・拡張版lib-custom.phpの不要なコメントを削除しました。
+
+2011-09-14  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.8.1r1をマージしました。
+
+2011-09-05  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイルで誤解の多かった「氏名を表示する」から
+	  「ユーザー名の代わりに氏名を表示する」に変更しました。
+
+2011-09-03  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: Geeklog1.8からの新コンフィギュレーションUIに対応
+	  しました。
+
+2011-09-02  mystral-kk <mystral-kk>
+
+	* public_html/imageresizer.phpをDokuWikiに対応させました。
+
+2011-08-23  Yoshinori Tahara  <dengen>
+
+	* 記事投稿や編集に関わる日本語版独自のテンプレートが古く、JavaScriptの
+	  シンタックスエラーが発生する問題を修正しました。
+
+2011-08-11  mystral-kk <mystral-kk>
+
+	* ライセンス上の問題があるcustom/custom_useragent.phpを削除しましまし
+	  た。
+
+2011-08-10  Tetsuko Komma  <ivy>
+
+	* custom_templatesetvars.phpのエンコードをShift-JISからUTF-8に変更しま
+	  した。
+
+2011-08-09  mystral-kk <mystral-kk>
+
+	* Issue #181に対処する試みとして、custom/custom_useragent.phpを作成しま
+	  した。
+
+2011-07-23  mystral-kk <mystral-kk>
+
+	* Sitemapプラグインで、新たにDownloadsプラグインをサポートしました。
+
+2011-07-23  mystral-kk <mystral-kk>
+
+	* Dataproxyプラグインで、新たにDownloadsプラグインをサポートしました。
+
+2011-07-16  mystral-kk <mystral-kk>
+
+	* LocalizeGeeklogクラスでglobalの宣言漏れを修正しました。
+
+2011-07-12  Tetsuko Komma  <ivy>
+
+	* CUSTOM_templateSetVarsに、1.7.2から日本語プラグイン(Japanize)から
+	  削除されたテーマ変数を復活させました。 Issue #180
+
+2011-07-09  mystral-kk <mystral-kk>
+
+	* 言語ファイルの文言を一部変更しました。
+
+2011-07-01  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.0-jp-1.0をリリースします。
+
+2011-06-30  mystral-kk <mystral-kk>
+
+	* autotags-1.1.0のマージにあわせて、autotags/GNUmakefileを修正しました。
+
+2011-06-26  Tetsuko Komma  <ivy>
+
+	* NEWSの、professional_cssの説明を追加しました。
+
+2011-06-26  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.0-jp-rc1をリリースします。
+
+	* NEWS, README.jp: 小さな現行の状態に合わせた修正と、文面の改善を試み
+	  ました。
+
+2011-06-19  mystral-kk <mystral-kk>
+
+	* Issue #161で不十分だったコードを修正しました。
+
+2011-06-19  Takahiro Kambe  <tacahi>
+
+	* NEWS, README.jp: 現行の状態に合わせた修正と、一部文面の改善を試み
+	  ました。
+
+2011-06-18  mystral-kk <mystral-kk>
+
+	* PHPのバージョン番号、MySQLのバージョン番号の説明をGeeklog-1.8.0用に
+	  変更しました。
+
+2011-06-18  mystral-kk <mystral-kk>
+
+	* 本家から公開された自動タグ(autotags)プラグインv1.1.0をマージしました。
+
+2011-06-15  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.0-jp-beta1をリリースします。
+
+	* CHANGESファイルを整理しました。
+
+2011-06-15  mystral-kk <mystral-kk>
+
+	* admin/install/LocalizeGeeklogクラスをGeeklog-1.8.0に対応させました。
+
+2011-06-15  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのjquery_uiで背景色と文字色のコントラスト比が
+	  WCAG2.0レベルAAをクリアするよう文字色を変更しました。
+
+2011-06-14  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントファイルの、history.htmlの翻訳を行いました。
+
+	* カレンダープラグイン、カレンダーjpプラグインのテンプレートのformのURLを
+	  修正しました: http://project.geeklog.net/tracking/view.php?id=1360
+
+	* README.jp NEWSを修正しました。
+
+2011-06-13  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.8.0をマージしました。
+
+2011-06-13  mystral-kk <mystral-kk>
+
+	* PrecheckをGeeklog-1.8.0に対応させました。
+
+2011-06-11  Tetsuko Komma  <ivy>
+
+	* 言語ファイルの、自動タグフォーマットエラーの表示を変更しました。
+
+2011-06-09  Tetsuko Komma  <ivy>
+
+	* テーマmobileのjquery_uiでfont-familyの指定を削除しました。
+
+	* テーマmobileのコンフィギュレーションのレイアウトを修正
+	  しました。
+
+2011-06-08  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのjquery_uiでfont-familyの指定を削除しました。
+
+	* テーマWAIproCSSのコメントのネスティングレイアウトを修正
+	  しました。
+
+2011-06-08  Tetsuko Komma  <ivy>
+
+	* テーマprofessional_cssのjquery_uiでfont-familyの指定を削除しました。
+
+	* テーマprofessional_cssのコンフィギュレーションのレイアウトを修正
+	  しました。
+
+	* テーマprofessional_cssのコメントのネスティングレイアウトを修正
+	  しました。
+
+2011-06-05  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.8.0rc2-jp-0.99.1のスナップショットをリリースします。
+
+	* 拡張版のプラグイン: nmoxqrblockとtkgmapsを除きました。
+
+2011-06-05  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: バージョン1.0.4～1.0.8からのアップグレードが
+	  できない問題を修正しました。
+
+2011-06-05  mystral-kk <mystral-kk>
+
+	* テーマエディタープラグインで編集できるテーマの初期値をprofessionalのみ
+	  に変更しました。
+
+2011-06-05  Tetsuko Komma  <ivy>
+
+	* テーマの名前を、ProfessionalCSSから、本家版にあわせてprofessional_css
+	  に変更しました。
+
+	* NEWSに、Geeklog 1.7.2-jp-1.0からの変更を追記しました。
+
+	* README.jpを、1.8.0-jp配布内容に差し替えました。
+
+2011-06-04  Tetsuko Komma  <ivy>
+
+	* history.htmlの1.8.0 rc2部分を翻訳しました。
+
+2011-06-03  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.8.0rc2をマージしました。
+
+2011-05-30  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: カレンダーの週表示で日付の「月」が欠落する場合が
+	  ある問題を修正しました。
+
+2011-05-27  Tetsuko Komma  <ivy>
+
+	* forumプラグインの、ProfessionalCSSベースのテーマを利用した場合に、
+	  テキストのズーム指定により入力フォームが大きくなって、投稿ボタンが
+	  隠れるケースがある不具合を対策しました。
+
+2011-05-22  Yoshinori Tahara  <dengen>
+
+	* custommenuプラグイン: バージョン0.6.0に更新します。
+	  - Geeklog 1.8.0で強化されたコンフィギュレーションUIに対応しました。
+	  - 動作に必要なGeeklogのバージョンを 1.8.0以降に変更しました。
+
+2011-05-22  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: Geeklog 1.8.0rc1のcalendarプラグインの変更を
+	  マージしました。
+
+2011-05-21  mystral-kk <mystral-kk>
+
+	* テーマテスターでtouch, touch2テーマを選択しないように修正しました。
+
+2011-05-21  Tetsuko Komma  <ivy>
+
+	* 日本語拡張版のlib-custom.phpの1.8.0rc1マージ漏れ
+	  を作業しました。
+
+	* 日本語コア言語ファイルのコンフィギュレーション部を
+	  一部修正しました。
+
+	* 日本語拡張版ProfessionalCSSのfunctions.phpを
+	  Geeklog 1.8.0に対応させました。
+
+2011-05-20  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSをテーマProfessionalCSSを元に
+	  Geeklog 1.8.0に対応させました。
+
+2011-05-10  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントchanges.htmlを一部修正しました。
+
+2011-05-09  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.8.0rc1をマージしました。
+
+2011-05-01  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイル(コア)を一部修正しました。
+
+2011-04-30  Yoshinori Tahara  <dengen>
+
+	* 日本語言語ファイル(コア)を一部修正しました。
+
+2011-04-27  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイル翻訳(コア)、ドキュメント翻訳と修正を行いました。
+
+	* ProfessionalCSSをprofessional_cssを元に修正しました。
+
+	* ProfessionalCSSのjavascript/fix_html.jsをAugeさんの修正ファイルに
+	  差し替えました。
+
+2011-04-26  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.8.0b2をマージしました。
+
+2011-04-15  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイル翻訳(コアおよびプラグイン)、ドキュメント翻訳の
+	  修正を行いました。
+
+2011-04-10  Tetsuko Komma  <ivy>
+
+	* インストーラーの日本語言語ファイルを修正しました。
+
+2011-04-10  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: コンフィギュレーションのバリデーションのルール
+	  を追加しました。
+
+2011-04-10  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: バージョン1.1.5に更新しました。
+	  - Geeklog 1.8.0のcalendarプラグインの変更をマージしました。
+
+2011-04-10  mystral-kk <mystral-kk>
+
+	* テーマテスターのhtmlspecialchars関数がエラーになっていたバグを修正
+	  しました。
+
+2011-04-09  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSSを本家professional_cssに差し替え日本語化を
+	  行い、tooltipsのスタイルインポート漏れの不具合を対応しました。
+
+2011-04-05  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイル翻訳(コアおよびプラグイン)、ドキュメント翻訳を
+	  行いました。
+
+2011-04-05  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.8.0b1をマージしました。

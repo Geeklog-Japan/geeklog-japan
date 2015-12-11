@@ -1,0 +1,799 @@
+2011-04-04  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6の時点で削除されていたsystem/pear/PHPを削除しました。
+
+	* README.jpをGeeklog 1.7.2-jp-1.1に向けて更新しました。
+
+2011-03-27  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: オリジナル版のversion 2.7.5をマージしました。
+	  これによりGeeklog1.8.0から追加されるCOM_tooltip関数を使用した機能が
+	  追加されます。
+	  その他、不要なコードを削除しました。
+
+2011-03-10  mystral-kk <mystral-kk>
+
+	* precheck.phpで、ファイルブラウザーを使用してもdb-config.phpのパスが反映
+	  されていなかったバグを修正しました。
+
+2011-03-09  Tetsuko Komma  <ivy>
+
+	* 掲示板プラグイン(Forum)のドイツ語言語ファイルの文字化け他、修正
+	  しました。
+
+2011-03-06  Hiroshi Sakuramoto <hiroron>
+
+	* changesドキュメントの翻訳を修正しました。
+
+2011-03-06  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.2-jp-1.0をリリースします。
+
+2011-03-06  Tetsuko Komma  <ivy>
+
+	* NEWS README.jpをGeeklog 1.7.2-jp-1.0に向けて更新しました。
+
+2011-03-06  Yoshinori Tahara  <dengen>
+
+	* Calendarjpプラグイン: イベント表示ページで3つのテンプレート変数を
+	  追加しました。(Issue #164)
+
+2011-03-06  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: 軽微なバグを修正しました。
+
+2011-03-04  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.2-jp-1.0rc1をリリースします。
+
+2011-03-04  Tetsuko Komma  <ivy>
+
+	* NEWS README.jpに、Dataproxyプラグインのアップグレードを記述しました。
+
+	* 日本語ドキュメントchanges.html,history.htmlの表現を微修正しました。
+
+2011-03-03  mystral-kk <mystral-kk>
+
+	* hiroronさんによるDataproxyプラグインの修正を、より下位互換性を考慮し
+	  たものに修正しました。
+
+2011-03-03  Hiroshi Sakuramoto <hiroron>
+
+	* Dataproxyプラグインのstaticpageをドラフトモードに対応させました。
+
+2011-03-01  Tetsuko Komma  <ivy>
+
+	* NEWS README.jpをGeeklog 1.7.2-jp-1.0に向けて更新しました。
+
+	* 日本語ドキュメントhistory.htmlを修正しました。
+
+2011-02-28  mystral-kk <mystral-kk>
+
+	* 本家のバージョン1.7.1と同期していないファイルを同期させました。
+
+2010-02-28  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSをProfessionalCSSの修正に合わせて
+	  WAIproCSSで必要な箇所のみ同じように修正しました。
+	  - 記事編集ページでforとidで関連付けられない箇所に
+	    title属性を追記しました。
+	  - 使用していない背景画像を削除しました。
+
+2011-02-28  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSSの「記事の編集」フォームの日付を言語モードに
+	  応じて切り替えるハック対応テンプレートを修正しました。
+
+2011-02-28  Yoshinori Tahara  <dengen>
+
+	* 「記事の編集」フォームの日付を言語モードに応じて切り替えるハックが
+	  無効になっていたので復活させました。
+
+2011-02-27  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSSのレイアウトを960px幅の新レイアウトに変更
+	  しました。書式を見直し、日本語のコメントを英語に変更しました。
+
+	* 日本語コア言語ファイルの、一部フルネームだった表記を氏名に
+	  変更しました。ほか微調整を行いました。
+
+2011-02-26  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: バージョン1.1.4に更新しました。
+	  - Geeklog 1.7.2のcalendarプラグインの変更をマージしました。
+	  - イベントの表示ページのテンプレートでイベントIDを出力する
+	    テンプレート変数{event_id}を使用できるようにしました。
+	  - イベントの表示ページのtitleタグにイベントのタイトルを表示する
+	    ようにしました。
+
+2011-02-21  Takahiro Kambe  <tacahi>
+
+	* 新たなドキュメントの必要な部分を翻訳しました。
+
+	* Geeklog 1.7.2をマージしました。
+
+2011-02-08  Tetsuko Komma  <ivy>
+
+	* 日本語化プラグイン(Japanize): Ver 1.0.6RC4 （2010-11-09）の追加訂正
+	  言語とロケール変更 serialize関数利用（Issue #161）
+
+2012-02-07  Kazuko Tsuchitani <Tsuchi>
+
+	* 日本語化プラグイン(Japanize): Ver 1.0.6RC4 （2010-11-09）の追加訂正
+	  言語とロケール変更追加（Issue #161）
+
+2012-02-07  Kazuko Tsuchitani <Tsuchi>
+
+	* 日本語化プラグイン(Japanize): Ver 1.0.6RC5に更新しました
+	  テーマ変数のみなおし　（Issue #168 #167 #160 #87）
+
+2011-02-06  Tetsuko Komma  <ivy>
+
+	* テーマmobile/preference/profile.thtmlのエンコードを、utf-8
+	  に変更しました。
+
+	* 日本語コア言語ファイルのパスワード取得メールの文言を修正
+	  しました。
+
+	* ProfessionalCSS/custom.cssの日本語を英語に変更しました。
+
+2011-01-29  Tetsuko Komma  <ivy>
+
+	* 日本語コア言語ファイルのユーザー一括削除部を修正しました。
+
+2011-01-22  Masuko Koeda  <milk851>
+
+	* WAIproCSSのcss/story.cssで、話題アイコンが右固定されていた
+	  不具合を修正しました。
+
+2011-01-21  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSSのcss/story.cssで、話題アイコンが右固定されていた
+	  不具合を修正しました。
+
+2011-01-20  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1sr1-jp-1.0をリリースします。
+
+2011-01-16  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1sr1-jp-1.0rc2をリリースします。
+
+2010-05-04  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: オリジナル版のversion 2.7.4をマージしました。
+	  これによりBBコード機能に見つかったXSSの脆弱性が取り除かれます。
+
+2011-01-05  mystral-kk <mystral-kk>
+
+	* PrecheckをGeeklog-1.7.1に対応させました。
+
+2011-01-03  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1sr1-jp-1.0rc1をリリースします。
+
+	* NEWSの翻訳の用語も変更しました。
+
+	* 日本語のドキュメントの翻訳の1.6.1sr2の部分も合わせて変更しました。
+
+2011-01-03  Tetsuko Komma  <ivy>
+
+	* geeklog-1.7.1sr1日本語のドキュメントの翻訳を修正しました。
+
+2011-01-03  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1sr1の変更をNEWSに反映しました。
+
+	* geeklog-1.7.1sr1で変更されたドキュメントを、日本語のドキュメントに
+	  反映しました。
+
+	* geeklog-1.7.1sr1をマージしました。
+
+2010-12-29  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1-jp-1.2rc1をリリースします。
+
+	* NEWS: calendarjpプラグインの修正をgeeklog-1.7.1-jp-1.2に向けた
+	  変更として記述しました。
+
+2010-12-28  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: r2762の変更に伴うreadme_jp.htmlの更新が
+	  漏れていたので、遅ればせながら更新しました。
+
+2010-12-28  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: GNUmakefileを修正し、r2762で追加したinclude
+	  ディレクトリが配布パッケージに正しく含まれるようにしました。
+
+2010-12-14  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1-jp-1.1をリリースします。
+
+2010-12-05  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1-jp-1.1rc2をリリースします。
+
+	* README.jpが配布ファイルに含まれていなかったのを修正しました。
+	  (Issue #163)
+
+2010-11-28  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1-jp-1.1rc1をリリースします。
+
+2010-11-28  Tetsuko Komma  <ivy>
+
+	* sitemap.xmlの生成でエラーになる環境があるため、インストーラーの初期
+	  インストールプラグインの許可設定からxmlsitemapプラグインをはずし
+	  ました。
+	* NEWS をGeeklog 1.7.1-jp-1.1に向けて更新しました。
+
+2010-11-27  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: バージョン2.1.3に更新しました。
+	  - コンフィギュレーションの設定項目「テンプレート名」を選択式へ変更。
+	    (Issue #148)
+	  - サポートするコンテンツの初期値からdownloadを削除、downloadsを追加。
+
+2010-11-22  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.1-jp-1.0をリリースします。
+
+2010-11-20  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントの修正を行ないました。日付を日時に統一他を修正。
+	* NEWS README.jpをGeeklog 1.7.1-jp-1.0に向けて更新しました。
+
+2010-11-17  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSでスキップナビ用の不要な記述部分を削除しました。
+	  スキップナビのフォーカス時用のCSSでの背景色の記述が
+	  背景画像の設定にカスタマイズされる事を想定し
+	  記述を変更しました。
+	  スキップナビのフォーカス時表示されるナビの
+	  縦余白が少なかったので調整しました。
+
+	  /header.thtml
+	  /css/common.css
+
+2010-11-14  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSをGeeklog1.7.1に対応させました。
+
+	  /admin/group/groupeditor.thtml
+	  /comment/commentform.thtml
+	  /comment/commentform_advanced.thtml
+
+	* テーマWAIproCSSをJIS X 8341-3:2010の
+	  7.2.4.1 ブロック・スキップに関する達成基準 (達成等級 A)を満たすよう
+	  また　キーボードで操作されているかたにも情報が得られるよう
+	  フォーカス時にスキップナビゲーションが表示されるようにしました。
+
+	  /header.thtml
+	  /footer.thtml
+	  /rightblocks.thtml
+	  leftblocks.thtml
+	  /css/common.css
+
+	* テーマWAIproCSSのブロック、話題、グループ管理画面のレイアウトの変更
+	  及びスタイルを追加・修正しました。
+
+	  /admin/topic/topiceditor.thtml
+	  /css/admin/group.css
+	  /admin/block/blockeditor.thtml
+	  /admin/block/defaultblockeditor.thtml
+
+2010-11-14  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: イベントの「詳細」をWikiスタイルで編集できる
+	  ようにしました。
+
+2010-11-13  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: Geeklog 1.7.1のcalendarプラグインの変更を
+	  マージしました。
+
+2010-11-09  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.6RC4に更新しました
+	  言語とロケール変更追加（Issue #161）
+
+
+2010-11-09  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSS, mobileを調整しました。admin/user/edituser.thtmlの
+	  文法エラーを修正しました。
+
+2010-11-02  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントの翻訳追加と修正を行ないました。
+
+	* 静的ページの管理画面のテンプレート、言語ファイルを修正しました。
+
+2010-11-01  Tetsuko Komma  <ivy>
+
+	* インストーラーの日本語ロケールの指定で、月の表記をロケール利用の書式
+	  になっていたので、ロケールなしの表記対応に変更しました。
+
+2010-11-01  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.7.1をマージしました。
+
+2010-11-01  Tetsuko Komma  <ivy>
+
+	* 日本語コア言語ファイルのコンフィギュレーションにおける日付の言語等
+	  および日本語ドキュメントを修正しました。
+
+2010-10-24  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSS, mobileの管理画面から日本語部分を削除。英語版と共通化
+	  しました。ヘッダー等html整形しました。
+
+2010-10-21  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSS, mobileの話題アイコンアップロードフォームの
+	  重複、グループ・ブロック管理画面のレイアウトをそれぞれ変更しました。
+
+	  admin/topic/topiceditor.thtml
+	  admin/group/groupeditor.thtml
+	  admin/block/blockeditor.thtml
+
+2010-10-20  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.6RC3に更新しました
+	  テーマ変数　sp_id　の問題対応（Issue #160）
+
+2010-10-16  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSS, mobileをGeeklog 1.7.1対応のバージョン: 1.4, 0.4に
+	  それぞれ変更しました。
+
+	   admin/group/groupeditor.thtml
+	   comment/commentform.thtml
+	   comment/commentform_advanced.thtml
+
+	* README.jp NEWSを編集しました。
+
+2010-10-15  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイルで、コンフィギュレーション内画面遷移選択肢の
+	  翻訳を変更しました。
+
+2010-10-12  Tetsuko Komma  <ivy>
+
+	* 日本語コア言語ファイルの翻訳を追加しました。件のコメント　を
+	  コメント　に変更しました。
+	* 静的ページの翻訳を追加しました。
+	* 日本語ドキュメントの翻訳を追加しました。
+
+2010-10-11  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.7.1rc1をマージしました。
+
+	* geeklog-1.7.0-jpのブランチを作成しました。
+
+2010-10-06  Hiroshi Sakuramoto <hiroron>
+
+	* filemgmtのGeeklog1.4.1からの移行不具合を修正。
+
+2010-09-01  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.0-jp-1.2をリリースします。
+
+2010-08-15  Tetsuko Komma  <ivy>
+
+	* NEWS の書式を変更しました。
+
+	* テーマProfessionalCSSのREADMEにVer 1.3の修正をREADMEに記載しました。
+
+2010-08-13  Tetsuko Komma  <ivy>
+
+	* 日本語コア言語ファイルの、プラグインアップグレードボタンの表記を、
+	  更新からアップデートに変更しました。
+
+	* README.jp NEWSを編集して、Geeklog 1.7.0-jp-1.2 リリース内容にしま
+	  した。
+
+2010-08-12  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSS も、テーマProfessionalCSSと同様に
+	  プラグインの事を考慮し(汎用性を高める為)fieldset legendに標準的な
+	  スタイルを追加し、タイトルが2度読みになる箇所
+	  (class="basic"が指定された箇所)のfieldset, legendのスタイルをすべて
+	  非表示に設定しました。この修正をREADMEに記載しました。
+
+2010-08-03  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSS で、class="basic"が指定されたfieldset, legendの
+	  スタイルをすべて非表示に設定しました。検索とログインのフォームだけ
+	  非表示にする前回のコミットが不要になったので戻しました。
+
+2010-08-02  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSS で、fieldset, legendのスタイルをデフォルト表示に
+	  変更したため、検索とログインのフォームで表示されるようになった
+	  fieldset, legendのスタイルを非表示に設定しました。
+
+2010-07-31  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSS で、OpenID用ログインフォームが表示されないのを修正
+	  しました。
+	  users/loginform.thtmlへ{openid_login}を追加しました。
+
+2010-07-30  Hiroshi Sakuramoto <hirorongl>
+
+	* テーマProfessionalCSS で、OpenID用ログインフォームが表示されないのを
+	  修正しました。users/loginform.thtmlへ{openid_login}を追加しました。
+
+2010-07-27  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSS で、スタイルを変更しました。
+	  common.cssのinput, select, textareaで日本語のフォントスタイルを追加し
+	  ました。
+	  コメントの英語化をコミットする際に変更しなくても良いfont-familyを
+	  変更していました。
+
+	* 掲示板プラグイン(forum)の言語ファイルで、Submitを、保存と翻訳されて
+	  いたのを保存する、に変更しました。他、タブメニュー部で折り返されや
+	  すいので言語を短く調整しました。
+
+2010-07-25  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSS で、スタイルを変更しました。
+	  1. legendが非表示になる初期設定を廃止しました。
+	  2. IE専用のワード途中で折り返しさせるスタイル
+	     th, td { word-break: break-all; }
+	     を削除して、折り返しなしのデフォルトに戻しました。
+
+2010-07-05  mystral-kk <mystral-kk>
+
+	* 掲示板プラグインで、有効期間内であるにもかかわらずセキュリティトークン
+	  が失効するバグ（の一部）に対応しました。
+
+2010-07-04  mystral-kk <mystral-kk>
+
+	* Themeditプラグインで一部のHTMLタグがXHTMLに対応していなかったバグ
+	  (Issue #153)を修正しました。
+
+2010-07-04  mystral-kk <mystral-kk>
+
+	* DbmanプラグインでTIMESTAMPフィールをクォートして保存していなかった問
+	  題(Issue #158)に対処しました。
+
+2010-06-23  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのcss/compatible.css で、
+	  リンクの背景画像に指定しているexternalとfeedアイコンが
+	  アクティブ・ホバー・フォーカス時に消えてしまうので、修正しました。
+
+2010-06-20  Hiroshi Sakuramoto <hirorongl>
+
+	* tkgmapsを0.9.4から2.0.4にアップしました。
+
+2010-06-15  Masuko Koeda  <milk851>
+
+	* テーマProfessionalCSS WAIproCSSのcss/block.cssの
+	  右ブロックのヘルプアイコンのセレクターを修正しました。
+
+	* r2672の修正を確認し、テーマWAIproCSSのcss/compatible.cssの
+	  背景画像をgifに変更し、アイコンがきちんと表示されるよう
+	  余白の修正をしました。
+
+2010-06-15  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSS WAIproCSS のcss/compatible.css で、画像ファ
+	  イルのリンクエラーを修正しました。
+
+	* テーマProfessionalCSS/css/default.cssの、
+	  url(../javavscript/iepngfix.htc)をコメントアウトしていましたが、
+	  これを削除しました。
+
+2010-06-08  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSでカスタムメニュー有効時にグローバルナビの文字色が
+	  基本色になってしまうのを修正しました。
+
+2010-06-07  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントの表現長期保存クッキー名をパーマネントクッキー名に
+	  変更しました。
+
+2010-06-05  Tetsuko Komma  <ivy>
+
+	* ソース内のウムラウト表記で文字化けしていたものを修正しました。
+
+2010-06-04  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントの表現を調整しました。
+
+	* アンケートの日本語言語ファイルで、新着情報ブロックの表現を調整しま
+	  した。
+
+2010-06-01  Tetsuko Komma  <ivy>
+
+	* プラグイン管理画面の説明文とアップデートを要求する文言を修正しました。
+
+	* ドキュメント変更履歴のタイトルおよびリンクテキストを修正しました。
+
+	* 静的ページのコンフィギュレーションにおける、管理者ページのリストソー
+	  ト順sort_list_byの翻訳を修正しました。
+
+2010-05-27  Tetsuko Komma  <ivy>
+
+	* 'Permalink'を'永久リンク'、'パーマネントリンク'と翻訳していたのを、
+	  'パーマリンク'に統一しました。
+
+2010-05-26  Tetsuko Komma  <ivy>
+
+	* Googleスタイルの検索結果表示でon日時と表示されていたのを日時だけに
+	  するよう、言語ファイルを修正しました。
+
+	* インストール時、移行時のインポート中のメッセージを変更するため、
+	  インストーラーの言語ファイルを修正しました。
+
+2010-05-25  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSS mobile WAIproCSSにimages/update.pngを追加
+	  しました。
+
+	* README.jpに、ファイルREADME.jpの情報を追加しました。
+
+	* 日本語言語ファイルの、プラグイン管理画面で「更新されています」を、
+	  英語版にあわせて「アップデート!」に変更しました。
+
+2010-05-24  Takahiro Kambe  <tacahi>
+
+	* NEWSからREADME.jpを分離しました。
+
+2010-05-24  Tetsuko Komma  <ivy>
+
+	* すべてのテーマのテンプレートファイルsubmit/submitloginrequired.thtml
+	  は不要になったので削除しました。
+
+	* 日本語ドキュメントのテーマ作成（theme.html）の1.7.0の翻訳を追加し、
+	  書式を一部揃えました。
+
+2010-05-23  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.0-jp-1.1をリリースします。
+
+2010-05-23  Tetsuko Komma  <ivy>
+
+	* NEWSにGeeklog 1.7.0-jp-1.1に向けた追加をしました。
+
+2010-05-22  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.0-jp-1.1rc1をリリースします。
+
+2010-05-22  Tetsuko Komma  <ivy>
+
+	* NEWSの内容をGeeklog 1.7.0-jp-1.1に向けて更新しました。
+
+2010-05-20  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントのコンフィギュレーションでCronスケジュール間隔
+	  'cron_schedule_interval'のデフォルトを、86400秒(24時間)から、0秒
+	  に変更しました。1.6.0から0秒に変更されていました。
+	  他、1.5からのデフォルト変更反映など、行いました。
+
+	* ProfessionalCSS mobile WAIproCSSテーマのadmin/group/groupeditor.thtml
+	  の管理者グループチェックボックスが多かった不具合を修正しました。
+
+	* FCKeditorのクイックアップロード機能のバグは修正されたので、
+	  画像とリンクのアップロードタブをtrueに戻しました。Flashは、本家版の
+	  まま、falseにしておきます。
+
+2010-05-20  Yoshinori Tahara  <dengen>
+
+	* インストーラーにおいて、新規インストール時、「インストール＋追加
+	  プラグインの設定」ボタンでインストールするとエラーになる問題を修正し
+	  ました。これに伴い、r2627の修正は取り消しました。
+
+2010-05-18  Tetsuko Komma  <ivy>
+
+	* インストーラーにおいて、新規インストール時、「インストール＋追加
+	  プラグインの設定」ボタンでインストーるするとエラーになるのを回避
+	  するため、暫定的にボタンを表示しないようにしました。
+
+2010-05-17  Takahiro Kambe  <tacahi>
+
+	* custom/custom_cellular.php: $CUSTOM_MOBILE_CONF['use_xhtml_for_3g']
+	  が常にfalseとして、切り分けているコードを削除しました。
+
+2010-05-17  Tetsuko Komma  <ivy>
+
+	* custom/custom_cellular.php: $CUSTOM_MOBILE_CONF['use_xhtml_for_3g']
+	  をfalse固定に変更しました。
+
+2010-05-17  Hiroshi Sakuramoto <hirorongl>
+
+	* custom_cellular.php: 3G携帯でアクセスすると廃止になったmobile_3g
+	  テーマを利用するのをmobileテーマを利用するように修正しました。
+
+2010-05-16  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.0-jp-1.0をリリースします。
+
+2010-05-15  Tetsuko Komma  <ivy>
+
+	* 日本語ドキュメントのhistory.htmlの翻訳の修正を行いました。
+
+2010-05-13  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSSのREADMEの修正、および、すべてのcssを英語化
+	  しました。
+
+	* 日本語ドキュメントのhistory.htmlの1.7.0の翻訳の残りと、書式統一、
+	  ウムラウトを含む名前の修正を行いました。
+
+2010-05-12  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: Geeklog 1.7.0でのcalendarプラグインの変更を
+	  マージしました。
+
+2010-05-10  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.7.0をマージしました。
+
+	* Geeklog 1.7.0のマージに続き、ドキュメントのセキュリティ関連の部分を
+	  翻訳しました。
+
+	* geeklog-1.7.0-jp-1.0beta1をリリースします。
+
+2010-05-10  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのテンプレートファイルのタイポを修正しました。
+
+2010-05-10  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSSのREADMEの修正、および、テンプレートファイルの
+	  タイポを修正しました。
+
+2010-05-06  Yoshinori Tahara  <dengen>
+
+	* custommenuプラグイン: バージョン0.5.0に更新します。
+	  - Geeklog 1.6.0で追加された自動インストール機能に対応しました。
+	  - Geeklog 1.6.1で追加されたCUSTOM_renderMenuに対応しました。
+
+2010-05-04  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: r2563に伴うreadme_ja.txtの記述ミスを修正しました。
+
+2010-05-04  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: アップグレード用関数を改善しました。
+
+2010-05-04  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: オリジナル版のversion 2.7.3をマージしました。
+
+2010-05-03  Tetsuko Komma  <ivy>
+
+	* history.htmlで、追加された英文の翻訳を行いました。
+
+2010-05-02  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.7.0rc1をマージしました。
+
+2010-04-21  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.6RC2に更新しました。
+		- 日本語化一括から(6)サンプルアンケートをはずす。
+		- POLLSが有効のときのみ(6)サンプルアンケート　ボタン表示。
+
+2010-04-19  Tetsuko Komma  <ivy>
+
+	* mobileテーマをGeeklog 1.7.0 BETA 1に対応させました。
+
+2010-04-18  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.7.0b1-jp-1.0beta1をリリースします。
+
+2009-04-14  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのREADMEの更新履歴に追記しました。
+
+2010-04-13  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: フィードに日時、イベントの種類、場所、詳細を書き
+	  出すようにしました。
+
+2009-04-13  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSで追加したスタイルの中で背景色と文字色の
+	  コントラスト比がWCAG2.0 レベルAAの基準を満たしてい箇所があったので
+	  文字色を変更しました。
+	* テーマ　ProfessionalCSS と WAIproCSS のパーミッション部分が
+	  わかりやすい様にProfessionalのスタイルと同じように
+	  背景色とセル間の区切り線のスタイルを追加しました。
+
+2010-04-13  Tetsuko Komma  <ivy>
+
+	* mystral-kkさんが開発したcustom_forcethemechange.phpを、カスタム関数に
+	  追加しました。
+
+	  CUSTOM_forceThemeChange() とは：
+	  サイトのデフォルトテーマが変化した場合のコールバック関数です。
+	  サイトのテーマを変更する際に、この関数により、元のテーマを指定している
+	  ユーザーのテーマもあわせて新しいテーマに変更します。
+	  この関数により、サイトのテーマを変更したものの、自身のテーマが旧テー
+	  マのままなので、表示が切り変わらないという、一見不具合にみえる状況を
+	  これで改善します。
+
+	* 日本語言語ファイルの翻訳候補コメントをはずし修正を加えました。
+
+	* ドキュメントの修正を行いました。
+
+	* テーマprofessionalのstyle.cssを本家版に戻すよう一部修正しました。
+
+	* 拡張版のテーマprofessional内にあるstyle.cssは、forum用styleがテーマ
+	  別に不要になったため削除しました。
+
+2010-04-12  Yoshinori Tahara  <dengen>
+
+	* 掲示板（forum）へ携帯から投稿した直後にエラーが発生する問題を解決する
+	  ため、custom_cellular.phpを修正しました。
+	  r2493の修正は間違いだったので、元に戻しました。
+
+2010-04-12  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: Geeklog1.7.0b1でXMLSitemapがインストール済みの
+	  とき、filemgmtのインストール直後にエラーが発生する問題を修正しました。
+
+2009-04-11  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSの1.7.0b1対応作業でミスがあったので修正しました。
+
+2009-04-11  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSの1.7.0b1対応を行いました。（Issue #145）
+	* WAIproCSSのバージョンを2.4.2に上げ、READMEに更新履歴を追記しました。
+	* テーマProfessionalCSSの/css/compatible.cssファイルは、
+	  私の修正は現在反映されていないので著者に記されていた
+	  私の名前を削除しました。
+
+2010-04-11  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: 言語が英語のときに、エラーが発生する問題を修正
+	  しました。（Issue #144）
+
+2010-04-09  Tetsuko Komma  <ivy>
+
+	* テーマProfessionalCSSの1.7.0b1対応を行いました。
+	* commentform_advanced.thtmlに{cid}変数が抜けていたバグを修正しました。
+	* compatible.cssにスタイルprofessionalのstyle.cssを大幅に追加しました。
+	* style.cssで、compatible.cssの優先順位を下げました。
+
+2010-04-09  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.6RC1に更新しました
+	  Pollsプラグイン2.1.2　polltopicsの項目名変更に対応
+
+2010-04-07  mystral-kk <mystral-kk>
+
+	* DataproxyプラグインとSitemapプラグインをGeeklog-1.7.0b1に対応させまし
+	  た。
+
+2010-04-07  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: Geeklog 1.7.0b1のcalendarプラグインの変更を
+	  マージしました。
+
+2010-04-06  Tetsuko Komma  <ivy>
+
+	* geeklog 1.7.0beta1マージ分の日本語ドキュメントの修正を追加しました。
+	* geeklog 1.7.0beta1マージ分のすべての日本語言語ファイルに、翻訳候補を
+	  追加しました。
+	* インストーラーの言語ファイルに日本語版独自言語変数を追加しました。
+	* history.htmlに対して英文のまま追加しました。
+
+2010-04-06  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: 携帯から投稿した直後にエラーが発生する問題を修正し
+	  ました。
+
+2010-04-05  Takahiro Kambe  <tacahi>
+
+	* geeklog 1.7.0beta1をマージしました。
+
+	* geeklog-1.6.1-jpのブランチを作成しました。

@@ -1,0 +1,340 @@
+2009-06-29  Takahiro Kambe  <tacahi>
+
+	* リリース処理: release_jp.phpの更新のルールが正しく動作していなかっ
+	  たのを修正しました。
+
+	* リリース処理: リリースのファイルの作成にpaxコマンドに代えて、tar
+	  コマンドを使用するようにしました。
+
+2009-06-28  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr4-jp-1.1をリリースします。
+
+2009-06-23  Takahiro Kambe  <tacahi>
+
+	* 誤って実行すると危険な droptables.phpを削除することとし、その
+	  結果空となる public_html/admin/install/tools 共々削除しました。
+
+2009-06-07  Takahiro Kambe  <tacahi>
+
+	* 空のディレクトリ public_html/layout/mobile/images/droplinemenu と
+	  public_html/layout/mobile_3g/images/droplinemenu は不要なので削除
+	  しました。
+
+2009-04-30  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr4-jp-1.0をリリースします。
+
+2009-04-24  mystral-kk <mystral-kk>
+
+	* custom_mail_jp: 「ヘッダーのエンコード方法」に ICONV_MIME_ENCODE を
+	  指定した場合に、ヘッダーの先頭にコロンが付加される問題を修正しました。
+
+2009-04-22  mystral-kk <mystral-kk>
+
+	* custom_mail_jp: セキュリティリリースでバージョン番号の判定に失敗
+	  するバグを修正しました。
+
+2009-04-18  Takahiro Kambe  <tacahi>
+
+	* public_html/docs/changes.html: 1.5.2sr4の変更(追加部分)を翻訳し
+	  ました。
+
+	* geeklog-1.5.2sr4をマージしました。
+
+2009-04-16  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr3-jp-1.0をリリースします。
+
+2009-04-16  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr2, geeklog-1.5.2sr3の変更箇所の翻訳を改善しました。
+
+2009-04-15  Tetsuko Komma  <ivysoho>
+
+	* インストーラーのSpam-Xプラグインの本家の処理変更に対応しました。
+
+2009-04-15  Tetsuko Komma  <ivysoho>
+
+	* geeklog-1.5.2sr3をマージして、セキュリティ修正を行いました。
+	  (http://www.geeklog.net/article.php/geeklog-1.5.2sr3)
+
+2009-04-05  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr2-jp-1.0をリリースします。
+
+2009-04-05  Tetsuko Komma  <ivysoho>
+
+	* geeklog-1.5.2sr2のセキュリティ修正を行いました。
+	  (http://www.geeklog.net/article.php/geeklog-1.5.2sr2)
+
+2009-04-04  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr1-jp-1.0をリリースします。
+
+2009-04-01  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2sr1のマージに伴い、日本語バージョンを0.0.99とし
+	  ました。
+
+2009-03-31  Tetsuko Komma  <ivysoho>
+
+	* docs/changes.htmlのsr1部の翻訳と，docs/history.htmlをsr1に
+	  対応させました。
+
+2009-03-31  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2とgeeklog-1.5.2sr1の間の変更をマージしました。
+	  これはセキュリティ修正を含みます。
+	  (http://www.geeklog.net/article.php/geeklog-1.5.2sr1)
+
+2009-03-29  mystral-kk <mystral-kk>
+
+	* precheck（インストール前診断用スクリプト）を追加しました。
+
+2009-03-28  mystral-kk <mystral-kk>
+
+	* Issue #49によりよく対応しました。
+
+2009-03-25  mystral-kk <mystral-kk>
+
+	* トラックバックの送信に失敗するバグ(Issue #61)を修正しました。
+
+2009-03-21  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2-jp-1.0をリリースします。
+
+	* 本ファイルの私のアカウント名が不注意で誤っていたのを修正しました。
+
+2009-03-17  Takahiro Kambe  <tacahi>
+
+	* system/custom/custom_cellular.php: 水平タブをスペースに置き換え
+	  ました。本来はすべてのファイルで水平タブとスペースの使用を確認
+	  すべきところですが、取り敢えず各trunkとブランチの差異を埋めるため
+	  最低限のファイルの変更を行います。
+
+2009-03-10  Takahiro Kambe  <tacahi>
+
+	* ファイル名の誤り(public_html/japanize/inex.html)をリポジトリ上の
+	  名前変更で修正しました。
+
+	* Geeklog 1.5.2のマージの洩れを修正しました。
+
+2009-03-06  mystral-kk <mystral-kk>
+
+	* 携帯ハックで掲示板プラグインをインストールしていな
+	  いときでもブロックメニューに表示される問題に対応し
+	  ました。
+
+2009-03-06  mystral-kk <mystral-kk>
+
+	* 携帯ハックでmagic_quotes_gpcがオンの時に発生しうる問題に
+	  対応しました。
+
+2009-03-04  mystral-kk <mystral-kk>
+
+	* Wikiスタイルで文字化けする問題(Issue #49)に対応しました。
+
+2009-02-27  mystral-kk <mystral-kk>
+
+	* custom_mail_jp.phpを1.5.2に対応させました。
+
+2009-02-26  mystral-kk <mystral-kk>
+
+	* public_html/docs内の翻訳を1.5.2に更新しました。
+
+2009-02-19  Tetsuko Komma  <ivysoho>
+
+	* 携帯テーマmobile,mobile_3gのヘッダーを修正して、Googleで検索するとGWT
+	  (Google Wireless Transcoder/Google Mobile Proxy)が、せっかくのケー
+	  タイハックを無視して勝手にケータイ用に変換してしまう不具合を解消し
+	  ました。
+
+2009-02-15  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグインをバージョン1.0.7に更新しました。
+	  calendarプラグインのバージョン1.0.3の変更をマージしました。
+	  ナビゲーションバーの操作で常に全体カレンダーを表示してしまう問題を修正
+	  しました。
+	  カレンダーでの年月日及び時間の選択が、イベントエディターにおいて初期値と
+	  して入力されるようにしました。
+	  HTMLコードの適正化を実施しました。 
+
+2009-02-12  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2をマージし、日本語リリースのバージョンを0.0に
+	  リセットしました。
+
+	* geeklog-1.5.2rc1のマージからpublic_html/docs/changed-filesが
+	  もれていたのを更新しました。
+
+2009-02-11  Yoshinori Tahara  <dengen>
+
+	* IE8で、ProfessionalCSSのカラムレイアウト変更ができない問題を修正
+	  しました。
+
+2009-02-07  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.2rc1をマージしました。
+
+2009-01-25  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.1-jp-1.3をリリースします。
+
+2009-01-25  Tetsuko Komma  <ivysoho>
+
+	* 言語ファイルjapanese_utf-8.phpの「powered by」を「Powered by」に
+	  変更しました。
+
+2009-01-18  mystral-kk <mystral-kk>
+
+	* フルネームを表示する」を「はい」にしても、コメントバーでユーザー名
+	  が表示されてしまう問題(Issue #52)に対応しました。
+
+2009-01-14  Tetsuko Komma  <ivysoho>
+
+	* 言語ファイルjapanese_utf-8.phpの「Powered By」を「powered by」に
+	  変更しました。
+
+2009-01-08  mystral-kk <mystral-kk>
+
+	* 携帯の記事編集の対応(2008-11-13)で使用されている正規表現を一部修正
+	  しました。
+
+2008-12-21  Tetsuko Komma  <ivysoho>
+
+	* 言語ファイルjapanese_utf-8.phpの「アカウント情報表示」「記事を送る」
+	  のメール関連の表記を修正しました。
+
+2008-12-06  Tetsuko Komma  <ivysoho>
+
+	* テーマProfessionalCSSの３つの記事表示テンプレートファイルに対して
+	  テーマ変数{story_introtext}から、冒頭文と本文の間にBRタグを入れない
+	  {story_text_no_br}に変更しました。
+
+2008-12-05  Tetsuko Komma  <ivysoho>
+
+	* テーマProfessionalCSSを修正しました。
+	  ProfessionalCSS/css/common.css
+	  bodyセレクター fontプロパティにIE7用ハック(文字サイズ拡大対応)追加
+	  css/admin/lists.css
+	  ブロック管理画面のアイコンでのボーダー非表示
+
+2008-11-29  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.1-jp-1.2をリリースします。タグgeeklog-1.5.1-jp-1.2を
+	  作成した後で、記述忘れに気がついたため、改めてタグ
+	  geeklog-1.5.1-jp-1.2aを作成し、配布ファイル名もタグ名に合わせます。
+
+2008-11-28  mystral-kk <mystral-kk>
+	* LocalizeGeeklogクラスにおいて、日本語化メッセージで閉じタグが
+	  抜けていたのを修正しました。
+
+2008-11-26  hirorongl <hirorongl>
+
+	* トラックバックできない不具合の対応をしました。
+	  各テーマの admin/trackback/trackbackeditor.thtml に、セキュリティ
+	  トークンを埋め込んでいます。
+
+2008-11-25  Tetsuko Komma  <ivysoho>
+
+	* テーマProfessionalCSSのfeaturedstorytext.thtml,storytext.thtmlで、
+	  {comments_with_count}部の二重リンクを削除しました。
+
+2008-11-24  Tetsuko Komma  <ivysoho>
+
+	* 静的ページプラグインの言語ファイルに、$PLG_staticpages_MESSAGE19、
+	  $PLG_staticpages_MESSAGE20を追加しました。(本家版2008.10.03追加分)
+
+2008-11-22  Tetsuko Komma  <ivysoho>
+
+	* mobile, mobile_3gテーマから、forumディレクトリを削除しました。
+
+2008-11-22  Tetsuko Komma  <ivysoho>
+
+	* 静的ページをセンターエリアに表示する際の、編集リンクをテンプレート
+	  /plugins/staticpages/templates/centerblock.thtmlに追加しました。
+
+2008-11-22  Tetsuko Komma  <ivysoho>
+
+	* 言語ファイルjapanese_utf-8.phpの句点の処理の抜けがあり、英語版
+	  english_utf-8.phpと統一させました。他、翻訳漏れを追加しました。
+
+2008-11-18  Tetsuko Komma  <ivysoho>
+
+	* テーマmobile,mobile_3g,ProfessionalCSSの各ログイン用テンプレート
+	  （loginform.thtml）に、OpenIDログイン変数{openid_login}が抜けて
+	  いたので追加しました。
+
+2008-11-13  hirorongl <hirorongl>
+
+	* 携帯の記事編集の対応 /system/classes/story.class.php の
+	  replaceImages の中で文字列マッチを str_replace から
+	  preg_replace に置き換えました。
+
+2008-11-11  hirorongl <hirorongl>
+
+	* CMT_getComment内で携帯の場合にコメントのコメント用リンクURL
+	  に含まれるtitleの文字列をsjis-winに変換しました。
+
+2008-11-09  hirorongl <hirorongl>
+
+	* ProfessionalCSSの functions.php へ include対策を行いました。
+
+2008-11-01  mystral-kk <mystral-kk>
+
+	* インストール時にエラーが発生した場合、COM_errorLogが未定義のため
+	  インストールが中断するエラーに対応しました。
+
+2008-10-29  hirorongl <hirorongl>
+
+	* 携帯対応でrefreshにLocationヘッダーの使用の有無を制御できるように
+	  しました。(デフォルトはLocationヘッダーを使用)
+
+2008-10-28  hirorongl <hirorongl>
+
+	* 携帯対応でのCOM_refreshのハック漏れを修正しました。
+
+2008-10-28  Tetsuko Komma  <ivysoho>
+
+	* テーマmobile,mobile_3gのheader.thtml：{welcome_msg}を日本語対応版
+	  {welcome_msg_jp}へ変更しました。
+
+2008-10-23  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグインで、一般ユーザーが全体イベントを投稿する場合に、
+	  calendarプラグインへ投稿されてしまう問題を修正しました。
+
+2008-10-23  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.5.1-jp-1.1をリリースします。
+
+2008-10-19  Tetsuko Komma  <ivysoho>
+
+	* 携帯テーマ　mobile, mobile_3gのfunctions.php header.thtmlを修正。
+	  XHTMLモードチェックの追加やヘッダーコードの追加を行いました。
+
+2008-10-19  Yoshinori Tahara <dengenxp>
+
+	* calendarjpプラグイン: まれにcalendarプラグインからデータを正常に
+	  引き継げない場合があることなどに対応しました。
+
+2008-10-14  Tetsuko Komma  <ivysoho>
+
+	* テーマ変数'start_storylink_anchortag'のタグに閉じタグ'>'が抜けて
+	  いたのを修正しました。本家は対応済み。
+
+		system/lib-story.php
+
+2008-10-12  Takahiro Kambe  <tacahi>
+
+	* geeklog 1.5.1で変更されたfckeditorのサイトのURLが、1ヶ所そのまま
+	  だったのを修正しました。
+
+		geeklog-1-jp/public_html/docs/changes.html
+
+	* geeklog 1.5.0のままだったファイルに1.5.1での変更を反映しました。
+
+	  public_html/docs/theme.html
+	  public_html/layout/professional/admin/story/storyeditor_advanced.thtml
+	  public_html/layout/professional/loginform_openid.thtml
