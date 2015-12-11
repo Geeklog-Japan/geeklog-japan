@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<title>Geeklog DataproxyプラグインのAPI</title>
+	<style type="text/css">
+	<!-->
+		body {
+			color: black;
+			background-color: white;
+			line-height: 1.5em;
+			width: 780px;
+			margin: 10px auto 10px;
+		}
+		.caution {
+			padding: 10px;
+			font-weight: bold;
+			border: solid 1px black;
+			color: black;
+			background-color: yellow;
+		}
+		.code {
+			padding: 10px;
+			border: solid 1px black;
+			background-color: #ccffff;
+		}
+		table {
+			border: solid 1px black;
+			border-collapse: collapse;
+			padding: 3px;
+		}
+		th {
+			border: solid 1px black;
+			text-align: center;
+		}
+		td {
+			border: solid 1px black;
+			padding: 3px;
+		}
+	<! -->
+	</style>
+</head>
+
+<body>
+	<h1>Geeklog Dataproxyプラグインの<acronym title="Application Program Interface">API</acronym></h1>
+	<table>
+		<tr>
+			<th>制作者</th>
+			<td>mystral-kk - geeklog AT mystral-kk DOT net</td>
+		</tr>
+		<tr>
+			<th>バージョン</th>
+			<td>2.0.0</td>
+		</tr>
+		<tr>
+			<th>公開日</th>
+			<td>2012-06-11</td>
+		</tr>
+	</table>
+	
+	<h2>1. 概要</h2>
+	<p>Dataproxyプラグインは、Geeklogのコンテンツ取得代行・キャッシュ管理を行うプラグインです（<strong>キャッシュ管理機能はまだ実装されていません</strong>）。通常、各プラグインが管理するデータを取得するには、それぞれSQLを組み立て、権限チェックを追加するなどの手順を踏む必要がありますが、Dataproxyプラグインを使用すれば、簡単な手順と統一されたインターフェースでコンテンツを取り出すことができます。</p>
+	
+	<p class="caution">ご注意：Dataproxyプラグインはまだ開発初期の段階のため、下記のAPIは変更される可能性があります。</p>
+	
+	<h2><a name="datasource"></a>2. データソース・カテゴリ・アイテム</h2>
+	<p>Dataproxyプラグインでは、コンテンツを提供する機能・プラグインを<strong>データソース</strong>として位置づけています。現時点でサポートされているデータソースは次の通りです。article, comments, trackbackは常に利用できます。</p>
+	<ul>
+		<li>article（記事）</li>
+		<li>comments（コメント）</li>
+		<li>trackback（トラックバック）</li>
+		<li>staticpages（静的ページプラグイン）</li>
+		<li>calendar（カレンダープラグイン）</li>
+		<li>links（リンクプラグイン）</li>
+		<li>polls（アンケートプラグイン）</li>
+		<li>dokuwiki（DokuWikiプラグイン）</li>
+		<li>forum（掲示板プラグイン）</li>
+		<li>filemgmt（ファイル管理プラグイン）</li>
+		<li>faqman（FAQプラグイン）</li>
+		<li>mediagallery（メディアギャラリプラグイン）</li>
+		<li>downloads（ダウンロードプラグイン）</li>
+	</ul>
+	
+	<p>また、各データソースは階層的な<strong>カテゴリ</strong>を持っています（staticpagesなどにはありません）。各階層にある具体的なコンテンツを<strong>アイテム</strong>と呼びます。</p>
+	
+	<h2>3. Dataproxyプラグインの利用法</h2>
+	<p>Dataproxyプラグインがインストールされ、有効になっていれば、次の1行を記述するだけでDataproxyプラグインが提供するAPIを利用できます。</p>
+	<div class="code">$dataproxy = Dataproxy::getInstance($uid);</div>
+	<p>$uidはデータを取得するユーザーのID($_USER['uid'])です。デフォルト値は1（ゲストユーザーの扱い）です。全データを取得する必要がある場合は、0を指定します。</p>
+	
+	<h2>4. Dataproxyクラス</h2>
+	
+	<p>Dataproxyクラスは実際にデータを取得するdpxyDriverクラスの生成・管理を担当します。現在有効になっているプラグインを認識し、必要なdpxyDriverクラスのインスタンスを作成します。</p>
+	
+	<h3>4.1 Dataproxyクラス - 公開メソッド(静的メソッド)</h3>
+	<div class="code">getAllSupportedDriverNames()</div>
+	<p>Dataproxyプラグインでサポートされている<a href="#datasource">データソース</a>名の配列を返します。</p>
+	
+	<div class="code">getAllDriverNames()</div>
+	<p>Dataproxyプラグインで現在有効になっているデータソース名の配列を返します。サポートされている<a href="#datasource">データソース</a>については、上記をご覧ください。</p>
+	
+	<div class="code">escape($str)</div>
+	<p>文字列をHTMLとして出力できるようエスケープします。</p>
+	
+	<h3>4.2 Dataproxyクラス - 公開メンバー</h3>
+	<p>以下のメンバーは、データソースオブジェクト（：dpxyDriverクラス）へのリファレンスになっています。</p>
+	<ul>
+		<li>article</li>
+		<li>comments</li>
+		<li>trackback</li>
+		<li>staticpages</li>
+		<li>calendar</li>
+		<li>links</li>
+		<li>polls</li>
+		<li>dokuwiki</li>
+		<li>forum</li>
+		<li>filemgmt</li>
+		<li>faqman</li>
+		<li>mediagallery</li>
+		<li>downloads</li>
+	</ul>
+	
+	<h2>5. dpxyDriverクラス</h2>
+	
+	<p>dpxyDriverクラスは各コンテンツのデータ・メタデータを実際に取り出すデータソースドライバーの親クラスです。Dataproxyクラスが管理しますので、ユーザーがデータソースドライバーをインスタンス化する必要はありません。</p>
+	
+	<h3>5.1 dpxyDriverクラス - 公開メソッド</h3>
+	
+	<div class="code">getEntryPoint()</div>
+	<p>各プラグインのユーザーに見えるトップページのURIを返します。staticpagesプラグインなどのようにトップページがない場合は、FALSEを返します。</p>
+	
+	<div class="code">getChildCategories($pid = FALSE, $all_langs = FALSE)</div>
+	<p>親カテゴリ$pidの下にあるすべての子カテゴリのメタデータを配列で返します。配列の要素は以下のようになっています。ルートカテゴリの場合は、$pidにFALSEを指定して呼び出します。多言語機能を有効にしたサイトで$all_langsにTRUEを指定すると、カレントユーザーの言語IDを無視します。Googleサイトマップなどを作成する場合に有効です。</p>
+	<ul>
+		<li>id - カテゴリID(string)</li>
+		<li>pid - 親カテゴリのID(string)</li>
+		<li>title - カテゴリのタイトル(string)</li>
+		<li>uri - カテゴリのURI(string)</li>
+		<li>date - カテゴリの作成（更新）日(int: Unix timestamp, ない場合はFALSE)</li>
+		<li>image_uri - カテゴリの画像のURI(string, ない場合はFALSE)</li>
+	</ul>
+	
+	<div class="code">getAllCategories($all_langs = FALSE)</div>
+	<p>データソースが持つすべてのカテゴリのメタデータを配列で返します。配列の要素は、getChildCategories()と同じです。多言語機能を有効にしたサイトで$all_langsにTRUEを指定すると、カレントユーザーの言語IDを無視します。Googleサイトマップなどを作成する場合に有効です。</p>
+	
+	<div class="code">getItems($category, $all_langs = FALSE)</div>
+	<p>親カテゴリ$pidの下にあるすべてのアイテムのメタデータを配列で返します。配列の要素は以下のようになっています。ルートカテゴリの場合は、$pidにFALSEを指定して呼び出します。多言語機能を有効にしたサイトで$all_langsにTRUEを指定すると、カレントユーザーの言語IDを無視します。Googleサイトマップなどを作成する場合に有効です。</p>
+	<ul>
+		<li>id - アイテムID(string)</li>
+		<li>pid - 親カテゴリのID(string)</li>
+		<li>title - アイテムのタイトル(string)</li>
+		<li>uri - アイテムのURI(string)</li>
+		<li>date - アイテムの作成（更新）日(int: Unix timestamp, ない場合はFALSE)</li>
+		<li>image_uri - アイテムの画像のURI(string, ない場合はFALSE)</li>
+	</ul>
+	
+	<div class="code">getItemById($id, $all_langs = FALSE)</div>
+	<p>$idで指定されたIDを持つアイテム1個分のメタデータと生データを配列で返します。配列の要素は以下のようになっています。</p>
+	<ul>
+		<li>id - アイテムID(string)</li>
+		<li>pid - 親カテゴリのID(string)</li>
+		<li>title - アイテムのタイトル(string)</li>
+		<li>uri - アイテムのURI(string)</li>
+		<li>date - アイテムの作成（更新）日(int: Unix timestamp, ない場合はFALSE)</li>
+		<li>image_uri - カテゴリの画像のURI(string, ない場合はFALSE)</li>
+		<li>raw_data - データベースから取り出した生のデータ（ただし、stripslashes()は適用済み）</li>
+	</ul>
+	
+	<div class="code">getAllItems($all_langs = FALSE)</div>
+	<p>データソースが持つすべてのアイテムのメタデータを配列で返します。配列の要素は、getItems()と同じです。多言語機能を有効にしたサイトで$all_langsにTRUEを指定すると、カレントユーザーの言語IDを無視します。Googleサイトマップなどを作成する場合に有効です。</p>
+	
+	<div class="code">escape($str)</div>
+	<p>文字列をHTMLとして出力できるようエスケープします。</p>
+	
+	<div class="code">toUtf8($str)</div>
+	<p>$strをUTF-8に変換します。</p>
+	
+	<div class="code">cleanUrl($url)</div>
+	<p>与えられたURIから<acronym title="Cross Site Scripting">XSS</acronym>の可能性のあるコードを取り除きます。</p>
+	
+	<h2>6. Dataproxyプラグイン利用のコーディング例</h2>
+	<p>例1. 記事のメタデータを全て（カレントユーザーの言語のみ）取り出す</p>
+	<div class="code">
+		$dataproxy = Dataproxy::getInstance();<br>
+		$item_metadata = $dataproxy-&gt;article-&gt;getAllItems();
+	</div>
+	
+	<p>例1. 記事のメタデータを全て（すべての言語）取り出す。</p>
+	<div class="code">
+		$dataproxy = Dataproxy::getInstance();<br>
+		$item_metadata = $dataproxy-&gt;article-&gt;getAllItems(TRUE);
+	</div>
+	
+	<p>例2. 静的ページのメタデータを全て取り出す</p>
+	<div class="code">
+		$dataproxy = Dataproxy::getInstance();<br>
+		$item_metadata = $dataproxy-&gt;staticpages-&gt;getAllItems();
+	</div>
+	
+	<p>例3. 'foo'カテゴリの記事のメタデータを全て取り出す</p>
+	<div class="code">
+		$dataproxy = Dataproxy::getInstance();<br>
+		$item_metadata = $dataproxy-&gt;article-&gt;getItems('foo');
+	</div>
+	
+	<p>例4. 記事IDが'bar'の記事のデータを取り出す</p>
+	<div class="code">
+		$dataproxy = Dataproxy::getInstance();<br>
+		$item = $dataproxy-&gt;article-&gt;getItem('bar');
+	</div>
+	
+	<p>例5. 全データソースのアイテムのメタデータを全て取り出す</p>
+	<div class="code">
+		$items = array();<br>
+		$dataproxy = Dataproxy::getInstance();<br>
+		<br>
+		foreach (Dataproxy::getAllDriverNames() as $driver) {<br>
+		&nbsp;&nbsp;	$items[] = $dataproxy-&gt;$driver-&gt;getAllItems();<br>
+		}
+	</div>
+
+	<h2>7. APIの変更履歴</h2>
+	<table>
+		<tr>
+			<th width="100">バージョン</th><th>公開日</th><th>変更点</th>
+		</tr>
+		<tr>
+			<td style="text-align: center;">2.0.0</td><td>2012-06-11</td><td>Singletonパターンを用いて、Dataproxyクラスを書き直しました。</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">1.0.3</td><td>2007-12-26</td><td>getChildCategories(), getAllCategories(), getAllCategoriesAsLinks(), getItemById(), getItems(), getItemsAsLinks), getAllItems()で、$all_langsパラメーター（オプション）を追加しました。</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">1.0.0</td><td>2007-11-04</td><td>初期バージョン</td>
+		</tr>
+	</table>
+</body>
+</html>

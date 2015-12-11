@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklog Dbman plugin</title>
+</head>
+
+<body>
+<h1>Geeklog Dbman plugin</h1>
+
+<table style="width: 40em;">
+	<tr>
+		<th style="width: 7em;">Author</th>
+		<td>mystral-kk &lt;geeklog AT mystral-kk DOT net&gt;</td>
+	</tr>
+	<tr>
+		<th>Latest version</th>
+		<td>0.7.2 (2014-02-09)</td>
+	</tr>
+	<tr>
+		<th>System requirements</th>
+		<td>Geeklog-1.6.0 or newer, PHP-5.0.0 or newer</td>
+	</tr>
+	<tr>
+		<th>License</th>
+		<td>GPLv2 or later</td>
+	</tr>
+</table>
+
+<h2>Abstract</h2>
+
+<p>The Dbman plugin backups/restores database WITHOUT using mysqldump(.exe).</p>
+
+<h2>Install</h2>
+
+<p>In the following descriptions,</p>
+
+<ul>
+	<li><span class="geeklog">&lt;geeklog_dir&gt;</span> is the directory where the system db-config.php file resides</li>
+	<li><span class="public">&lt;public_html&gt;</span> is the directory where lib-common.php file resides</li>
+	<li><span class="admin">&lt;admin&gt;</span> is the directory where the administration files reside (usually, under <span class="public">&lt;public_html&gt;</span>)</li>
+</ul>
+
+<ol>
+	<li>Uncompress the dbman plugin archive while in the <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins directory.  The archive will create a directory called dbman in the plugins directory.</li>
+	<li>Under your <span class="admin">&lt;admin&gt;</span>/plugins/ directory, create a directory called dbman.</li>
+	<li>Change to your <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/dbman/admin directory and copy the files in the directory to the <span class="admin">&lt;admin&gt;</span>/plugins/dbman directory your created in step 2.</li>
+	<li>Log in to your Geeklog as a root user, go to the plugin editor and install Dbman plugin.</li>
+</ol>
+
+<h2>Uninstall</h2>
+
+<ol>
+	<li>Log in to your Geeklog as a root user and uninstall the Dbman plugin from plugin editor.</li>
+	<li>Delete the two plugin directories created in the install process: <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/dbman and <span class="admin">&lt;admin&gt;</span>/plugins/dbman.</li>
+</ol>
+
+<h2>History</h2>
+
+<table>
+	<tr>
+		<th>Version</th>
+		<th>Date(YYYY-MM-DD)</th>
+		<th>Detail</th>
+	</tr>
+	<tr>
+		<td>0.7.2</td>
+		<td>2014-02-09</td>
+		<td>Updated to work when admin files are not located under $_CONF['site_url'] + /admin/'.</td>
+	</tr>
+	<tr>
+		<td>0.7.1</td>
+		<td>2012-09-30</td>
+		<td>Updated to load "dbman.js" only when in admin screen.</td>
+	</tr>
+	<tr>
+		<td>0.7.0</td>
+		<td>2012-06-18</td>
+		<td>Updated to work properly with Geeklog-2.0.0.</td>
+	</tr>
+	<tr>
+		<td>0.6.2</td>
+		<td>2012-04-22</td>
+		<td>Fixed a bug which happens under certain conditions while uninstalling the plugin.</td>
+	</tr>
+	<tr>
+		<td>0.6.1</td>
+		<td>2011-10-31</td>
+		<td>Fixed a bug where you couldn't upgrade from version 0.5.5 or older.</td>
+	</tr>
+	<tr>
+		<td>0.6.0</td>
+		<td>2011-10-29</td>
+		<td>Updated to work properly with Geeklog-1.8.0.</td>
+	</tr>
+	<tr>
+		<td>0.5.5</td>
+		<td>2011-10-29</td>
+		<td>Fixed a bug where you try to go to the Configuration panel after Dbman has been uninstalled.  Thanks for reporting the bug, dengen!</td>
+	</tr>
+	<tr>
+		<td>0.5.4</td>
+		<td>2010-07-04</td>
+		<td>Fixed a bug where 'TIMESTAMP' field was not processed as a string value.</td>
+	</tr>
+	<tr>
+		<td>0.5.3</td>
+		<td>2009-11-04</td>
+		<td>Fixed an error when you choose a language other than English or Japanese.</td>
+	</tr>
+	<tr>
+		<td>0.5.2</td>
+		<td>2008-09-26</td>
+		<td>Upgraded to prevent include-files to be directly accessed in some case-insensitive file systems (e.g. MS Windows).</td>
+	</tr>
+	<tr>
+		<td>0.5.1</td>
+		<td>2008-09-14</td>
+		<td>Modified to work properly with PHP-4.x by not using htmlentities() and html_entity_decode() functions.</td>
+	</tr>
+	<tr>
+		<td>0.5.0</td>
+		<td>2008-07-26</td>
+		<td>Modified to work properly with Geeklog-1.5 (Dbman works properly with Geeklog-1.4.x as well).</td>
+	</tr>
+	<tr>
+		<td>0.4.7</td>
+		<td>2007-12-20</td>
+		<td>Fixed to back up and restore allowing for database prefix ($_DB_table_prefix).</td>
+	</tr>
+	<tr>
+		<td>0.4.6</td>
+		<td>2007-10-28</td>
+		<td>Fixed not to display Dbman icon in the CC panel for non-Dbman-admin users.</td>
+	</tr>
+	<tr>
+		<td>0.4.5</td>
+		<td>2007-04-05</td>
+		<td>Fixed a broken path in SQL console screen.  Thanks Tsuchi!</td>
+	</tr>
+	<tr>
+		<td>0.4.4</td>
+		<td>2007-03-25</td>
+		<td>Fixed to save CRLF correctly.</td>
+	</tr>
+	<tr>
+		<td>0.4.3</td>
+		<td>2006-08-06</td>
+		<td>Now you can download backupped files simply by clicking on their respectives URL links.  Added SQL console to input and execute SQL.</td>
+	</tr>
+	<tr>
+		<td>0.4.2</td>
+		<td>2006-07-03</td>
+		<td>Modified to use $_Dbman_CONF['backup_except'] in deciding whether a table's contents should not be backupped.  By default, Dbman *** doesn't *** backup tables created by GUS (Geeklog Usage Stats) plugin.  If you'd like to change this, edit $_DBMAN_CONF['backup_except'] in &lt;geeklog_dir&gt;/plugins/dbman/config.php.</td>
+	</tr>
+	<tr>
+		<td>0.4.1</td>
+		<td>2006-07-03</td>
+		<td>Modified to backup records in small chunks (default 100) to avoid "MySQL Client Out of Memory" error.  Modfied to enabled plugin_upgrade_Dbman() to work properly.</td>
+	</tr>
+	<tr>
+		<td>0.4</td>
+		<td>2006-05-04</td>
+		<td>Implemented a feature of restoring data from backup file.</td>
+	</tr>
+	<tr>
+		<td>0.3.1</td>
+		<td>2006-04-28</td>
+		<td>Modified to save NULL values correctly.</td>
+	</tr>
+	<tr>
+		<td>0.3</td>
+		<td>?</td>
+		<td>Initial public release.</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="block-center">
+	<h2>{lang_title}</h2>
+	{done}
+	
+	<form action="{this_script}" method="post">
+		<table style="padding-bottom: 5px;">
+			{items}
+		</table>
+		
+		<p>{lang_caution}</p>
+		
+		<div>
+			<input type="hidden" name="mode" value="dbset"{xhtml}>
+			<input type="hidden" name="{token_name}" value="{token_value}"{xhtml}>
+			<input type="submit" name="submit" value="{lang_ok}"{xhtml}>
+		</div>
+	</form>
+</div>

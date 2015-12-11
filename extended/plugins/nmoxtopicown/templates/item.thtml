@@ -1,0 +1,14 @@
+			<tr>
+				<td>
+					{topic}<input type="hidden" name="tid{n}" value="{tid}"{xhtml}>
+				</td>
+				<td>
+					<select name="uid{n}">
+						{options}
+					</select>
+				</td>
+				<td>
+					<input type="checkbox" name="touser{n}" id="chk{n}" value="1"{xhtml}>
+					<label for="chk{n}">{lang_change_writer}</label>
+				</td>
+			</tr>

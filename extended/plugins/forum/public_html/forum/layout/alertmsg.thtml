@@ -1,0 +1,10 @@
+<!-- start alertmsg.thtml -->
+        <table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin:5px;border:2px solid #FFCC33;">
+            <tr>
+                <td class="pluginTitle" style="padding:10px;"><img alt="!" src="{imgset}/alert_warning.png" style="border:0; vertical-align:middle;"{xhtml}>&nbsp;{alert_title}</td>
+            </tr>
+            <tr>
+                <td class="pluginCellText" style="padding:15px 0px 15px 20px;">{alert_message}<br{xhtml}>{prompt}</td>
+            </tr>
+        </table>
+<!-- end alertmsg.thtml -->

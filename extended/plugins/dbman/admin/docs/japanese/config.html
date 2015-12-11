@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklog Dbmanプラグイン</title>
+</head>
+
+<body>
+<h1>Geeklog Dbmanプラグイン</h1>
+
+<h2><a name="top">設定</a></h2>
+
+<h3><a name="desc_fs_main">主要設定</a></h3>
+
+<table>
+	<tr>
+		<th style="width: 25%;">項目</th>
+	    <th style="width: 25%:">初期値</th>
+	    <th style="width: 50%;">説明</th>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_allow_restore">リストアを許可する</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、バックアップしたファイルからデータベースを復元できるようになります。データベースを熟知していないと危険なので、可能な限り、phpMyAdminなどのGeeklogとは無関係に動作するツールを使用して復元してください。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_chunk_size">バッファーのサイズ</a></td>
+		<td>100</td>
+		<td>Dbmanがバックアップする際に一度に読み込むレコード数を指定します。"MySQL client run out of memory"エラーが発生する場合には、この数字を小さくしてください。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_compression_level">圧縮レベル</a></td>
+		<td>8</td>
+		<td>バックアップファイルを圧縮するレベルを1から9の範囲で指定します。数字が大きくなるほど圧縮率が高くなります。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_backup_except">バックアップしないテーブル</a></td>
+		<td>$_DB_table_prefix + 'gus_'</td>
+		<td>バックアップしないテーブルを指定します。正規表現が使えます。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_cron_backup">定期的にバックアップする</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、Geeklogの疑似cron機能を用いて定期的にバックアップを行います。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_max_backup">バックアップファイル数の上限</a></td>
+		<td>0</td>
+		<td>サーバー上に保存されるバックアップファイル数の上限を指定します。0を指定すると、バックアップファイルを削除しません。</td>
+	</tr>
+</table>
+
+<h3><a name="desc_fs_backup">バックアップ時の初期値</a></h3>
+
+<table>
+	<tr>
+		<th style="width: 25%;">項目</th>
+	    <th style="width: 25%:">初期値</th>
+	    <th style="width: 50%;">説明</th>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_add_drop_table">"DROP TABLE IF EXISTS"を追加する</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、バックアップファイルに"DROP TABLE IF EXISTS ..."命令を追加します。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_compress_data">データを圧縮する</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、バックアップファイルの圧縮を試みます。圧縮できた場合、ファイル名は'*.sql.gz'となります。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_download_as_file">ファイルとしてダウンロードする</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、バックアップファイルをダウンロードします。</td>
+	</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+Geeklog Forum Plugin History/Changes:
+
+April 19, 2013 (2.9.0)
+------------
+
+- Issue 34: Converted forum smilie images to a sprite and improved the handling of smilies in general [Rouslan]
+- Issue 45: Missing Punctuation in English Error Message [Rouslan]
+- Issue 53: Updated Forum to work with Geeklog 2.0.0. Min version of Geeklog required is now 2.0.0 [Tom]
+- Issue 44: Fixed checking the notify box does not subscribe you to the thread [Tom]
+- Issue 50: Removed echo from redirect to post edit page [Tom]
+- Issue 47: Fixed moving and splitting topics [Tom]
+- Issue 48: Fixed reply notifications being sent in incorrect language [Tom]
+- Issue 56: Convert Tool now displays articles [Tom]
+- Issue 67: If forum disabled no access is allowed to viewtopic.php [Tom]
+- Issue 69: Fixed edit Forum Post Fails when Geeklog Compressed Output enabled [Tom]
+- Issue 70: NoIndex tag added to inframe forum posts to prevent search engines from indexing [Tom]
+- Issue 74: Forums can now be merged together [Tom]
+
+Not yet released (2.8.1)
+------------
+
+- Issue 46: Search did not take into account group privileges on forums [Tom]
+- Wrong number of arguments in some language strings causes sprintf to crash [Rouslan]
+- Fixed invalid index in French language file [Rouslan]
+- Fixed format string [Rouslan]
+- Fixed invalid HTML tag in Italian language file [Rouslan]
+
+
+August 12, 2011 (2.8.0)
+------------
+
+The Geeklog Japanese Team [GJT] has done a number of updates to the latest 
+version of the forum plugin. This means that the Forum plugin now requires a 
+minimum Geeklog version of 1.6.0
+
+- Correct HTML (passes W3C Markup Validation) [GJT] 
+- Supports XHTML [GJT]
+- Uses COM_output function [GJT]
+- Support of new core search engine [GJT]
+- Supports XMLSitemap plugin [GJT]
+- Supports Geeklog auto install feature [GJT]
+- Supports Geeklog site migration feature [GJT]
+- Improved printable page view of forum topic [GJT]
+- Removed the use of the file lib-portalparts.php [GJT]
+- Moved "public_html/forum/include" directory to "/plugins/forum/include" for 
+  better security [GJT]
+- Moved the forum templates directory from the theme to "public_html/forum" [GJT]
+- Rolled changes list into one file [Tom] 
+- Updated smileys [Rouslan]
+- Updated rank icons [Rouslan]
+- Updated Geshi to version 1.0.8.10 and added Python highlighting [Rouslan]
+- Fixed adding forum profile variables to user profile. Includes template examples [Tom]
+- Integrated the configuration with the geeklog configuration UI. [dengen]
+- Cleaned up the graphics directory and removed hard-coded text from images [Rouslan]
+- Improved 'Ban IP Address' form [Rouslan]
+- Bumped up the MySQL requirement to 4.1+ and removed legacy queries [Rouslan]
+- Removed deprecated calls to ereg* functions [Rouslan]
+- Fixes so forum will work with error reporting set to E_ALL [Rouslan]
+- Merged some old translations: Danish, Italian, Korean, Norwegian, Spanish, Swedish [Rouslan]
+- Updated the icon (Adapted the chat icon from the Humanity icon theme) [Rouslan]
+- Fixed bug where memberlist would create to many pages [Tom]
+- New Dutch translation by Zippo
+
+
+Jan 15, 2011 (2.7.4)
+------------
+
+- Fixed several XSS in bbcode attributes Reported by: Saif El-Sherei 
+  (via Mark Evans) [Dirk]
+
+
+May 2, 2010 (2.7.3)
+------------
+
+- Fixed an XSS in anonymous usernames Reported by: Jaloh Smith [Dirk]
+
+
+Jan 25, 2009 (2.7.2)
+------------
+
+- Fixed an issue where a topic could be edited by another user during the 
+  allowable edit time-window (default 1 min). Reported by: Matthew R. Demicco 
+  of www.armitunes.com [Blaine]
+
+
+July 19, 2008 (2.7.1)
+------------
+
+- Fixed a cross-site scripting vulnerability as identified by Yosuke Yamada of 
+  NetAgent Co., Ltd and reported to us by Noriko Takahashi of JPCERT/CC
+  http://jvn.jp/ [Blaine]
+- This release addressed the issue is related to entering a specially crafted 
+  javascript string into the forum search. [Blaine]
+- Added logic to support flexible block and menu layout - requires new variables 
+  in your themes functions.php [Blaine]
+
+  
+Sept 9, 2007 (2.7)
+------------  
+
+- Added support for member badges [Blaine]
+- Display topic in page title [Blaine]
+- Fix to code tracking new posts  - function updateLastPost [Blaine]
+- SIG now supports using autotags - example use the MG plugin to show an image 
+  in your sig [Blaine]
+- Search now will search topic subject [Blaine]
+- Removed un-used statusmsg_pause setting [Blaine]
+- lib-portalparts.php - function ppGetUserBlocks now uses perm.owner [Blaine]
+- Fix to displaying member level [Blaine]
+- Fix to move topic logic - Corrects postcount and viewcount counts that are 
+  shown per forum [Blaine]
+- Changes to memberlist logic - uses new images and now uses the gf_getImage 
+  function to support alternative image types [Blaine]
+- Added logic to support flexible block and menu layout. [Blaine] 
+
+
+March 25, 2007 (2.6 Final (RC5))
+------------  
+
+- Support for Register Globals off and MySql 5 
+- Performance option if using MySQL 4+ - see config.php for setting (disabled by default)
+- Major template changes to provide a much cleaner and better organized layout. 
+  Hopefully also allowing easier themeing. Templates are more structured
+- Performance improvements with the addition of new fields to save frequent 
+  database lookups. Sites updating can use the Admin->Forums page and the 
+  Re-Sync feature to update the new fields
+- Completely replacement of bbcode and content formatting to use a new bbcode class
+    - StringParser_BBCode from Christian Seiler: http://www.christian-seiler.de/projekte/php/bbcode/index_en.html
+    - Much appreciated the efforts of Mark Evans for re-working the code to 
+      support this new class
+- Enhanced RSS Feed supporting rich content - Mark Evans 
+- Enhanced print feature - Mark Evans 
+- Integrated support for the Captcha 2.0 plugin - Mark Evans 
+- Using a function to now auto-detect the image type to use for the main layout 
+  related images. Will default to the image type defined in the {themes}/functions.php - 
+  the $_IMAGE_TYPE. If the image is not found, then it will use the 2nd option 
+  as defined in the plugins/forum/config.php - default to 'gif'. This allows a 
+  site to have some png images and some gif images and not have to edit the templates
+- The links that are used for items like [subscribe], [print], [new topic] ... 
+  and the ones that are shown in a topic like the member [profile], [website],[email] 
+  can now easily be themed to use a choice of images, basic links or rollover like CSS button. 
+  Each link has it's own template under the template forum/layout/links subfolder. 
+  I have commented a few and also created a couple CSS Button examples in the 
+  Have a look at layout/links/rollover_examples Have a look at print.thtml - and 
+  see how that can easily be changed to an icon
+- Added new option for Edit [Silent] post feature. Notifications will not be 
+  sent out and timestamp are not changed if this option used
+- Removed un-necessary inclusion of forum ID in links 
+- Hopefully removed all hard-coded language - moved to LANGUAGE files 
+- Able to use a site setting of 0 for the Edit Timeframe allowing members to always edit their own posts
+- Fixed bugs with moderation, notification features, admininstration and page layout
+- Better handling of formatting post content for Edit mode - revert back smilies, quoting and code syntax
+- Removed support for the MSN and other IM links in the topic, the MSN JS required a ActiveX object and was IE only
+- Fixed issues with handling complex content containing backslashes and quotes 
+
+
+Oct 16, 2004 (2.3.2)
+------------  
+
+- Moderator with Edit Rights can now post to a locked topic -  new moderation 
+  action in listbox
+- Added plugin function to support [autolinks] - new GL 1.3.10 feature
+- Added ALT tag to show the full subject when hovering over the topic subject 
+  link - in the topic listing for a forum
+- Editing or Moving a topic now does not update the timestamp of the topic
+- Added the LastReplyBy Authors name and link to profile in the topic listing view
+- Missing newposts icon or folder icon when a forum has no posts - new empty forums
+- NewPosts block  showing the wrong user profile in the link
+- The View New Posts report had sortable heading but a SQL error was being 
+  generated when they were used
+- Not setting the variable $userDateTimePref in the centerblock function - It 
+  will now use the user preference for date time if this variable is set true 
+  in the plugin function. Default is false.
+- Removed references to load an external css file "forumstyle.css" in the 
+  NewPosts block templates. Removed references to CSS classes as well in the block templates.
+- Plugin Function cclabel_forum not using the $_CONF['site_admin_url'] config setting
+- Links to posts now do not include the forumID - only the topicID needs to be passed
+- Corrected issues with not showing the author and last reply by member names 
+  correctly in the forum and topic listing views
+- Addressed issue with Forum Topic listing - not showing correct date sometimes.
+- Fixed bug with memberlist feature - sortable headings bug
+- When deleting a user from the site - update all their topics to set the user 
+  id (uid) to 1 for anonymous.
+- Plugin function ShowStats not showing the Headings - missing global variable declaration
+- Corrected layout issue that was seen when a private forum was setup as the 
+  last forum and user did not have access 
+- Category Description was not showing for anonymous site users 
+- Editing Forum setup would reset the forum order to 0 
+- The View New Posts page (report) should not show a link at the bottom of the 
+  page "Return to forum" if you were not in a forum - hence it is 0 
+
+
+Sept 19, 2004 (2.3.1)
+------------  
+
+Introduced a new admin navbar that will be used in other plugins from Portalparts. 
+There is now a new lib-portalparts.php file that needs to be copied to the 
+geeklog-dir/system directory. I have placed a set of common functions that will 
+be used by this and other portalparts plugins and it does not make sense to be 
+including this code with each plugin and trying to maintain updates.
+
+- The newposts block was not showing the correct UID of the poster
+- Older posts were not being formatted correctly - missing newline formatting
+- Forum index was not comparing the month/year but only the day of month to see 
+  if the post was from today
+- Forum auto notification was actually subscribing to complete forum
+- Forum search - error in query statement
+- The original author of the post was not being displayed in topic listing view
+- If there were no posts in a forum, it would show a post from another forum in the same category
+- Contributed updates for the Centerblock function from per Dirk Haun
+
+
+Date Unknown (2.3)
+------------  
+
+- Added support for Geeklog user_create() and user_delete() Plugin API's. Now 
+  delete moderation rights, subscription and profile related records 
+- Added logic to filter out all potentially hostile code that may be attempted
+  to be added as input to the forum public scripts. 
+- Speedlimit logic added to prevent rapid posts from being posted. Configurable 
+  time threshold in public/forum/includes/config.php 
+- Major effort to clean up HTML and templates - Layout redone
+- Consolidated and added new templates if required to remove HTML from scripts
+- Cleaned up CSS - now it must be added to your theme style.css file. Forum 
+  should be a lot easier to theme now 
+- Account Profile extra settings now using Plugin API functions. No longer 
+  necessary to add/edit any GL scripts or code. You only need to modify the 
+  templates for member profile and usersettings. 
+- Improved the Forum Moderator Admin. Now able to add/remove multiple forum 
+  moderation rights easily. 
+- Added a MARK ALL READ feature - accessible when you view all unread posts. 
+  Else you can MARK ALL READ at the category level as before. 
+- Fixed a bug in MARK ALL READ feature 
+- Added a config option to enable user DATE Preference format to be used in the 
+  forum index view. Default is a format that presents best but may not be the 
+  preference for international users. 
+- Removed hopefully all the hardcoded language 
+- New Layout - removed top NAVBar 
+- Changed the forum navigation breadcrumbs layout 
+- Relocated the Forum Selection listbox and Search to the top of the forum 
+- You will be redirected to your topic after posting - last page or optionally forum index 
+- Additional fixes for handling quotes - hope I've got this one now 
+- When posting - you now have a navbar (forum/topic) for navigation 
+- Sortable columns (headings) now in the forum topic view 
+- Relocated misc functions and reports to the Users->Forum section 
+- Forum Members report re-written and includes sortable headings 
+- Removed the avatar height and width settings. It will default to the member 
+  photo image size uploaded or you can optionally add width and height 
+  restrictions to the HTML in the template file topic.thtml 
+- Added additional member information variables to topic.thtml - comment out or 
+  reposition to your needs 
+- Added 2 new indexes to the topic table 
+- Cleaned up legend 
+- Profile now disabled if member has been deleted. Posts are not deleted. 
+- The logic to handle the formatting of CODE and QUOTE blocks was all replaced.
+- New logic should be much better at handling code and multiple code blocks in a single post
+- When editing a post with CODE blocks, the extra formatting HTML is removed and
+  tags replaced 
+- Fixed many other bugs and formatting issues that I lost track of ;) 
+- Centerblock now correctly handles "Homepage only" option 
+- NewPosts block now has option to show only last post per topic or all last 
+  posts regardless if they are the same topic 
+
+  
+Date Unknown (2.3RC4)
+------------
+
+- Fixed bug in print.php and link to print.php. Link was not passing topic ID. 
+  Added logic to check for valid topic and permission in-case the topic is in a 
+  private group 
+- Site Stats function will not list topics in private forums 
+- Fixed multiple language localization issues, hardcoded English and template 
+  problems 
+- Fixed several bugs in forum search including handling quotes, bug in search 
+  from forum index page 
+- Fixed bug with saving extra account profile settings 
+- Fixed several bugs in Most Popular posts report including language localization 
+- Navbar now consistent for Admin and User Features pages 
+- Fixed several bugs in subscribe logic. If auto subscibe on, it will now 
+  correctly add subscription record to topics you have not created but reply to. 
+  Fixed bug where multiple subscription records were being created for a topic. 
+  Moving a topic now updates subscription records. 
+- Code to format Legend at bottom of forum now displays correct message about 
+  posting permission 
+- Changes to templates to better forum signature closer to bottom of post message 
+- Now displaying the number of views in topic header when viewing topic 
+- Removed use of Javascript to auto-position cursor in message area when 
+  creating a new post. This fixes a problem that caused a missing cursor with Mozilla browsers 
+- Using TABINDEX so that tabbing works better when posting new topics 
+- Forum index can now show extra information such as last updated topic and 
+  author. Just need to uncomment variables in forumlisting.thtml 
+- Added support for GL 1.3.9 COM_email function for email notifications 
+- Added User Preference option to now disable all email notifications - no 
+  matter what subscriptions are in place 
+- Format clean up for the userprefs pages 
+- Removed hardcoded english in centerblock function 
+
+ 
+Date Unknown (2.2)
+------------
+
+- Added support for Geeklog 1.3.8 new Plugin API's
+- New CenterBlock API Function and Advanced control via Forum Settings
+- New Profile API to show extended profile stats - LAST 10 Posts
+- New Account Info API to integrate in new fields for Messenger ID's and Member Information
+- Multiple Bug fixes rolled up from 2.0 release
+- Added Delete all option to Private messages screen
+- Noted Bugs fixed
+- Better handling of escaping quotes on different server setups
+- Subscribe Link to Forum was disappearing
+- Added logic to better handle {} - braces
+- Member rating display was not working - always showing 1 star
+- Notification was sending out duplicate emails
+- Email Notifications are not marked as urgent now
+- Link in Notifications email was not correct - should have been to viewtopic.php
+- Added Admin check before showing link in Submission Control Center
+- Forum Search by anonymous user generated error
+- Private messages were not escaping quotes
+- Missing extended profile variables in templates
+- Misc Template table HTML errors
+- Missing Stripslashes() on topic subject
+- Fixed several Language related bugs that appeared by translators
+- Removed ------ line that was always appearing above signature in post 
+  even when there was no signature
+
+  
+Date Unknown (2.0)
+------------ 
+
+- Full support for custom themes including independent CSS defines per theme layout
+- Includes new customized theme courtesy of Simon Lord - aka knuckles
+- Additional CSS Defines added to improve support for custom changes
+- New logic added for registered users to track what messages they have read
+- Ability to mark all messages as read under each forum - rapid sync feature
+- Improved Notification features: Able to now subscribe to any changes on any forum
+- Added new user preference for registered users - able to tweak a few display settings
+- Able to set default notification on for all your posted topics
+- Checkmark in top right of topic display is to indicate status of notification. 
+- View new posts since last visit on whole and forum specific levels
+- View last 10 posts for any member
+- Improved several admin screens, Private message feature and member listing as examples
+- Added support for Locked Topics
+- Added support for registered user photo to show up as avatar image
+- New forum footer features:
+    - Search specific forums or all
+    - Forum jump. Allows for quick navigation through forums.
+    - User time and zone stated.
+- Revised top tree navigation. Allowing for faster navigation
+- Revised topic listing. Any topic updated will move to top of list. Clearer and 
+  easier to read
+- Previous and Next links on topic view page. Takes you to the previous and next 
+  topics under that forum
+- Ability for admins and moderators to make topics sticky, locked, and move topics
+- Moved topics state that they are moved
+- Revised admin / moderator message editing
+- Fixed browser problems including forms and & nbsp
+- Fixed many other bugs, code cleanup, redundant database field removed and new 
+  indexes added
+- Return to index 
+
+  
+Date Unknown (1.0)
+------------ 
+
+- Full and seamless integration with Geeklog. This includes:
+    - User and user profiles
+    - Private and Hidden forums supported by Geeklog Groups
+    - Site Search and Statistics with respect to private forums
+    - Install and Plugin Editor
+    - Instant Messaging integration with Chatterblock
+    - Forum Block automatically created with install.
+    - Optional extended user profile options
+        - Adds city, state, aim username, icq number, yim username, msnm 
+          username, occupation, and interests to user profile. Which are then 
+          displayed in forum
+        - Adds last 10 forum posts to user profile
+- Full HTML editor and tool bar
+- Optional HTML or Text Mode per topic
+- Over 20 smilie's supported and provided out of the box
+- Users can include their mood and some 20 different mood options for topic and 
+  reply available to personalize the message
+- Supports anonymous posting, registered GL users or enter users name if anonymous
+- Full online forum admin and moderation
+    - Create Forum Categories - which allow you to group forums
+    - Create and edit forums and their display order
+    - Ability to easily turn-on and turn off forum features
+    - Ability to set-up new moderators of forums and assign moderations permissions
+    - Ability to BAN (disable) certain IP's from posting messages
+- Forum Settings and features that can easily be turned on or off include:
+    - Enable Registered users only or public access to view
+    - Enable Registered users only or public access to post
+    - Enable HTML or only text input of messages and enable the HTML editor toolbar
+    - Enable the Geeklog HTML filter
+    - Enable the Geeklog censor for the bad word list
+    - Allow smilies and enable the smilie display in the editor
+    - Enable email notification of topics being watched by user
+    - Enable extra user profile detail to be displayed
+    - Change the image set used
+    - Set the posting thresholds for user rankings
+- Forum moderation features that can be assigned include:
+    - Delete, BAN IP's, Edit Posts, Move Posts, Make topics Sticky or not
+- Plus Many More!
+

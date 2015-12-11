@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklog サイトマップ(Sitemap)プラグイン</title>
+</head>
+
+<body>
+	<h1>Geeklog sitemapプラグインのインストール/アンインストール</h1>
+	
+	<h2>Sitemapプラグイン[ver. 2.0.0: 2012-06-11]の概要</h2>
+	
+	<p>制作者：mystral-kk - geeklog AT mystral-kk DOT net</p>
+	<p>GeeklogサイトのサイトマップとGoogleサイトマップを作成します。Google sitemap generatorをインストールされていた方は、事前に削除しておいてください。</p>
+
+	<h2>インストール前の作業</h2>
+	
+	<p><strong>注意</strong>: Sitemapプラグインを使用するには、<strong>Dataproxy</strong>プラグインが必要です。前もってインストールしておいてください。</p>
+	
+	<h2>インストール:</h2>
+	
+	<p>以下の説明で、</p>
+	<ul>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span>は、システムの config.php が存在するディレクトリ</li>
+		<li><span class="public">&lt;public_html&gt;</span>は、lib-common.php が存在するディレクトリ</li>
+		<li><span class="admin">&lt;admin&gt;</span>は、管理者用ファイルが存在するディレクトリ（ふつうは、<span class="public">&lt;public_html&gt;</span>ディレクトリの下）</li>
+	</ul>
+	<p>を表しています。</p>
+
+	<ol>
+		<li>sitemap プラグインはテーブルを追加するので、管理者メニューの「DBのバックアップ」やphpMyAdminを使用して、事前にGeeklogのデータベースをバックアップしておきます。</li>
+		<li>sitemapプラグインのアーカイブを<span class="geeklog">&lt;geeklog_dir&gt;</span>/pluginsディレクトリに展開します。sitemapという名前のディレクトリができます。</li>
+		<li>public_htmlディレクトリとadminディレクトリを作ります。htmlファイルを納めるディレクトリ（普通は <span class="public">&lt;public_html&gt;</span>）の下に、sitemapという名前のディレクトリを作ります。<span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下にも sitemapという名前のディレクトリを作ります。</li>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/sitemap/ ディレクトリに移動します。adminディレクトリの内容を、3.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/ ディレクトリにコピーします。public_htmlディレクトリの内容を、3.で作成した <span class="public">&lt;public_html&gt;</span>/sitemap/ ディレクトリにコピーします。</li>
+		<li>Rootユーザーとしてログインし、プラグインエディターからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、sitemap プラグインはインストールされ、機能しているはずです。sitemap アイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
+		<li>セキュリティを設定します。インストール直後には、sitemapプラグインの管理権限を持っているのは、Rootユーザーだけです。ユーザーエディターやグループエディターを使用して、管理権限を他の人やグループに委譲することができます</li>
+	</ol>
+
+	<h2>アンインストール:</h2>
+
+	<ol>
+		<li>プラグインエディターから、sitemap プラグインをアンインストールします。このとき、sitemapプラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
+		<li>インストールの過程で作成した3つのディレクトリ（<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/sitemap/ <span class="public">&lt;public_html&gt;</span>/sitemap/ and <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/ を削除します。</li>
+	</ol>
+
+	<h2>インストール後の作業</h2>
+	
+	<ul>
+		<li>[サイトマップ]<br>管理者メニューから作業します。表示する項目の種類を選ぶだけです。</li>
+		<li>[Googleサイトマップ]<br>
+			<ul>
+				<li>管理者メニューから作業します。Googleサイトマップに含める項目、更新頻度、優先度、ファイル名を指定します。<strong>Googleサイトマップファイルは公開領域のトップ（lib-common.phpのあるところ）に置き、Webサーバから書き込める必要があります。</strong></li>
+				<li>Googleサイトマップファイルは、/private/config.php中の$_CONF['cron_schedule_interval']に指定された間隔（デフォルトは1日に1回）で自動的に作成されます。手動で更新する場合は、管理者メニューで、「今すぐ更新する」にチェックを入れて、「送信」をクリックしてください。</li>
+			</ul></li>
+	</ul>
+	
+	<h2>静的ページで除外するID</h2>
+	
+	<p>バージョン1.1.7以降、静的ページで除外するIDを指定する際に正規表現を使用できるようになりました。既に入力しているIDはそのままご利用いただけます。正規表現は/で始まり、/で終わります。正規表現の中では、/ . [ ] ^ $ | ? * + ( ) { } は特殊な意味を持つようになります。</p>
+	
+	<h3>formで始まるIDを指定する場合</h3>
+	<p class="code">/^form/</p>
+	
+	<h3>formで始まり、後に数字が続くIDを指定する場合</h3>
+	<p class="code">/^form\d+/</p>
+	
+	<h3>formで始まり、後に5桁の数字が続くIDを指定する場合</h3>
+	<p class="code">/^form\d{5}/</p>
+	
+	<h3>formで始まり、後に1-5桁の数字が続くIDを指定する場合</h3>
+	<p class="code">/^form\d{1,5}/</p>
+	
+	<h3>formで終わるIDを指定する場合</h3>
+	<p class="code">/form$/</p>
+	
+	<h3>formを含むIDを指定する場合</h3>
+	<p class="code">/form/</p>
+	
+	<h3>eventで始まり、formで終わるIDを指定する場合</h3>
+	<p class="code">/^event.*form$/</p>
+	
+	<h3>eventで始まり、5桁の数字が続き、formで終わるIDを指定する場合</h3>
+	<p class="code">/^event\d{5}form$/</p>
+	
+	<h3>eventで始まり、5桁の数字が続き、formで終わるIDを指定する場合</h3>
+	<p class="code">/^event\d{5}form$/</p>
+	
+	<h3>applyかconfirmを含むIDを指定する場合</h3>
+	<p class="code">/(apply|confirm)/</p>
+	
+	<h3>event_で始まり、applyかconfirmが続くIDを指定する場合</h3>
+	<p class="code">/^event_(apply|confirm)/</p>
+	
+	<h3>event_で始まり、applyかconfirmかsubmitが続くIDを指定する場合</h3>
+	<p class="code">/^event_(apply|confirm|submit)/</p>
+	
+	<h3>event_で始まり、5桁の数字が続き、applyかconfirmかsubmitで終わるIDを指定する場合</h3>
+	<p class="code">/^event_\d{5}(apply|confirm|submit)$/</p>
+	
+	<p>これ以上に複雑なパターンを指定したい場合は、<a href="http://jp2.php.net/manual/ja/reference.pcre.pattern.syntax.php">こちらのページ</a>等で調べてください。</p>
+	
+	<h2>改訂歴</h2>
+	<table border="1" summary="サイトマッププラグインの更新履歴">
+		<tr>
+			<th>バージョン</th>
+			<th>公開日</th>
+			<th>内容</th>
+		</tr>
+		<tr>
+			<td align="right">2.0.0</td>
+			<td>2012-06-11</td>
+			<td>
+				<span class="new">新規</span> Geeklog-2.0.0に対応しました。なお、Dataproxyプラグインもバージョン2.0.0以降が必要です。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.2.2</td>
+			<td>2011-11-05</td>
+			<td>
+				<span class="new">新規</span> 自動インストールに対応しました。<br>
+				<span class="fixed">修正</span> DataProxyプラグインがインストールされていない、ないし無効になっている場合でもエラーにならないようにしました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.2.1</td>
+			<td>2011-10-29</td>
+			<td>
+				<span class="fixed">修正</span> PHP-5.xに完全に対応しました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.2.0</td>
+			<td>2011-07-23</td>
+			<td>
+				<span class="new">新規</span> dengenさんのダウンロード(Downloads)プラグインをサポートしました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.9</td>
+			<td>2010-01-23</td>
+			<td>
+				<span class="new">新規</span> 記事が更新されたときにサイトマップを再生成するようにしました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.8</td>
+			<td>2009-11-04</td>
+			<td>
+				<span class="fixed">修正</span> 英語・日本語以外の言語を選択した場合に文字化けが起こるバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.7</td>
+			<td>2009-10-23</td>
+			<td>
+				<span class="new">新規</span> 静的ページで除外するIDに正規表現を使用できるようになりました。上記を参照してください。<br>
+				<span class="fixed">修正</span> dengen氏の作業により、静的ページで除外するIDに関するバグを修正していただきました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.6</td>
+			<td>2009-08-27</td>
+			<td>
+				<span class="new">新規</span> dengen氏の作業により、カレンダーjpプラグインに対応していただきました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.5</td>
+			<td>2009-04-01</td>
+			<td>
+				<span class="fixed">修正</span> 設定値でより長い文字列を保存できるように修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.4</td>
+			<td>2008-12-26</td>
+			<td>
+				<span class="fixed">修正</span> Googleサイトマップで静的ページが出力されていなかったバグを修正しました。<br>
+				<span class="new">新規</span> 静的ページの設定を管理者メニューから設定できるようにしました。
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.2</td>
+			<td>2008-09-26</td>
+			<td><span class="fixed">修正</span> 大文字小文字を区別しないファイルシステム（MS Windowsなど）で、インクルードファイルが直接アクセスされるのを防ぐ措置を追加しました。</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.1</td>
+			<td>2008-09-14</td>
+			<td><span class="fixed">修正</span> PHP-4.xで起こるエラーを避けるため、htmlentities(), html_entity_decode()関数を使用しないようにしました。</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.0</td>
+			<td>2008-08-15</td>
+			<td><span class="new">新規</span> Geeklog-1.5.0に対応。</td>
+		</tr>
+		<tr>
+			<td align="right">1.0.3</td>
+			<td>2007-12-26</td>
+			<td><span class="fixed">修正</span> 多言語機能を有効にした場合、Googleサイトマップにすべての言語の記事を出力するように修正。</td>
+		</tr>
+		<tr>
+			<td align="right">1.0.2</td>
+			<td>2007-12-25</td>
+			<td><span class="fixed">修正</span> &amp;を二重にエスケープしていたバグを修正。<br><span class="fixed">修正</span> 静的ページのformmailをサイトマップに表示しないよう修正。</td>
+		</tr>
+		<tr>
+			<td align="right">1.0.1</td>
+			<td>2007-11-10</td>
+			<td><span class="fixed">修正</span> 静的ページは、センターブロックに表示されるもののみをGoogleサイトマップに追加するよう修正。<br><span class="fixed">修正</span> admin/sitemap画面で無効になっている項目をサイトマップに表示しないよう修正。<br><span class="new">新規</span> admin/sitemap画面から、サイトマップの表示順を変更できるようになった。</td>
+		</tr>
+		<tr>
+			<td align="right">1.0</td>
+			<td>2007-11-04</td>
+			<td>初期公開バージョン。</td>
+		</tr>
+	</table>
+</body>
+</html>

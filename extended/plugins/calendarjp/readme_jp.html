@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <style type="text/css">
+  <!--
+    body {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 25px;
+    }
+
+    h1 {
+    font-size: 1.5em;
+    border-bottom: thin outset black;
+    }
+
+    h2 {
+    margin: 0 0 0.5em 0;
+    font-size: 1em;
+    }
+
+    h3 {
+    border-bottom: 1px solid #0033FF;
+    border-left: 6px solid #0033FF;
+    padding: 0.25em;
+    font-size: 1em;
+    }
+
+    h4 {
+    font-size: 0.85em;
+    font-weight: bold;
+    margin: 0.2em 0;
+    }
+
+    p {
+    font-size: 0.85em;
+    margin: 0.5em 0;
+    }
+
+    .attention {
+    color:#FF3300
+    }
+
+    ul {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    }
+
+    li {
+    font-size: 0.8em;
+    margin: 0.5em 0;
+    }
+
+    li p {
+    font-size: 0.8em;
+    margin: 0.5em 0;
+    }
+
+    .email {
+    padding-left: 1.3em;
+    font-size: small;
+    font-weight: normal;
+    }
+
+    pre {
+    padding: 0.2em;
+    border: 1px solid #BBBBBB;
+    background-color: #EEEEEE;
+    margin: 1em 1em 1em 3em;
+    overflow: auto;
+    font-size: 0.85em;
+    line-height: 1.5em;
+    }
+
+    table {
+    font-size: 0.8em;
+    border: solid 1px black;
+    border-collapse: collapse;
+    }
+
+    th,
+    td
+    {
+    border: solid 1px black;
+    padding: 5px;
+    }
+
+    span.comment {
+    color: green;
+    font-weight: bold;
+    }
+
+    .goto {
+    margin: 1em 0 1.5em 0.5em;
+    font-size: 0.8em;
+    }
+
+    .fix {
+    color: red;
+    font-weight: bold;
+    }
+
+    .new {
+    color: blue;
+    font-weight: bold;
+    }
+
+    .center {
+    text-align: center;
+    }
+
+  -->
+  </style>
+  <title>Geeklog Calendarjp プラグイン 説明書</title>
+</head>
+<body>
+  <h1><a name="_top">Calendarjp プラグイン</a></h1>
+  <h2>バージョン: 1.1.7</h2>
+  <h2>作成者: Yoshinori Tahara - dengen</h2>
+  <h2>公開日:&nbsp;2014.08.03</h2>
+  <h2>ライセンス:&nbsp;GPLv2</h2>
+  <h2>概要:</h2>
+  <ul>
+    <li>Calendarjp プラグインは，Calendar プラグインを日本人ユーザー向けにローカライズしたものです。</li>
+  </ul>
+  <h2>機能:</h2>
+  <ul>
+    <li>Calendarプラグインの日付や時間などの表記を日本式に変更しています。</li>
+    <li>ログインユーザーによる全体イベント登録で、アドバンストエディターを使用できます。</li>
+  </ul>
+  <h2>条件:</h2>
+  <ul>
+    <li>このプラグインは，Geeklog 2.1.0 用です。</li>
+  </ul>
+  <h2>この説明のセクション:</h2>
+
+<ul>
+  <li><a href="#_installation">１） インストール</a></li>
+  <li><a href="#_uninstallation">２） アンインストール</a></li>
+  <li><a href="#_history">３） 改訂履歴</a></li>
+</ul>
+
+
+  <h3><a name="_installation">１） インストール</a></h3>
+  <p class="attention">インストールには，手動でプラグイン用のディレクトリを作成し，適切なディレクトリへファイルをコピーする必要があります。</p>
+  <p>以下の説明で，</p>
+  <ul style="margin:0.5em 0">
+    <li>&lt;geeklog_dir&gt; は，db-config.php が存在するディレクトリ</li>
+    <li>&lt;public_html&gt; は，lib-common.php が存在するディレクトリ</li>
+
+  <li>&lt;admin&gt; は，管理者用ファイルが存在するディレクトリ（普通は，&lt;public_html&gt;/admin/ ）</li>
+  </ul>
+  <p style="margin-bottom:1.2em">を表しています。</p>
+  <h4>Step 0 -&nbsp;データベースのバックアップ</h4>
+  <ul>
+    <li>Calendarjp プラグインはテーブルを追加するので，管理者メニューの「DBのバックアップ」や phpMyAdmin
+    を使用して，事前に Geeklog のデータベースをバックアップしておきます。</li>
+  </ul>
+  <h4>Step 1 -&nbsp;アーカイブの展開</h4>
+  <ul>
+    <li>Calendarjp プラグインのアーカイブを &lt;geeklog_dir&gt;/plugins ディレクトリに展開します。calendarjp という名前のディレクトリができます。</li>
+  </ul>
+  <h4>Step 2 -&nbsp;必要なディレクトリの作成</h4>
+  <ul>
+    <li>&lt;public_html&gt; ディレクトリの下に calendarjp という名前のディレクトリを作ります。</li>
+    <li>&lt;admin&gt;/plugins/ ディレクトリの下にも calendarjp という名前のディレクトリを作ります。</li>
+  </ul>
+  <h4>Step 3 -&nbsp;必要なファイルのコピー</h4>
+  <ul>
+    <li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/calendarjp/ ディレクトリに移動します。</li>
+    <li>admin ディレクトリの内容を，Step 2 で作成した <span class="admin">&lt;admin&gt;</span>/plugins/calendarjp/ ディレクトリにコピーします。</li>
+    <li>public_html ディレクトリの内容を，Step 2 で作成した <span class="public">&lt;public_html&gt;</span>/calendarjp/ ディレクトリにコピーします。</li>
+  </ul>
+  <h4>Step 4 - プラグインエディターでインストールの実行</h4>
+  <ul>
+    <li>Rootユーザーとしてログインし，プラグインエディターから calendarjp のインストールを実行します。</li>
+    <li>失敗した場合には，エラーログ（ error.log ）を調べます。</li>
+    <li>これで，Calendarjp プラグインはインストールされました。</li>
+    <li>投稿管理メニューまたはサイドバーのメニューから、「カスタムメニュー」をクリックすると、カスタムメニューリストが表示されるでしょう。</li>
+  </ul>
+  <p class="goto"><a href="#_top">Goto Top</a></p>
+
+  <h3><a name="_uninstallation">２） アンインストール</a></h3>
+  <h4>Step 0 - データベースのバックアップ</h4>
+  <ul>
+    <li>Calendarjp プラグインはアンインストール時に，Calendarjp プラグインが使用していたテーブルを破棄するので，管理者メニューの「DBのバックアップ」や
+    phpMyAdmin を使用して，事前に Geeklog のデータベースをバックアップしておくことをお勧めします。</li>
+  </ul>
+  <h4>Step 1 - プラグインエディターでアンインストールの実行</h4>
+  <ul>
+    <li>プラグインエディターから，calendarjp をアンインストールします。このとき，Calendarjp
+    プラグインが使用していたテーブルは破棄され，その中に記録されていたデータも削除されます。</li>
+  </ul>
+  <h4>Step 2 - ディレクトリの削除</h4>
+  <ul>
+    <li>インストールの過程で作成した3つのディレクトリ（ &lt;geeklog-dir&gt;/plugins/calendarjp/ ，&lt;public_html&gt;/calendarjp/
+    ，&lt;admin&gt;/plugins/calendarjp/ ）を削除します。</li>
+  </ul>
+  <p class="goto"><a href="#_top">Goto Top</a></p>
+
+  <h3><a name="_history">３） 改訂履歴</a></h3>
+  <table>
+    <tr>
+      <th>バージョン</th>
+      <th>公開日</th>
+      <th>説明</th>
+    </tr>
+
+    <tr>
+      <td class="center">1.1.7</td>
+      <td class="center">2014.08.03</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインの最新版(1.1.4)の変更をマージしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.1.6</td>
+      <td class="center">2013.02.21</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインの最新版(1.1.3)の変更をマージしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.1.5</td>
+      <td class="center">2011.05.18</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインの最新版(1.1.2)の変更をマージしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.1.4</td>
+      <td class="center">2011.03.06</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインの最新版の変更をマージしました。<br />
+          <span class="new">追加</span>&nbsp;イベントの「詳細」をWikiスタイルで編集できるようにしました。<br />
+          <span class="new">追加</span>&nbsp;イベントの表示ページのテンプレートでテンプレート変数{event_id},{lang_owner},{owner_name},{owner_id}を使用できるようにしました。<br />
+          <span class="new">追加</span>&nbsp;イベントの表示ページのtitleタグにイベントのタイトルを表示ようにしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.1.3</td>
+      <td class="center">2010.11.13</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインの最新版の変更をマージしました。<br />
+          <span class="new">追加</span>&nbsp;イベントの「詳細」をWikiスタイルで編集できるようにしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.1.2</td>
+      <td class="center">2010.5.12</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインの最新版の変更をマージしました。<br />
+          <span class="new">追加</span>&nbsp;フィードに日時、イベントの種類、場所、詳細を書き出すようにしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.1.1.1b2</td>
+      <td class="center">2010.1.21</td>
+      <td><span class="fix">修正</span>&nbsp;全体イベント投稿したときに、承認待ちリストに追加されない問題を修正しました。<br />
+    </tr>
+    <tr>
+      <td class="center">1.1.1.1b1</td>
+      <td class="center">2009.11.12</td>
+      <td><span class="new">追加</span>&nbsp;全体イベント投稿にログインを要求するモードを追加しました。<br />
+    </tr>
+    <tr>
+      <td class="center">1.1.1</td>
+      <td class="center">2009.11.6</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインのバージョン1.1.1の変更をマージしました。<br />
+    </tr>
+    <tr>
+      <td class="center">1.1.0</td>
+      <td class="center">2009.7.26</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインのバージョン1.1.0の変更をマージしました。<br />
+          <span class="fix">修正</span>&nbsp;言語ファイルの$LANG_MONTHの値変更に合わせた変更を行いました。<br />
+          <span class="fix">修正</span>&nbsp;言語情報（$_CONF['language']）を見て、日本語以外の場合には英語の日付様式を採用するようにしました。<br />
+    </tr>
+    <tr>
+      <td class="center">1.0.7</td>
+      <td class="center">2009.2.15</td>
+      <td><span class="fix">修正</span>&nbsp;calendarプラグインのバージョン1.0.3の変更をマージしました。<br />
+          <span class="fix">修正</span>&nbsp;ナビゲーションバーの操作で常に全体カレンダーを表示してしまう問題を修正しました。<br />
+          <span class="fix">修正</span>&nbsp;カレンダーでの年月日及び時間の選択が、イベントエディターにおいて初期値として入力されるようにしました。<br />
+          <span class="fix">修正</span>&nbsp;HTMLコードの適正化を実施しました。
+      </td>
+    </tr>
+    <tr>
+      <td class="center">1.0.6</td>
+      <td class="center">2008.10.24</td>
+      <td><span class="fix">修正</span>&nbsp;一般ユーザーが全体イベントを投稿する場合に、calendarプラグインへ投稿されてしまう問題を修正しました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.0.5</td>
+      <td class="center">2008.10.19</td>
+      <td><span class="fix">修正</span>&nbsp;まれにcalendarプラグインからデータを正常に引き継げない場合があることに対応しました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.0.4</td>
+      <td class="center">2008.10.8</td>
+      <td><span class="fix">修正</span>&nbsp;アップグレードに対応していなかったので対応しました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.0.3</td>
+      <td class="center">2008.9.26</td>
+      <td><span class="fix">修正</span>&nbsp;インクルード対策ほかGeeklog1.5.1のcalendarの修正をマージしました。</td>
+    </tr>
+    <tr>
+      <td class="center">1.0.2</td>
+      <td class="center">2008.9.10</td>
+      <td>初期バージョン</td>
+    </tr>
+  </table>
+  <p class="goto"><a href="#_top">Goto Top</a></p>
+</body>
+</html>
