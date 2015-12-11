@@ -183,6 +183,8 @@ $LANG01 = array(
     138 => "Click <a href=\"{$_CONF['site_url']}/usersettings.php\" rel=\"nofollow\">here</a> to disable the advanced editor and use the default editor which does not require JavaScript",
     139 => "Click <a href=\"{$_CONF['site_url']}/\" rel=\"nofollow\">here</a> to return to the homepage",
     140 => 'Allowed Autotags:',
+    141 => 'An Error Occurred',
+    142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
     'facebook' => 'Login with Facebook',
     'twitter' => 'Login with Twitter',
     'linkedin' => 'Login with LinkedIn',
@@ -486,7 +488,10 @@ $LANG08 = array(
     37 => 'Inviami una copia di questa e-mail',
     38 => "Questa é una copia dell'e-mail che hai inviato a %s da <{$_CONF['site_url']}>:",
     39 => 'Your last message was ',
-    40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages"
+    40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages",
+    41 => 'This user doesn\'t exist.',
+    42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
+    43 => 'This users email address is invalid.'
 );
 
 ###############################################################################
@@ -528,7 +533,7 @@ $LANG09 = array(
     33 => 'URL',
     34 => 'Localitá',
     35 => 'Tutti i giorni',
-    36 => '',
+    36 => 'Key Word Type',
     37 => '',
     38 => '',
     39 => '',
@@ -2383,6 +2388,7 @@ $LANG_VALIDATION = array(
     'rdf_limit' => 'Questo campo deve contenere un valore numerico o di orario come 24h',
     'path' => 'Percorso non esistente',
     'file' => 'File non esistente',
+    'fileName' => 'This field must be a proper file name',
     'search_limits' => 'Questo campo deve contenere valori numerici separati da una virgola',
     'num_search_results' => 'Questo campo deve essere numerico e da \'search_limits\' soprastante',
     'theme' => 'Cartella Theme non esistente',

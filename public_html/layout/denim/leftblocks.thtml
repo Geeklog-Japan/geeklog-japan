@@ -1,21 +1,21 @@
 
     <hr class="separator"{xhtml}>
 
-    <div id="leftblocks">
-      <div class="block-left" id="block-left-search">
+    <div id="leftblocks" role="complementary">
+      <section class="block-left" role="search" id="block-left-search">
         <h2 class="block-title">{button_search}</h2>
         <div class="block-left-content">
-          <form action="{site_url}/search.php" method="get" id="searchform">
+          <form action="{site_url}/search.php" method="get" id="searchform" class="uk-form">
             <fieldset class="noborder_fieldset">
               <legend class="hidden_legend">{button_search}</legend>
-              <div class="searchform">
-                <input type="text" class="search" size="16" maxlength="255" value="{button_search}" name="query"
+              <div class="uk-form-icon">
+                <i class="uk-icon-search"></i>
+                <input type="text" size="15" maxlength="255" value="{button_search}" name="query"
                   onfocus="if (this.value == '{button_search}') this.value = ''"
                   onblur="if (this.value == '') this.value = '{button_search}'"{xhtml}>
-                <input type="submit" value="{button_search}" class="submit" style="display:none;"{xhtml}>
                 <input type="hidden" value="all" name="type"{xhtml}>
                 <input type="hidden" value="all" name="keyType"{xhtml}>
-                <input type="hidden" value="search" name="mode"{xhtml}>
+                <input type="hidden" value="search" name="mode"{xhtml}>                  
               </div>
               <div class="navi">
                 <a href="{site_url}/search.php">{button_advsearch}</a>
@@ -23,7 +23,7 @@
             </fieldset>
           </form>
         </div>
-      </div>
+      </section>
 
       {geeklog_blocks}
     </div>

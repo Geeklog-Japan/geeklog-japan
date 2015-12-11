@@ -50,7 +50,7 @@
  * @author Euan McKay, info AT heatherengineering DOT com
  */
 
-/** 
+/**
 * Geeklog common function library and Admin authentication
 */
 require_once '../../../lib-common.php';
@@ -215,7 +215,7 @@ function links_edit_category($cid, $pid)
                               COM_getBlockTemplate('_admin_block', 'header'));
     $retval .= SEC_getTokenExpiryNotice($token);
 
-    $T = COM_newTemplate($_CONF['path'] . 'plugins/links/templates/admin');
+    $T = COM_newTemplate(CTL_plugin_templatePath('links', 'admin'));
     $T->set_file(array('page' => 'categoryeditor.thtml'));
 
     $T->set_var('lang_pagetitle', $LANG_LINKS_ADMIN[28]);
@@ -275,7 +275,7 @@ function links_edit_category($cid, $pid)
     */
     $T->set_var('topic_selection', '<select name="tid" id="tid">'
         . TOPIC_getTopicListSelect($A['tid'], 2, true) . '</select>');
-    
+
 
     if (empty($cid)) {
         $num_links = $LANG_ADMIN['na'];

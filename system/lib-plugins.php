@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.8                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-plugins.php                                                           |
 // |                                                                           |
@@ -114,7 +114,7 @@ function PLG_callFunctionForAllPlugins($function_name)
 *
 * This is a generic function used by some of the other API functions to
 * call a function for a specific plugin and, optionally pass parameters.
-* This function can handle up to 5 arguments and if more exist it will
+* This function can handle up to 7 arguments and if more exist it will
 * try to pass the entire args array to the function.
 *
 * @param        string      $function       holds name of function to call
@@ -353,6 +353,11 @@ function PLG_uninstall($type)
         DB_delete($_TABLES['conf_values'], 'group_name', $type);
         COM_errorLog('...success', 1);
 
+        // remove topic assignment table data for this plugin
+        COM_errorLog("Attempting to remove topic assignments table records for $type", 1);
+        DB_delete($_TABLES['topic_assignments'], 'type', $type);
+        COM_errorLog('...success', 1);
+
         // uninstall the plugin
         COM_errorLog("Attempting to unregister the $type plugin from Geeklog", 1);
         DB_delete($_TABLES['plugins'], 'pi_name', $type);
@@ -486,7 +491,7 @@ function PLG_commentDelete($type, $cid, $id)
 
     if ($type == 'article') {
         require_once $_CONF['path_system'] . 'lib-story.php';
-    }      
+    }
 
     return PLG_callFunctionForOnePlugin('plugin_deletecomment_' . $type, $args);
 }
@@ -515,7 +520,7 @@ function PLG_commentSave($type, $title, $comment, $id, $pid, $postmode)
 
     if ($type == 'article') {
         require_once $_CONF['path_system'] . 'lib-story.php';
-    }    
+    }
 
     return PLG_callFunctionForOnePlugin('plugin_savecomment_' . $type, $args);
 }
@@ -548,7 +553,7 @@ function PLG_displayComment($type, $id, $cid, $title, $order, $format, $page, $v
 
     if ($type == 'article') {
         require_once $_CONF['path_system'] . 'lib-story.php';
-    }      
+    }
 
     return PLG_callFunctionForOnePlugin('plugin_displaycomment_' . $type, $args);
 }
@@ -1286,7 +1291,7 @@ function PLG_userInfoChanged($uid)
 
     $all_plugins = array_merge($_PLUGINS, array('topic'));
 
-    foreach ($all_plugins as $pi_name) {       
+    foreach ($all_plugins as $pi_name) {
         $function = 'plugin_user_changed_' . $pi_name;
         if (function_exists($function)) {
             $function($uid);
@@ -1314,7 +1319,7 @@ function PLG_groupChanged($grp_id, $mode)
 
     $all_plugins = array_merge($_PLUGINS, array('story', 'block', 'topic'));
 
-    foreach ($all_plugins as $pi_name) {    
+    foreach ($all_plugins as $pi_name) {
         $function = 'plugin_group_changed_' . $pi_name;
         if (function_exists($function)) {
             $function($grp_id, $mode);
@@ -1611,7 +1616,7 @@ function PLG_collectTags($type = 'tagname')
                 } elseif ($autotag != '') { // If is now possible that a autotag function exists but will not return anything due to permissions
                     $autolinkModules[$autotag] = $pi_name;
                 }
-            } else {       
+            } else {
                 if (is_array($autotag)) {
                     foreach ($autotag as $key => $tag) {
                         $autolinkModules[$tag] = $key;
@@ -1732,7 +1737,7 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
                 }
             }
         } else {
-            break;     
+            break;
         }
     }
 
@@ -1757,7 +1762,7 @@ function PLG_supportingFeeds()
     $plugins = array();
 
     $plugintypes[] = 'article';
-    $plugintypes[] = 'comment';       
+    $plugintypes[] = 'comment';
     $plugintypes = array_merge($plugintypes, $_PLUGINS);
 
     foreach ($plugintypes as $pi_name) {
@@ -1852,7 +1857,7 @@ function PLG_getFeedContent($plugin, $feed, &$link, &$update_data, $feedType, $f
         $content = plugin_getfeedcontent_article($feed, $link, $update_data, $feedType, $feedVersion);
     } elseif ($plugin == 'comment') {
         require_once $_CONF['path_system'] . 'lib-comment.php';
-        $content = plugin_getfeedcontent_comment($feed, $link, $update_data, $feedType, $feedVersion);        
+        $content = plugin_getfeedcontent_comment($feed, $link, $update_data, $feedType, $feedVersion);
     } else {
         if (in_array($plugin, $_PLUGINS)) {
             $function = 'plugin_getfeedcontent_' . $plugin;
@@ -2013,7 +2018,7 @@ function PLG_feedUpdateCheck($plugin, $feed, $topic, $update_data, $limit, $upda
     } elseif ($plugin == 'comment') {
         require_once $_CONF['path_system'] . 'lib-comment.php';
         $is_current = plugin_feedupdatecheck_comment($feed, $topic, $update_data, $limit,
-                                $updated_type, $updated_topic, $updated_id);                
+                                $updated_type, $updated_topic, $updated_id);
     } else {
         if (in_array($plugin, $_PLUGINS)) {
             $function = 'plugin_feedupdatecheck_' . $plugin;
@@ -2047,22 +2052,22 @@ function PLG_getRelatedItems($types, $tids, $max, $trim)
     if (in_array('article', $types) || in_array('story', $types) || empty($types)) {
         require_once $_CONF['path_system'] . 'lib-story.php';
         $returneditems = plugin_getrelateditems_story($tids, $max, $trim);
-    }      
+    }
 
     foreach ($_PLUGINS as $pi_name) {
         // If no types (plugins) passed then assume all
         if (empty($types) OR in_array($pi_name, $types)) {
-            $relateditems = PLG_callFunctionForOnePlugin('plugin_getrelateditems_' . $pi_name, $args); 
+            $relateditems = PLG_callFunctionForOnePlugin('plugin_getrelateditems_' . $pi_name, $args);
             if (is_array($relateditems)) {
                 $returneditems = $returneditems + $relateditems;
-            }            
+            }
         }
     }
 
-    $relateditems = PLG_callFunctionForOnePlugin('CUSTOM_getrelateditems', $args); 
+    $relateditems = PLG_callFunctionForOnePlugin('CUSTOM_getrelateditems', $args);
     if (is_array($relateditems)) {
         $returneditems = $returneditems + $relateditems;
-    }     
+    }
 
     return $returneditems;
 }
@@ -2120,11 +2125,11 @@ function PLG_getWhatsNew()
 
 
 /**
-* Ask plugins if they want to add new comments to Geeklog's What's New block or 
+* Ask plugins if they want to add new comments to Geeklog's What's New block or
 * User Profile Page.
 *
 * @param    string  $type       Plugin name. '' for all plugins.
-* @param    int     $numreturn  If 0 will return results for What's New Block. 
+* @param    int     $numreturn  If 0 will return results for What's New Block.
 *                               If > 0 will return last X new comments for User Profile.
 * @param    int     $uid        ID of the user to return results for. 0 = all users.
 * @return   array list of new comments (dups, type, title, sid, lastdate) or (sid, title, cid, unixdate)
@@ -2192,7 +2197,7 @@ function PLG_getWhatsNewComment($type = '', $numreturn = 0, $uid = 0)
         }
     }
 
-    return $whatsnew;    
+    return $whatsnew;
 
 }
 
@@ -2412,7 +2417,7 @@ function PLG_submissionSaved($type)
     global $_CONF, $_PLUGINS;
 
     $t = explode('.', $type);
-    $plg_type = $t[0];    
+    $plg_type = $t[0];
 
     // Treat template system like a plugin (since belong to core group)
     $plugintypes[] = 'template';
@@ -2466,7 +2471,7 @@ function PLG_submissionDeleted($type)
                 $function($type);
             }
         }
-    }    
+    }
 
     if (function_exists('CUSTOM_submissiondeleted')) {
         CUSTOM_itemdeleted($type);
@@ -2494,7 +2499,7 @@ function PLG_itemSaved($id, $type, $old_id = '')
     global $_CONF, $_PLUGINS;
 
     $t = explode('.', $type);
-    $plg_type = $t[0];    
+    $plg_type = $t[0];
 
     // Treat template system like a plugin (since belong to core group)
     $plugintypes[] = 'template';
@@ -2551,7 +2556,7 @@ function PLG_itemDeleted($id, $type)
                 $function($id, $type);
             }
         }
-    }    
+    }
 
     if (function_exists('CUSTOM_itemdeleted')) {
         CUSTOM_itemdeleted($id, $type);
@@ -2955,7 +2960,7 @@ function PLG_getDocumentationUrl($type, $file)
 *
 * @param    string  $group  plugin name or 'Core'
 * @param    string  $id     Id of config value
-* @return   mixed           Text to use regular tooltip, NULL to use config 
+* @return   mixed           Text to use regular tooltip, NULL to use config
 *                           tooltip hack, or empty string when not available
 * @link     http://wiki.geeklog.net/index.php/PLG_getConfigTooltip
 * @since    Geeklog 1.8.0
@@ -2964,7 +2969,7 @@ function PLG_getDocumentationUrl($type, $file)
 function PLG_getConfigTooltip($group, $id)
 {
     if ($group == 'Core') {
-        $retval = false;        
+        $retval = false;
     } else {
         $args[1] = $id;
         $function = 'plugin_getconfigtooltip_' . $group;
@@ -3093,7 +3098,7 @@ function PLG_resolveDependencies()
 *                                       (Optional and only for use with plugins that have the old-style install.)
 * @return                    string     An string that contains HTML code.
 * @since    Geeklog 1.8.0
-* 
+*
 */
 function PLG_printDependencies($pi_name, $pi_gl_version='')
 {
@@ -3166,7 +3171,7 @@ function PLG_printDependencies($pi_name, $pi_gl_version='')
             $retval .= "<b class='status_green'>{$LANG32[51]}</b>";
         } else {
             $retval .= "<b class='status_red'>{$LANG32[54]}</b>";
-        } 
+        }
     } else { // we're not too sure right now....
         $retval .= "<b class='status_black'>{$LANG32[57]}</b>";
     }
@@ -3180,7 +3185,7 @@ function PLG_printDependencies($pi_name, $pi_gl_version='')
 * @return                    bool       True or False, depending on whether all of the
 *                                       dependencies are satisfied for plugin $pi_name
 * @since    Geeklog 1.8.0
-* 
+*
 */
 function PLG_checkDependencies($pi_name)
 {
@@ -3246,7 +3251,7 @@ function PLG_checkDependencies($pi_name)
 * @return                    mixed      false is returned if the plugin is unavailable
 *                                       other possible values are: 'ok', 'disabled', 'uninstalled', 'wrong_version'
 * @since    Geeklog 1.8.0
-* 
+*
 */
 function PLG_checkAvailable($pi_name, $version, $operator='>=')
 {
@@ -3296,10 +3301,10 @@ function PLG_checkAvailable($pi_name, $version, $operator='>=')
 * @param    $version         string     A version to ask for, the default operator is '>='
 * @param    $operator        string     Optional operator to override the default
 *                                       See COM_versionCompare() for all valid operators
-* @return                    bool       
+* @return                    bool
 *
 * @since    Geeklog 1.8.0
-* 
+*
 */
 function PLG_checkAvailableDb($db, $pi_name, $version, $operator='>=')
 {
@@ -3324,7 +3329,7 @@ function PLG_checkAvailableDb($db, $pi_name, $version, $operator='>=')
 * @return                    array      An array containing the installation parameters of a plugin
 *
 * @since    Geeklog 1.8.0
-* 
+*
 */
 function PLG_getParams($pi_name)
 {
@@ -3448,6 +3453,57 @@ function PLG_getMetaTags($type, $id, array $myTags = array())
     }
 
     return $obj->build();
+}
+
+/**
+ * Ask plugins for items they want to include in an XML site map
+ *
+ * @param    string    $type    plugin type (incl. 'article' for stories)
+ * @param    int       $uid     user ID or 0 = current user; should be 1 (= anonymous user) in most cases
+ * @param    int       $limit   the max number of items to be returned (0 = no limit)
+ * @return   array              array of array(
+ *                                   'url'           => the URL of an item (mandatory),
+ *                                   'date-modified' => the UNIX timestamp when an item was last modified (optional)
+ *                                   'change-freq'   => one of 'always', 'hourly', 'daily', 'weekly',
+ *                                                      'monthly', 'yearly', 'never' (optional)
+ *                                   'priority'      => a float value showing the priority of an item, must be
+ *                                                      between 0.0 (lowest) and 1.0 (highest) (optional)
+ *                               )
+ * @since    Geeklog-2.1.1
+ * @link     http://wiki.geeklog.net/index.php/PLG_getSitemapItems
+ *
+ */
+function PLG_collectSitemapItems($type, $uid = 1, $limit = 0)
+{
+    global $_CONF;
+
+    if (($type === 'article') || ($type === 'story')) {
+        require_once $_CONF['path_system'] . 'lib-story.php';
+        $type = 'story';
+    }
+
+    $uid   = intval($uid, 10);
+    $limit = intval($limit, 10);
+    $args = array(
+        1 => $uid,
+        2 => $limit,
+    );
+
+    if ($type === 'CUSTOM') {
+        // Collect sitemap items from custom function
+        $function = 'CUSTOM_collectSitemapItems';
+    } else {
+        // Collect sitemap items from a plugin
+        $function = 'plugin_collectSitemapItems_' . $type;
+    }
+
+    $result = PLG_callFunctionForOnePlugin($function, $args);
+
+    if (!is_array($result) || (count($result) === 0)) {
+        $result = array();
+    }
+
+    return $result;
 }
 
 ?>

@@ -184,6 +184,8 @@ $LANG01 = array(
     138 => "Click <a href=\"{$_CONF['site_url']}/usersettings.php\" rel=\"nofollow\">here</a> to disable the advanced editor and use the default editor which does not require JavaScript",
     139 => "Click <a href=\"{$_CONF['site_url']}/\" rel=\"nofollow\">here</a> to return to the homepage",
     140 => 'Allowed Autotags:',
+    141 => 'An Error Occurred',
+    142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
     'facebook' => 'Login with Facebook',
     'twitter' => 'Login with Twitter',
     'linkedin' => 'Login with LinkedIn',
@@ -487,7 +489,10 @@ $LANG08 = array(
     37 => 'Pošlji mi kopijo te e-pošte',
     38 => "To je kopija e-pošte, ki si jo poslal/a osebi %s s <{$_CONF['site_url']}>:",
     39 => 'Your last message was ',
-    40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages"
+    40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages",
+    41 => 'This user doesn\'t exist.',
+    42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
+    43 => 'This users email address is invalid.'
 );
 
 ###############################################################################
@@ -529,7 +534,7 @@ $LANG09 = array(
     33 => 'URL',
     34 => 'Lokacija',
     35 => 'Celodnevno dogajanje',
-    36 => '',
+    36 => 'Key Word Type',
     37 => '',
     38 => '',
     39 => '',
@@ -2384,6 +2389,7 @@ $LANG_VALIDATION = array(
     'rdf_limit' => 'This field must in numeric or hour such as 24h',
     'path' => 'Path does not exist',
     'file' => 'File does not exist',
+    'fileName' => 'This field must be a proper file name',
     'search_limits' => 'This field must be numeric separated with a comma',
     'num_search_results' => 'This field must be numeric and from \'search_limits\' above',
     'theme' => 'Theme directory does not exist',

@@ -2,8 +2,8 @@
 
 /**
  * Abstract class for Admin Duties for Spam comments
- * 
- * @author Tom Willett	tomw AT pigstye DOT net 
+ *
+ * @author Tom Willett  tomw AT pigstye DOT net
  *
  * @package Spam-X
  * @subpackage Modules
@@ -285,7 +285,7 @@ abstract class BaseAdmin
                  . '<p>' . $LANG_SX00['e1'] . '</p>' . LB
                  . $this->getList()
                  . '<p>' . $LANG_SX00['e2'] . '</p>' . LB
-                 . '<form method="post" action="' . $_CONF['site_admin_url']
+                 . '<form method="post" class="uk-form" action="' . $_CONF['site_admin_url']
                  . '/plugins/spamx/index.php?command=' . $this->command . '">' . LB
                  . '<div><input type="text" size="31" name="pentry"' . XHTML
                  . '>&nbsp;&nbsp;&nbsp;'

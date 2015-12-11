@@ -51,8 +51,8 @@ function plugin_autoinstall_staticpages($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.6.6',
-        'pi_gl_version'   => '2.1.0',
+        'pi_version'      => '1.6.7',
+        'pi_gl_version'   => '2.1.1',
         'pi_homepage'     => 'http://www.geeklog.net/'
     );
 
@@ -68,18 +68,18 @@ function plugin_autoinstall_staticpages($pi_name)
         'config.' . $pi_name . '.tab_main'                  => 'Access to configure static pages main settings',
         'config.' . $pi_name . '.tab_whatsnew'              => 'Access to configure static pages what\'s new block',
         'config.' . $pi_name . '.tab_search'                => 'Access to configure static pages search results',
-        'config.' . $pi_name . '.tab_permissions'           => 'Access to configure static pages default permissions', 
+        'config.' . $pi_name . '.tab_permissions'           => 'Access to configure static pages default permissions',
         'config.' . $pi_name . '.tab_autotag_permissions'   => 'Access to configure static pages autotag usage permissions'
     );
 
     $mappings = array(
         $pi_name . '.edit'                                  => array($pi_admin),
-        $pi_name . '.delete'                                => array($pi_admin), 
+        $pi_name . '.delete'                                => array($pi_admin),
         // Note: 'staticpages.PHP' is not assigned to any group by default
         'config.' . $pi_name . '.tab_main'                  => array($pi_admin),
         'config.' . $pi_name . '.tab_whatsnew'              => array($pi_admin),
         'config.' . $pi_name . '.tab_search'                => array($pi_admin),
-        'config.' . $pi_name . '.tab_permissions'           => array($pi_admin),        
+        'config.' . $pi_name . '.tab_permissions'           => array($pi_admin),
         'config.' . $pi_name . '.tab_autotag_permissions'   => array($pi_admin)
     );
 
@@ -182,6 +182,8 @@ function plugin_postinstall_staticpages($pi_name)
         $staticPageAdminId = DB_getItem($_TABLES['groups'], 'grp_id', "grp_name = 'Static Page Admin' ");
         DB_query("INSERT INTO {$_TABLES['access']} (acc_ft_id, acc_grp_id) VALUES ({$featureId}, {$staticPageAdminId}) ");
     }
+
+    return true;
 }
 
 ?>

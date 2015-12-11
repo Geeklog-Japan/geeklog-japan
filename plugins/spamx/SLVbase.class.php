@@ -79,7 +79,7 @@ class SLVbase
         $cli = new XML_RPC_Client('/slv.php', 'http://www.linksleeve.org');
 
         if ($this->_debug) {
-            $client->setDebug(1);
+            $cli->setDebug(1);
         }
 
         $resp = $cli->send($msg, $_SPX_CONF['timeout']);
@@ -118,7 +118,7 @@ class SLVbase
     public function checkWhitelist(&$links)
     {
         global $_TABLES;
-        
+
         $timestamp = DB_escapeString(date('Y-m-d H:i:s'));
 
         $result = DB_query("SELECT value FROM {$_TABLES['spamx']} WHERE name='SLVwhitelist'", 1);

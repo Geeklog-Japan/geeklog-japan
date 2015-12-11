@@ -183,6 +183,8 @@ $LANG01 = array(
     138 => "ליחצו <a href=\"{$_CONF['site_url']}/usersettings.php\" rel=\"nofollow\">כאן</a> כדי לנטרל את העורך המתקדם ולהשתמש בעורך ברירת המחדל שלא מצריך שימוש ב-Javascript",
     139 => "ליחצו <a href=\"{$_CONF['site_url']}/\" rel=\"nofollow\">כאן</a> כדי לחזור לדף הבית",
     140 => 'Allowed Autotags:',
+    141 => 'An Error Occurred',
+    142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
     'facebook' => 'כניסה בעזרת פייסבוק',
     'twitter' => 'כניסה בעזרת טוויטר',
     'linkedin' => 'כניסה בעזרת לינקדאין',
@@ -486,7 +488,10 @@ $LANG08 = array(
     37 => 'שילחו לי עותק מאימייל זה',
     38 => "זהו עותק של אימייל ששלחתם אל\n%s\nמ-\n<{$_CONF['site_url']}>:",
     39 => 'הודעתכם האחרונה הייתה לפני ',
-    40 => " שניות.  אתר זה דורש לפחות {$_CONF['speedlimit']} שניות בין שליחת הודעות"
+    40 => " שניות.  אתר זה דורש לפחות {$_CONF['speedlimit']} שניות בין שליחת הודעות",
+    41 => 'This user doesn\'t exist.',
+    42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
+    43 => 'This users email address is invalid.'
 );
 
 ###############################################################################
@@ -528,7 +533,7 @@ $LANG09 = array(
     33 => 'כתובת אתר',
     34 => 'מיקום',
     35 => 'יום שלם',
-    36 => '',
+    36 => 'Key Word Type',
     37 => '',
     38 => '',
     39 => '',
@@ -2383,6 +2388,7 @@ $LANG_VALIDATION = array(
     'rdf_limit' => 'שדה זה חייב להיות מספר או שעה בסגנון 24h',
     'path' => 'הנתיב לא קיים',
     'file' => 'הקובץ לא קיים',
+    'fileName' => 'This field must be a proper file name',
     'search_limits' => 'שדה זה חייב להיות מספר מופרד עם פסיק',
     'num_search_results' => 'שדה זה חייב להיות מספר ומתוך \'search_limits\' שלעיל',
     'theme' => 'ספריית הנושא העיצובי לא קיימת',

@@ -113,20 +113,10 @@ class RSS20 extends FeedParserBase
                  .  '</comments>' . self::LB;
         }
 
-        if (array_key_exists('topic', $article)) {
-            $topic = (array) $article['topic'];
-
-            foreach ($topic as $subject) {
-                $xml .= '<dc:subject>'
-                     .  $this->_safeXML($subject)
-                     .  '</dc:subject>' . self::LB;
-            }
-        }
-
         if (array_key_exists('summary', $article) && (strlen($article['summary']) > 0)) {
             $xml .= '<description>'
-                 .  $this->_safeXML($article['summary'])
-                 .  '</description>' . self::LB;
+                 . $this->_safeXML($article['summary'])
+                 . '</description>' . self::LB;
         }
 
         if (isset($article['extensions']) && is_array($article['extensions'])) {
@@ -161,13 +151,15 @@ class RSS20 extends FeedParserBase
         }
 
         if (strlen($this->sitecontact) > 0) {
-            $xml .= '<managingEditor>'
-                 .  $this->_safeXML($this->sitecontact)
-                 .  '</managingEditor>' . self::LB
-                 .  '<webMaster>'
-                 .   $this->_safeXML($this->sitecontact)
-                 .  '</webMaster>' . self::LB;
-        }
+             $xml .= '<managingEditor>'
+                  . $this->_safeXML($this->sitecontact)
+                  . ' (' . $_CONF['site_name'] . ')'
+                  . '</managingEditor>' . self::LB
+                  . '<webMaster>'
+                  . $this->_safeXML($this->sitecontact)
+                  . ' (' . $_CONF['site_name'] . ')'
+                  . '</webMaster>' . self::LB;
+         }
 
         if (strlen($this->copyright) > 0) {
             $xml .= '<copyright>'
@@ -330,9 +322,9 @@ class RSS0x extends FeedParserBase
 
         if (array_key_exists('summary', $article) && (strlen($article['summary']) > 0)) {
             $xml .= '<description>'
-                 .  $this->_safeXML($article['summary'])
-                 .  '</description>' . self::LB;
-        }
+                 . $this->_safeXML($article['summary'])
+                 . '</description>' . self::LB;
+         }
 
         if (is_array($article['extensions'])) {
             $xml .= implode(self::LB, $article['extensions']) . self::LB;

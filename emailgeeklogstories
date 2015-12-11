@@ -1,17 +1,15 @@
 #!/usr/local/bin/php -q 
 <?php
-// ユーザが選択した話題の記事をEメールでユーザに配信します。
+// This code snippet is responsible for emailing Geeklog stories to users 
+// for the topics they select.
 //
-// このスクリプトを使用するには、PHPがシェルスクリプト用の言語としてコンパイル
-// されている必要があります。
-// crontab (man crontab)からこのスクリプトを実行します。
-// また、このファイルに実行可能なパーミッション(x)を付加する必要があります。
-//
-// 注意：万一、日本語コードの関係でこのファイルを使うと失敗する場合は、
-// emailgeeklogstories.en を emailgeeklogstories にリネームしてお使いください。
-//
-// 次の行の /path/to/geeklog/lib-common.php を実際の lib-common.php のパスに
-// 合わせて変更してください。
+// For this script to work you must have compiled PHP so it can also be
+// used as a shell scripting language. You should call this script from
+// your crontab (man crontab). You will also need to set the exectuable
+// flags for this file.
+
+// Change this path to point to your lib-common.php file
 include('/path/to/geeklog/lib-common.php');
 
 COM_emailUserTopics();
+?>

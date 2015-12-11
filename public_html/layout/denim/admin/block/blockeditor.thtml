@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {start_block_editor}
-<form action="{site_admin_url}/block.php" method="post" id="admin-blockeditor" class="compact">
+<form action="{site_admin_url}/block.php" method="post" id="admin-blockeditor" class="compact uk-form">
 
   <div class="admin_basic">
     <dl class="form_block">
@@ -45,10 +45,10 @@
           <option value="portal" {portal_selected}>{lang_portalblock}</option>
         </select>
       </dd>
-      
+
       <dt><label for="admin-blockeditor-cachetime">{lang_cachetime}</label></dt>
       <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" class="size1"{xhtml}></dd>
-      <dd class="description">{lang_cachetime_desc}</dd>        
+      <dd class="description">{lang_cachetime_desc}</dd>
     </dl>
 
     <fieldset id="fs-phpblock-options">
@@ -99,7 +99,7 @@
         <dt><label for="group_id">{lang_group}</label></dt>
         <dd>{group_dropdown}</dd>
 
-        <dt><label for="admin-permissions">{lang_permissions}</label></dt>
+        <dt>{lang_permissions}</dt>
         <dd>{permissions_editor}</dd>
         <dd class="description">{lang_perm_key}</dd>
         <dd class="description">{lang_permissions_msg}</dd>

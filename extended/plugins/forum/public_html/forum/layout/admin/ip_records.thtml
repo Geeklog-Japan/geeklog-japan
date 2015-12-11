@@ -1,7 +1,0 @@
-
-    <!-- start ip_records.thtml -->
-    <tr class="pluginRow{csscode}">
-        <td style="padding:5px;">{ip}</td>
-        <td style="padding:5px; white-space:nowrap;">[&nbsp;<a href="{phpself}?op=unban&amp;ip={ip}&amp;{gltoken_name}={gltoken}">{unban}</a>&nbsp;]</td>
-    </tr>
-    <!-- end ip_records.thtml -->

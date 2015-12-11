@@ -163,7 +163,7 @@ if (empty($pid)) {
 } elseif (! empty($pid)) {
     $result = DB_query ("SELECT topic, meta_description, meta_keywords FROM {$_TABLES['polltopics']} WHERE pid = '{$pid}'" . COM_getPermSQL('AND'));
     $A = DB_fetchArray ($result);
-    
+
     $polltopic = $A['topic'];
     if (empty($polltopic)) {
         // poll doesn't exist or user doesn't have access
@@ -203,7 +203,7 @@ if (empty($pid)) {
             ) {
             $display .= POLLS_pollVote($pid, true, 0, $order, $mode, $page);
         } else {
-            $display .= POLLS_pollResults($pid, 400, $order, $mode, $page);
+            $display .= POLLS_pollResults($pid, 100, $order, $mode, $page);
         }
         $display = COM_createHTMLDocument($display, array('pagetitle' => $polltopic, 'headercode' => $headercode));
     }

@@ -182,6 +182,8 @@ $LANG01 = array(
     138 => "Cliquez <a href=\"{$_CONF['site_url']}/usersettings.php\" rel=\"nofollow\">ici</a> pour désactiver l\éditeur avancé et utiliser l\'éditeur par défaut qui ne nécessite pas JavaScript.",
     139 => "Cliquez <a href=\"{$_CONF['site_url']}/\" rel=\"nofollow\">ici</a> pour retourner à la page d\'accueil.",
     140 => 'Allowed Autotags:',
+    141 => 'An Error Occurred',
+    142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
     'facebook' => 'Login with Facebook',
     'twitter' => 'Login with Twitter',
     'linkedin' => 'Login with LinkedIn',
@@ -485,7 +487,10 @@ $LANG08 = array(
     37 => 'Envoyez moi un double de ce message',
     38 => "Ceci est une copie du message que vous avez envoyé à %s du site <{$_CONF['site_url']}> :",
     39 => 'Votre dernier message a été expédié il y a ',
-    40 => " secondes.  Pour des raisons de sécurité, ce site nécessite au moins {$_CONF['speedlimit']} secondes enre chaque envoi de message."
+    40 => " secondes.  Pour des raisons de sécurité, ce site nécessite au moins {$_CONF['speedlimit']} secondes enre chaque envoi de message.",
+    41 => 'This user doesn\'t exist.',
+    42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
+    43 => 'This users email address is invalid.'
 );
 
 ###############################################################################
@@ -527,7 +532,7 @@ $LANG09 = array(
     33 => 'URL',
     34 => 'Localisation',
     35 => 'Tous les jours',
-    36 => '',
+    36 => 'Key Word Type',
     37 => '',
     38 => '',
     39 => '',
@@ -2382,6 +2387,7 @@ $LANG_VALIDATION = array(
     'rdf_limit' => 'Ce champ doit être de type horaire comme 24h',
     'path' => 'Le chemin n\'existe pas',
     'file' => 'Le fichier n\'existe pas',
+    'fileName' => 'This field must be a proper file name',
     'search_limits' => 'Ce champ doit être numérique séparé par une virgule',
     'num_search_results' => 'Ce champ doit être numérique et inclus dans \'search_limits\' ci dessus',
     'theme' => 'Le dossier du thème n\'existe pas',

@@ -1,7 +1,6 @@
 {doctype}
-<html{html_attribute}{xmlns}>
+<html{lang_attribute}{xmlns}>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"{xhtml}>
 <title>{page_title_and_site_name}</title>
 <meta http-equiv="Content-Script-Type" content="text/javascript"{xhtml}>
 <meta http-equiv="Content-Style-Type" content="text/css"{xhtml}>
@@ -28,7 +27,7 @@
             {left_blocks}
             <td class="story-container">
                 <p class="header-welcomeanddate-text">
-                    <b>{welcome_msg_jp}</b><br{xhtml}>{datetime}
+                    <b>{welcome_msg}</b><br{xhtml}>{datetime}
                 </p>
 
                 <!-- START OF CONTENT AREA -->

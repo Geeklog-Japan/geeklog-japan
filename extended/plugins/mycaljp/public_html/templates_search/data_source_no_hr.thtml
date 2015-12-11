@@ -1,4 +1,0 @@
-<h3>{lang_data_source}&nbsp;({num_items})</h3>
-<div style="margin-bottom:1em">
-{contents}
-</div>

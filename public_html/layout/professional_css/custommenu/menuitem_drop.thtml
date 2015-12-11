@@ -1,5 +1,0 @@
-<li id="{menuitem_id}" class="menuitem {menuitem_class}"><a href="{menuitem_url}"{class_property}>{menuitem_text}</a>
-<ul>
-{menu_elements}
-</ul>
-</li>

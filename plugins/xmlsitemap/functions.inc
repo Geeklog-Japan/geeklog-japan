@@ -99,9 +99,6 @@ function plugin_upgrade_xmlsitemap()
         return 3002;
     }
 
-    $inst_parms = plugin_autoinstall_xmlsitemap('xmlsitemap');
-    $pi_gl_version = $inst_parms['info']['pi_gl_version'];
-
     require_once $_CONF['path'] . 'plugins/xmlsitemap/sql/' . $_DB_dbms . '_updates.php';
     require_once $_CONF['path'] . 'plugins/xmlsitemap/install_updates.php';
 
@@ -130,7 +127,7 @@ function plugin_upgrade_xmlsitemap()
                 foreach ($_SQL as $sql) {
                     DB_query($sql);
                 }
-            }            
+            }
             xmlsitemap_update_ConfValues_1_0_1();
             xmlsitemap_update_ConfigSecurity_1_0_1();
 
@@ -143,7 +140,7 @@ function plugin_upgrade_xmlsitemap()
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$pi_gl_version' WHERE pi_name = 'xmlsitemap'");
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$installed_version' WHERE pi_name = 'xmlsitemap'");
 
     return true;
 }
@@ -165,7 +162,7 @@ function plugin_autouninstall_xmlsitemap()
         /* give the full name of the feature, as in the db */
         'features' => array('config.xmlsitemap.tab_main',
                             'config.xmlsitemap.tab_pri',
-                            'config.xmlsitemap.tab_freq', 
+                            'config.xmlsitemap.tab_freq',
                             'config.xmlsitemap.tab_ping'),
         /* give the full name of the block, including 'phpblock_', etc */
         'php_blocks' => array(),
@@ -666,12 +663,12 @@ function plugin_getdocumentationurl_xmlsitemap($file)
 * Provides text for a Configuration tooltip
 *
 * @param    string  $id     Id of config value
-* @return   mixed           Text to use regular tooltip, NULL to use config 
+* @return   mixed           Text to use regular tooltip, NULL to use config
 *                           tooltip hack, or empty string when not available
 *
 */
 function plugin_getconfigtooltip_xmlsitemap($id)
-{   
+{
     // Use config tooltip hack where tooltip is read from the config documentation
     return;
 }

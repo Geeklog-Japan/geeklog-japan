@@ -1,5 +1,0 @@
-<tr><td  colspan="2">
-		{slider}
-		<input type="hidden" name="csid" value="{csid}"{xhtml}>
-        {input}
-</td></tr>

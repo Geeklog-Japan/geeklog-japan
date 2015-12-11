@@ -1,6 +1,4 @@
 
-<!-- footer.thtml { -->
-
         </div>
       </div>
 
@@ -13,8 +11,7 @@
 
     <hr class="separator"{xhtml}>
 
-    <!-- #footer { -->
-    <div id="footer" class="clearfix">
+    <footer id="footer" role="contentinfo" class="clearfix">
       <div id="footer-content">
         <p class="copyright">{copyright_notice}</p>
         <p class="site_info">
@@ -22,8 +19,7 @@
           <span class="execution_textandtime">{execution_textandtime}</span>
         </p>
       </div>
-    </div>
-    <!-- } #footer -->
+    </footer>
 
   </div>
   <!-- } #container -->
@@ -37,8 +33,6 @@
     FixHTML('leftblocks', 'centerblocks', 'rightblocks');
   -->
   </script>
-
-<!-- } footer.thtml -->
 
 </body>
 

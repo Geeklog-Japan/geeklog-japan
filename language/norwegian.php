@@ -10,13 +10,13 @@
 # Last updated : 2004-08-04
 # Date finished: 2004-08-04
 # History:
-# 2004-08-04	Update for Geeklog 1.3.8-1sr5 started and completed.
-# 2003-06-08	Corrected LANG22[15], capitalize first word
-# 2003-04-02	Corrected capitalization of MESSAGE[48].
-# 2003-03-30	Translated the last (and final) part
-# 2003-03-23	Translated down to and including LANG23 (link.php)
-# 2003-03-18	First half of the file translated
-# 2003-03-10	Translation started
+# 2004-08-04    Update for Geeklog 1.3.8-1sr5 started and completed.
+# 2003-06-08    Corrected LANG22[15], capitalize first word
+# 2003-04-02    Corrected capitalization of MESSAGE[48].
+# 2003-03-30    Translated the last (and final) part
+# 2003-03-23    Translated down to and including LANG23 (link.php)
+# 2003-03-18    First half of the file translated
+# 2003-03-10    Translation started
 #
 # Copyright (C) 2000 Jason Whittenburg
 # jwhitten@securitygeeks.com
@@ -194,6 +194,8 @@ $LANG01 = array(
     138 => "Click <a href=\"{$_CONF['site_url']}/usersettings.php\" rel=\"nofollow\">here</a> to disable the advanced editor and use the default editor which does not require JavaScript",
     139 => "Click <a href=\"{$_CONF['site_url']}/\" rel=\"nofollow\">here</a> to return to the homepage",
     140 => 'Allowed Autotags:',
+    141 => 'An Error Occurred',
+    142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
     'facebook' => 'Login with Facebook',
     'twitter' => 'Login with Twitter',
     'linkedin' => 'Login with LinkedIn',
@@ -497,7 +499,10 @@ $LANG08 = array(
     37 => 'Send me a copy of this email',
     38 => "This is a copy of the email that you sent to %s from <{$_CONF['site_url']}>:",
     39 => 'Your last message was ',
-    40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages"
+    40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages",
+    41 => 'This user doesn\'t exist.',
+    42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
+    43 => 'This users email address is invalid.'
 );
 
 ###############################################################################
@@ -539,7 +544,7 @@ $LANG09 = array(
     33 => 'URL',
     34 => 'Sted',
     35 => 'Hele dagen',
-    36 => '',
+    36 => 'Key Word Type',
     37 => '',
     38 => '',
     39 => '',
@@ -2394,6 +2399,7 @@ $LANG_VALIDATION = array(
     'rdf_limit' => 'This field must in numeric or hour such as 24h',
     'path' => 'Path does not exist',
     'file' => 'File does not exist',
+    'fileName' => 'This field must be a proper file name',
     'search_limits' => 'This field must be numeric separated with a comma',
     'num_search_results' => 'This field must be numeric and from \'search_limits\' above',
     'theme' => 'Theme directory does not exist',

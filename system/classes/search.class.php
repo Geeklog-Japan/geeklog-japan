@@ -83,14 +83,14 @@ class Search
         if (isset ($_GET['topic'])) {
             // see if topic exists
             $tid = COM_applyFilter ($_GET['topic']);
-                 
-            // If it exists and user has access to it, it will return itself else an empty string     
-            $tid = DB_getItem($_TABLES['topics'], 'tid', "tid = '$tid'" . COM_getPermSQL('AND', 0, 2));                 
-            
+
+            // If it exists and user has access to it, it will return itself else an empty string
+            $tid = DB_getItem($_TABLES['topics'], 'tid', "tid = '$tid'" . COM_getPermSQL('AND', 0, 2));
+
             $this->_topic = $tid;
         } else {
             $last_topic = SESS_getVariable('topic');
-            if ($last_topic != '') {   
+            if ($last_topic != '') {
                 $this->_topic = $last_topic;
             }
         }
@@ -198,6 +198,7 @@ class Search
                                       'authors'    => 'searchauthors.thtml'));
         $searchform->set_var('search_intro', $LANG09[19]);
         $searchform->set_var('lang_keywords', $LANG09[2]);
+        $searchform->set_var('lang_keytype', $LANG09[36]);
         $searchform->set_var('lang_date', $LANG09[20]);
         $searchform->set_var('lang_to', $LANG09[21]);
         $searchform->set_var('date_format', $LANG09[22]);
@@ -326,7 +327,7 @@ class Search
     private function _searchStories()
     {
         global $_TABLES, $_DB_dbms, $LANG09;
-        
+
         // Make sure the query is SQL safe
         $query = trim(DB_escapeString($this->_query));
 
@@ -335,7 +336,7 @@ class Search
         $sql .= 'CONCAT(\'/article.php?story=\',s.sid) AS url ';
         $sql .= 'FROM '.$_TABLES['stories'].' AS s, '.$_TABLES['users'].' AS u, '.$_TABLES['topic_assignments'].' AS ta ';
         $sql .= 'WHERE (draft_flag = 0) AND (date <= NOW()) AND (u.uid = s.uid) ';
-        $sql .= 'AND ta.type = \'article\' AND ta.id = sid '; 
+        $sql .= 'AND ta.type = \'article\' AND ta.id = sid ';
         $sql .= COM_getPermSQL('AND') . COM_getTopicSQL('AND', 0, 'ta') . COM_getLangSQL('sid', 'AND') . ' ';
 
         if (!empty($this->_topic)) {
@@ -359,7 +360,7 @@ class Search
         list($sql, $ftsql) = $search_s->buildSearchSQL($this->_keyType, $query, $columns, $sql);
 
         $sql .= " GROUP BY s.sid";
-        
+
         $search_s->setSQL($sql);
         $search_s->setFTSQL($ftsql);
         $search_s->setRank(5);
@@ -401,7 +402,7 @@ class Search
         list($sql, $ftsql) = $search_c->buildSearchSQL($this->_keyType, $query, $columns, $sql);
 
         $sql .= " GROUP BY id";
-        
+
         $search_c->setSQL($sql);
         $search_c->setFTSQL($ftsql);
         $search_c->setRank(2);

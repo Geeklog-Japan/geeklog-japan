@@ -1,5 +1,0 @@
-
-        <tr>
-            <td class="cal-weekpointers" valign="middle" align="center"><a href="{site_url}/calendarjp/index.php?mode={mode}&amp;view=week&amp;month={wmonth}&amp;day={wday}&amp;year={wyear}">&gt;&gt;</a></td>
-            {cal_days}
-        </tr>

@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form name="frmstory" action="{site_admin_url}/story.php" method="post" enctype="multipart/form-data" id="frmstory" class="compact">
+<form name="frmstory" action="{site_admin_url}/story.php" method="post" enctype="multipart/form-data" id="frmstory" class="compact uk-form">
 
   <div class="admin_basic">
     <dl class="form_block">
@@ -44,10 +44,10 @@
 
       <dt><label for="admin-storyeditor-show_topic_icon">{lang_show_topic_icon}</label></dt>
       <dd><input type="checkbox" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
-      
+
       <dt><label for="admin-storyeditor-cachetime">{lang_cachetime}</label></dt>
       <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor-cachetime" class="text"{xhtml}></dd>
-      <dd class="description">{lang_cachetime_desc}</dd>         
+      <dd class="description">{lang_cachetime_desc}</dd>
 
       <dt><label for="admin-storyeditor-draft_flag">{lang_draft}</label></dt>
       <dd><input type="checkbox" {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
@@ -177,7 +177,7 @@
         <dt><label for="group_id">{lang_group}</label></dt>
         <dd>{group_dropdown}</dd>
 
-        <dt><label for="admin-permissions">{lang_permissions}</label></dt>
+        <dt>{lang_permissions}</dt>
         <dd>{permissions_editor}</dd>
         <dd class="description">{lang_perm_key}</dd>
         <dd class="description">{lang_permissions_msg}</dd>

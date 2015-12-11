@@ -1,11 +1,11 @@
 <!-- admin/mail/mailform.thtml { -->
 
-<form action="{php_self}" method="post" id="admin-mailform" class="compact">
+<form action="{php_self}" method="post" id="admin-mailform" class="compact uk-form">
 
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="admin-mailform-to_group">{lang_to}</label></dt>
-	  <dd>
+      <dd>
         <select name="to_group" id="admin-mailform-to_group">
           <option value="">{lang_selectgroup}</option>
           {group_options}

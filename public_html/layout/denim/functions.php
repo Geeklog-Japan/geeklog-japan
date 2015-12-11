@@ -46,7 +46,7 @@ function theme_config_denim()
 {
     return array(
         'image_type' => 'png',
-        'doctype'    => 'xhtml10transitional', 
+        'doctype'    => 'xhtml5',
         'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
     );
 }
@@ -58,10 +58,19 @@ function theme_css_denim()
 {
     global $_CONF, $LANG_DIRECTION;
 
+    $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
+
     return array(
         array(
-            'name' => 'theme',            
-            'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css',
+            'name'       => 'uikit',
+            'file'       => '/vendor/uikit/css' . $direction . '/uikit.gradient.min.css',
+            'attributes' => array('media' => 'all'),
+            'priority'   => 80
+        ),
+
+        array(
+            'name'       => 'main', // don't use the name 'theme' to control the priority
+            'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', // change '/style.css' during debugging
             'attributes' => array('media' => 'all')
         )
     );
@@ -74,8 +83,8 @@ function theme_js_libs_denim()
 {
     return array(
        array(
-            'library'  => 'jquery',
-            'footer' => true // Not requred, default = true
+            'library' => 'jquery',
+            'footer'  => false // Not requred, default = true
         )
     );
 }
@@ -88,12 +97,19 @@ function theme_js_files_denim()
     global $_CONF;
 
     return array(
+
+       array(
+            'file'      => '/vendor/uikit/js/uikit.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 100 // Not requred, default = 100
+        ),
+
        array(
             'file'      => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
             'footer'    => true, // Not requred, default = true
             'priority'  => 100 // Not requred, default = 100
-        )        
-    );    
+        )
+    );
 }
 
 /**

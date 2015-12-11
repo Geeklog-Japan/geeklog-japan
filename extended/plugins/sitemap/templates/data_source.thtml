@@ -1,3 +1,0 @@
-<h3>{lang_data_source}({num_items})</h3>
-{category_list}
-<hr{xhtml}>

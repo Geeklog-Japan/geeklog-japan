@@ -108,7 +108,7 @@ function CALENDAR_editEvent ($mode, $A, $msg = '')
         $retval .= COM_showMessageText($msg, $LANG_CAL_ADMIN[2]);
     }
 
-    $event_templates = COM_newTemplate($_CONF['path'] . 'plugins/calendar/templates/admin');
+    $event_templates = COM_newTemplate(CTL_plugin_templatePath('calendar', 'admin'));
     $event_templates->set_file('editor','eventeditor.thtml');
 
     $allowed = '';
@@ -480,9 +480,9 @@ function CALENDAR_saveEvent ($eid, $title, $event_type, $url, $allday,
             $dateend = $datestart;
         }
     }
-    
+
     // Remove any autotags the user doesn't have permission to use
-    $description = PLG_replaceTags($description, '', true);    
+    $description = PLG_replaceTags($description, '', true);
 
     // clean 'em up
     if ($postmode == 'html') {

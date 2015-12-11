@@ -1,8 +1,0 @@
-
-<!-- new_table_row -->
-{!if category_link}<dt style="width:100%">{category_link}</dt>{!endif}
-<dt><a href="{site_url}/filemgmt/viewcat.php?cid={cid}">{category_name}</a>({num_files})</dt>
-<dd>{files_waiting_submission} {subcategories}</dd>
-
-<!-- end_of_row -->
-

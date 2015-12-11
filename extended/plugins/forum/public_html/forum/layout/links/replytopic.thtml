@@ -1,7 +1,0 @@
-<!-- start replytopic.thtml -->
-<!-- {LANG_reply} -->
-  <a class="postbutton" href="{replytopiclink}">
-    <img alt="" src="{replytopiclinkimg}"{xhtml}>
-    {replytopiclinktext}
-  </a>
-<!-- end replytopic.thtml -->

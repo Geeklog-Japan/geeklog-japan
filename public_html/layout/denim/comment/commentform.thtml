@@ -4,7 +4,7 @@
 {start_block_postacomment}
 <div id="commenteditform">
 
-<form action="{form_url}" method="post" id="commentform" class="compact">
+<form action="{form_url}" method="post" id="commentform" class="compact uk-form">
 
   <div class="user_basic">
     <dl class="form_block">
@@ -53,9 +53,9 @@
     <div class="submit">
       <input type="submit" name="{nprefix}mode" value="{lang_preview}" class="submit"{xhtml}>
       <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
-      {save_option} 
-      <input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}> 
-      {delete_option} 
+      {save_option}
+      <input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}>
+      {delete_option}
       {notification}
     </div>
   </div>
