@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklog Sitemap plugin</title>
+</head>
+
+<body>
+	<h1>Geeklog Sitemap plugin</h1>
+
+	<h2>Sitemap plugin [ver. 2.0.0: 2012-06-11]</h2>
+	<p>In the following descriptions</p>
+	<ul>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span> is the directory where the system config.php file resides</li>
+		<li><span class="public">&lt;public_html&gt;</span> is the directory where the lib-common.php file resides</li>
+		<li><span class="admin">&lt;admin&gt;</span> is the directory where the administration files reside (usually, under <span class="public">&lt;public_html&gt;</span>)</li>
+	</ul>
+	
+	<h2>PRE-INSTALL</h2>
+	
+	<p><strong>CAUTION</strong>: Sitemap plugin requires that <strong>Dataproxy</strong> plugin be installed beforehand.  Besides, if you installed Google sitemap generator, uninstall it beforehand.</p>
+	
+	<h2>INSTALL:</h2>
+	
+	<ol>
+		<li>Back up your Geeklog Database.  The sitemap plugin adds tables to your Geeklog database.  You can do this with the built in admin backup facility.</li>
+		<li>Uncompress the sitemap plugin archive while in the <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins directory.  The archive will create a directory called sitemap in the plugins directory.</li>
+		<li>Create the public_html and admin directories.  Under your html directory (usually <span class="public">&lt;public_html&gt;</span>) create a directory called sitemap.  Under your <span class="admin">&lt;admin&gt;</span>/plugins/ directory create a directory called sitemap.</li>
+		<li>Change to your <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/sitemap/ directory.  Copy the files in the admin directory to the <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/ directory your created in step 3.  Copy the files and directories in the public_html directory to the <span class="public">&lt;public_html&gt;</span>/sitemap/ directory your created in step 3.</li>
+		<li>Edit the config.php in the sitemap directory and confirm the table prefix and anonymous access settings and other display settings.  The default is to use the geeklog table prefix and not allow anonymous access.</li>
+		<li>Log in to your Geeklog as a root user and run install.php in your <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/ directory.  The install page will tell you if the install was successful or not.  If not, examine Geeklog system errorlog for possible problems.  The sitemap plugin should now be installed and functioning.  Clicking on the sitemap Icon will take you to the admin page.</li>
+		<li>Set up security.  On install only the root users have access to sitemap administration and Viewing.  You can delegate control for either of these functions through the user and group editors.</li>
+	</ol>
+
+	<h2>UNINSTALL:</h2>
+
+	<ol>
+		<li>Run the install.php page in your <span class="admin">&lt;admin&gt;</span>/plugins/sitemap directory.  This will remove all the data from your database.</li>
+		<li>Delete the three plugin directories created in the install process:  <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/sitemap/, <span class="public">&lt;public_html&gt;</span>/sitemap/ and <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/</li>
+	</ol>
+
+	<h2>AFTER INSTALL</h2>
+	
+	<ul>
+		<li>[Sitemap]<br>Log in as sitemap admin.  All you have to do is choose items you would like to display.</li>
+		<li>[Google sitemap]<br>
+			<ul>
+				<li>Log in as sitemp admin.  Specify items to be included in Google sitemap, frequency, priority and the file name of Google sitemap.  <strong>The Google sitemap file has to exist in the public_html directory (where lib-common.php resides) and be written into by the Web server.</strong></li>
+				<li>Google sitemap file will automatically be updated with the interval specified with $_CONF['cron_schedule_interval'] (in /private/config.php).  The default value is 86400 seconds (1 day).  If you want to update the file immediately, log in as sitemap admin and check "Update now!" and then click "submit".</li>
+			</ul></li>
+	</ul>
+	
+	<h2>Static Pages IDs to be excepted from the sitemap</h2>
+	
+	<p>Since version 1.1.7, you can use regular expressions in specifying Static Pages IDs to be excepted.  The IDs you have already exntered are valid.  Regular expressions start with "/" and ends with "/".  In regular expressions, characters / . [ ] ^ $ | ? * + ( ) { } have special meanings.</p>
+	
+	<h3>Specifying an ID starting with "form"</h3>
+	<p class="code">/^form/</p>
+	
+	<h3>Specifying an ID starting with "form" followed by digits</h3>
+	<p class="code">/^form\d+/</p>
+	
+	<h3>Specifying an ID starting with "form" followed by 5 digits</h3>
+	<p class="code">/^form\d{5}/</p>
+	
+	<h3>Specifying an ID starting with "form" followed by 1-5 digits</h3>
+	<p class="code">/^form\d{1,5}/</p>
+	
+	<h3>Specifying an ID ending with "form"</h3>
+	<p class="code">/form$/</p>
+	
+	<h3>Specifying an ID containing "form"</h3>
+	<p class="code">/form/</p>
+	
+	<h3>Specifying an ID starting with "event" and ending with "form"</h3>
+	<p class="code">/^event.*form$/</p>
+	
+	<h3>Specifying an ID starting with "event", followed by 5 digits and ending with "form"</h3>
+	<p class="code">/^event\d{5}form$/</p>
+	
+	<h3>Specifying an ID containing either "apply" or "confirm"</h3>
+	<p class="code">/(apply|confirm)/</p>
+	
+	<h3>Specifying an ID starting with "event_", followed by either "apply" or "confirm"</h3>
+	<p class="code">/^event_(apply|confirm)/</p>
+	
+	<h3>Specifying an ID starting with "event_", followed by either "apply", "confirm" or "submit"</h3>
+	<p class="code">/^event_(apply|confirm|submit)/</p>
+	
+	<h3>Specifying an ID starting with "event_", followed by 5 digits, ending with either "apply", "confirm" or "submit</h3>
+	<p class="code">/^event_\d{5}(apply|confirm|submit)$/</p>
+	
+	<p>If you would like to specify more complicated patterns, please visit sites such as <a href="http://jp2.php.net/manual/en/reference.pcre.pattern.syntax.php">this page</a> and learn for yourself.</p>
+	
+	<h2>HISTORY</h2>
+	<table border="1" summary="History of Geeklog Sitemap plugin">
+		<tr>
+			<th>Version</th>
+			<th>Date</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td align="right">2.0.0</td>
+			<td>2012-06-11</td>
+			<td>
+				<span class="new">New</span> Now the plugin works with Geeklog-2.0.0.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.2.2</td>
+			<td>2011-11-05</td>
+			<td>
+				<span class="new">New</span> Implemented auto-install feature.<br>
+				<span class="fixed">Fixed</span> to prevent an error when DataProxy plugin is not installed or is disabled.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.2.1</td>
+			<td>2011-10-29</td>
+			<td>
+				<span class="fixed">Fixed</span> to work properly with PHP-5.x.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.2.0</td>
+			<td>2011-07-23</td>
+			<td>
+				<span class="new">New</span> Added support for Downloads plugin by dengen.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.9</td>
+			<td>2010-01-23</td>
+			<td>
+				<span class="new">New</span> Added a feature to re-create the sitemap when a new article was posted.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.8</td>
+			<td>2009-11-04</td>
+			<td>
+				<span class="fixed">Fixed</span> Fixed an error when you choose a language other than English or Japanese.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.7</td>
+			<td>2009-10-23</td>
+			<td>
+				<span class="new">New</span> Supported regular expressions in specifying Static Pages IDs to be excepted.  See above.<br>
+				<span class="fixed">Fixed</span> Fixed a bug in specifying Static Pages IDs to be excepted.  Thanks, dengen!
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.6</td>
+			<td>2009-08-27</td>
+			<td>
+				<span class="new">New</span> Added support for Calendarjp plugin.  Thanks, dengen!
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.5</td>
+			<td>2009-04-01</td>
+			<td>
+				<span class="fixed">Fixed</span> Fixed to hold a longer string in configuration.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.4</td>
+			<td>2008-12-26</td>
+			<td>
+				<span class="fixed">Fixed</span> Fixed to properly output entries of static pages into Google sitemap.<br>
+				<span class="new">New</span> Now you can configure settings for static pages from admin GUI menu.
+			</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.2</td>
+			<td>2008-09-26</td>
+			<td><span class="fixed">Fixed</span> Upgraded to prevent include-files to be directly accessed in some case-insensitive file systems (e.g. MS Windows).</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.1</td>
+			<td>2008-09-14</td>
+			<td><span class="fixed">Fixed</span> Upgraded to work well with PHP-4.x by not using htmlentities() and html_entity_decode() functions.</td>
+		</tr>
+		<tr>
+			<td align="right">1.1.0</td>
+			<td>2008-08-15</td>
+			<td><span class="new">New</span> Upgraded to work well with Geeklog-1.5.0.</td>
+		</tr>
+		<tr>
+			<td align="right">1.0.3</td>
+			<td>2007-12-26</td>
+			<td><span class="fixed">Fixed</span> to write into Google sitemap all stories in all the languages when you enable multilingual stories.</td>
+		</tr>
+		<tr>
+			<td align="right">1.0.2</td>
+			<td>2007-12-25</td>
+			<td><span class="fixed">Fixed</span> doubly escaped &amp; chars.<br><span class="fixed">Fixed</span> not to put formmail (staticpages) in the sitemap.</td>
+		</tr>
+		<tr>
+			<td align="right">1.0.1</td>
+			<td>2007-11-10</td>
+			<td><span class="fixed">Fixed</span> only to pick out such static pages as are displayed in the center block.<br><span class="fixed">Fixed</span> not to display such data sources as are not enabled in admin/sitemap.<br><span class="new">New</span> Now, you can change the display order of data sources from the admin screen.</td>
+		</tr>
+		<tr>
+			<td align="right">1.0</td>
+			<td>2007-11-04</td>
+			<td>Initial version</td>
+		</tr>
+	</table>
+</body>
+</html>

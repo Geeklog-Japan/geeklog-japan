@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklog Dbman plugin</title>
+</head>
+
+<body>
+<h1>Geeklog Dbman plugin</h1>
+
+<h2><a name="top">Configuration</a></h2>
+
+<h3><a name="desc_fs_main">Main Settings</a></h3>
+
+<table>
+	<tr>
+		<th style="width: 25%;">Variable</th>
+	    <th style="width: 25%:">Default Value</th>
+	    <th style="width: 50%;">Description</th>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_allow_restore">Allow restoration</a></td>
+		<td>No</td>
+		<td>This option decides whether to allow restoration in Dbman plugin.  SHOULD BE SET TO "NO" TO PREVENT ACCIDENTAL DAMAGE TO DATABASE and use other tools such as <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a> instead.  PLEASE SET THIS OPTION TO "YES" ONLY IF YOU KNOW WHAT YOU DO.  YOU HAVE BEEN WARNED!</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_chunk_size">Chunk size</a></td>
+		<td>100</td>
+		<td>The number of records to select data from database when the dbman plugin backs up a table.  If "MySQL client run out of memory." error occurs, decrease this value.</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_compression_level">Compression level</a></td>
+		<td>8</td>
+		<td>This option sets the compression level.  Valid values are 1 (largest size) to 9 (smallest size).</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_backup_except">Tables Not to be backed up</a></td>
+		<td>$_DB_table_prefix + 'gus_'</td>
+		<td>This option sets table names which the Dbman plugin shouldn't back up the data of (table structures will always be back uped).  You can use regular expressions (preg_match() style) to specify table name(s).</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_cron_backup">Back up regularly</a></td>
+		<td>No</td>
+		<td>This option decides whether to back up database with Geeklog's built-in psedo-cron functionality.</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_max_backup">Maximum number of back up files</a></td>
+		<td>0</td>
+		<td>This option sets the maximum number of backup files to be kept on the server.  When set to 0, NO backup file will be deleted.</td>
+	</tr>
+</table>
+
+<h3><a name="desc_fs_backup">Default Settings for backup</a></h3>
+
+<table>
+	<tr class="r2">
+		<th style="width: 25%;">Variable</th>
+	    <th style="width: 25%:">Default Value</th>
+	    <th style="width: 50%;">Description</th>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_add_drop_table">Add "DROP TABLE IF EXISTS"</a></td>
+		<td>No</td>
+		<td>This option sets the default value as to whether to add "DROP TABLE IF EXISTS ..." statement to the backup file.</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_compress_data">Compress data</a></td>
+		<td>No</td>
+		<td>This option sets the default value as to whether to compress back up files.  If set to "Yes", the dbman plugin tries to compress the data with Zlib.  In this case, the names of backup files will be '*.sql.gz'.</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_download_as_file">Download as a file</a></td>
+		<td>No</td>
+		<td>This option sets the default value as to whether to download backup files.</td>
+	</tr>
+</table>
+
+</body>
+</html>

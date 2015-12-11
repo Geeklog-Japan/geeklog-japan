@@ -1,0 +1,4 @@
+
+		{slider}
+		<input type="hidden" name="csid" value="{csid}"{xhtml}>
+        {input}

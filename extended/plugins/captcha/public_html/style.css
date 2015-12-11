@@ -1,0 +1,19 @@
+/* CAPTCHA Plugin */
+
+#captcha-form {
+  padding:10px 0px 10px 0px;
+}
+#captcha-image{
+  margin-right:25px;
+}
+.captcha_logview {
+  font-family:"Courier New", Courier, monospace;
+  margin:5px 15px;
+}
+.captcha_admin {
+  padding:0px 10px;
+}
+.captcha_admin_body {
+  background: #EEE;
+  padding:5px 15px;
+}

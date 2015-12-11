@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>the Geeklog Theme Editor plugin</title>
+</head>
+
+<body>
+<h1>Geeklog Theme Editor Plugin [v1.2.2]</h1>
+by mystral-kk [<a href="mailto:geeklog@mystral-kk.net">geeklog@mystral-kk.net</a>]<br>
+Sep 7, 2013
+
+<h2>Table of Contents</h2>
+
+<ul>
+	<li><a href="#description">Description</a></li>
+	<li><a href="#version">Version History</a></li>
+	<li><a href="#thanks">Thanks!</a></li>
+	<li><a href="#install">Installing The Plugin</a></li>
+	<li><a href="#uninstall">Uninstalling The Plugin</a></li>
+	<li><a href="#upgrade">Upgrading The Plugin</a></li>
+	<li><a href="#usage">Usage</a></li>
+	<li><a href="#license">License</a></li>
+</ul>
+
+<a name="description"></a><h3>Description</h3>
+<p>The Theme Editor is an online theme editor which allows you to edit template files (*.thtml) and cascading style sheet file (*.css).  With this plugin, you can edit Geeklog themes on the Web, without uploading theme files.</p>
+
+<a name="version"></a><h3>Version History</h3>
+<table border="1">
+	<tr>
+		<th>Date</th><th>Version</th><th>Description</th>
+	</tr>
+	<tr>
+		<td>Sep 7, 2012</td><td>1.2.2</td><td><span class="fixed">Fixed</span> a bug where an unnecessary HTTP header was sent.</td>
+	</tr>
+	<tr>
+		<td>Apr 22, 2012</td><td>1.2.1</td><td><span class="fixed">Fixed</span> a bug which happens under some conditions while uninstalling the plugin.</td>
+	</tr>
+	<tr>
+		<td>Nov 6, 2011</td><td>1.2.0</td><td><span class="new">New</span> Implemented auto-install feature introduced in Geeklog-1.6.</td>
+	</tr>
+	<tr>
+		<td>Jul 4, 2010</td><td>1.1.5</td><td><span class="fixed">Fix</span> Fixed the wrong &lt;meta&gt; tag and &lt;br&gt; tags.</td>
+	</tr>
+	<tr>
+		<td>Nov 4, 2009</td><td>1.1.4</td><td><span class="fixed">Fix</span> Fixed an error when you choose a language other than English or Japanese.</td>
+	</tr>
+	<tr>
+		<td>Sep 26, 2008</td><td>1.1.3</td><td><span class="fixed">Fix</span> Upgraded to prevent include-files to be directly accessed in some case-insensitive file systems (e.g. MS Windows).</td>
+	</tr>
+	<tr>
+		<td>Sep 14, 2008</td><td>1.1.2</td><td><span class="fixed">Fix</span> Upgraded to work well with PHP-4.x by not using htmlentities() and html_entity_decode() functions.</td>
+	</tr>
+	<tr>
+		<td>Aug 18, 2008</td><td>1.1.1</td><td><span class="fixed">Fix</span> Upgraded to properly work with DokuWiki plugin.</td>
+	</tr>
+	<tr>
+		<td>Aug 11, 2008</td><td>1.1.0</td><td><span class="new">New</span> Upgraded to properly work with Geeklog-1.5.0 as well.<br><span class="fixed">New</span> Upgraded to use Config UI with GL-1.5.0.</td>
+	</tr>
+	<tr>
+		<td>Mar 29, 2007</td><td>1.0.5</td><td><span class="fixed">Fix</span> Modified to properly handle a path containing an apostrophe.<br><span class="new">New</span> Added a new option to make all themes available automatically.  (See <a href="#config">Configuring the plugin</a> below.)<br><span class="new">New</span> Added a new option to make all theme-related files (*.thtml, *.css) available automatically.  (See <a href="#config">Configuring the plugin</a> below.)</td>
+	</tr>
+	<tr>
+		<td>Dec 21, 2006</td><td>1.0.4</td><td><span class="new">New</span> Added a functionality of uploading images to the images directory under each theme directory<br><span class="new">New</span> Changed file name dropdown list so that the purposes of the files, instead of file names themselves, will appear.</td>
+	</tr>
+	<tr>
+		<td>Nov 7, 2006</td><td>1.0.3</td><td><span class="fixed">Fix</span> Dealed with the case where default language is not Japanese (Thanks, Kemal and Tsuchi).<br><span class="new">New</span> Added many more template file names(Thanks, Ivy).</td>
+	</tr>
+	<tr>
+		<td>Nov 2, 2006</td><td>1.0.2</td><td><span class="fixed">Fix</span> Dealed with the case where magic_quotes_gpc is on (Thanks, samstone).</td>
+	</tr>
+	<tr>
+		<td>Oct 1, 2006</td><td>1.0.0</td><td>Initial version</td>
+	</tr>
+</table>
+
+<a name="thanks"></a><h3>Thanks!</h3>
+<ul>
+	<li>Geeklog.jp members for useful suggestions</li>
+	<li>Geeklog Core Team for developing and maintaining Geeklog, the Ultimate CMS</li>
+</ul>
+
+<a name="install"></a><h3>Install instruction for the Geeklog Theme Editor plugin</h3>
+
+<p>In the following descriptions</p>
+<ul>
+	<li><span class="geeklog">&lt;geeklog_dir&gt;</span> is the directory where the system config.php file resides</li>
+	<li><span class="admin">&lt;admin&gt;</span> is the directory where the administration files reside (usually, under <span class="public">&lt;public_html&gt;</span>)</li>
+</ul>
+
+<ol>
+	<li>Back up your Geeklog Database.  The themedit plugin adds tables to your Geeklog database.  You can do this with the built in admin backup facility.</li>
+	<li>Uncompress the themedit plugin archive while in the <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins directory.  The archive will create a directory called themedit in the plugins directory.</li>
+	<li>Create the admin directory.  Under your <span class="admin">&lt;admin&gt;</span>/plugins/ directory create a directory called themedit.</li>
+	<li>Change to your <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/themedit/ directory.  Copy the files in the admin directory to the <span class="admin">&lt;admin&gt;</span>/plugins/themedit/ directory your created in step 3.</li>
+	<li>Edit the config.php in the themedit directory and confirm the table prefix (the same as Geeklog table prefix by default) and modify the names of themes and files you would like to edit with the Theme Editor plugin.</li>
+	<li>Log in to your Geeklog as a root user and run install.php in your <span class="admin">&lt;admin&gt;</span>/plugins/themedit/ directory.  The install page will tell you if the install was successful or not.  If not, examine Geeklog system errorlog for possible problems.  The themedit plugin should now be installed and functioning.  Clicking on the themedit Icon will take you to the admin page.</li>
+	<li>Set up security.  On install only the root users have access to themedit administration.  You can delegate control for the functions through the user and group editors.</li>
+	<li><strong>[***** EXTRA STEP 1 FOR THEME EDITOR PLUGIN *****]</strong>  Change the permissions of the directories where *.thtml files resides to <strong>757</strong>.  Change the permissions of the *.thtml files to <strong>646</strong>.</li>
+	<li><strong>[***** EXTRA STEP 2 FOR THEME EDITOR PLUGIN *****]</strong>  Change the permissions of the files preview.html and preview.css, which reside in the <span class="admin">&lt;admin&gt;</span>/plugins/themedit/ directory, to <strong>646</strong>.</li>
+</ol>
+<p>NOTE: The Theme Editor plugin uses JavaScript a lot.  For better functionality, it is strongly recommended that you enable JavaScript.</p>
+
+<a name="uninstall"></a><h3>Uninstall instruction for the Geeklog Theme Editor plugin</h3>
+
+<ol>
+	<li>Run the install.php page in your <span class="admin">&lt;admin&gt;</span>/plugins/themedit directory.  This will remove all the data from your database.</li>
+	<li>Delete the two plugin directories created in the install process:  <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/themedit/ and <span class="admin">&lt;admin&gt;</span>/plugins/themedit/</li>
+	<li><strong>[***** EXTRA STEP FOR THEME EDITOR PLUGIN *****]</strong>  Restore the permissions of the directories and files you changed during the installation.  For example, change the permissions of the directories to 755 and those of the files to 644.</li>
+</ol>
+
+<a name="upgrade"></a><h3>Upgrading The Plugin</h3>
+<p>First, after you download and unpack a new archive, upload all the files to the Web server.  Then, log in as admin and go to the Plugin Editor.  Click the edit icon and click "upgrade" button.</p>
+
+<a name="usage"></a><h3>Usage</h3>
+<p>The Theme Editor plugin is so simple that you can use it almost intuitively.</p>
+<ol>
+	<li>Choose a theme you want to edit at a dropdown menu.<br><strong>NOTE</strong>: theme names you can choose from are defined as the <tt>$_THM_CONF['allowed_themes']</tt> array in <tt>config.php</tt>.  Please edit it as you like.</li>
+	<li>Choose a file you want to edit at a dropdown menu.<br><strong>NOTE</strong>: file names you can choose from are defined as the <tt>$_THM_CONF['allowed_files']</tt> array in <tt>config.php</tt>.  Please edit it as you like.</li>
+	<li>A list of template vars available in the current file will be displayed.</li>
+	<li>When you hit one of the buttons with a template var name on it, the corresponding tag will be inserted into the caret position.<br><strong>NOTE</strong>: you have to enable JavaScript to use these buttons.</li>
+	<li>When you hit the "<strong>Preview</strong>" button, the current content will be previewed in another page.</li>
+	<li>When you hit the "<strong>Save</strong>" button, the current content will be saved on the Web.</li>
+	<li>When you hit the "<strong>Initialize</strong>" button, the content of the file will be reverted to what it used to be when you installed the Theme Editor plugin.</li>
+	<li>When you hit the "<strong>Image</strong>" button, a simple image browser will be displayed.  Supported file types are 'jpg', 'jpeg', 'png', and 'gif'.  In the screen, you can choose a theme and a directory from dropdown lists.  When you want to upload an image file to the current directory, hit the 'Browse...' button and select an image file to upload and then hit the 'Upload' button.  If you want to delete an image file(s), check all the files you'd like to and hit the 'Delete' button.  <strong>The deleting process will be carried out WITHOUT CONFIRMATION, so be very careful!</strong>  There is no undoing it.</li>
+</ol>
+
+<a name="license"></a><h3>License</h3>
+<p>The Theme Editor plugin is licensed under the GPLv2 or later.</p>
+
+<div id="copyright">Copyright &copy; 2006-2013 mystral-kk</div>
+</body>
+</html>

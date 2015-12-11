@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklog Dbmanプラグイン</title>
+</head>
+
+<body>
+<h1>Geeklog Dbmanプラグイン</h1>
+
+<table style="width: 40em;">
+	<tr>
+		<th style="width: 7em;">作者</th>
+		<td>mystral-kk &lt;geeklog AT mystral-kk DOT net&gt;</td>
+	</tr>
+	<tr>
+		<th>最新版</th>
+		<td>0.7.2 (2014-02-09)</td>
+	</tr>
+	<tr>
+		<th>システム要件</th>
+		<td>Geeklog-1.6.0以降、PHP-5.0.0以降</td>
+	</tr>
+	<tr>
+		<th>ライセンス</th>
+		<td>GPLv2以降</td>
+	</tr>
+</table>
+
+<h2>概要</h2>
+
+<p>Dbmanプラグインは、mysqldump(.exe)を ***使用せずに***、データベースのバックアップ・リストア等を行うプラグインです。</p>
+
+<h2>インストール</h2>
+
+<p>以下の説明で、</p>
+
+<ul>
+	<li><span class="geeklog">&lt;geeklog_dir&gt;</span> はシステムの db-config.php が存在するディレクトリ</li>
+	<li><span class="public">&lt;public_html&gt;</span> はlib-common.php が存在するディレクトリ</li>
+	<li><span class="admin">&lt;admin&gt;</span> は管理ファイルのあるディレクトリ(普通は<span class="public">&lt;public_html&gt;</span>のすぐ下)</li>
+</ul>
+
+<p>を表しています。</p>
+
+<ol>
+	<li>Dbmanプラグインのターボールを <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins ディレクトリに展開(解凍)します。dbmanというディレクトリができます。</li>
+	<li><span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下に dbmanというディレクトリを作成します。</li>
+	<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/dbman/admin ディレクトリに移動し、その中身を手順2.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/dbman ディレクトリにコピーします。</li>
+	<li>管理者としてGeeklogにログインし、プラグインエディターからDbmanをインストールします。インストールできなかった場合は、エラーログ(logs/error.log)をご覧ください。</li>
+	<li>管理者メニューの「コンフィギュレーション」からDbmanの設定を行います。</li>
+</ol>
+
+<h2>アンインストール</h2>
+
+<ol>
+	<li>管理者としてGeeklogにログインし、プラグインエディターからDbmanプラグインをアンインストールします。</li>
+	<li>インストール時に作成した <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/dbman ディレクトリと <span class="admin">&lt;admin&gt;</span>/plugins/dbman ディレクトリを削除します。</li>
+</ol>
+
+<h2>改訂履歴</h2>
+
+<table>
+	<tr>
+		<th>バージョン</th>
+		<th>日付(YYYY-MM-DD)</th>
+		<th>詳細</th>
+	</tr>
+	<tr>
+		<td>0.7.2</td>
+		<td>2014-02-09</td>
+		<td>管理画面が$_CONF['site_url'] + '/admin/'下にない場合に対応しました。</td>
+	</tr>
+	<tr>
+		<td>0.7.1</td>
+		<td>2012-09-30</td>
+		<td>管理画面以外でdbman.jsを読み込まないようにしました。</td>
+	</tr>
+	<tr>
+		<td>0.7.0</td>
+		<td>2012-06-18</td>
+		<td>Geeklog-2.0.0に対応しました。</td>
+	</tr>
+	<tr>
+		<td>0.6.2</td>
+		<td>2012-04-22</td>
+		<td>アンインストール時に、環境によってはエラーが発生するバグを修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.6.1</td>
+		<td>2011-10-31</td>
+		<td>バージョン0.5.5以前からアップグレードできなかったバグを修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.6.0</td>
+		<td>2011-10-29</td>
+		<td>Geeklog-1.8.0に対応しました。</td>
+	</tr>
+	<tr>
+		<td>0.5.5</td>
+		<td>2011-10-29</td>
+		<td>Dbmanプラグインをアンインストール後にコンフィギュレーションパネルへ行くとエラーになるバグを修正しました。バグレポートをいただいたdengenさんに感謝します。</td>
+	</tr>
+	<tr>
+		<td>0.5.4</td>
+		<td>2010-07-04</td>
+		<td>'TIMESTAMP'フィールドが文字列として処理されていなかったバグを修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.5.3</td>
+		<td>2009-11-04</td>
+		<td>英語・日本語以外の言語を選択した場合に文字化けが起こるバグを修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.5.2</td>
+		<td>2008-09-26</td>
+		<td>大文字小文字を区別しないファイルシステム（MS Windowsなど）で、インクルードファイルが直接アクセスされるのを防ぐ措置を追加しました。</td>
+	</tr>
+	<tr>
+		<td>0.5.1</td>
+		<td>2008-09-14</td>
+		<td>PHP-4.xで起こるエラーを避けるため、htmlentities(), html_entity_decode()関数を使用しないようにしました。</td>
+	</tr>
+	<tr>
+		<td>0.5.0</td>
+		<td>2008-07-26</td>
+		<td>Geeklog-1.5にも対応しました。1.4.xでも動作します。</td>
+	</tr>
+	<tr>
+		<td>0.4.7</td>
+		<td>2007-12-20</td>
+		<td>データベースの接頭辞($_DB_table_prefix)を考慮して、バックアップ・リストアを行うように変更しました。</td>
+	</tr>
+	<tr>
+		<td>0.4.6</td>
+		<td>2007-10-28</td>
+		<td>権限を持たないユーザーに対してもDbmanのアイコンが表示されていたバグを修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.4.5</td>
+		<td>2007-04-05</td>
+		<td>SQLコンソール画面でアイコンが表示されないバグを修正しました。Tsuchiさんに感謝します。</td>
+	</tr>
+	<tr>
+		<td>0.4.4</td>
+		<td>2007-03-25</td>
+		<td>改行を正しく保存するよう、修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.4.3</td>
+		<td>2006-08-06</td>
+		<td>バックアップしたファイルを簡単にダウンロードできるようにしました。SQLを入力して実行するSQLコンソールを実装しました。日本語のインストールマニュアルを作成しました。</td>
+	</tr>
+	<tr>
+		<td>0.4.2</td>
+		<td>2006-07-03</td>
+		<td>テーブルの内容をバックアップするかどうかを判断するのに、$_DBMAN_CONF['backup_except'] を使用するように変更しました。デフォルトでは、GUS (Geeklog Usage Stats)プラグインが作成するテーブルは ***バックアップしません***。</td>
+	</tr>
+	<tr>
+		<td>0.4.1</td>
+		<td>2006-07-03</td>
+		<td>レコードを小さな固まりに分けて（デフォルトは100）、"MySQL Client Out of Memory"エラーが出にくいように修正しました。プラグインのアップグレード機能を実装しました。</td>
+	</tr>
+	<tr>
+		<td>0.4</td>
+		<td>2006-05-04</td>
+		<td>バックアップファイルからリストアする機能を実装しました。</td>
+	</tr>
+	<tr>
+		<td>0.3.1</td>
+		<td>2006-04-28</td>
+		<td>NULL値を正しく保存するよう、修正しました。</td>
+	</tr>
+	<tr>
+		<td>0.3</td>
+		<td>?</td>
+		<td>初期公開バージョン。</td>
+	</tr>
+</table>
+</body>
+</html>

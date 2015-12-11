@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css">
+	<title>Geeklogテーマエディタープラグイン</title>
+</head>
+
+<body>
+<h1>Geeklogテーマエディタープラグイン</h1>
+
+<h2><a name="top">設定</a></h2>
+
+<h3><a name="desc_fs_main">主要設定</a></h3>
+
+<table>
+	<tr>
+		<th style="width: 25%;">項目</th>
+	    <th style="width: 25%:">初期値</th>
+	    <th style="width: 50%;">説明</th>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_enable_all_themes">すべてのテーマの編集を許可する</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、「編集を許可するテーマ」の値とは無関係に、すべてのテーマを自動的に利用可能にします。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_enable_all_files">すべてのファイルの編集を許可する</a></td>
+		<td>いいえ</td>
+		<td>「はい」にすると、「編集を許可するファイル」の値とは無関係に、すべてのテーマに関係するファイル(*.thtml, *.css)を自動的に利用可能にします。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_allowed_themes">編集を許可するテーマ</a></td>
+		<td>professional</td>
+		<td>このプラグインを使用して編集するテーマ名（大文字小文字を区別します）を設定します。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_allowed_files">編集を許可するファイル</a></td>
+		<td>
+			'style.css', 'custom.css', 'custom.sample.css', 'style_forum.css',
+			'header.thtml', 'footer.thtml', 'leftblocks.thtml',
+			'blockheader-left.thtml', 'blockfooter-left.thtml',
+			'rightblocks.thtml', 'blockheader-right.thtml',
+			'blockfooter-right.thtml', 'storytext.thtml',
+			'featuredstorytext.thtml', 'archivestorytext.thtml',
+			'article/article.thtml', 'article/printable.thtml',
+			'menuitem.thtml', 'menuitem_last.thtml', 'menuitem_none.thtml',
+			'list.thtml', 'listitem.thtml', 'loginform.thtml',
+			'profiles/contactuserform.thtml', 'profiles/contactauthorform.thtml',
+			'preferences/profile.thtml', 'users/profile.thtml',
+			'search/searchform.thtml', 'search/searchresults.thtml',
+			'submit/submitevent.thtml', 'submit/submitloginrequired.thtml'
+		</td>
+		<td>このプラグインを使用して編集するファイル名（大文字小文字を区別します）を設定します。テンプレートファイル(*.thtml)とカスケィディングスタイルシートファイル(*.css)を指定できます。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_resync_database">データベースの同期方法</a></td>
+		<td>手動で同期</td>
+		<td>
+			「編集を許可するテーマ」にテーマを、「編集を許可するファイル」にファイルを追加・削除する度に、テーマエディタープラグインは自動的に検出します。<br>
+			<ul>
+				<li>'自動で同期' -- プラグインはデータベースに保存されているデータを更新します。</li>
+				<li>'手動で同期' -- プラグインは更新情報と、「データベースを更新」ボタンを表示します。</li>
+				<li>'同期しない' -- プラグインは変更を無視します。</li>
+			</ul>
+		</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_allow_upload">ファイルのアップロードを許可する</a></td>
+		<td>はい</td>
+		<td>画像ファイルのアップロードを許可するかどうかを決めます。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_image_width">サムネール画像の幅（単位：ピクセル）</a></td>
+		<td>120</td>
+		<td>サムネール画像の幅（ピクセル）を指定します。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_image_height">サムネール画像の高さ（単位：ピクセル）</a></td>
+		<td>100</td>
+		<td>サムネール画像の高さ（ピクセル）を指定します。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_image_max_col">サムネール画像の列数</a></td>
+		<td>6</td>
+		<td>1行中に表示するサムネール画像の数を指定します。</td>
+	</tr>
+	<tr class="r2">
+		<td><a name="desc_upload_max_size">アップローできるファイルサイズの上限（単位：バイト）</a></td>
+		<td>1048576 (= 1MB)</td>
+		<td>アップロードできる画像ファイルの最大サイズ（単位：バイト）を指定します。</td>
+	</tr>
+</table>
+
+</body>
+</html>

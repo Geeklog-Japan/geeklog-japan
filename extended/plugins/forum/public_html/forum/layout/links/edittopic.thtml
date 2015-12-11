@@ -1,0 +1,3 @@
+<!-- start edittopic.thtml -->
+<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{editlink}">{editlinktext}</a></td>                      
+<!-- end edittopic.thtml -->
