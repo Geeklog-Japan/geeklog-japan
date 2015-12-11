@@ -110,47 +110,51 @@ Geeklog 1.4.1以降、重大なエラーが発生したときにRoot以外のユ
 
 <h2><a name="changes211">Theme changes in Geeklog 2.1.1</a></h2>
 
-<p>New template functionality for plugins has been added to Geeklog which when supported allow for specific theme templates for plugins. This means a plugin or theme can include plugin templates designed for individual themes. 
-These templates can be included with either the plugin itself, or the theme, or in both places at once. All of Geeklogs core plugins support this new feature. To find out more please visit the Geeklog Wiki about <a href="http://wiki.geeklog.net/index.php/Theme_Developers_Guide#Theme_Specific_Plugin_Templates">Theme Specific Plugin Templates</a>.</p>
+<p>新たなテーマ機能は、プラグインにテーマ別のテンプレートを用意できるようになったことです。
+テンプレートはプラグインそのものに持つことができ、あるいはテーマ、あるいはその両方にもつことができます。
+すべてのGeeklogs コアプラグインは、このあたらしい機能をサポートしています。より詳しい説明は Geeklog Wiki <a href="http://wiki.geeklog.net/index.php/Theme_Developers_Guide#Theme_Specific_Plugin_Templates">Theme Specific Plugin Templates</a>を参照してください。</p>
 
 <h3>General Changes</h3>
 <ul>
-<li>Added the UIkit framework (v2.24.0) which can be accessed by themes if needed</li>
-<li>Moved <tt>breadcrumbs.thtml</tt> from breadcrumbs directory to root directory. Added a number of blocks to the template.</li>
-<li>Removed <tt>breadcrumb.thtml</tt>, <tt>breadcrumb_child.thtml</tt>, <tt>breadcrumb_nolink.thtml</tt>, and <tt>breadcrumb_root.thtml</tt>.</li>
-<li>Removed <tt>breadcrumbs directory</tt> from theme root directory.</li>
+<li>UIkit framework (v2.24.0) をテーマから、必要に応じて呼べるようにしました。</li>
+<li>breadcrumbsディレクトリから<tt>breadcrumbs.thtml</tt>をrootディレクトリに移動。ブロックナンバーをテンプレートに追加しました。</li>
+<li><tt>breadcrumb.thtml</tt>, <tt>breadcrumb_child.thtml</tt>, <tt>breadcrumb_nolink.thtml</tt>, and <tt>breadcrumb_root.thtml</tt>を削除しました。</li>
+<li><tt>breadcrumbs directory</tt>を削除しました。</li>
 </ul>
 
 <h2><a name="changes210">Theme changes in Geeklog 2.1.0</a></h2>
 
 <ul>
-<li>Added the template variable {related_topics} to <tt>featuredstorytext.thtml</tt> and <tt>storytext.thtml</tt></li>
-<li>Added <tt>topicrelated.thtml</tt> which displays related topics for articles.</li>
-<li>Removed <tt>topicoption.thtml</tt> and <tt>topicoption_off.thtml</tt>.
-    Added <tt>topicnavigation.thtml</tt> which uses blocks to reduce the number of template files.</li>
-<li>Renamed <tt>page_navigation.thtml</tt> to <tt>pagenavigation.thtml</tt>
-    to be consistent.</li>
-<li>Removed <tt>menuitem.thtml</tt>, <tt>menuitem_last.thtml</tt> and <tt>menuitem_none.thtml</tt>.
-    Added <tt>menunavigation.thtml</tt> which uses blocks to reduce the number of template files.</li>
-<li>Removed <tt>adminoption.thtml</tt> and <tt>adminoption_off.thtml</tt>.
-    Added <tt>adminavigation.thtml</tt> which uses blocks to reduce the number of template files.</li>    
-<li>Removed <tt>adminoption.thtml</tt> and <tt>adminoption_off.thtml</tt>.
-    Added <tt>adminavigation.thtml</tt> which uses blocks to reduce the number of template files.</li>    
-<li>Removed <tt>useroption.thtml</tt> and <tt>useroption.thtml</tt>.
-    Added <tt>usernavigation.thtml</tt> which uses blocks to reduce the number of template files.</li>
-<li>Removed <tt>listitem.thtml</tt>. <tt>list.thtml</tt> now uses blocks to reduce the number of template files.</li>
-<li>Removed <tt>admin/moderation/moderation.thtml</tt>, <tt>admin/moderation/ccitem.thtml</tt> and <tt>admin/moderation/ccrow.thtml</tt>.
-    Added <tt>admin/commandcontrol.thtml</tt> which uses blocks to reduce the number of template files.</li>
-<li>Added <tt>/images/icons/moderation.png</tt>image for Admin Moderation page.</li>
-<li>Changed list id of "admin-moderation" to "admin-commandcontrol". This affects the Denim, Modern Curve and Proffesional CSS themes.</li>
-<li>Moved all images from <tt>/tooltips/images/</tt> to <tt>/images/tooltips/</tt> and updated all tooltip template files under the <tt>/tooltips/</tt> directory to reflect the change.</li>
-<li>Moved all images from <tt>/navbar/images/</tt> to <tt>/images/navbar/</tt> and updated required css files (different for each theme). Removed unused images for navbar from Denim and Modern Curve themes.</li>
-<li>Updated <tt>/admin/blocks/blockeditor.thtml</tt> and added in cache_time labels and input for all themes.</li>
-<li>Updated <tt>/admin/common/edit_topics.thtml</tt> so it can use jQuery (by adding ids to a number of elements) for all themes.</li>
-<li>Added <tt>/admin/envcheck.thtml</tt> and related css for the Enviroment Check Admin page.</li>
-<li>Updated <tt>/admin/topic/storyeditor.thtml</tt>, <tt>/admin/topic/storyeditor_advanced.thtml</tt> and <tt>/admin/topic/topiceditor.thtml</tt>. Ids can now be upto 128 characters long so changed max length (for Topic Name as well). Also added javascript which runs topic_2_id.js which converts titles to nice looking ids.</li>
-<li>Added the template variable {titletoid} to the story editor, topic editor and staticpage editor template files. It enables/disables the use of javascript to automatic update the ids when the title is changed.</li>
-<li>In the template file <tt>/comment/commentbar.thtml</tt> removed template variable {show_link_to_commenteditform}. Added the template block commenteditform_jumplink and the template variable {jump_link_for_commenteditform}.</li>
+<li>追加: テーマ変数{related_topics} <tt>featuredstorytext.thtml</tt>と<tt>storytext.thtml</tt></li>
+<li>追加: <tt>topicrelated.thtml</tt> は記事の関連話題で表示。</li>
+<li>削除: <tt>topicoption.thtml</tt> と <tt>topicoption_off.thtml</tt>.
+    追加: <tt>topicnavigation.thtml</tt> which uses blocks から reduce the number of template files.</li>
+<li>リネーム: <tt>page_navigation.thtml</tt> から <tt>pagenavigation.thtml</tt></li>
+<li>削除: <tt>menuitem.thtml</tt>, <tt>menuitem_last.thtml</tt> と <tt>menuitem_none.thtml</tt>.
+    追加: <tt>menunavigation.thtml</tt> which uses blocks から テンプレートの数を減らします。</li>
+<li>削除: <tt>adminoption.thtml</tt> と <tt>adminoption_off.thtml</tt>.<br>
+    追加: <tt>adminavigation.thtml</tt> which uses blocks から テンプレートの数を減らします。</li>    
+<li>削除: <tt>adminoption.thtml</tt> と <tt>adminoption_off.thtml</tt>.<br>
+    追加: <tt>adminavigation.thtml</tt> which uses blocks から テンプレートの数を減らします。</li>    
+<li>削除: <tt>useroption.thtml</tt> と <tt>useroption.thtml</tt>.<br>
+    追加: <tt>usernavigation.thtml</tt> which uses blocks から テンプレートの数を減らします。</li>
+<li>削除: <tt>listitem.thtml</tt>. <tt>list.thtml</tt> now uses blocks から  テンプレートの数を減らします。</li>
+<li>削除: <tt>admin/moderation/moderation.thtml</tt>, <tt>admin/moderation/ccitem.thtml</tt> と <tt>admin/moderation/ccrow.thtml</tt>.<br>
+    追加: <tt>admin/commandcontrol.thtml</tt> これは、テンプレートファイルの数を減らすためにブロックを使用します。</li>
+<li>追加: <tt>/images/icons/moderation.png</tt>管理画面用画像</li>
+<li>list id 変更: "admin-moderation" から "admin-commandcontrol". 対象は、Denim, Modern Curve テーマ</li>
+<li>画像移動: <tt>/tooltips/images/</tt> から <tt>/images/tooltips/</tt> tooltip テンプレートファイルを<tt>/tooltips/</tt>以下に移動。</li>
+<li>画像移動: <tt>/navbar/images/</tt> から <tt>/images/navbar/</tt> css files (different for each theme). <br>
+    削除: unused images for navbar from Denim と Modern Curve themes.</li>
+<li>更新: <tt>/admin/blocks/blockeditor.thtml</tt> と 追加: in cache_time labels と input for all themes.</li>
+<li>更新: <tt>/admin/common/edit_topics.thtml</tt> すべてのテーマでjQueryを利用。 (adding ids から a number of elements) </li>
+<li>追加: <tt>/admin/envcheck.thtml</tt> と 環境チェックのAdmin page関連 css </li>
+<li>更新: <tt>/admin/topic/storyeditor.thtml</tt>, <tt>/admin/topic/storyeditor_advanced.thtml</tt> と <tt>/admin/topic/topiceditor.thtml</tt>. ID の文字数を128桁まで増やしました。 (話題名も同様)。 <br>
+    追加: タイトル名から最適なIDに自動変換するjavascript topic_2_id.js </li>
+<li>追加: テーマ変数 {titletoid} を 記事編集、話題編集、静的ページ編集テンプレートファイルに追加。
+    自動変換javascriptの有効・無効はコンフィギュレーションで設定できます。</li>
+<li>テンプレートファイルの <tt>/comment/commentbar.thtml</tt> から、テーマ変数削除: {show_link_to_commenteditform}
+    追加: テンプレートブロック {commenteditform_jumplink} と テーマ変数 {jump_link_for_commenteditform}.</li>
 </ul>
 
 <h2><a name="changes200">Theme changes in Geeklog 2.0.0</a></h2>
