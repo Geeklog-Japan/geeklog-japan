@@ -1,0 +1,20 @@
+
+<!-- admin/user/batchdelete.thtml { -->
+
+{lang_instruction}
+
+<form style="display:inline" action="{site_admin_url}/user.php?mode=batchdelete" method="post" class="uk-form uk-form-horizontal">
+
+        <div class="uk-form-row">
+            {options_list}
+        </div>
+        <div class="uk-form-row uk-margin-large-top">
+            <div class="uk-form-controls">
+                <input type="hidden" name="mode" value="batchdelete" class="uk-button uk-button-primary uk-button-large"{xhtml}>
+                <input type="submit" name="submit" value="{lang_updatelist}"{xhtml}>
+            </div>
+        </div>
+
+</form>
+
+<!-- } admin/user/batchdelete.thtml -->

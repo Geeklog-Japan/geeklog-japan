@@ -1,0 +1,12 @@
+
+<!-- admin/trackback/autodetectlist.thtml { -->
+
+<p class="uk-margin-bottom">{lang_trackback_explain}</p>
+
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+  <tbody>
+    {autodetect_items}
+  </tbody>
+</table>
+
+<!-- } admin/trackback/autodetectlist.thtml -->

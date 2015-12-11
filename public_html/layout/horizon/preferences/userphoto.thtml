@@ -1,0 +1,12 @@
+
+<!-- preferences/userphoto.thtml { -->
+
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="profile-photo">{lang_userphoto}</label>
+            <div class="uk-form-controls">
+                <input type="file" name="photo" id="profile-photo"{xhtml}>
+                <span class="uk-form-help-inline" id="userphoto-photo">{lang_userphoto_text}{display_photo}<br{xhtml}>{photo_max_dimensions}</span>
+            </div>
+        </div>
+
+<!-- } preferences/userphoto.thtml -->

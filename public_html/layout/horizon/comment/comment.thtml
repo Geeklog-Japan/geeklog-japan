@@ -1,0 +1,16 @@
+
+<!-- comment/comment.thtml { -->
+
+<div class="level-{indent}">
+  <ul class="uk-list">
+    <li class="comment_title">{title}</li>
+    <li class="comment_author">{lang_authoredby}&nbsp;{author_link}&nbsp;{lang_on}&nbsp;{date}</li>
+  </ul>
+
+  <div class="uk-margin">{comments}</div>
+
+  <ul class="uk-subnav uk-flex-left" role="navigation" {hide_if_preview}>
+    <li>[{reply_option}</li>{!if parent_link}<li>{parent_link}</li>{!endif}<li>{delete_option}</li><li><a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="bookmark" title="{lang_permlink}">#</a>]</li></ul>
+</div>
+
+<!-- } comment/comment.thtml -->

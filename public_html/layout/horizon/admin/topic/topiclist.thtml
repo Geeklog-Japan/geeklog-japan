@@ -1,0 +1,10 @@
+
+<!-- admin/topic/topiclist.thtml { -->
+
+{top_menu}
+
+<ul class="uk-clearfix uk-list">
+{list_row}
+</ul>
+
+<!-- } admin/topic/topiclist.thtml -->

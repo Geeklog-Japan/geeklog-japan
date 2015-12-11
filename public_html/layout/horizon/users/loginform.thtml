@@ -1,0 +1,46 @@
+<!--users/loginform.thtml { -->
+
+<!-- This is the modal -->
+
+<div id="gl-login" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+
+{start_block_loginagain}
+<p>{lang_message}</p>
+<div class="uk-vertical-align uk-text-center uk-height-1-1">
+    <div class="uk-vertical-align-middle" style="width:280px">
+
+        <img class="uk-margin-large-top uk-margin-bottom" width="140" height="120" src="{layout_url}/images/logo-geek.png" alt="{site_name}">
+
+        <form action="{site_url}/users.php" method="post" id="userloginform" class="uk-panel uk-panel-box uk-form">
+            <div class="uk-form-row">
+                <input value="admin" class="uk-width-1-1" type="text" name="loginname" id="users-loginform-loginname" placeholder="{lang_username}"{xhtml}>
+            </div>
+            {services}
+            <div class="uk-form-row">
+                <input value="password" class="uk-width-1-1" type="password" name="passwd" id="users-loginform-passwd" placeholder="{lang_password}"{xhtml}>
+            </div>
+            <div class="uk-form-row">
+                <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"{xhtml}>
+            </div>
+            <div class="uk-form-row uk-text-small">
+				<ul class="uk-subnav uk-subnav-line uk-flex-center">
+					{!if lang_newreglink}<li><i class="uk-icon-plus-circle"></i> {lang_newreglink}</li>{!endif}
+                	{!if lang_forgetpassword}<li><a class="uk-float-right uk-link uk-text-small" href="{site_url}/users.php?mode=getpassword" rel="nofollow"><i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}</a></li>{!endif}
+            </div>
+        </form>
+    </div>
+    {openid_login}
+    {oauth_login}
+</div>
+{end_block}
+
+    </div>
+</div>
+
+
+
+
+
+<!--} users/loginform.thtml -->

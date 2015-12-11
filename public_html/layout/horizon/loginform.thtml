@@ -1,0 +1,31 @@
+
+<!-- loginform.thtml { -->
+
+<form action="{site_url}/users.php" method="post" id="loginform" class="uk-form uk-form-stacked">
+    <fieldset class="noborder_fieldset">
+        <legend class="hidden_legend">{lang_login}</legend>
+
+        <div class="uk-form-row">
+            <div class="uk-form-controls"><input class="uk-width-1-1" type="text" value="" name="loginname" id="loginform-loginname"  placeholder="{lang_username}"{xhtml}></div>
+        </div>
+
+        {services}
+
+        <div class="uk-form-row">
+            <input class="uk-width-1-1" type="password" name="passwd" id="loginform-passwd" placeholder="{lang_password}"{xhtml}>
+        </div>
+
+        <div class="uk-form-row">
+            <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"{xhtml}>
+        </div>
+
+        <div class="uk-form-row uk-text-small">
+            <label class="uk-float-left"><i class="uk-icon-plus-circle"></i> {lang_signup}</label>
+            {lang_forgetpassword}
+        </div>
+    </fieldset>
+</form>
+{oauth_login}
+{openid_login}
+
+<!-- } loginform.thtml -->

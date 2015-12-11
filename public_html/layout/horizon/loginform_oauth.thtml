@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form uk-form-horizontal" action="{site_url}/users.php?oauth_login={oauth_service}" method="post">
+    <div class="uk-form-row">
+        <label class="uk-form-label">{# OAuth Button Style 1: Image buttons (uncomment line below) #}</label>
+        <div class="uk-form-controls">
+            {# <input type="submit" style="border:0;height:22px;width:141px;padding:0;margin:0;" value="" id="login_{oauth_service}"{xhtml}> #}
+
+            {# OAuth Button Style 2: Login buttons with icons (uncomment line below) #}
+            <img alt="" src="{oauth_sign_in_image}"{xhtml}>
+            <input type="submit" value="{lang_oauth_service}"{xhtml}>
+        </div>
+    </div>
+</form>
+
+{# end {templatelocation} #}
+

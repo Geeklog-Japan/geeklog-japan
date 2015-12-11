@@ -1,0 +1,45 @@
+
+        </div>
+      </div>
+
+      {left_blocks}
+
+      {right_blocks}
+
+    </div>
+    <!-- } #wrapper -->
+
+	<div class="uk-margin-large-top uk-margin-large-bottom uk-text-center"><a class="uk-icon-small uk-icon-hover uk-icon-chevron-up" data-uk-smooth-scroll="" href="#"></a></div>
+
+    <footer id="footer" role="contentinfo" class="uk-clearfix">
+      <div id="footer-content">
+        <p class="uk-float-left uk-text-small">{copyright_notice}</p>
+        <p class="uk-float-right uk-text-small">
+          <span>{powered_by}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a></span><br{xhtml}>
+          <span>{execution_textandtime}</span>
+        </p>
+      </div>
+    </footer>
+
+  </div>
+  <!-- } #container -->
+
+  {plg_footercode}
+
+<script type="text/javascript">
+$(document).ready(function(){
+$.UIkit.modal('#gl-login').show();
+});
+</script>
+
+  <!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
+       The argument from the left, the right block container, the middle block left the right block id attribute value -->
+  <script type="text/javascript">
+  <!--
+    FixHTML('leftblocks', 'centerblocks', 'rightblocks');
+  -->
+  </script>
+
+</body>
+
+</html>

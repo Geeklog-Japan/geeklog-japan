@@ -1,0 +1,11 @@
+
+<!-- admin/user/reminder.thtml { -->
+
+        <div class="uk-form-row uk-margin-large-top">
+            <div class="uk-form-controls">
+                <input type="submit" name="mode" value="{action_reminder}"{xhtml}>
+                {lang_reminder}
+            </div>
+        </div>
+
+<!-- } admin/user/reminder.thtml -->

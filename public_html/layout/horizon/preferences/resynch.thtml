@@ -1,0 +1,12 @@
+
+<!-- preferences/resynch.thtml { -->
+
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="profile-resynch">{lang_resynch}</label>
+            <div class="uk-form-controls">
+                <input type="checkbox" {resynch_checked} name="resynch" id="profile-resynch"{xhtml}>
+                <span class="uk-form-help-inline">{lang_resynch_text}</span>
+            </div>
+        </div>
+
+<!-- } preferences/resynch.thtml -->

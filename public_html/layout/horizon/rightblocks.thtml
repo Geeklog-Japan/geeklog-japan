@@ -1,0 +1,7 @@
+
+    <hr class="uk-hidden"{xhtml}>
+
+    <div id="rightblocks" role="complementary">
+      {geeklog_blocks}
+    </div>
+

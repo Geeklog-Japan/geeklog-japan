@@ -1,0 +1,8 @@
+
+<!-- lists/table/item_row.thtml { -->
+
+                                <tr>
+                                    {item_field}
+                                </tr>
+
+<!-- } lists/table/item_row.thtml -->

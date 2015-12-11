@@ -1,0 +1,8 @@
+
+<!-- blockheader-message.thtml { -->
+
+<aside>
+  <div class="uk-panel uk-panel-box uk-panel-box-primary">
+    <h3 class="uk-panel-title">{showhide}{block_title}{block_help}</h3>
+
+<!-- } blockheader-message.thtml -->

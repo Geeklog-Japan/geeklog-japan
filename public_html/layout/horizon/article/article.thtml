@@ -1,0 +1,23 @@
+
+<!-- article.thtml { -->
+
+<div class="article">
+{formatted_article}
+</div>
+
+<div class="uk-grid uk-margin-large-top">
+    <div class="uk-width-medium-1-2">
+        {whats_related}
+    </div>
+    <div class="uk-width-medium-1-2">
+        {story_options}
+    </div>
+</div>
+<div class="uk-margin-large-top">
+{trackback}
+</div>
+<div class="uk-margin-large-top">
+{commentbar}
+</div>
+
+<!-- } article.thtml -->

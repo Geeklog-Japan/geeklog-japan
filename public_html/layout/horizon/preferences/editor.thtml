@@ -1,0 +1,9 @@
+
+<!-- preferences/editor.thtml { -->
+
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="advanced_editor">{lang_advanced_editor}</label>
+            <div class="uk-form-controls"><input type="checkbox" id="advanced_editor" name="advanced_editor" {advanced_editor_checked}{xhtml}>{adveditor_name}</div>
+        </div>
+
+<!-- } preferences/editor.thtml -->

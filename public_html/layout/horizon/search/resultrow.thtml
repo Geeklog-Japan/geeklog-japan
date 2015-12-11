@@ -1,0 +1,8 @@
+
+<!-- search/resultrow.thtml { -->
+
+<tr>
+  {data_cols}
+</tr>
+
+<!-- } search/resultrow.thtml -->
