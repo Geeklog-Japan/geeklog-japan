@@ -1,0 +1,64 @@
+
+.navigation_content li a.selected {
+  color: #2661A2;
+  background-color: #DFDFDF;
+}
+
+.navigation_content li:hover {
+  position: relative;
+  z-index: 100;
+}
+
+.navigation_content li ul {
+  display: none;
+}
+
+.navigation_content li:hover > ul {
+  display: block;
+  position: absolute;
+  top: 30px;
+  left: -1px;
+  background-color: #F5F5F5;
+  width: 150px;
+  border: 1px solid #C7C7C7;
+  border-top: 1px solid #D7D7D7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.navigation_content li ul a {
+  width: 136px;
+}
+
+#navigation .navigation_content li ul li:first-child a {
+  border-left: 0px;
+}
+
+#navigation .navigation_content li ul li a {
+  border-width: 0px;
+  border-bottom: 1px solid #D7D7D7;
+}
+
+#navigation .navigation_content li ul li a:hover,
+#navigation .navigation_content li ul li a.selected {
+  background-color: #EBEBEB;
+}
+
+#navigation .navigation_content ul ul li.last > a,
+#navigation .navigation_content ul ul li:last-child > a {
+  border-bottom : 0px;
+}
+
+.navigation_content li:hover > ul li:hover ul {
+  top: -1px;
+  left: 150px;
+}
+
+/* ================================================================
+This copyright notice must be untouched at all times.
+
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/simple_vertical.html
+Copyright (c) 2005-2007 Stu Nicholls. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any
+way to fit your requirements.
+=================================================================== */
