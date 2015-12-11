@@ -122,9 +122,9 @@ function DIR_topicList($dir_topic = 'all', $year = 0, $month = 0)
 */
 function DIR_monthLink($dir_topic, $year, $month, $count)
 {
-    global $_CONF, $LANG_MONTH;
+    global $_CONF, $LANG_MONTH, $LANG_WEEK;
 
-    $retval = $LANG_MONTH[$month] . ' (' . COM_numberFormat ($count) . ')' . LB;
+    $retval = $LANG_MONTH[$month] . (($_CONF['language'] == 'japanese_utf-8') ? $LANG_WEEK[2] : '') . ' (' . COM_numberFormat ($count) . ')' . LB;
 
     if ($count > 0) {
         $month_url = COM_buildUrl($_CONF['site_url'] . '/'
@@ -579,7 +579,7 @@ if (TEMPLATE_EXISTS) {
 
 if (($year != 0) && ($month != 0)) {
     $title = sprintf ($LANG_DIR['title_month_year'],
-                      $LANG_MONTH[$month], $year);
+                      $year, $month);
     if ($dir_topic != 'all') {
         $title .= ': ' . $dir_topicName;
     }
