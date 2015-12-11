@@ -18,6 +18,86 @@
 
 <p><a href="../history">public_html/docs/history</a>をHTML化し、翻訳したものです。</p>
 
+<h2>December 9, 2015 (2.1.1)</h2>
+
+<ul>
+<li>[Security] Log parameters for 404 errors & make filtering in 404.log work like in error.log [Dirk]</li>
+<li>[Security] Removed the code used for File Manager demos and tests shipped with WideImage to prevent an XSS [Mystralkk]</li>
+<li>[Security] Updated File Manager to version 2.2.0 (fixed security issue with file upload check) [Mystralkk]</li>
+<li>[Security] Configuration string input sanitizing overhaul. Now can be config option specific by 
+  adding sanitize rule in config validation file. Default is now all strings are stripped of tags [Tom]</li>
+<li>[Update] CKEditor to version 4.5.4 [Dengen]</li>
+<li>[Update] jQuery to version 1.11.3 and jQuery UI to version 1.11.4. jQuery Timepicker Addon updated [Tom] [Dengen]</li>
+<li>[Update] OAuth class to version 1.141 [Tom]</li>
+<li>[Feature] Integrated the UIkit framework version 2.24.0 into Geeklog [Dengen]</li>
+<li>[Feature] Denim theme now uses UIkit [Dengen]</li>
+<li>[Feature] Added first part of developer mode which adds extra error logging for any template errors</li>
+<li>[Feature] Plugins can now include default templates and css files along with ones for different themes 
+  Plugins template and css files can be included with themes. Plugins template files can now have  a function.php file to control what javascript is loaded [Tom]</li>
+<li>[Feature] Schema.org article, author, and Breadcrumb markup added to Denim and Modern Curve themes [Tom]</li>
+<li>[Feature] Poll plugin bar graphs now based on percentage and supports responsive themes [Tom]</li>
+<li>[Feature] Useful feature template class [Tom]</li>
+<li>[Feature] Allow xmlSiteMap Plugin to Ping Search Engines when new content is Added [Mystralkk]</li>
+<li>[Feature] XMLSitemap Plugin - Add dedicated API [Mystralkk]</li>
+<li>[Feature] Change default admin page to index.php from moderation.php [Dengen]</li>
+<li>[Feature] Search form part of the theme is not accessible. [Dengen]</li>
+<li>[Feature] Localization of message "Unfortunately, an error has occurred rendering this page." [Mystralkk]</li>
+<li>[Feature] Add Pagination with rel=?next? and rel=?prev? [Tom]</li>
+<li>[Bug] Added email check to Com_mail to prevent plugins from sending email to users who don't have an address (Oauth users) [Tom]</li>
+<li>[Bug] Cached Articles Sometimes do not Display on website [Tom]</li>
+<li>[Bug] Current LDAP module doesn't work properly - new Simple_LDAP Authentication provided [Mystralkk]</li>
+<li>[Bug] Duplicate Blocks [Mystralkk]</li>
+<li>[Bug] Remove hardcoded checks for TLD in domain names [Mystralkk]</li>
+<li>[Bug] Geeklog Does Not Accept .website TLD [Mystralkk]</li>
+<li>[Bug] Install script Migrate option needs to handle cookiesecure config value [Dirk]</li>
+<li>[Bug] Hidden config option 'search_use_fulltext' can be found using search in Configuration [Dengen]</li>
+<li>[Bug] Errors while editing blocks reset all options [Dengen]</li>
+<li>[Bug] The administrator is forced to be an input of the user password in the Edit User screen [Dengen]</li>
+<li>[Bug] Wrong permissions with articles submitted by guest users [Dengen]</li>
+<li>[Bug] Declaration of dc: namespace missing from RSS and RDF feeds [Mystralkk]</li>
+<li>[Bug] Missing blank in feed headers [Dirk]</li>
+</ul>
+
+<h2>July 12, 2014 (2.1.0)</h2>
+<ul>
+<li>Caching Template Library(Joe Mucchiello開発のGeeklogオリジナルテーマエンジン)が搭載されました。 [Tom]</li>
+<li>デフォルトテーマをサポート。テンプレートとCSSファイルを利用できます。（テーマのオーバーレイ機能） [Tom]</li>
+<li>静的ページプラグインとブロックに、キャッシュを利用できるようになりました。 [Tom]</li>
+<li>ツリー構造の話題のキャッシュによりスピードがあがりました。 [Tom]</li>
+<li>関連記事ブロックがすべての話題で表示されるようになりました。タイトルの長さを設定できます。 [Tom]</li>
+<li>各記事の最下段に、その話題へのリンクが表示されるようになりました。 [Tom]</li>
+<li>新たに関連話題自動タグ「related_topics」が追加。関連するすべての話題を表示します。 [Tom]</li>
+<li>新たに関連コンテンツ自動タグ「related_items」が追加。関連するすべてのコンテンツを表示します。 [Tom]</li>
+<li>Command & Control レイアウトが追加されました。プラグインはグループ構成に。 [Tom]</li>
+<li>あたらしくOAuthログイン(Google, Microsoft, Yahoo)をサポート。OAuth 1.0, 1.0a, and 2.0 を含みます。 [Tom]</li>
+<li>JavescriptとCSSが、ロード時の順番を設定できるようになりました。 [Tom]</li>
+<li>多言語システムのバグフィックスを複数行いました。 [Tom]</li>
+<li>CKEditor 4.3.2を、Geeklogのデフォルトアドバンストエディターとして追加しました。[Dengen]</li>
+<li>記事の表示の仕組みをあたらしくし、バグfixを行いました。[Dengen]</li>
+<li>アドバンストエディターシステムが新たに追加され、種々のJavascriptエディターを追加しやすくなりました。 [Dengen]</li>
+<li>記事、静的ページ、投稿、話題IDは128文字長になりました。 [Tom]</li>
+<li>ユーザーログインページ(users.php)は、最初に表示したページでエラーを表示させないようにしました。 [Tom]</li>
+<li>セッションテーブルの保存でデッドロックエラーになる問題をfixしました。 [Tom]</li>
+<li>ヘブライ語をアップデートしました。provided by LWC</li>
+<li>jQueryは、ヘッダーにも置けるようになりました。 [Tom]</li>
+<li>jQuery 1.10.2 と jQuery UI to 1.10.3　にアップデートされました。 [Tom]</li>
+<li>ファイルマネージャーを追加しました。 [Kenji ITO]</li>
+<li>jQueryのtimepickerを追加しました。 [Dengen]</li>
+</ul>
+
+<h2>Mar 29, 2013 (2.0.0)</h2>
+
+<ul>
+<li>24時間制の場合の終了時刻のバグを修正しました。 [Dirk]</li>
+<li>話題が存在しない場合にエラーが表示されるバグを修正しました。 [Tom]</li>
+<li>ユーザーが話題にアクセスする際に、追加的なチェックを加えました。そうでなければすべての話題が変わります。 [Tom]</li>
+<li>記事やすべての話題のディレクトリにアクセスするとSQL エラー発生するバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001570">#0001570</a>) [Tom]</li>
+<li>記事のHタグが modern_curveテーマでエラーになるバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001569">#0001569</a>) [Dengen]</li>
+<li>コメントが同じページに表示されるモードの場合でも、記事の所有者には所有するドラフトの記事を表示するようにしました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001568">#0001568</a>) [Tom]</li>
+<li>データベースから コンフィギュレーションオプション'search_no_data'が削除されました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001566">#0001566</a>) [Dirk]</li>
+<li>検索の"more from topic" が動作しなくなっていたバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001565">#0001565</a>, <a href="http://project.geeklog.net/tracking/view.php?id=0001518">#0001518</a>) [Dirk]</li>
+</ul>
+
 
 <h2>Mar 8, 2013 (2.0.0rc3)</h2>
 
