@@ -180,7 +180,12 @@ Geeklog日本語版の詳細な情報については http://www.geeklog.jp/を�
 		alias:{custom_alias} version:{custom_version} mobile:{custom_mobile}
 
 
-  (4) その他
+  (4) テーマの追加
+
+    UIkitを最大限活用したDenimベースのHorizonを追加しました。
+
+
+  (5) その他
 
 	readme
 		本ファイルで、オリジナル版に対する日本語版の開発概要を紹介
