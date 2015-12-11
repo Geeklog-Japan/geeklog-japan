@@ -19,6 +19,47 @@
 <p><a href="../history">public_html/docs/history</a>をHTML化し、翻訳したものです。</p>
 
 
+<h2>July 12, 2014 (2.1.0)</h2>
+<ul>
+<li>Caching Template Library(Joe Mucchiello開発のGeeklogオリジナルテーマエンジン)が搭載されました。 [Tom]</li>
+<li>デフォルトテーマをサポート。テンプレートとCSSファイルを利用できます。（テーマのオーバーレイ機能） [Tom]</li>
+<li>静的ページプラグインとブロックに、キャッシュを利用できるようになりました。 [Tom]</li>
+<li>ツリー構造の話題のキャッシュによりスピードがあがりました。 [Tom]</li>
+<li>関連記事ブロックがすべての話題で表示されるようになりました。タイトルの長さを設定できます。 [Tom]</li>
+<li>各記事の最下段に、その話題へのリンクが表示されるようになりました。 [Tom]</li>
+<li>新たに関連話題自動タグ「related_topics」が追加。関連するすべての話題を表示します。 [Tom]</li>
+<li>新たに関連コンテンツ自動タグ「related_items」が追加。関連するすべてのコンテンツを表示します。 [Tom]</li>
+<li>Command & Control レイアウトが追加されました。プラグインはグループ構成に。 [Tom]</li>
+<li>あたらしくOAuthログイン(Google, Microsoft, Yahoo)をサポート。OAuth 1.0, 1.0a, and 2.0 を含みます。 [Tom]</li>
+<li>JavescriptとCSSが、ロード時の順番を設定できるようになりました。 [Tom]</li>
+<li>多言語システムのバグフィックスを複数行いました。 [Tom]</li>
+<li>CKEditor 4.3.2を、Geeklogのデフォルトアドバンストエディターとして追加しました。[Dengen]</li>
+<li>記事の表示の仕組みをあたらしくし、バグfixを行いました。[Dengen]</li>
+<li>アドバンストエディターシステムが新たに追加され、種々のJavascriptエディターを追加しやすくなりました。 [Dengen]</li>
+<li>記事、静的ページ、投稿、話題IDは128文字長になりました。 [Tom]</li>
+<li>ユーザーログインページ(users.php)は、最初に表示したページでエラーを表示させないようにしました。 [Tom]</li>
+<li>セッションテーブルの保存でデッドロックエラーになる問題をfixしました。 [Tom]</li>
+<li>ヘブライ語をアップデートしました。provided by LWC</li>
+<li>jQueryは、ヘッダーにも置けるようになりました。 [Tom]</li>
+<li>jQuery 1.10.2 と jQuery UI to 1.10.3　にアップデートされました。 [Tom]</li>
+<li>ファイルマネージャーを追加しました。 [Kenji ITO]</li>
+<li>jQueryのtimepickerを追加しました。 [Dengen]</li>
+</ul>
+
+<h2>Mar 29, 2013 (2.0.0)</h2>
+
+<ul>
+<li>24時間制の場合の終了時刻のバグを修正しました。 [Dirk]</li>
+<li>話題が存在しない場合にエラーが表示されるバグを修正しました。 [Tom]</li>
+<li>ユーザーが話題にアクセスする際に、追加的なチェックを加えました。そうでなければすべての話題が変わります。 [Tom]</li>
+<li>記事やすべての話題のディレクトリにアクセスするとSQL エラー発生するバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001570">#0001570</a>) [Tom]</li>
+<li>記事のHタグが modern_curveテーマでエラーになるバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001569">#0001569</a>) [Dengen]</li>
+<li>コメントが同じページに表示されるモードの場合でも、記事の所有者には所有するドラフトの記事を表示するようにしました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001568">#0001568</a>) [Tom]</li>
+<li>データベースから コンフィギュレーションオプション'search_no_data'が削除されました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001566">#0001566</a>) [Dirk]</li>
+<li>検索の"more from topic" が動作しなくなっていたバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001565">#0001565</a>, <a href="http://project.geeklog.net/tracking/view.php?id=0001518">#0001518</a>) [Dirk]</li>
+</ul>
+
+
 <h2>Mar 8, 2013 (2.0.0rc3)</h2>
 
 <ul>
@@ -259,7 +300,7 @@
 </ul>
 <ul>
 <li>イタリア語翻訳の更新 $LANG_VALIDATION [Rouslan]</li>
-<li>日本語言語ファイルとドキュメントのアップグレード。提供: Geeklog Japaneseグループ</li>
+<li>日本語言語ファイルとドキュメントのアップグレード。提供: Geeklog Japanグループ</li>
 </ul>
 
 <h2>Jun 2, 2011 (1.8.0rc2)</h2>
@@ -278,7 +319,7 @@
 <li>カレンダーのフォントサイズを修正しました。(要望 <a href="http://project.geeklog.net/tracking/view.php?id=0001329">#0001329</a>) [Tom]</li>
 </ul>
 <ul>
-<li>日本語言語ファイルのアップグレード。提供: Geeklog Japaneseグループ</li>
+<li>日本語言語ファイルのアップグレード。提供: Geeklog Japanグループ</li>
 </ul>
 
 <h2>May 8, 2011 (1.8.0rc1)</h2>
@@ -317,7 +358,7 @@
 <li>コンフィギュレーションの入力文字数チェックで、MBYTE_strlen()ではなくmb_strlen() を使うよう、修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001299">#0001299</a>, パッチ提供: mystral-kk)</li>
 </ul>
 <ul>
-<li>日本語言語ファイルのアップグレード。提供: Geeklog Japaneseグループ</li>
+<li>日本語言語ファイルのアップグレード。提供: Geeklog Japanグループ</li>
 </ul>
 
 <h2>Apr 3, 2011 (1.8.0b1)</h2>
@@ -503,7 +544,7 @@
 <li>記事のハイライトクエリがCOM_applyFilterによって効かないのを修正しました。[Dirk]</li>
 </ul>
 <ul>
-<li>日本語言語ファイルのアップグレード。提供: Geeklog Japaneseグループ</li>
+<li>日本語言語ファイルのアップグレード。提供: Geeklog Japanグループ</li>
 <li>フランス語の新規追加およびアップグレード。提供: Ben</li>
 <li>リンクプラグインのヘブライ語のアップグレード。提供: LWC</li>
 </ul>
@@ -525,7 +566,7 @@
   <li>サブディレクトリへのインストール時、インストール前の表示のバグであるタイポを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=0001148">#0001148</a>) [Dirk]</li>
 </ul>
 <ul>
-  <li>ドイツ語の言語ファイルを更新しました。提供: Markus Wollschlager</li>
+  <li>ドイツ語の言語ファイルを更新しました。提供: Markus Wollschläger</li>
   <li>スロベニア語の言語ファイルを更新しました。提供: Mateja B.</li>
 </ul>
 
@@ -545,7 +586,7 @@
   <li>プロファイルページでの最新コメント10件を表示するようにしました。[Tom]</li>
 </ul>
 <ul>
-  <li>エストニア語の言語ファイルを更新しました。提供: Artur Rapp</li>
+  <li>エストニア語の言語ファイルを更新しました。提供: Artur Räpp</li>
   <li>ヘブロイ語の言語ファイルを更新しました。提供: LWC</li>
   <li>イタリア語の言語ファイルを更新しました。提供: Rouslan Placella</li>
   <li>日本語の言語ファイルを更新しました。提供: the Geeklog.jpグループ</li>
@@ -799,8 +840,8 @@
   <li>インストール成功時にdb-config.phpとsiteconfig.phpのパーミッションを755に変更することを勧めていましたが、これらのファイルを実行する必要はないので644への変更を勧めるようにしました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=1036">#0001036</a>) [Dirk]</li>
 </ul>
 <ul>
-  <li>エストニア語の言語ファイルを更新しました。提供: Artur Rapp</li>
-  <li>ドイツ語の言語ファイルを更新しました。提供: Markus Wollschlager</li>
+  <li>エストニア語の言語ファイルを更新しました。提供: Artur Räpp</li>
+  <li>ドイツ語の言語ファイルを更新しました。提供: Markus Wollschläger</li>
   <li>日本語の言語ファイルを更新しました。提供: the Geeklog.jpグループ</li>
 </ul>
 
@@ -819,7 +860,7 @@
   <li>「検索条件の修正」で「タイトルのみ」というチェックボックスの状態がページ間で維持されていなかったバグを修正しました。[Dirk]<br />注: このバグを修正するには search/searchform.thtml テンプレートを修正する必要があります。</li>
   <li>検索結果のページで「並べ替え...」と「検索結果xx件」ドロップダウンリストの表示を改善しました(機能要望 <a href="http://project.geeklog.net/tracking/view.php?id=910">#0000910</a>)。[Sami, LWC]</li>
   <li>検索結果でXHTMLを指定しているときでもHTMLの&lt;br&gt;タグを使用していました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=1022">#0001022</a>, パッチ提供: taca)</li>
-  <li>'data'ディレクトリがない場合に間違ったパスが報告されるバグを修正しました。(報告: Markus Wollschlager) [Dirk]</li>
+  <li>'data'ディレクトリがない場合に間違ったパスが報告されるバグを修正しました。(報告: Markus Wollschläger) [Dirk]</li>
   <li>管理者メニューでプラグインが0個のアイテムを返す場合に'N/A'と表示していたバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=1025">#0001025</a>) [Dirk]</li>
   <li>$_TABLES['groups']テーブルの名前が"groups"でない場合、グループエディターで、あるグループを他のグループに追加できないバグを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=998">#0000998</a>)[Dirk]
   </li>
@@ -990,7 +1031,7 @@
 
 <p>1.6.0rc2からの変更点:</p>
 <ul>
-  <li>公式ドイツ語の言語ファイルを更新しました。提供: Markus Wollschlager</li>
+  <li>公式ドイツ語の言語ファイルを更新しました。提供: Markus Wollschläger</li>
   <li>日本語の言語ファイルとドキュメントを更新しました。提供: Geeklog.jpグループ</li>
 </ul>
 
@@ -1006,7 +1047,7 @@
     移行処理の間のテーブルのプリフィックスの自動検知の問題を修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=922">#0000922</a>) [Dirk]  </li>
   <li>(移行処理の間に)bigdump.phpでエラーが発生したときに、ユーザーをmigrate.phpに戻るようにしました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=919">#0000919</a>) [Dirk]  </li>
   <li>バックアップが利用できないときの、移行処理でのウォーニングを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=918">#0000918</a>: パッチ提供: hiroron)  </li>
-  <li>エストニア語の言語ファイルを更新しました。提供: Artur Rapp</li>
+  <li>エストニア語の言語ファイルを更新しました。提供: Artur Räpp</li>
   <li>ヘブライ語の言語ファイルを更新しました。提供: LWC</li>
   <li>日本語の言語ファイルとドキュメントを更新しました。提供: Geeklog.jpグループ</li>
 </ul>
@@ -1031,7 +1072,7 @@
   <li>コンフィギュレーションのHTMLの誤りを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=907">#0000907</a>) [Dirk]</li>
   <li>インストール・スクリプトを削除するように、より目立つ念押しの表示を追加しました。[Dirk]</li>
   <li>プラグインで、コメント・バーから親のオブジェクト(記事と静的ページ)へのリンクが適切に動作するようにしました。[Dirk]</li>
-  <li>(検索文字列無しで)話題での検索を再度できるようにしました。(報告: Markus Wollschlager) [Dirk]</li>
+  <li>(検索文字列無しで)話題での検索を再度できるようにしました。(報告: Markus Wollschläger) [Dirk]</li>
   <li><code>$_CONF['comment_close_rec_stories']</code>の扱いを修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=899">#0000899</a>) [Dirk]</li>
   <li>検索結果に表示される、文字列の(検索対象の)選択を改善しました。[Dirk]</li>
   <li>トラックバック消去後に起こるエラーを修正しました。[Dirk]</li>
@@ -1113,7 +1154,7 @@
   <li>サイトマップに含めずに除外するプラグインを設定するオプションを追加しました。デフォルトではリンクプラグインが除外の対象となっています。[Dirk]</li>
   <li>プラグインをアンインストールするときに、サイトマップのファイルも削除するようにしました。[Dirk]</li>
   <li><code>sitemap.xml</code>に自動的にリンクを含めないようにしました。[Dirk]</li>
-  <li>設定オプションをすると、<code>"missing argument 2"</code>というエラーになる問題を修正しました。(報告: Markus Wollschlager) [Dirk]</li>
+  <li>設定オプションをすると、<code>"missing argument 2"</code>というエラーになる問題を修正しました。(報告: Markus Wollschläger) [Dirk]</li>
 </ul>
 
 
@@ -1304,7 +1345,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>グループドロップダウンメニューでのグループ表示で大文字小文字を区別しないようにしました。[Dirk]</li>
   <li>コメントがスパムとして拒否された場合に報告メールを管理者に送った旨のメッセージを表示するようにしました。[Dirk]</li>
   <li>新しいパスワードでログインに失敗した場合に報告メールを管理者に送った旨のメッセージを表示するようにしました。[Dirk]</li>
-  <li>カレンダープラグイン用エストニア語の言語ファイルを更新しました。提供: Artur Rapp</li>
+  <li>カレンダープラグイン用エストニア語の言語ファイルを更新しました。提供: Artur Räpp</li>
   <li>日本語言語ファイルを更新しました。提供: Geeklog.jpグループ</li>
 </ul>
 
@@ -1324,7 +1365,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
     <a href="http://project.geeklog.net/tracking/view.php?id=789">#0000789</a>) [Dirk]</li>
   <li>STORY_extractLinksでのstr_replaceの誤用を修正しました。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=794">#0000794</a>)
     [Dirk]</li>
-  <li>「PING送信」を記事のオプションブロックに追加(機能がONになっており記事を作成･編集しているユーザーに許可されている場合に有効)しました。[Dirk]</li>
+  <li>「PING送信」を記事のオプションブロックに追加(機能がONになっており記事を作成・編集しているユーザーに許可されている場合に有効)しました。[Dirk]</li>
   <li>各プラグインにfunctions.incがない場合にユーザーがプラグインを有効にできないようにしました。
     [Dirk]</li>
   <li>インストールスクリプトがdb-config.phpを探せない場合に、メッセージは常に英語としました。つまり画面上、言語の変更ができないようにしました。[Dirk]</li>
@@ -1421,7 +1462,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>文字セットが大文字で書かれている場合に、MySQLがUTF-8をを認識しない問題を修正
     (バグ <a href="http://project.geeklog.net/tracking/view.php?id=731">#0000731</a>) [Dirk]</li>
   <li>ヘブライ語言語ファイルを更新しました。提供: LWC</li>
-  <li>エストニア語言語ファイルを更新しました。提供: Artur Rapp</li>
+  <li>エストニア語言語ファイルを更新しました。提供: Artur Räpp</li>
   <li>日本語言語ファイルを更新しました。提供: Geeklog.jpグループ</li>
   <li>スロバキア語言語ファイルを更新しました。提供: gape</li>
 </ul>
@@ -1604,12 +1645,12 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>利便性とセキュリティを秤にかけた結果、セキュリティを優先することにした。インストールスクリプトで、データベース認証要素(db名やパスワードのこと
     か？)をdb-config.phpから呼び出し表示することはしないことにした。デメリットは、データベースのアップグレードやgeeklogのインス
     トールを再度実行する際にデータベース認証要素を再度入力しなければいけなくなった。</li>
-  <li>リンクプラグイン:  &quot;Root&quot; が、言語ファイルのリンクの公開リストのページタイトルを参照していなかったバグを修正しました。(報告: Markus Wollschlager) [Dirk]</li>
-  <li>リンクプラグイン: リンクの公開リストのページタイトルの言語ファイルから&quot;root&quot;が呼び出されていなかった。(報告: Markus Wollschlager) [Dirk]</li>
+  <li>リンクプラグイン:  &quot;Root&quot; が、言語ファイルのリンクの公開リストのページタイトルを参照していなかったバグを修正しました。(報告: Markus Wollschläger) [Dirk]</li>
+  <li>リンクプラグイン: リンクの公開リストのページタイトルの言語ファイルから&quot;root&quot;が呼び出されていなかった。(報告: Markus Wollschläger) [Dirk]</li>
   <li>管理者画面のレイアウト不整合で残っていた問題を修正。イベントのカレンダーリストとアンケートプラグイン
     (バグ <a href="http://project.geeklog.net/tracking/view.php?id=650">#0000650</a>) [Dirk]</li>
   <li>ヘブライ言語ファイルを更新しました。提供: LWC</li>
-  <li>ドイツ語言語ファイルを更新しました。提供: Markus Wollschlager</li>
+  <li>ドイツ語言語ファイルを更新しました。提供: Markus Wollschläger</li>
   <li>幾つかの韓国語言語ファイルの罫線にCR/LFとLFが混在していたのを修正。</li>
 </ul>
 
@@ -1633,7 +1674,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
     [Dirk]</li>
   <li>バグ <a href="http://project.geeklog.net/tracking/view.php?id=647">#0000647</a>の修正: ユーザー設定の全ての変更がCUSTOM_usercheckを通るようにした
     [Blaine]</li>
-  <li>ハードコードした&lt;ul&gt;を管理者･ユーザー・話題ブロックの関数から削除した。新しくblockheader-list.thtml,
+  <li>ハードコードした&lt;ul&gt;を管理者・ユーザー・話題ブロックの関数から削除した。新しくblockheader-list.thtml,
     blockfooter-list.thtmlをこれらのブロックに追加した。[Blaine]</li>
   <li>ブロックテンプレートの偽の{blockid}を削除し、ブロックタイトルから実際に取得するようにした。結果、ブロックタイトルが変わるとレイアウトが
     変わるようになった。非アスキー言語でもうまく動作していなかったもの。style.cssとブロックテンプレートも適宜アップデートした。
@@ -1645,7 +1686,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
     (報告: Michael Brusletten) [Dirk]</li>
   <li>インストールスクリプトの文字列方向に関する問題を修正
     (報告: LWC)[Dirk]</li>
-  <li>エストニア言語ファイルを更新しました。提供: Artur Rapp</li>
+  <li>エストニア言語ファイルを更新しました。提供: Artur Räpp</li>
   <li>ヘブライ言語ファイルの更新しました。提供: LWC</li>
   <li>日本語言語ファイルを更新しました。提供: Takahiro Kambe, Tetsuko Komma, Geeklog.jpグループ<br />
     メモ: 今後日本語言語ファイルはUTF-8バージョンのみをサポート。ecu-jpバージョンは今後の配布しません。</li>
@@ -1673,7 +1714,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
     poll-vote-results classを削除。今後のためにempty reqired-field
     classとmissing-field classを追加。(バグ <a href="http://project.geeklog.net/tracking/view.php?id=635">#0000635</a>参照) [Dirk]</li>
   <li>中国語言語ファイルを更新しました。提供: Samuel M. Stone</li>
-  <li>エストニア語言語ファイルを更新しました。提供: Artur Rapp</li>
+  <li>エストニア語言語ファイルを更新しました。提供: Artur Räpp</li>
   <li>スロベニア語言語ファイルを更新しました。提供: gape</li>
 </ul>
 <h3>カレンダープラグイン</h3>
@@ -1696,7 +1737,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
 <ul>
   <li>article.thtmlテンプレートファイルで{story_title}が使えるようになった
     [Dirk]</li>
-  <li>バグフィックス: いくつかのフィールドを空欄で話題を新規登録した時に、話題管理画面に戻らないようにした。｢アクセスは拒否された｣とメッセージが表示される為。
+  <li>バグフィックス: いくつかのフィールドを空欄で話題を新規登録した時に、話題管理画面に戻らないようにした。「アクセスは拒否された」とメッセージが表示される為。
     [Dirk]</li>
   <li>記事作成編集画面の日付時間選択部分といくつかのフィールドで文字列方向を'ltr'でハードコード指定
     (バグ <a href="http://project.geeklog.net/tracking/view.php?id=150">#0000150</a>)。また、Professionalテーマのhtml bodyスタイルシートから&quot;text-align:left&quot;を除去。本文文章の文字列方向変更機能に悪影響があるため。
@@ -1713,11 +1754,11 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
     (バグ <a href="http://project.geeklog.net/tracking/view.php?id=621">#0000621</a>) [Dirk]</li>
   <li>ユーザー登録通知に表示されているURLが'&amp;amp'を含んでいたので'&amp;'に訂正
     [Dirk]</li>
-  <li>ドイツ語言語ファイルを更新しました。提供: Markus Wollschlager</li>
+  <li>ドイツ語言語ファイルを更新しました。提供: Markus Wollschläger</li>
 </ul>
 <h3>リンクプラグイン</h3>
 <ul>
-	<li>カテゴリーリストの｢リンクを有効にする｣リンクを修正
+	<li>カテゴリーリストの「リンクを有効にする」リンクを修正
       [Dirk]</li>
 </ul>
 
@@ -1738,7 +1779,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>staticpage.thtmlテンプレートファイルの印刷・編集アイコンの位置をページ下部に移動。同時にcenterblock.thtmlテンプ
     レートファイルからこれらのアイコンを除き、{lastupdate}と{hits}変数をそこに配置した。
     (バグ <a href="http://project.geeklog.net/tracking/view.php?id=628">#0000628</a>) [Dirk]</li>
-  <li>staticpage.thtmlテンプレートファイルから余分な}を取り除いた。(報告: Markus Wollschlager) [Dirk]</li>
+  <li>staticpage.thtmlテンプレートファイルから余分な}を取り除いた。(報告: Markus Wollschläger) [Dirk]</li>
 </ul>
 
 <h2>May 5, 2008 (1.5.0b1)</h2>
@@ -1751,7 +1792,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>Bloggerのリモート認証オプションを除いた。Blogger.comが認証プロセスを変更したのでこのモジュールは役に立たない。</li>
   <li>Geeklogが送信するemailはX-Orginating-IPヘッダーを持つようになるのでspamやabuseの追跡の役に立つようになる
     [Dirk]</li>
-  <li>話題管理画面で半角20文字以上のIDを使えるようにした(報告: Markus Wollschlager) [Dirk]</li>
+  <li>話題管理画面で半角20文字以上のIDを使えるようにした(報告: Markus Wollschläger) [Dirk]</li>
   <li>ユーザーの登録メールアドレスが他のユーザーと重なっていないことの制限を緩和。リモートユーザーの場合、重なっていても良い。オンサイトのユーザーの場合は今までの変わらずダメ。
     [Dirk]</li>
   <li>バグ: ユーザー用emailフォームがsubjectに&quot;があると正しく表示されていなかった．不完全なフィールドになってしまう為。
@@ -1774,7 +1815,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>' /'でXHTMLを定常的に定義。これで全てのテーマをXHTML準拠にすることができるようになる。(パッチ提供: geeklog.jpのdengen)</li>
   <li>管理者メニューで登録ユーザーへのお知らせ機能を追加 [Blaine]</li>
   <li>ユーザー登録を許可していない場合には、記事投稿フォームで「ユーザー登録」リンクを表示しないようにした。
-    (報告: Markus Wollschlager) [Dirk]</li>
+    (報告: Markus Wollschläger) [Dirk]</li>
   <li>COM_startBlockをアップデートし、作成済みのidと重ならない｛blockid｝テンプレート変数を設定した。
     [Blaine]</li>
   <li>グループ管理画面が2ページ以上の表示になる際の&quot;Show
@@ -1854,9 +1895,9 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
   <li>オランダ語言語ファイルを更新しました。Ronald Edelschaap提供。</li>
   <li>カレンダープラグイン用オランダ語言語ファイルを更新しました。John van
     Gaal提供</li>
-  <li>カナダフランス語言語ファイルの更新: Geeklog本体と静的ページプラグイン用。同新らたな言語ファイル: カレンダー･リンク･アンケートプラグイン。提供: Jean-Francois Allard</li>
+  <li>カナダフランス語言語ファイルの更新: Geeklog本体と静的ページプラグイン用。同新らたな言語ファイル: カレンダー・リンク・アンケートプラグイン。提供: Jean-Francois Allard</li>
   <li>ヘブライ語言語ファイル。提供: LWC</li>
-  <li>Geeklgo本体と全プラグイン用の日本語言語ファイル。提供: Geeklog Japaneseグループ</li>
+  <li>Geeklgo本体と全プラグイン用の日本語言語ファイル。提供: Geeklog Japanグループ</li>
   <li>新たな韓国語言語ファイル、Geeklog本体とほとんどのプラグイン用。提供: Tetsuko KommaとKim Younghie</li>
   <li>スペイン語(UTF-8)言語ファイルアップデート、新たな全プラグイン用スペイン語UTF-8)言語ファイル。提供: Jose R. Valverde</li>
 </ul>
@@ -1923,7 +1964,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
 	<li>Fixed page title after a successful batch import of users (which read "Error") [Dirk]</li>
 	<li>Back in Geeklog 1.4.0, a counter was added to the Spam-X plugin to count all deleted spam posts. The counter was only added in fresh installs of 1.4.0, though, but not when upgrading from an earlier version. Fixed that [Dirk]</li>
 	<li>In lists created from the Links and Calendar plugins, use "links-new-plugin" as the CSS class name [Oliver]</li>
-	<li>Updated Estonian language file, provided by Artur Rapp</li>
+	<li>Updated Estonian language file, provided by Artur Räpp</li>
 	<li>Updated Russian language file, provided by Alexander Yurchenko</li>
 	<li>New Russian language file for the Calendar plugin, provided by Alexander Yurchenko</li>
 	<li>Updated Turkish language file, provided by Kemal Cellat</li>
@@ -1958,7 +1999,7 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
 	<li>Fixed check for new stories from archive topic [Dirk]</li>
 	<li>Call PLG_templateSetVars() from STORY_renderArticle() so we can have custom variables in the story templates [Dirk]</li>
 	<li>Updated Chinese language files (traditional and simplified), provided by Samuel M. Stone</li>
-	<li>Updated Japanese language files for Geeklog and all the plugins, provided by the Geeklog Japanese group</li>
+	<li>Updated Japanese language files for Geeklog and all the plugins, provided by the Geeklog Japan group</li>
 	<li>Updated Ukrainian language files (Windows-1251, KOI8-U, and UTF-8 encoding) for Geeklog and all the plugins, provided by Vitaliy Biliyenko</li>
 </ul>
 
@@ -2003,9 +2044,9 @@ title="http://www.sem-r.com/09/20090213153711.html">http://www.sem-r.com/09/2009
 	<li>Fixed SQL error with some older MySQL versions when calling up the Batch User Delete option [Oliver]</li>
 	<li>Comments always displayed the comment author's full name, even when $_CONF['show_fullname'] was set to 0 [Dirk]</li>
 	<li>Fixed 404 (caused by a request for a file named '(none)') in the user profile display when a user doesn't have a userphoto [Dirk]</li>
-	<li>New Estonian language files for Geeklog and most of the plugins, provided by Artur Rapp</li>
+	<li>New Estonian language files for Geeklog and most of the plugins, provided by Artur Räpp</li>
 	<li>Updated Hebrew language file, provided by LWC</li>
-	<li>Updated Japanese language files for Geeklog and all the plugins, provided by the Geeklog Japanese group</li>
+	<li>Updated Japanese language files for Geeklog and all the plugins, provided by the Geeklog Japan group</li>
 	<li>New Russian language files for the Spam-X plugin, provided by Pavel Kovalenko</li>
 	<li>Updated Slovenian language files for Geeklog and all the plugins, provided by gape</li>
 </ul>
@@ -2254,7 +2295,7 @@ Bugfixes:</p>
 	<li>Fixed another bug in google pagination of admin-lists [Oliver]</li>
 	<li>Fixed "wrap static page in a block" and "exit type" options in the static page editor. Also link to the "rewritten" URL from the list of static pages when URL rewriting is on [Dirk]</li>
 	<li>Fixed JavaScript error in the Admin's story editor (bug #479) [Dirk]</li>
-	<li>Fixed hard-coded paths in the check.php script and added tests for missing directories (reported by Markus Wollschlager) [Dirk]</li>
+	<li>Fixed hard-coded paths in the check.php script and added tests for missing directories (reported by Markus Wollschläger) [Dirk]</li>
 	<li>A humble attempt to add some semantics [Dirk]
 	<ul>
   	<li>Added rel="category tag" to a story's topic link</li>
