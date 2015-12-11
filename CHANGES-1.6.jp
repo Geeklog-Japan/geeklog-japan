@@ -1,0 +1,1114 @@
+2009-03-20  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのサイズを２倍にしたアイコン画像の調整をしました。
+	  そして、使用されていない(使用不可)2つのアイコン画像を削除しました。
+
+2010-03-06  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: 「テーマのテンプレートを使う」機能が実際には動作
+	  していなかった問題を修正しました。
+
+2010-02-20  Tetsuko Komma  <ivy>
+
+	* 活用されていないmobile_3gを削除しました。（Issue #135）
+	* 言語ファイルの、users.phpログイン失敗ページの表現を本来の翻訳の通り
+	  失敗の表現に変更しました。（Issue #136）
+	* 言語ファイルの、パスワードを忘れたら、を、パスワード再設定、および
+	  パスワード紛失、に変更しました。
+
+2010-02-13  Tetsuko Komma  <ivy>
+
+	* 新着ブロック内のファイル管理プラグイン(filemgmt)の表記を他のプラグ
+	  インの表記に合わせて、"新着"と"以内"を削除しました。
+
+2010-02-10  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: アイコン画像を、背景色が完全に透明なものに差し替え
+	  ました。なお、図柄の変更ではありません。
+
+2010-02-06  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: gf_showtopic.php内のlib-user.phpの読み込み処理を
+	  includeからrequire_onceに変更しました。（関数の重複定義の可能性を
+	  排除）
+
+2010-01-23  mystral-kk <mystral-kk>
+
+	* Sitemapプラグインで記事が投稿されたときにサイトマップを再生成する機能
+	  を追加しました。
+
+2010-01-21  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: 全体イベント投稿したときに、承認待ちリストに
+	  追加されない問題を修正しました。
+
+2010-01-18  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1-jp-1.0をリリースします。beta3からの変更点はありません。
+
+2010-01-09  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1-jp-1.0beta3をリリースします。
+
+2010-01-08  mystral-kk <mystral-kk>
+
+	* Dbmanプラグインでmagic_quotes_runtimeがオンの場合に文字化けするバグに
+	  対応しました。
+
+2009-12-31  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: エラーメッセージのエラーコードが正しく表示され
+	  ない問題を修正しました。（Issue #133）
+	  一部のファイルにインクルード対策を施しました。
+
+2009-12-31  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: 新規インストール直後、更新を要求する問題を修正
+	  しました。（Issue #132）
+
+2009-12-29  Yoshinori Tahara  <dengen>
+
+	* 自動インストールに対応したプラグインにおいて、「無効」の状態でプラグ
+	  インを削除すると、正常に削除されない場合がある問題を修正しました。
+	  （Issue #131）
+
+2009-12-13  mystral-kk <mystral-kk>
+
+	* メンテナンスしやすくするために、PrecheckからGeeklogのバージョン表記を
+	  削除しました。
+
+2009-12-12  Tetsuko Komma  <ivy>
+
+	* コア、日本語版プラグインの日本語言語ファイルの、ヒット、閲覧回数、
+	  閲覧件数を、「閲覧数」に統一させました。
+	* 日本語言語ファイルの、パスワード再発行を、再設定に変更しました。
+	* QRコードプラグイン(nmoxqrblock)のインストーラーのスペルミスを修正
+	  しました。
+
+2009-12-11  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: 次のとおり修正し、バージョン1.6.0.jp3としました。
+	  「ダウンロード許可待ち」フォームのハードコードを解消しました。
+	  ファイル提供のメール通知機能を追加しました。(Issue #130)
+
+2009-12-10  Tetsuko Komma  <ivy>
+	* 静的ページのアドバンストエディター利用時の高さを200pxから400pxに変更
+	  しました。
+
+2009-12-06  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: バージョン番号の更新漏れを修正しました。
+
+2009-12-06  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: バージョン2.7.2.JPr6に更新します。
+	  ユーザーエージェントがケータイと判定された場合、１ページ当りリスト
+	  件数や投稿のソート順を変更するようにしました。
+	  設定変更や投稿を行った直後に、その結果を表示するための一時的な
+	  ページの表示を廃止しました。（Issue #98）
+
+2009-12-05  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのREADMEに仕様説明文を追記しました。
+
+2009-11-29  Tetsuko Komma  <ivy>
+	* 携帯のカスタム関数custom_cellular.phpで、3G携帯の場合、テーマ
+	  mobile_3gを利用するよう、モードを復活させました。
+	  さらに、Opera, Safari, Chrome場合、xhtmlの場合に文法エラーとなる不具
+	  合を回避するため、3Gテーマを利用しないように設定しました。
+	* 携帯テーマmobile_3gの利用されていないcssファイルをすべて削除しました。
+
+2009-11-24  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSのREADMEに音声読み上げソフト利用者の方が解りやすいよ
+	  うに、テーマ以外での変更箇所を追記しました。
+
+2009-11-24  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSS:Internet Explorer6で記事にblockquote要素とpre要素が
+	  ある場合に横スクロールバーが出ていたので、スタイルを修正しました。
+
+	* 上記の修正をREADMEに記載し、確認したブラウザーのバージョンを修正しま
+	  した。
+
+2009-11-24  Tetsuko Komma  <ivy>
+	* DataProxyプラグインを新規に自動インストールしたとき、更新を要求される
+	  問題(Issue #124)に対し、config.phpに追加対応しました。
+
+2009-11-23  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1-jp-1.0beta2をリリースします。
+
+	* Geeklog 1.6.1をマージしました。
+
+2009-11-22  Masuko Koeda  <milk851>
+
+	* tkgmapsのGoogleMaps管理画面の編集で
+	  GoogleMaps API 入力画面のテキスト入力フィールドの横幅を
+	  適度なサイズに変更しました。
+
+2009-11-21  mystral-kk <mystral-kk>
+
+	* DataProxyプラグインを新規に自動インストールしたとき、更新を要求される
+	  問題(Issue #124)に対応しました。
+
+2009-11-19  mystral-kk <mystral-kk>
+
+	* history.htmlで1.6.1rc1以降に追加された部分を翻訳しました。
+
+2009-11-18  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: 自動インストール機能に対応しました。(Issue #114)
+
+2009-11-17  Tetsuko Komma  <ivy>
+
+	* 日本語言語ファイル全般、日本語ドキュメント全般で用語を統一させました。
+		初期化、初期設定、既定値 -> デフォルト
+		プリントアイコン -> 印刷アイコン
+		印刷用画面 -> 印刷用ページ
+		Autotags -> 自動タグ
+		所有者名 -> 所有者
+		サイト無効 -> サイト閉鎖
+		全文表示 -> 続きを読む
+		フォームを初期化する -> リセット
+		アクセス権限 -> アクセス権
+	* 日本語言語ファイル全般、日本語ドキュメント全般で翻訳の間違いを修正し
+	  ました。
+	* 日本語ドキュメントhistory.htmlに、1.6.1を英文のまま追加しました。
+
+2009-11-17  Hiroshi Sakuramoto <hirorongl>
+
+	* r2365で修正したピングバックの日本語説明ページが中身がなかったため元に
+	  もどします。
+
+2009-11-17  Hiroshi Sakuramoto <hirorongl>
+
+	* japanese_utf-8.php内のピングバックの説明外部リンクを英語から日本語に
+	  変更しました。
+
+2009-11-17  Masuko Koeda  <milk851>
+
+	* ProfessionalCSSテーマのprofessionalコンパチブルスタイルシートに追加さ
+	  れたスタイルで必要なスタイルのみテーマWAIproCSSにも追加しました。
+
+	* 上記修正をREADME更新履歴に追記しました。
+
+2009-11-17  Hiroshi Sakuramoto <hirorongl>
+
+	* CAPTCHAのソース内コメントの不備を修正。
+	  (Issue #126)
+
+2009-11-16  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSもテーマProfessionalCSSで"絞込み検索"でタイトルのみの
+	  モードの状態を維持しなかったバグ修正への取り込み漏れがあったので追加
+	  されたのとprofessionalコンパチブルスタイルで足りないスタイルとセキュ
+	  リティートークンの警告メッセージ表示のスタイルを追加されたのに合わせ
+	  て修正しました。
+
+	* extended/public_html/layout/WAIproCSS/css/compatible.css: 背景色と文
+	  字色のコンストラストを考慮し文字色或いは背景色の修正をしました。
+
+	* 上記の修正をREADMEの更新履歴に記載しました。
+
+2009-11-16  Tetsuko Komma  <ivy>
+
+	* 携帯用テーマmobileをProfessionalCSSをベースに最初から構築しました。
+
+	* 携帯用テーマmobileの掲示板テンプレートで、メール通知ボタンを、掲示板
+	  プラグイン(forum)のテンプテートにあわせてformボタンに変更しました。
+
+	* テーマProfessionalCSSにprofessionalコンパチブルスタイルで足りないスタ
+	  イルを追加しました。
+
+2009-11-16  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1-jp-1.0beta1をリリースします。
+
+	* public_html/docs/japanese/install.html: 英語版に併せて翻訳を行い
+	  ました。
+
+	* public_html/docs: 英語版をproject.geeklog.netのリポジトリの最新版に
+	  更新しました。
+
+2009-11-14  mystral-kk <mystral-kk>
+
+	* history.htmlを翻訳しました。
+
+2009-11-14  mystral-kk <mystral-kk>
+
+	* history.html以外の日本語ドキュメントを翻訳しました。
+
+2009-11-13  Takahiro Kambe  <tacahi>
+
+	* public_html/docs/japanese/changes.html: Geeklog 1.6.1の追加部分の
+	  翻訳を行いました。
+
+2009-11-12  Yoshinori Tahara  <dengen>
+
+	* 日本語拡張版向けのprofessional/style.cssにGeeklog1.6.1rc1までの変更を
+	  マージしました。
+
+2009-11-12  Masuko Koeda  <milk851>
+
+	* テーマProfessionalCSSに記事編集すべてと話題変種と
+	  メール送信フォームの追加部分label要素のfor属性の値に対する
+	  id属性を追加しました。
+
+2009-11-12  Tetsuko Komma  <ivy>
+
+	* ProfessionalCSSのメタタグ入力フォームの幅を調整しました。
+	* 掲示板プラグイン(Forum)および日本語化プラグイン(Japanize)でも不要に
+	  なったsystem/lib-portalparts.phpを削除しました。
+	* 静的ページプラグイン(Staticpages)の編集用テンプレートで、タイトル
+	  部分が折り返されないよう、タイトル部にすべて
+	  style="white-space:nowrap;"を追加しました。
+	* コアとコアプラグインの言語ファイルの、「デフォルト」を「初期値」に
+	  変更他、言語ファイルを修正しました。
+
+2009-11-12  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: 全体イベント投稿にログインを要求するモードを
+	  追加しました。
+
+2009-11-11  Tetsuko Komma  <ivy>
+
+	* 静的ページプラグイン(Staticpages)の編集用テンプレートで、タイトル部分
+	  が折り返されないよう、タイトル部にすべてstyle="white-space:nowrap;"を
+	  追加しました。
+
+2009-11-10  Masuko Koeda  <milk851>
+
+	* テーマ WAIproCSSの記事編集すべてに追加したメタタグ編集フォームの
+	  textarea要素にlabel要素のfor属性の値に対するid属性を追加しました。
+
+2009-11-10  Masuko Koeda  <milk851>
+
+	* テーマ WAIproCSSもProfessionalCSS同様1.6.1に対応させました。
+	  友だちに記事を送信するページとユーザーへのメール送信ページで
+	  「自分宛にコピーを送信」のラベル部分をクリックしてもチェックが入る
+	  ように修正しました。
+	  上記の修正をREADMEの更新履歴に記載し、WAIproCSSのバージョンを2.4.1に
+	  しました。
+
+2009-11-10  Tetsuko Komma  <ivy>
+
+	* テーマ ProfessionalCSSを1.6.1に対応させました。
+		r2277:「自分宛にコピーを送信」の重複を削除(r2247の修正)
+		r2276:話題に記事数表示を追加・ユーザー名にremoteserviceを表示追加
+
+2009-11-10  Yoshinori Tahara  <dengen>
+
+	* インストーラーの、本体インストール時に同時にインストールするプラグイン
+	  を制御する仕組みが、うまく動作していなかった問題を修正しました。
+
+2009-11-10  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: Geeklog 1.6.1rc1のcalendarプラグインの変更を
+	  マージしました。
+
+2009-11-09  mystral-kk <mystral-kk>
+
+	* Autotagsプラグインを自動インストールに対応させました(Issue #2268)。
+
+2009-11-09  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1rc1をマージしました。
+
+	* public_html/docs/japanese/links.html: 些細な日本語訳を修正しました。
+
+2009-11-08  mystral-kk <mystral-kk>
+
+	* r2250の修正で不十分だった点を再び修正しました。
+
+2009-11-08  mystral-kk <mystral-kk>
+
+	* Dataproxyプラグインが掲示板の日付を正しく出力していなかったバグを修正
+	  しました(Issue #110)。
+
+2009-11-07  Tetsuko Komma  <ivy>
+
+	* テーマ ProfessionalCSSの話題と、ProfessionalCSSおよびProfessionalCSS
+	  の記事編集の日本語専用テンプレートにメタタグフォームを追加して1.6.1
+	  対応させました。
+
+2009-11-07  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: 携帯電話でのカレンダー表示を改善し、月めくり操作が
+	  問題なくできるようにしました。
+
+2009-11-06  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: Geeklog 1.6.1b1のcalendarプラグイン1.1.1の
+	  変更をマージしました。
+
+2009-11-05  mystral-kk <mystral-kk>
+
+	* 1.6.1b1に合わせて、docs/japanese以下の一部のドキュメントを翻訳しまし
+	  た。
+
+	* 日本語ファイルを一部修正しました。
+
+2009-11-04  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1-jp-1.0alpha2をリリースします。
+
+2009-11-04  mystral-kk <mystral-kk>
+
+	* 非多言語モード時に使用言語を英語・日本語以外に変更すると、文字化けが
+	  発生するバグに対処しました。（Issue #108）。
+
+2009-11-04  Takahiro Kambe  <tacahi>
+
+	* geeklog-1.6.1-jp-1.0alpha1をリリースします。
+
+	* NEWSの内容をGeeklog 1.6.1に向けて更新しました。
+
+2009-11-03  Takahiro Kambe  <tacahi>
+
+	* 拡張版用のlib-custom.php(extended/system/lib-custom.php)に、
+	  Geeklog 1.6以降のマージ処理が欠けていましたのを適用しました。
+	  system/lib-custom.phpの以下のコミットが該当します。
+
+		- r1649: Geeklog 1.6.0rc1のマージ
+		- r2164: geeklog-snap-20091020のマージ
+
+2009-11-03  Yoshinori Tahara  <dengen>
+
+	* Geeklog 1.6.1b1のマージ(r2186 - r2189)に伴い、コアおよびStatic Pages
+	  プラグインの日本語言語ファイルの翻訳と一部修正を行いました。
+
+2009-11-02  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.1b1をマージしました。
+
+2009-11-02  Takahiro Kambe  <tacahi>
+
+	* トップのGNUmakefileでリリース処理の些細な改良と、makefileの
+	  マクロを表示するターゲットshow-varを追加しました。
+
+2009-11-01  mystral-kk <mystral-kk>
+
+	* 非多言語モード時にlang属性が出力されない問題に対応しました（Issue
+	  #47のcomment #23まで）。
+
+2009-10-30  mystral-kk <mystral-kk>
+
+	* public_html/docs内のドキュメントを敬体に統一しました。
+
+2009-10-28  Yoshinori Tahara  <dengen>
+
+	* Calendar、Polls、Spam-X、Static Pagesの各プラグインの日本語言語
+	  ファイルの翻訳と一部修正を行いました。
+
+2009-10-28  Yoshinori Tahara  <dengen>
+
+	* Linksプラグインの日本語言語ファイルの翻訳と一部修正を行いました。
+
+2009-10-28  Yoshinori Tahara  <dengen>
+
+	* コアの日本語言語ファイルの翻訳と一部修正を行いました。
+
+2009-10-26  Takahiro Kambe  <tacahi>
+
+	* GeeklogのMercurialのリポジトリから1.6.1に向けたコード、
+	  2009年10月20日版を取り込んでマージを行いました。
+
+2009-10-26  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr2-jpの保守は branches/geeklog-1.6.0-jp の
+	  ブランチで行います。
+
+2009-10-25  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr2-jp-1.0をリリースします。
+
+	* NEWSのファイルを追加しました。
+
+2009-10-24  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr2-jp-1.0rc2(リリース候補2)をリリースします。
+
+2009-10-24  mystral-kk <mystral-kk>
+
+	* 携帯ハックで、画像URIにクエリストリングがついている場合、画像自動縮小
+	  に失敗する問題に対処しました。
+
+2009-10-24  Masuko Koeda  <milk851>
+
+	* Issue 107 の新規インストール後、デフォルトで入っている
+	 「Geeklogへようこそ!」記事内のdocs ディレクトリのリンク先が
+	  表示されない不具合の英語の方も修正しました。
+
+2009-10-24  Masuko Koeda  <milk851>
+
+	* Issue 107 の新規インストール後、デフォルトで入っている
+	 「Geeklogへようこそ!」記事内のdocs ディレクトリのリンク先が
+	  表示されない不具合を修正しました。
+
+2009-10-24  mystral-kk <mystral-kk>
+
+	* 新規インストール直後の画面で、アンケートが既に日本語化されている問題
+	  (Issue #84)に対応しました。
+
+2009-10-24  mystral-kk <mystral-kk>
+
+	* 携帯ハックの画像自動縮小がallow_url_fopen = Offのときにも表示されるよ
+	  うimageresizer.phpを修正しました。また、他サイトの画像を読み込む場合
+	  にも対応しました。
+
+2009-10-24  Masuko Koeda  <milk851>
+
+	* WAIproCSSのREADMEの更新履歴を修正、追記しました。
+
+2009-10-23  mystral-kk <mystral-kk>
+
+	* dengenさんの作業結果に加えた上でドキュメントの更新を行い、Sitemap
+	  プラグインをバージョン1.1.7に更新しました。結果として、Issue #103に
+	  対応しました。
+
+2009-10-23  Yoshinori Tahara  <dengen>
+
+	* sitemapプラグイン: r2113の修正で不十分だった点を修正しました。
+
+2009-10-23  Yoshinori Tahara  <dengen>
+
+	* professionalテーマ: HTMLの適正化のためテンプレートを修正しました。
+
+2009-10-23  Yoshinori Tahara  <dengen>
+
+	* sitemapプラグイン: サーバーによってエラーが発生する問題を修正しまし
+	  た。(Issue #106)
+
+2009-10-22  mystral-kk <mystral-kk>
+
+	* r2107の修正で不十分だった点を修正しました。
+
+2009-10-22  mystral-kk <mystral-kk>
+
+	* 欠落していたglobal宣言を追加しました。
+
+2009-10-22  mystral-kk <mystral-kk>
+
+	* インストールスクリプトにprecheck.phpへのリンクを追加しました。
+	  (Issue #104)
+
+2009-10-22  Yoshinori Tahara  <dengen>
+
+	* 掲示板で投稿する内容を書いて「プレビュー」をクリックするとエラーが
+	  出る問題を修正しました。(Issue #105)
+
+2009-10-21  Hiroshi Sakuramoto <hirorongl>
+
+	* 携帯で検索するとログアウトされる問題に簡易対応の修正を行いました。
+	  (Issue #96)
+
+2009-10-20  Yoshinori Tahara  <dengen>
+
+	* IEで記事の編集のエディターで投稿モードを変更すると、スクリプトエラーが
+	  出て投稿モードが変更できない問題を修正しました。(Issue #102)
+
+2009-10-18  Hiroshi Sakuramoto <hirorongl>
+
+	* 圧縮出力ONのとき携帯で文字化けする問題を修正しました。(Issue #101)
+
+
+2009-10-18  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: アクセス権のないグループに属するファイルを、
+	  そのURLに直接アクセスしてダウンロードできてしまう問題を修正しました。
+	  (Issue #100)
+
+2009-10-18  Yoshinori Tahara  <dengen>
+
+	* dataproxyプラグイン: dataproxyプラグインに管理画面は用意されて
+	  いないので、Geeklogの管理者専用メニューのリンクと、投稿管理の
+	  アイコンが表示されないようにしました。(Issue #80)
+
+2009-10-17  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: 次のとおり修正しました。
+	  XHTML化の不備を修正（imgタグが全然できていなかった）
+	  日本語言語ファイルの修正（「特集記事」から「注目記事」へ修正）
+	  COM_refresh関数の引数に含まれる&amp;(実体参照)を&に書き換えた。
+	  forum.cssの有無を厳密に確認するようにした。(Issue #99)
+
+2009-10-13  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.5RC2に更新しました
+
+2009-10-12  Tetsuko Komma  <ivy>
+
+	* テーマ professional, ProfessionalCSS, WAIproCSSの<head>要素に
+	  japanizeプラグインで生成されるテーマ変数を挿入してlang属性を反映
+	  させました。<html{html_attribute}{xmlns}>
+
+2009-10-08  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.5RC1に更新しました
+
+2009-10-02  Yoshinori Tahara  <dengen>
+
+	* ProfessionalCSSとWAIproCSSの<br>タグが挿入される問題を修正しました。
+	  (Issue #84)
+
+2009-10-02  Yoshinori Tahara  <dengen>
+
+	* Geeklogの新規インストール時にjapanizeプラグインをプレインストール
+	  しない設定に変更しました。
+
+2009-10-02  Yoshinori Tahara  <dengen>
+
+	* forumプラグインとmycaljpプラグイン：XHTML化されていない部分を修正
+	  しました。
+
+2009-09-29  Masuko Koeda  <milk851>
+
+	* ProfessionalCSSとWAIproCSSの
+	  /admin/story/storyeditor.japanese_utf-8.thtmlと
+	  storyeditor_advanced.japanese_utf-8.thtmlで、それぞれのコメント部分の
+	  ファイル名を正しいファイル名に置き換えました。
+
+2009-09-27  Takahiro Kambe  <tacahi>
+
+	* ドキュメントの翻訳: いくつかの修正と文体の統一を行いました。
+
+2009-09-26  Yoshinori Tahara  <dengen>
+
+	* 「記事の編集」フォームの多言語化が原因でKZ_Templateクラスのoverride
+	  機能のエラーが発生する問題を修正しました。(Issue #90)
+
+2009-09-26  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr2-jp-1.0rc1(リリース候補1)をリリースします。
+
+2009-09-20 mystral-kk <mystral-kk>
+
+	* サイトマッププラグインで静的ページの除外IDを指定する際に、ワイルド
+	  カードを使用したいという要望(Issue #81)に対応しました。
+
+2009-09-19  Yoshinori Tahara  <dengen>
+
+	* 「記事の編集」フォームで投稿モードを変更したときなどに、「エディター」
+	  タブにフォーカスが移らない問題を修正しました。(Issue #85)
+
+2009-09-17  Masuko Koeda  <milk851>
+
+	* Professionalと同様にProfessionalCSSとWAIproCSSも
+	  「記事の編集」フォームの日付を言語モードに応じて切り替わるようにしま
+	  した。
+
+2009-09-16  Masuko Koeda  <milk851>
+
+	* ProfessionalCSSとWAIproCSSで不要になった
+	  css/plugin/forum.cssを削除し、
+	  css/plugin.cssでforum.cssをインポートしている行を削除しました。
+
+2009-09-16  Yoshinori Tahara  <dengen>
+
+	* 「記事の編集」フォームの日付を言語モードに応じて切り替わるようにしま
+	  した。
+
+2009-09-14  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: r1718で、forum用テンプレートをpublic_html/forum/の
+	  下に移したため、各テーマディレクトリの下のforum用テンプレートは不要
+	  になったので削除します。
+
+2009-09-14  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: r2037の修正に伴い、画像ファイルを一部整理しました。
+
+2009-09-13  Masuko Koeda  <milk851>
+
+	* ProfessionalCSS: WAIproCSSと同様に記事の編集で
+	  日と時の間に&nbsp;&nbsp;を追加して見やすくしました。
+
+2009-09-13  Masuko Koeda  <milk851>
+
+	* ProfessionalCSS: /admin/story/storyeditor_advanced.thtmlの215行目に
+	  <dl>の閉じタグ</dl>を追加しました。
+	  WAIproCSS: ProfessionalCSSと同様に記事の編集で
+	  日付順番を年月日に変更しました。
+	  日と時の間に&nbsp;&nbsp;を追加して見やすくしました。
+
+2009-09-13  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: 日本語言語ファイルを修正しました。
+	  「レス投稿」から「返信投稿」へ修正。
+
+2009-09-13  Tetsuko Komma  <ivy>
+
+	* 言語ファイルのコンフィギュレーション、特にコメント関係および、
+	  ファイル管理プラグイン(filemgmt)の言語ファイル、
+	  ドキュメントのコンフィギュレーション1.6.0翻訳を追加しました。
+
+2009-09-13  Yoshinori Tahara  <dengen>
+
+	* ProfessionalCSSおよびWAIproCSSのsearchform.thtmlに残っていたバグを
+	  修正しました。
+
+2009-09-13  Yoshinori Tahara  <dengen>
+
+	* ProfessionalCSS: css/compatible.cssをWAIproCSSのものと置き換えまし
+	  た。
+
+2009-09-13  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: 主にレイアウト関連の修正を行いました。
+
+2009-09-12  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: extended内のprofessional用テンプレートに欠落していた
+	  ファイル（forum.css）を追加しました。
+
+2009-09-12  Takahiro Kambe  <tacahi>
+
+	* インストール・スクリプト: fb.phpとprecheck.phpのHTTP応答ヘッダーで、
+	  Content-Typeフィールドの内容や、出力が抜けているケースを修正しま
+	  した。
+
+2009-09-11  Masuko Koeda  <milk851>
+
+	* WAIproCSS: 音声読上げソフト利用者の方が解りやすいように、
+	  ログインユーザーのコメント投稿で「返信があったらメールで通知」の
+	  チェックボックスがプレビューボタンの前に読上げられるよう
+	  位置の修正しました。
+	  通常画面と管理画面でのフォームのボタン間(左右)の余白を広くしました。
+	  記事(管理者ページ)の公開オプションでボタンの上に余白を追加しました。
+	  アーカイブされた記事のスタイルを通常記事と同じになるよう修正しました。
+	  更新履歴をREADMEに記載しました。
+
+2009-09-11  Takahiro Kambe  <tacahi>
+
+	* インストール・スクリプト: 状況によって、インストール・スクリプトが
+	  言語パラメーターを引き継がない問題を修正しました。
+	  (Geeklog-jp Issue #74, Geeklog Bugtracker #0000969)
+
+2009-09-10  Yoshinori Tahara  <dengen>
+
+	* 日本語言語ファイルを一部修正しました。(コメント関連)
+
+2009-09-08  Tetsuko Komma  <ivy>
+
+	* 言語ファイルのグローバルメニュー「検索」を「検索オプション」に変更
+	  しました。
+
+2009-09-06  Takahiro Kambe  <tacahi>
+
+	* インストール・スクリプト: fb.phpにもcharsetパラメーターを付加する
+	  対応を行いました。
+
+	* Geeklog 1.6.0sr2-jp-0.99.1をベータ版2としてリリースします。
+
+	* インストール・スクリプト: HTTP応答ヘッダーのContent-Typeフィールドに
+	  charsetパラメーターが抜けている問題への対処がGeeklog 1.6.1に向けた
+	  変更として取り込まれました。ここで、bigdump.phpとhelp.phpにも対応が
+	  必要と言うことなので、変更を日本語版にも取り込みました。
+
+2009-09-05  Yoshinori Tahara  <dengen>
+
+	* 日本語言語ファイルを一部修正しました。(コメント関連)
+
+2009-09-05  Yoshinori Tahara  <dengen>
+
+	* 日本語言語ファイル内のHTMLの適正化を行いました。(余分なPタグの削除)
+
+2009-09-05  Yoshinori Tahara  <dengen>
+
+	* Professionalテーマ: 記事編集フォームのプレビューの表示ズレを修正し
+	  ました。
+
+2009-09-04  Yoshinori Tahara  <dengen>
+
+	* Staticpagesプラグイン: 静的ページの編集フォームのテキストエリアの幅
+	  を調整しました。
+
+2009-09-04  Takahiro Kambe  <tacahi>
+
+	* インストール・スクリプト: インストールのスクリプトとprecheck.phpで
+	  発生し得る文字化けへの対処を加えてみました。
+
+2009-09-03  Yoshinori Tahara  <dengen>
+
+	* Professionalテーマ: コメントフォームの項目名の幅を日本語環境向けに
+	  調整しました。そのほか一部HTML適正化を実施しました。
+
+2009-09-03  Takahiro Kambe  <tacahi>
+
+	* 日本語ドキュメント: changes.htmlとhistory.htmlの日本語ドキュメントの
+	  翻訳内容を改善してみました。
+
+2009-09-03  Kazuko Tsuchitani <Tsuchi>
+
+	* siteconfig.php: VERSION値　1.6.0に戻す
+
+2009-09-02  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.4に更新(再)
+
+2009-09-02  Kazuko Tsuchitani <Tsuchi>
+
+	* siteconfig.php: VERSION値　1.6.0sr2に訂正
+
+2009-09-02  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.4に更新
+
+2009-09-02  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: HTMLの適正化を行いました。
+
+2009-09-02  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: コンフィギュレーションに移行し、もうmycaljpの
+	  管理画面はないのに、投稿管理にアイコンとリンクが残っていたので
+	  修正しました。
+
+2009-09-01  Tetsuko Komma  <ivy>
+
+	* 日本語化プラグイン(japanize)の用語および説明文を変更しました。
+
+2009-09-01  Tetsuko Komma  <ivy>
+
+	* FCKeditorのLinkUpload ImageUpload FlashUploadのモードをfalseに変更
+	  して、タブメニューのアップロード３箇所を無効にしました。
+
+2009-09-01  Yoshinori Tahara  <dengen>
+
+	* nmoxtopicownプラグイン: 表示言語が英語のとき、管理者専用メニューに
+	  タイトルが表示されない問題を修正しました。
+	  管理画面のXHTML化とHTMLの適正化を行いました。
+
+2009-09-01  Yoshinori Tahara  <dengen>
+
+	* japanizeプラグインをプレインストールするよう変更しました。
+
+2009-08-31  Yoshinori Tahara  <dengen>
+
+	* install-plugins.phpに日本語版独自の変更を加えました。
+	  プレインストールされるプラグインを設定できるようにしました。
+
+2009-08-31  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr2-jp-0.99.0をベータ版としてリリースします。
+
+	* Geeklog 1.6.0sr2をマージしました。
+
+2009-08-30  Yoshinori Tahara  <dengen>
+
+	* r1691で言語ファイルを変更したことに伴い、記事一覧で「月」が表示され
+	  なくなった問題に対応しました。
+
+2009-08-29  Yoshinori Tahara  <dengen>
+
+	* professionalテーマのstyle.cssを修正し、リストのヘッダータイトルの
+	  文字サイズを小さくします。
+
+2009-08-29  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr1-jp-0.99.2をベータ版2としてリリースします。
+
+2009-08-28  Masuko Koeda  <milk851>
+
+	* WAIproCSS: アクセシビリティに配慮し、<label>タグを追記して、
+	  チェックボックスでテキスト部分をクリックしても
+	  チェックできるようにしました。
+	  更新履歴をREADMEに記載しました。
+
+2009-08-27  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: public_html/inex.html delete
+	* custom/custom_mail_jp.php delete
+
+2009-08-27  Yoshinori Tahara  <dengen>
+
+	* sitemapプラグイン: calendarjpプラグインに対応しました。
+
+2009-08-27  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: readme_ja.txt 訂正
+
+2009-08-26  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.3に更新
+
+2009-08-24  Tetsuko Komma  <ivy>
+
+	* mobile, mobile_3g, professionalテーマ拡張版のfunctions.phpを標準版に
+	  合わせました。
+
+2009-08-23  Tetsuko Komma  <ivy>
+
+	* mobile, mobile_3gテーマ　フッターのブロックおよびブロックページの
+	  メニュータイトルをサブメニューに変更しました。
+
+2009-08-22  Tetsuko Komma  <ivy>
+
+	* mobile, mobile_3gテーマのヘッダーにPC表示時専用のテーマテスタ表示を追加
+	  し、フッターにマイアカウントを追加しました。
+
+2009-08-20  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr1-jp-0.99.1をベータ版としてリリースします。
+
+	* CHANGES.jp: 箇条書きにUS-ASCIIの文字を使用します。
+
+2009-08-20  Tetsuko Komma  <ivy>
+
+	* mobile, mobile_3gテーマのtitleを{page_title_and_site_name}に変更しまし
+	  た。
+
+2009-08-16  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: XSS脆弱性を修正しました。
+
+2009-08-17  Kazuko Tsuchitani <Tsuchi>
+
+	* japanizeプラグイン: Ver 1.0.3（2009/08/16）に更新
+	* system/lib_custon.php: 日本語メールのrequire_onceをコメントアウト
+
+2009-08-17  Tetsuko Komma  <ivy>
+
+	* forumプラグインの表示を改善:
+	  - 言語ファイルの、通知設定関係の変更および、重複指定部分を削除しま
+	    した。
+	  - mobile, mobile_3gテーマの表示をシンプル化しました。
+	  - ProfessionalCSS WAIproCSSテーマを含めたすべてのテーマで、メール
+	    通知の表記を改善しました。
+	    あわせてメール通知アイコンを修正しました。
+	* filemgmtプラグインの保存後の画面遷移時のHTML文法エラーを修正しました。
+	* インストーラーの言語ファイルで、プラグイン設定付きインストールメニュー
+	  表記を修正しました。
+
+2009-08-17  Hiroshi Sakuramoto <hirorongl>
+
+	* captchaプラグイン: GNUmakefileへautoinstall.phpを追加
+	* dataproxyプラグイン: GNUmakefileへautoinstall.phpを追加
+	* tkgmapsプラグイン: GNUmakefileへautoinstall.phpを追加
+
+2009-08-16  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: Issue37の問題を修正しました。
+	  「カテゴリが無い場合に英語言語ファイルのメッセージが表示される」問題は
+	  解決します。
+
+2009-08-16  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: ダウンロードファイル情報の変更時に登録日を更新し
+	  ない機能（こっそり更新機能）を追加しました。
+
+2009-08-16  Tetsuko Komma  <ivy>
+
+	* 言語ファイルのプラグイン互換性警告メッセージを修正しました。
+
+2009-08-16  Yoshinori Tahara  <dengen>
+
+	* filemgmtプラグイン: Geeklog1.6.0の諸機能に対応しました。
+	  - HTMLの適正化。（XHTMLに対応）
+	  - コンフィギュレーションに対応。
+	  - Geeklog1.6.0の新検索機能に対応。
+	  - COM_output関数に対応。
+	  - XMLSitemapに対応。
+	  - サイト移行機能（Site Migration）に対応。
+	  - その他いろいろな修正。
+
+2009-08-15  Yoshinori Tahara  <dengen>
+
+	* インストール前チェックスクリプト（Precheck）をGeeklog1.6.0に対応させ
+	  ました。
+	  - スタイルとデザインをGeeklog1.6.0のインストールスクリプトに合わせま
+	    した。
+	  - 移行（migrate）機能に対応しました。
+	  - その他いくつか修正しました。
+
+2009-08-15  Hiroshi Sakuramoto <hirorongl>
+
+	* dataproxyプラグイン: バージョンは更新せず。
+	  - Geeklog 1.6.0 で追加された自動インストールに対応
+
+2009-08-14  Takahiro Kambe  <tacahi>
+
+	* public_html/fckeditor/editor/filemanager/connectors/php/config.php:
+	  セミコロンの抜けを修正しました。
+
+2009-08-14  Hiroshi Sakuramoto <hirorongl>
+	* tkgmapsプラグイン: バージョンは更新せず
+	  - Geeklog 1.6.0 で追加されたCOM_outputに対応
+	  - Geeklog 1.6.0 で追加された自動インストールに対応
+
+2009-08-13  Tetsuko Komma  <ivy>
+
+	* 携帯テーマにGoogle解析プラグイン用のテーマ変数を追加しました。
+
+2009-08-08  Hiroshi Sakuramoto <hirorongl>
+	* captchaプラグイン: バージョンは更新せず
+	  - Geeklog 1.6.0 で追加されたCOM_outputに対応
+	  - Geeklog 1.6.0 で追加された自動インストールに対応
+
+2009-08-07  Hiroshi Sakuramoto <hirorongl>
+	* linksプラグイン: 日本語では?を使わないに統一して?を削除
+
+2009-08-06  Hiroshi Sakuramoto <hirorongl>
+	* linksプラグイン:
+	  - コンフィギュレーション部分の未翻訳の英語を日本語に翻訳
+
+2009-08-04  Yoshinori Tahara  <dengen>
+
+	* custommenuプラグイン: バージョン0.4.3に更新します。
+	  - Geeklog 1.6.0で追加されたサイト移行機能に対応しました。
+	  - Geeklog 1.6.0から追加されたCOM_output関数を使用してHTMLを出力
+	    するようにしました。
+
+2009-08-04  Masuko Koeda  <milk851>
+
+	* WAIproCSSの各種ブラウザーでの確認作業が終了しましたので、
+	  READMEに確認したブラウザーを記載しました。
+
+2009-08-03  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: Geeklog 1.6.0から追加されたサイト移行機能に対応
+	  しました。
+
+2009-08-01  Masuko Koeda  <milk851>
+
+	* WAIproCSSの検索結果ページ、メニューの選択肢部分を
+	  アクセシビリティに配慮し音声読上げソフトで選択肢が読上げられてから
+	  ボタンでページが切り替わるように修正しました。
+
+2009-08-01  Masuko Koeda  <milk851>
+
+	* WAIproCSSの検索結果ページ、メニューの選択肢の不具合を直しました。
+	  検索結果ページ、メニューの選択肢のスタイルの修正をしました。
+	  聞き飛ばし部分のスタイルをcommon.cssファイル中の
+	  ページナビゲーションからスキップ要素に移動しました。
+	  フッターのvalidate表示を消したので、
+	  その部分の音声で読み上げないようにする記述を削除しました。
+	  READMEの更新履歴を修正しました。
+
+2009-08-01  Masuko Koeda  <milk851>
+
+	* ProfessionalCSSの検索結果ページ、メニューの選択肢の不具合を直しまし
+	  た。
+
+2009-08-01  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0sr1をマージしました。
+
+2009-08-01  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: 一般ユーザーが全体イベントを投稿する場合に、
+	  - 「リンク」の初期値「http://」がスパムリンクと判断されてしまう問題
+	    を修正しました。
+
+2009-07-29  Yoshinori Tahara  <dengen>
+
+	* Dataproxyプラグイン: Mycaljpプラグインの更新に伴い、
+	  機能拡張版1.1.4.1に更新します。
+	  - Mycaljpプラグインは日付を絞ってコンテンツの検索を行うので、
+	    DataproxyDriverクラスにgetItemsByDateメソッドを追加するなどの
+	    変更を行いました。
+
+2009-07-29  Yoshinori Tahara  <dengen>
+
+	* mycaljpプラグイン: バージョン2.1.0に更新します。
+	  - Geeklog1.6で動作するようにしました。
+	  - Dataproxyに対応しました。
+	    （ただし、Dataproxyの機能拡張版（暫定版1.1.4.1）が必要です）
+	  - コンフィギュレーションとオートインストール機能に対応しました。
+
+2009-07-28  Yoshinori Tahara  <dengen>
+
+	* search.class.phpに埋め込まれた'<br>'を、xhtmlに対応するため修正
+	  します。
+
+2009-07-28  Yoshinori Tahara  <dengen>
+
+	* forumプラグイン: バージョン2.7.2.JPr5に更新します。
+	  - Geeklog 1.6.0のオートインストール機能に対応した。
+	  - Geeklog 1.6.0のCOM_output関数を使用してHTMLを出力するようにした。
+	  - Geeklog 1.6.0の検索機能に対応した。
+	  - Geeklog 1.6.0のXMLSitemapプラグインに対応した。
+	  - lib-portalparts.phpを使用しないようにした。
+	  - forum用テンプレートをpublic_html/forum/の下に移した。
+	  - public_html/forum/includeディレクトリをsystem/plugins/forumの
+	    下に移した。
+
+2009-07-26  Yoshinori Tahara  <dengen>
+
+	* 言語ファイルの$LANG_MONTHの値変更に合わせた変更を行いました。
+	  言語情報（$_CONF['language']）を見て、日本語以外の場合には英語の
+	  日付様式を採用するようにしました。
+
+2009-07-22  Masuko Koeda  <milk851>
+
+	* WAIproCSSをGeeklog1.6.0対応版、バージョン2.4.0にしました。
+
+2009-07-20  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0をマージしました。
+
+2009-07-20  Tetsuko Komma  <ivy>
+
+	* 携帯ハックの画像自動縮小がallow_url_fopen = Offのときに表示されるよう
+	  imageresizer.phpを修正しました。(reported by kino)
+
+2009-07-19  Tetsuko Komma  <ivy>
+
+	* ドキュメントhistory.htmlにGeeklog1.6.0の内容を更新しました。
+
+2009-07-16  Tetsuko Komma  <ivy>
+
+	* ドキュメントhistory.htmlにGeeklog1.6.0rc2の内容を更新しました。
+
+2009-07-16  Takahiro Kambe  <tacahi>
+
+	* fckeditorのconfig.phpの$Config['QuickUploadPath']と
+	  $Config['QuickUploadAbsolutePath']の値を、それぞれ
+	  $Config['FileTypesPath']と$Config['FileTypesAbsolutePath']の値に
+	  合わせました。
+
+	* fckeditorのファイル管理のアイコンのファイルとして、重複して
+	  おかしな拡張子で含まれていたファイル default.icon.gif0000644 を
+	  削除しました。
+
+2009-07-15  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0rc2をマージしました。
+
+2009-07-15  Tetsuko Komma  <ivy>
+
+	* 言語ファイル 月の表記から月を削除しました。
+
+2009-07-14  Masuko Koeda  <milk851>
+
+	* ProfessionalCSSのadmin/lists/inline.thtml、lists/inline/list.thtml、
+	  lists/table/list.thtmlの中の<b>タグを<strong>タグに変更しました。
+
+2009-07-12  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグインをバージョン1.1.0に更新しました。
+	  calendarプラグインのバージョン1.1.0の変更をマージしました。
+
+2009-07-08  Masuko Koeda  <milk851>
+
+	* ProfessionalCSS: 管理画面ブロックの編集ページ修正
+		テーブルレイアウトを修正し、チェックボックス等を
+		label要素と関連付ける為にinput要素にid属性を追加しました。
+
+2009-07-07  Takahiro Kambe  <tacahi>
+
+	* 日本語翻訳: 翻訳の改善
+		- $LANG_SECTEST['not_sure']の翻訳を改善
+		- 「クリックジャック」を「クリックジャッキング」に変更
+		- $MESSAGE[400]の翻訳の意味が逆だったのを修正
+
+2009-07-04  Takahiro Kambe  <tacahi>
+
+	* Geeklog 1.6.0rc1をマージしました。
+
+2009-06-30  Takahiro Kambe  <tacahi>
+
+	* 共通: 従来の日本語通常版と拡張版それぞれに存在していたCHANGE.jpの
+	  ファイルをCHANGES-prev.jpという名前に変更し、両者に共通のCHANGE.jpを
+	  新たに作成しました。今後は、このCHANGES.jpに変更箇所を記録します。

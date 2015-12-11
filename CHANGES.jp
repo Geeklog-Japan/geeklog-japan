@@ -1,0 +1,113 @@
+2015-07-06  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.1.0-jp-1.1をリリースします。
+
+2015-07-06  Kenji ITO <mystralkk>
+
+	* クロスサイトスクリプティングを防ぐために、ファイルマネージャーで
+	  使用されているWideImageライブラリー付属のデモ・テスト用のコードを
+	  削除しました。
+
+2015-02-13  Tetsuko Komma  <ivysoho>
+
+	* lib-common.php エラーメッセージのヘッダーをエンコードをUTF-8にして
+	  文字化けしないように修正等しました。
+
+2015-02-05  Tetsuko Komma  <ivysoho>
+
+	* Autotagsプラグインのいくつかのファイルの改行コードをLFに調整しました。
+	* public_html/admin/install/rescue.phpのコンフィギュレーション設定から
+	  Geeklog 2.1から再び不要になった'path_themes'を削除しました。
+
+2014-12-24  Masuko Koeda  <milk851>
+	* テーマWAIproCSSのバージョンを修正しました。
+
+2014-10-03  Masuko Koeda  <milk851>
+	* テーマprofessional_cssとWAIproCSSでlang属性が表示されなかったので、
+	  表示されるよう変数を修正しました。
+
+2014-10-02  Masuko Koeda  <milk851>
+	* テーマWAIproCSSで検索フォーム部分がアクセシブルではなかったので、
+	  title属性を追記しました。
+	* 修正したので、バージョンをVer.2.7.1に変更しました。
+
+2014-08-03  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: calendarプラグイン バージョン1.1.4の変更を
+	  マージしました。
+
+2014-07-26  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.1.0-jp-1.1.beta1としました。
+
+2014-07-23  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.1.0-jp-1.0をリリースします。
+
+2014-07-21  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSで不要なファイルを削除しました。
+	* Revision 85e289f06c52で追加されたファイルは不要なので削除しました。
+	* ガラケーテーマmobileは、新テーマシステムを使わないように変更しました。
+	  有効にするとサイトがエラーになります。
+	* modern_curvの記事編集日本語版テンプレートにCache設定を追加して2.1.0に
+	  対応させました。
+
+2014-07-21  Tetsuko Komma  <ivysoho>
+
+	* professional_css をGeeklog 2.1.0にアップデートしました。
+	* professional_css と denimの記事編集日本語版テンプレートにCache設定を
+	  追加して2.1.0に対応させました。
+	* テーマprofessional_cssで、Geeklog 2.1.0で不要になったファイルを削除
+	  しました。
+	* テーマWAIproCSSで、Geeklog 2.1.0で不要になったファイルを削除しました。
+
+2014-07-20  Masuko Koeda  <milk851>
+
+	* テーマWAIproCSSの不要なファイルを削除しました。
+
+2014-07-19  Tetsuko Komma  <ivysoho>
+
+	* 拡張パッケージ用テーマWAIproCSSを バージョン: 2.7.0 for Geeklog2.1.0
+	  にアップデートしました。
+	* 日本語言語ファイルを微修正しました。
+
+2014-07-17  Tetsuko Komma  <ivysoho>
+
+	* モバイルテーマ mobile をGeeklog 2.1.0にアップデートしました。
+	* public_html/admin/install/disable-plugins.php プラグイン対応状況を
+	  反映させました。
+	* ドキュメントを2.1.0 に修正。Geeklog Japan名称改正を反映しました。
+	* テーマのコメントに、Geeklog Japan名称改正を反映させました。
+
+2014-07-16  Tetsuko Komma  <ivysoho>
+
+	* Captchaプラグインを3.5にアップデートしました。
+
+2014-07-15  Tetsuko Komma  <ivysoho>
+
+	* 日本語ドキュメントの翻訳を追加しました。
+
+	* extended/system/lib-custom.phpを2.1.0にあわせて修正しました。
+
+2014-07-14  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.1.0-jp-1.0b2としました。
+
+	* public_html/docs/japanese/history.html: public_html/docs/historyの
+	  変更をそのまま(訳さず)反映しました。
+
+	* Geeklog 2.1.0をマージしました。
+
+2014-04-02  Takahiro Kambe  <tacahi>
+
+	* Geeklog 2.1.0b1をマージしました。
+
+2014-03-31  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.0-jpブランチを作成: CHANGES.jpをCHANGES-2.0.jpに名前を
+	  変更し、新たにCHANGES.jpを作成しました。
+
+2014-05-05  Tetsuko Komma  <ivysoho>
+
+	* 日本語ドキュメントのhistory.htmlを翻訳しました。
