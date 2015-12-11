@@ -1,0 +1,154 @@
+/**
+* CSS for precheck.php
+*
+* @author   mystral-kk <geeklog AT mystral-kk DOT net>
+* @date     2012-11-20
+* @version  1.4.6
+* @license  GPLv2 or later
+*/
+
+@charset "utf-8";
+@import url("layout/style.css");
+
+.installation-body-container {
+    padding: 4px 50px 10px 50px;
+}
+
+.heading {
+    width: 100%;
+}
+
+li {
+	margin: 10px;
+	line-height: 1.5em;
+}
+
+code {
+	display: block;
+	font-size: 1.5em;
+	padding: 10px;
+	background-color: black;
+	color: white;
+}
+
+.good {
+	padding: 0 2px;
+	border: solid 1px #32cd32;
+	background-color: #dcfedc;
+}
+
+.warning {
+	padding: 0 2px;
+	border: solid 1px #ffcc00;
+	background-color: #ffff66;
+}
+
+.bad {
+	visibility: visible;
+	padding: 0 2px;
+	border: solid 1px #fe00fe;
+	background-color: #ffdbff;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.none {
+	display: none;
+}
+
+.infobox {
+	margin: 10px 0;
+	padding: 10px;
+	border: dotted 1px black;
+}
+
+.infobox p {
+	margin: 10px 0;
+}
+
+.large {
+	font-size: 1.8em;
+}
+
+.small {
+	font-size: 0.8em;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.normal {
+	color: #0000cc;
+	font-weight: bold;
+	background-color: white;
+}
+
+.hilight {
+	color: white;
+	font-weight: bold;
+	background-color: #426F9C;
+}
+
+.lbl {
+	display: block;
+	float: left;
+	width: 14em;
+}
+
+ul.navi {
+	margin: 0 0 30px 0;
+	padding: 0;
+}
+
+.radio_lbl {
+	display: inline;
+}
+
+ul.navi li {
+	margin: 10px -1px 0 0;
+	padding: 5px;
+	float: left;
+	list-style: none;
+	font-size: 0.9em;
+	border: solid 1px black;
+	line-height: 1em;
+}
+
+a.big-button,
+input.big-button {
+	font-size: 14px;
+	margin: 2px;
+	padding: 6px 8px;
+	background-color: #1A3955;
+	border: 0;
+	color: white;
+	text-align: center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	text-decoration: none;
+}
+
+a.big-button:hover {
+	background-color: #295a86;
+}
+
+.precheck-version {
+	font-size: 0.9em;
+	text-align: right;
+	border-top: 1px dotted #666;
+	padding-top: 3px;
+	font-weight: bold;
+}
+
+hr {
+	margin: 0;
+	padding: 0;
+}
