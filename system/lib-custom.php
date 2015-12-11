@@ -52,13 +52,13 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
 // lib-common.php and see how $_COM_VERBOSE was used throughout the code
 $_CST_VERBOSE = false;
 
+
 /**
 * Sample PHP Block function
 *
 * this is a sample function used by a PHP block.  This will show the rights that
 * a user has in the "What you have access to" block.
 *
-*/
 function phpblock_showrights()
 {
     global $_RIGHTS, $_CST_VERBOSE;
@@ -81,7 +81,7 @@ function phpblock_showrights()
 
     return $retval;
 }
-
+*/
 
 /**
 * Include any code in this function that will be called by the internal CRON API
@@ -137,7 +137,6 @@ function CUSTOM_loginErrorHandler($msg='') {
 * @return   void
 * @see      PLG_templateSetVars
 *
-*/
 function CUSTOM_templateSetVars($templatename, &$template)
 {
     // define a {hello_world} variable available in header.thtml and
@@ -155,6 +154,7 @@ function CUSTOM_templateSetVars($templatename, &$template)
         break;
     }
 }
+*/
 
 
 /*  Sample Custom Member Functions to create and update Custom Membership registration and profile
@@ -572,4 +572,42 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
     exit;
 }
 */
+
+/**
+  * 日本語拡張版提供　PHPブロック関数およびカスタム関数
+  * Additional Custom Functions: PHP block functions and custom functions
+  */
+
+// テーマ変数をセットする 
+// Set theme variables
+require_once( 'custom/custom_templatesetvars.php' );
+
+// 静的ページコンテンツの内容を返す 
+// Return Staticpage content
+require_once( 'custom/custom_getstaticpage.php' );
+
+// テーマ変更時にデフォルトテーマをセットしているユーザのテーマも強制的に変更する
+// Force user's theme when site theme is changed
+require_once( 'custom/custom_forcethemechange.php' );
+
+// 新着記事リストを表示する 
+// List new articles
+require_once( 'custom/phpblock_lastarticles.php' );
+
+// ログインユーザの権限を表示する 
+// Show rights
+require_once( 'custom/phpblock_showrights.php' );
+
+// サイトのテーマを変更する 
+// Change site theme
+require_once( 'custom/phpblock_themetester.php' );
+
+// アクセス数を表示する 
+// Display access number
+require_once( 'custom/phpblock_stats.php' );
+
+// ユーザーエージェント判定のテンプレート変数を追加する 
+// Add theme variable of useragent
+require_once( 'custom/useragent.class.php' );
+
 ?>
