@@ -1,0 +1,67 @@
+<div class="block-center">
+	<h2>{lang_piname}</h2>
+	<div class="block-center-content">
+		<div id="admin-topmenu" class="clearfix">
+			<img src="{icon_url}" class="admin-menu-icon" alt=""{xhtml}>
+			<div id="admin-menu-fields">
+				<a href="{site_admin_url}" class="admin-menu-item">管理画面</a>
+			</div>
+			<div id="instructions">日本語化したい項目にチェックを入れ、英語版に戻す項目はチェックを外してから、「実行」をクリックしてください。または、「全部まとめて日本語化実行」や「全部まとめて英語版に戻す」をクリックしてください。</div>
+		</div>
+	</div>
+	{msgs}
+	<div>
+	<form method="post" action="">
+		<input type="hidden" name="A[]" value="0"{xhtml}>
+		<input type="checkbox" id="ch1" name="A[]" value="1"{checked1}{xhtml}>
+		<label for="ch1">1. テーブル構造・データの日本語化</label>
+		<ul>
+			<li>フィード: 文字コードをutf-8、言語をjaに変更</li>
+			<li>ユーザー名の桁数: 108に拡大</li>
+			<li>Anonymousの表記をゲストユーザーに変更</li>
+			<li>話題: General Newsをおしらせに変更</li>
+		</ul>
+		
+		<input type="checkbox" id="ch2" name="A[]" value="2"{checked2}{xhtml}>
+		<label for="ch2">2. グループ管理画面の説明文の日本語化</label><br{xhtml}>
+		
+		<input type="checkbox" id="ch3" name="A[]" value="4"{checked3}{xhtml}>
+		<label for="ch3">3. 初期ブロックタイトルの日本語化</label><br{xhtml}>
+		
+		<input type="checkbox" id="ch4" name="A[]" value="8"{checked4}{xhtml}>
+		<label for="ch4">4. コンフィギュレーションの日本語化</label>
+		<ul>
+			<li>サイト: disabledmsg.htmlのURLを設定</li>
+			<li>フィード: フィードの言語をjaに設定</li>
+			<li>管理者ブロック: リンクをソートしない</li>
+			<li>話題ブロック: 記事投稿数を表示しない</li>
+			<li>話題ブロック: Homeへのリンクを表示しない</li>
+			<li>コメント: 一覧形式で表示</li>
+			<li>画像ライブラリ: 画像ライブラリを(可能なら)GDに変更</li>
+			<li>画像ライブラリ: 記事の画像高さの最大値を120ピクセルに変更</li>
+			<li>ロケール: OSに応じて適切な値に変更</li>
+			<li>ロケール: 24時間制に変更</li>
+			<li>ロケール: タイムゾーンをAsia/Tokyoに変更</li>
+			<li>HTMLフィルタ: ユーザーHTML、管理者HTMLを変更</li>
+			<li>HTMLフィルタ: RootユーザーはHTMLフィルタが無効になるよう変更</li>
+			<li>バッドワードチェック: チェックしないように変更</li>
+			<li>カレンダープラグイン: イベントの種類の日本語化</li>
+		</ul>
+		
+		<input type="checkbox" id="ch5" name="A[]" value="16"{checked5}{xhtml}>
+		<label for="ch5">5. 更新pingサーバーの追加</label>
+		<ul>
+			<li>BlogPeople, PING.BLOGGERS.JP, gooブログ, Googleブログ検索を追加</li>
+		</ul>
+
+		<input type="checkbox" id="ch6" name="A[]" value="32"{checked6}{xhtml}>
+		<label for="ch6">6. 権限のツールチップの日本語化</label><br{xhtml}><br{xhtml}>
+		
+		<input type="submit" name="execute" value="{lang_execute}"{xhtml}>&nbsp;&nbsp;
+		<input type="submit" name="japanize_all" value="{lang_japanize_all}"{xhtml}>&nbsp;&nbsp;
+		<input type="submit" name="restore_all" value="{lang_restore_all}"{xhtml}>&nbsp;&nbsp;
+		<input type="submit" name="cancel" value="{lang_cancel}"{xhtml}>
+		<input type="hidden" name="{token_name}" value="{token_value}"{xhtml}>
+	</form>
+	</div>
+</div>
