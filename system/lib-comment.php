@@ -238,6 +238,7 @@ function CMT_getComment( &$comments, $mode, $type, $order, $delete_option = fals
                          $cpage = 1 )
 {
     global $_CONF, $_TABLES, $_USER, $LANG01, $LANG03, $MESSAGE, $_IMAGE_TYPE;
+    global $CUSTOM_MOBILE_UA;
 
     $indent = 0;  // begin with 0 indent
     $retval = ''; // initialize return value
@@ -584,10 +585,15 @@ function CMT_getComment( &$comments, $mode, $type, $order, $delete_option = fals
         // create a reply to link
         $reply_link = '';
         if ($ccode == 0) {
+            $a_title = $A['title'];
+            if ( $CUSTOM_MOBILE_UA > 1 ) {
+                $a_title = mb_convert_encoding($A['title'], 'SJIS-win');
+            }
             if (COMMENT_ON_SAME_PAGE) {
                 $reply_link = $plgurl ."?$plgid=" . $A['sid']
                             . '&amp;' . CMT_PID . '=' . $A['cid']
                             . '&amp;' . CMT_TYPE . '=' . $A['type']
+                            . '&amp;title=' . urlencode($a_title)
                             . '&amp;mode=' . $mode
                             . '&amp;order=' . $order
                             . '&amp;cpage=' . $cpage

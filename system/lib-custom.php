@@ -53,6 +53,14 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
 $_CST_VERBOSE = false;
 
 /**
+ * ケータイ対応
+ *
+ * UAで判断してケータイ向けのページを生成します。
+ */
+require_once('custom/custom_cellular.php');
+
+
+/**
 * Sample PHP Block function
 *
 * this is a sample function used by a PHP block.  This will show the rights that

@@ -89,6 +89,12 @@ function SESS_sessionCheck()
     $logged_in = 0;
     $userdata = Array();
 
+    // for cellular phones which has no Cookies.
+    if( function_exists( 'CUSTOM_MOBILE_is_cellular' ) && CUSTOM_MOBILE_is_cellular()) {
+        $_COOKIE[$_CONF['cookie_session']] = CUSTOM_MOBILE_load_session();
+        CUSTOM_MOBILE_debug("cookie_session in SESS_sessionCheck: " . $_COOKIE[$_CONF['cookie_session']]);
+    }
+
     // Check for a cookie on the users's machine.  If the cookie exists, build
     // an array of the users info and setup the theme.
 
@@ -370,8 +376,16 @@ function SESS_newSession($userid, $remote_ip, $lifespan, $md5_based=0)
         if ($_SESS_VERBOSE) COM_errorLog("Assigned the following session id: $sessid",1);
         if ($_SESS_VERBOSE) COM_errorLog("*************leaving SESS_newSession*****************",1);
         if ($md5_based == 1) {
+            // Cellular phones IP address is changed frequently. So, seve it.
+            if( function_exists( 'CUSTOM_MOBILE_is_cellular' ) && CUSTOM_MOBILE_is_cellular()) {
+                CUSTOM_MOBILE_save_session($md5_sessid, $remote_ip);
+            }
             return $md5_sessid;
         } else {
+            // Cellular phones IP address is changed frequently. So, save it.
+            if( function_exists( 'CUSTOM_MOBILE_is_cellular' ) && CUSTOM_MOBILE_is_cellular()) {
+                CUSTOM_MOBILE_save_session($sessid, $remote_ip);
+            }
             return $sessid;
         }
     } else {
@@ -434,6 +448,13 @@ function SESS_getUserIdFromSession($sessid, $cookietime, $remote_ip, $md5_based=
     }
 
     $mintime = time() - $cookietime;
+
+    // Cellular phones IP address is changed frequently. So, load saived one.
+    if( function_exists( 'CUSTOM_MOBILE_is_cellular' ) && CUSTOM_MOBILE_is_cellular()) {
+        CUSTOM_MOBILE_debug("remote_ip: $remote_ip");
+        $remote_ip = CUSTOM_MOBILE_load_ip();
+        CUSTOM_MOBILE_debug("remote_ip from mobile session: $remote_ip");
+    }
 
     if ($md5_based == 1) {
         $sql = "SELECT uid FROM {$_TABLES['sessions']} WHERE "
@@ -504,6 +525,11 @@ function SESS_endUserSession($userid)
     global $_TABLES;
 
     DB_delete($_TABLES['sessions'], 'uid', $userid);
+
+    // for cellular phones which has no Cookies.
+    if( function_exists( 'CUSTOM_MOBILE_is_cellular' ) && CUSTOM_MOBILE_is_cellular()) {
+        CUSTOM_MOBILE_remove_session($sessid);
+    }
 
     return 1;
 }

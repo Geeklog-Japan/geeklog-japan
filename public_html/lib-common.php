@@ -3877,7 +3877,11 @@ function COM_adminMenu( $help = '', $title = '', $position = '' )
 */
 function COM_refresh($url)
 {
-    return "<html><head><meta http-equiv=\"refresh\" content=\"0; URL=$url\"></head></html>\n";
+    if ( function_exists( 'CUSTOM_refresh' ) ) {
+        return CUSTOM_refresh( $url );
+    } else {
+        return "<html><head><meta http-equiv=\"refresh\" content=\"0; URL=$url\"></head></html>\n";
+    }
 }
 
 /**
@@ -8239,7 +8243,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
             if (!empty($_CONF['site_name'])) {
                 $title = $_CONF['site_name'] . ' - ' . $title;
             }
-            echo "<html><head><title>$title</title></head>\n<body>\n";
+            echo '<html><head><meta charset="UTF-8"'.XHTML.'><title>'.$title.'</title></head>'.LB.'<body>'.LB;
 
             echo '<h1>An error has occurred:</h1>';
             if ($_CONF['rootdebug']) {

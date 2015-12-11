@@ -70,9 +70,11 @@ function submissionform($type = 'story', $mode = '')
             $retval .= SEC_loginRequiredForm();
             return $retval;
         } else {
-            $retval .= COM_startBlock($LANG12[19])
-                    . $LANG12[9]
-                    . COM_endBlock();
+            if(!function_exists('CUSTOM_MOBILE_is_cellular') || !CUSTOM_MOBILE_is_cellular()) {
+                $retval .= COM_startBlock($LANG12[19])
+                        . $LANG12[9]
+                        . COM_endBlock();
+            }
 
             if ((strlen($type) > 0) && ($type <> 'story')) {
                 $formresult = PLG_showSubmitForm($type);
