@@ -1,7 +1,6 @@
 
-    <hr class="separator"{xhtml}>
-
-    <div id="leftblocks" role="complementary">
+    <div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?> id="leftblocks" role="complementary">
+      <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="editlink" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
       <section class="block-left" role="search" id="block-left-search">
         <h2 class="block-title">{button_search}</h2>
         <div class="block-left-content">

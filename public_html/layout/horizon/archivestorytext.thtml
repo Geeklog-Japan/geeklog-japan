@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<article itemscope itemtype="http://schema.org/Article" class="uk-article archivestorytext">
+<article itemscope itemtype="http://schema.org/Article" class="<?php if(SEC_inGroup('Root')){ ?>gl-edit <?php } ?>uk-article archivestorytext">
   <header>
     <h1 itemprop="name" class="uk-article-title">{story_title_link}</h1>
 

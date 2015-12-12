@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<article itemscope itemtype="http://schema.org/Article" class="uk-article featuredstorytext">
+<article itemscope itemtype="http://schema.org/Article" class="<?php if(SEC_inGroup('Root')){ ?>gl-edit <?php } ?>uk-article featuredstorytext">
   <header>
     <div class="uk-subnav uk-flex-right">
       {email_icon}{print_icon}{edit_icon}

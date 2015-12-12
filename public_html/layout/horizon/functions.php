@@ -78,7 +78,14 @@ function theme_css_horizon()
             'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', // change '/style.css' during debugging
             'attributes' => array('media' => 'all'),
             'priority'   => 100
+        ),
+        array(
+            'name'       => 'sub', // don't use the name 'theme' to control the priority
+            'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', // change '/style.css' during debugging
+            'attributes' => array('media' => 'all'),
+            'priority'   => 110
         )
+
     );
 }
 
@@ -163,7 +170,12 @@ function theme_js_files_horizon()
             'file'      => '/vendor/uikit/js/components/tooltip.js',
             'footer'    => true, // Not requred, default = true
             'priority'  => 120 // Not requred, default = 100
-        )
+        ),
+       array(
+            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
+            'footer'    => true, // Not requred, default = true
+            'priority'  => 100 // Not requred, default = 100
+        ),
     );
 }
 
