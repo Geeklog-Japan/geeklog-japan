@@ -610,4 +610,14 @@ require_once( 'custom/phpblock_stats.php' );
 // Add theme variable of useragent
 require_once( 'custom/useragent.class.php' );
 
+// RSS Aggregator
+// require_once( 'custom/phpblock_rssaggregator.php' );
+
+// 404
+// require_once( 'custom/custom_handle404.php' );
+
+// Forum Center Block
+// require_once( 'custom/custom_centerblock_forum.php' );
+
+
 ?>
