@@ -1,5 +1,0 @@
-<div id="sitemap">
-<h2>{lang_site_calendar_result}</h2>
-{stories_intro}
-{data_sources}
-</div>
