@@ -1,6 +1,20 @@
 
     <div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?> id="leftblocks" role="complementary">
-      <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="editlink" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
+      <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="uk-float-right" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
+
+	    <?php if(SEC_inGroup('Root')){ ?>
+    <ul class="uk-subnav uk-subnav-line uk-flex-left">
+		<?php } ?>
+	    <?php if(SEC_inGroup('Root')){ ?>
+			<li><a type="button" href="{site_url}/admin/clearctl.php">Clear Cache</a></li>
+		<?php } ?>
+	    <?php if(SEC_inGroup('mediagallery Admin')){ ?>
+			<li><a type="button" href="{site_url}/mediagallery/">Gallery</a></li>
+		<?php } ?>
+	    <?php if(SEC_inGroup('Root')){ ?>
+    </ul>
+		<?php } ?>
+
       <section class="block-left" role="search" id="block-left-search">
         <h2 class="block-title">{button_search}</h2>
         <div class="block-left-content">

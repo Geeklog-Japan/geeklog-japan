@@ -27,19 +27,6 @@
   <!-- #container { -->
   <div id="container" class="uk-sticky-placeholder  uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
-	    <?php if(SEC_inGroup('Root')){ ?>
-    <ul class="uk-subnav uk-subnav-line uk-flex-right">
-		<?php } ?>
-	    <?php if(SEC_inGroup('Root')){ ?>
-			<li><a type="button" href="{site_url}/admin/clearctl.php">Clear Cache</a></li>
-		<?php } ?>
-	    <?php if(SEC_inGroup('mediagallery Admin')){ ?>
-			<li><a type="button" href="{site_url}/mediagallery/">Gallery</a></li>
-		<?php } ?>
-	    <?php if(SEC_inGroup('Root')){ ?>
-    </ul>
-		<?php } ?>
-
     <nav class="uk-navbar uk-margin-bottom" data-uk-sticky="{ top:-100, animation: 'uk-animation-slide-top', boundary:true }">
         <a class="uk-navbar-brand uk-hidden-small" href="{site_url}"><img src="{layout_url}/images/logomark.png" alt="{site_name}" style="max-height:32px; margin-bottom:3px"></a>
         <ul class="uk-navbar-nav uk-hidden-small">

@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {block_start}
-<div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?>>{edit_icon}{content}</div>
+<div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?>>{!if edit_icon}<div class="uk-float-right">{edit_icon}</div>{!endif}{content}</div>
 {block_end}
 
 {# end {templatelocation} #}
