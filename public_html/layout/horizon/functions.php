@@ -153,7 +153,7 @@ function theme_js_files_horizon()
         ),
        array(
             'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
-            'footer'    => false, // Not requred, default = true
+            'footer'    => true, // Not requred, default = true
             'priority'  => 220 // Not requred, default = 100
         ),
     );
