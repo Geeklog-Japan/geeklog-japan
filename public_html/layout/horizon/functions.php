@@ -47,6 +47,7 @@ function theme_config_horizon()
     return array(
         'image_type' => 'png',
         'doctype'    => 'html5',
+        'etag' => true,
         'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
     );
 }
@@ -61,31 +62,10 @@ function theme_css_horizon()
     $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
 
     return array(
-        array(
-            'name'       => 'uikit',
-            'file'       => '/vendor/uikit/css' . $direction . '/uikit.gradient.css',
-            'attributes' => array('media' => 'all'),
-            'priority'   => 80
-        ),
-        array(
-            'name'       => 'customize', // don't use the name 'theme' to control the priority
-            'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/add_to_uikit.css', 
-            'attributes' => array('media' => 'all'),
-            'priority'   => 90
-        ),
-        array(
-            'name'       => 'main', // don't use the name 'theme' to control the priority
-            'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', // change '/style.css' during debugging
-            'attributes' => array('media' => 'all'),
-            'priority'   => 100
-        ),
-        array(
-            'name'       => 'sub', // don't use the name 'theme' to control the priority
-            'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', // change '/style.css' during debugging
-            'attributes' => array('media' => 'all'),
-            'priority'   => 110
-        )
-
+        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
+        array('file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/add_to_uikit.css',  'priority' => 90),
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'priority' => 100),
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'priority' => 110)
     );
 }
 
@@ -113,68 +93,68 @@ function theme_js_files_horizon()
 
        array(
             'file'      => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
-            'footer'    => true, // Not requred, default = true
+            'footer'    => false, // Not requred, default = true
             'priority'  => 100 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/uikit.js',
-            'footer'    => true, // Not requred, default = true
+            'footer'    => false, // Not requred, default = true
             'priority'  => 110 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/datepicker.js',
-            'footer'    => true, // Not requred, default = true
+            'footer'    => false, // Not requred, default = true
             'priority'  => 120 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/form-password.js',
-            'footer'    => true, // Not requred, default = true
+            'footer'    => false, // Not requred, default = true
             'priority'  => 130 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/form-select.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 140 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/grid.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 150 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/lightbox.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 160 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/slideshow.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 170 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/slideshow-fx.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 180 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/slideset.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 190 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/sticky.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 200 // Not requred, default = 100
         ),
        array(
             'file'      => '/vendor/uikit/js/components/tooltip.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 210 // Not requred, default = 100
         ),
        array(
             'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
-            'footer'    => true, // Not requred, default = true
-            'priority'  => 100 // Not requred, default = 100
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 220 // Not requred, default = 100
         ),
     );
 }
