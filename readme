@@ -1,6 +1,6 @@
 Geeklog日本語版
 
-							2015年 12月11日
+							2015年 12月14日
 							Geeklog Japan
 
 1. 概要
@@ -191,8 +191,9 @@ Geeklog日本語版の詳細な情報については http://www.geeklog.jp/を�
 		本ファイルで、オリジナル版に対する日本語版の開発概要を紹介
 		しています。
 
+    https://github.com/Geeklog-jp/geeklog-jp
 	CHANGES.jp
-		現行リリース(Geeklog 2.0)に関する修正内容です。
+		Geeklog 2.0に関する修正内容です。
 
 	CHANGES-1.8.jp
 		Geeklog 1.8に関する修正内容です。(保守用のブランチ
@@ -233,7 +234,7 @@ Geeklog日本語版の詳細な情報については http://www.geeklog.jp/を�
 
    すべてのGeeklog日本語版のIssueは以下から参照できます。
 
-   http://code.google.com/p/geeklog-jp/issues/
+   https://github.com/Geeklog-jp/geeklog-jp/issues/
    https://github.com/Geeklog-jp/geeklog-japan/issues/
 
 以上
