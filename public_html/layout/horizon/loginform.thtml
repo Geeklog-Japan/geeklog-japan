@@ -25,7 +25,8 @@
         </div>
     </fieldset>
 </form>
-{oauth_login}
-{openid_login}
+{!if openid_login}<div>{openid_login}</div>{!endif}
+{!if oauth_login}<div>{oauth_login}</div>{!endif}
+<div class="uk-clearfix"></div>
 
 <!-- } loginform.thtml -->

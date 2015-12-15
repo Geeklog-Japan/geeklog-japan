@@ -1,11 +1,5 @@
 <!--users/loginform.thtml { -->
 
-<!-- This is the modal -->
-
-<div id="gl-login" class="uk-modal">
-    <div class="uk-modal-dialog">
-        <a class="uk-modal-close uk-close"></a>
-
 {start_block_loginagain}
 <p>{lang_message}</p>
 <div class="uk-vertical-align uk-text-center uk-height-1-1">
@@ -15,11 +9,11 @@
 
         <form action="{site_url}/users.php" method="post" id="userloginform" class="uk-panel uk-panel-box uk-form">
             <div class="uk-form-row">
-                <input value="admin" class="uk-width-1-1" type="text" name="loginname" id="users-loginform-loginname" placeholder="{lang_username}"{xhtml}>
+                <input class="uk-width-1-1" type="text" value="" name="loginname" id="users-loginform-loginname" placeholder="{lang_username}"{xhtml}>
             </div>
             {services}
             <div class="uk-form-row">
-                <input value="password" class="uk-width-1-1" type="password" name="passwd" id="users-loginform-passwd" placeholder="{lang_password}"{xhtml}>
+                <input value="" class="uk-width-1-1" type="password" name="passwd" id="users-loginform-passwd" placeholder="{lang_password}"{xhtml}>
             </div>
             <div class="uk-form-row">
                 <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"{xhtml}>
@@ -30,17 +24,10 @@
                 	{!if lang_forgetpassword}<li><a class="uk-float-right uk-link uk-text-small" href="{site_url}/users.php?mode=getpassword" rel="nofollow"><i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}</a></li>{!endif}
             </div>
         </form>
+		{!if openid_login}<div>{openid_login}</div>{!endif}
+		{!if oauth_login}<div>{oauth_login}</div>{!endif}
     </div>
-    {openid_login}
-    {oauth_login}
 </div>
 {end_block}
-
-    </div>
-</div>
-
-
-
-
 
 <!--} users/loginform.thtml -->
