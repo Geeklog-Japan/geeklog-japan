@@ -42,7 +42,7 @@
 
                         <!-- BEGIN notes -->
                         <div class="notes">
-                            <h4>{tab_display}</h4>
+                            <h3>{tab_display}</h3>
                             <p class="last">{tab_help}</p>
                             <span class="warningsmall">{tab_warning}</span>
                         </div>
