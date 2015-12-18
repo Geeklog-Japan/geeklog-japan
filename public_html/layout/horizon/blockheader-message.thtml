@@ -6,6 +6,6 @@
    <a class="uk-modal-close uk-close"></a>
 
 <aside>
-    <h3 class="uk-panel-title">{showhide}{block_title}{block_help}</h3>
+    <h2 class="uk-panel-title">{showhide}{block_title}{block_help}</h2>
 
 <!-- } blockheader-message.thtml -->
