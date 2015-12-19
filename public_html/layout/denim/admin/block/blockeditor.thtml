@@ -86,10 +86,7 @@
         <dd><label><input type="checkbox" name="allow_autotags" id="admin-use-autotags" {allow_autotags}{xhtml}>({lang_use_autotags})</label></dd>
         <dt><label for="admin-blockeditor-content">{lang_blockcontent}</label></dt>
         <dd><textarea cols="40" rows="12" name="content" id="admin-blockeditor-content" class="wide" aria-describedby="admin-blockeditor-d7">{block_content}</textarea></dd>
-        <dt><label for="admin-use-autotags">{lang_autotags}</label></dt>
-        <dd><input type="checkbox" name="allow_autotags" id="admin-use-autotags" {allow_autotags}{xhtml}>({lang_use_autotags})</dd>
       </dl>
-
     </fieldset>
 
     <fieldset>
