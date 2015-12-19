@@ -26,7 +26,7 @@
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="contactauthorform-shortmsg">{lang_shortmessage}</label>
-            <div class="uk-form-controls"><textarea rows="8" cols="50" name="shortmsg" id="contactauthorform-shortmsg" class="wide">{shortmsg}</textarea></div>
+            <div class="uk-form-controls"><textarea rows="8" cols="50" name="shortmsg" id="contactauthorform-shortmsg" class="uk-width-1-1">{shortmsg}</textarea></div>
         </div>
         <div class="uk-form-row"{cc_enabled}>
             <label class="uk-form-label" for="contactauthorform-cc">{lang_cc}</label>

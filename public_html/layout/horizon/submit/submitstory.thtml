@@ -17,21 +17,21 @@
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="introtext">{lang_introtext}</label>
-            <div class="uk-form-controls"><textarea cols="45" rows="15" name="introtext" id="introtext" class="wide">{story_introtext}</textarea></div>
+            <div class="uk-form-controls"><textarea cols="45" rows="15" name="introtext" id="introtext" class="uk-width-1-1" aria-describedby="submitstory-d1">{story_introtext}</textarea></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="bodytext">{lang_bodytext}</label>
-            <div class="uk-form-controls"><textarea cols="45" rows="15" name="bodytext" id="bodytext" class="wide">{story_bodytext}</textarea></div>
+            <div class="uk-form-controls"><textarea cols="45" rows="15" name="bodytext" id="bodytext" class="uk-width-1-1" aria-describedby="submitstory-d1">{story_bodytext}</textarea></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="submitstory-postmode">{lang_postmode}</label>
             <div class="uk-form-controls">
                 <select name="postmode" id="submitstory-postmode">
-                {story_postmode_options}
+                    {story_postmode_options}
                 </select>
             </div>
         </div>
-        <p class="uk-margin">{allowed_html}</p>
+        <span class="uk-margin uk-form-help-inline" id="submitstory-d1">{allowed_html}</span>
 
         {captcha}
 

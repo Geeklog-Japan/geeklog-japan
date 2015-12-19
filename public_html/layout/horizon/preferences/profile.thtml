@@ -47,12 +47,12 @@
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-email">{lang_email}</label>
-            <div class="uk-form-controls"><input type="text" maxlength="96" value="{email_value}" name="email" id="profile-email" class="uk-width-1-1"{xhtml}></div>
+            <div class="uk-form-controls"><input type="text" maxlength="96" value="{email_value}" name="email" id="profile-email" class="uk-width-1-1" aria-describedby="pe-profile-d1"{xhtml}></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-email_conf">{lang_email_conf}</label>
             <div class="uk-form-controls"><input type="text" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="uk-width-1-1"{xhtml}>
-                <span class="uk-form-help-inline">{lang_email_text}</span>
+                <span class="uk-form-help-inline" id="pe-profile-d1">{lang_email_text}</span>
             </div>
         </div>
         {current_password_option}
@@ -72,13 +72,17 @@
 
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-homepage">{lang_homepage}</label>
-            <div class="uk-form-controls"><input type="text" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="uk-width-1-1"{xhtml}>
-            <span class="uk-form-help-inline">{lang_homepage_text}</span></div>
+            <div class="uk-form-controls">
+                <input type="text" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="uk-width-1-1" aria-describedby="pe-profile-d2"{xhtml}>
+                <span class="uk-form-help-inline" id="pe-profile-d2">{lang_homepage_text}</span>
+            </div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-location">{lang_location}</label>
-            <div class="uk-form-controls"><input type="text" maxlength="96" value="{location_value}" name="location" id="profile-location" class="uk-width-1-1"{xhtml}>
-            <span class="uk-form-help-inline">{lang_location_text}</span></div>
+            <div class="uk-form-controls">
+                <input type="text" maxlength="96" value="{location_value}" name="location" id="profile-location" class="uk-width-1-1" aria-describedby="pe-profile-d3"{xhtml}>
+                <span class="uk-form-help-inline" id="pe-profile-d3">{lang_location_text}</span>
+            </div>
         </div>
 
             {userphoto_option}
@@ -86,22 +90,22 @@
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-sig">{lang_signature}</label>
             <div class="uk-form-controls">
-                <textarea cols="45" rows="4" name="sig" id="profile-sig" class="uk-width-1-1">{signature_value}</textarea>
-                <span class="uk-form-help-inline">{lang_signature_text}</span>
+                <textarea cols="45" rows="4" name="sig" id="profile-sig" class="uk-width-1-1" aria-describedby="pe-profile-d4">{signature_value}</textarea>
+                <span class="uk-form-help-inline" id="pe-profile-d4">{lang_signature_text}</span>
             </div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-about">{lang_about}</label>
             <div class="uk-form-controls">
-                <textarea cols="45" rows="6" name="about" id="profile-about" class="uk-width-1-1">{about_value}</textarea>
-                <span class="uk-form-help-inline">{lang_about_text}</span>
+                <textarea cols="45" rows="6" name="about" id="profile-about" class="uk-width-1-1" aria-describedby="pe-profile-d5">{about_value}</textarea>
+                <span class="uk-form-help-inline" id="pe-profile-d5">{lang_about_text}</span>
             </div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="profile-pgpkey">{lang_pgpkey}</label>
             <div class="uk-form-controls">
-                <textarea cols="45" rows="6" name="pgpkey" id="profile-pgpkey" class="uk-width-1-1">{pgpkey_value}</textarea>
-                <span class="uk-form-help-inline">{lang_pgpkey_text}</span>
+                <textarea cols="45" rows="6" name="pgpkey" id="profile-pgpkey" class="uk-width-1-1" aria-describedby="pe-profile-d6">{pgpkey_value}</textarea>
+                <span class="uk-form-help-inline" id="pe-profile-d6">{lang_pgpkey_text}</span>
             </div>
         </div>
       </fieldset>

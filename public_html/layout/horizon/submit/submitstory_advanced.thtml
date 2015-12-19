@@ -21,10 +21,10 @@
             <label>{lang_story}</label>
             <div class="uk-form-controls">
                 <div id="text_editor" style="display: {show_texteditor};">
-                    <textarea cols="45" rows="15" name="introtext" id="introtext" class="wide">{story_introtext}</textarea>
+                    <textarea cols="45" rows="15" name="introtext" id="introtext" class="uk-width-1-1" aria-describedby="submitstory-d1">{story_introtext}</textarea>
                 </div>
                 <div id="html_editor" style="display: {show_htmleditor};">
-                    <textarea cols="45" rows="15" name="introhtml" id="introhtml" class="wide">{story_introtext}</textarea>
+                    <textarea cols="45" rows="15" name="introhtml" id="introhtml" class="uk-width-1-1">{story_introtext}</textarea>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 </select>
             </div>
         </div>
-        <p class="uk-text-margin">{allowed_html}</p>
+        <span class="uk-margin uk-form-help-inline" id="submitstory-d1">{allowed_html}</span>
 
         {captcha}
 

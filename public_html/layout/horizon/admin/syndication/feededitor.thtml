@@ -45,7 +45,7 @@
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-feededitor-content_length">{lang_content_length}</label>
             <div class="uk-form-controls">
-                <input type="text" value="{feed_content_length}" name="content_length" id="admin-feededitor-content_length" class="uk-form-width-mini"{xhtml}><span class="uk-form-help-inline">{lang_clen_explain}</span>
+                <input type="text" value="{feed_content_length}" name="content_length" id="admin-feededitor-content_length" class="uk-form-width-mini" aria-describedby="admin-feededitor-d1"{xhtml}><span class="uk-form-help-inline" id="admin-feededitor-d1">{lang_clen_explain}</span>
             </div>
         </div>
         <div class="uk-form-row">
@@ -57,8 +57,8 @@
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-feededitor-feedlogo">{lang_feedlogo}</label>
             <div class="uk-form-controls">
-                <input type="text" maxlength="255" value="{feed_logo}" name="feedlogo" id="admin-feededitor-feedlogo" class="uk-form-width-large"{xhtml}>
-                <span class="uk-form-help-inline">{lang_feedlogo_explain}</span>
+                <input type="text" maxlength="255" value="{feed_logo}" name="feedlogo" id="admin-feededitor-feedlogo" class="uk-form-width-large" aria-describedby="admin-feededitor-d2"{xhtml}>
+                <span class="uk-form-help-inline" id="admin-feededitor-d2">{lang_feedlogo_explain}</span>
             </div>
         </div>
         <div class="uk-form-row">
