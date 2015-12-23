@@ -47,7 +47,7 @@
 <?php } else { if ($_CONF['disable_new_user_registration']==0) {?>
                     <li><a href="{site_url}/users.php?mode=new"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
 <?php } ?>
-                	<li><a href="{site_url}/staticpages/index.php/loginform"><i class="uk-icon-sign-in"></i> {$LANG01[58]}</a></li>
+                	<li><a href="{site_url}/users.php"><i class="uk-icon-sign-in"></i> {$LANG01[58]}</a></li>
 <?php } ?>
 
             </ul>
