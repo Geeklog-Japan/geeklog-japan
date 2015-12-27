@@ -1,5 +1,4 @@
-
-<!-- admin/user/reminder.thtml { -->
+{# begin {templatelocation} #}
 
         <div class="uk-form-row uk-margin-large-top">
             <div class="uk-form-controls">
@@ -8,4 +7,4 @@
             </div>
         </div>
 
-<!-- } admin/user/reminder.thtml -->
+{# end {templatelocation} #}

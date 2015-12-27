@@ -1,5 +1,4 @@
-
-<!-- blockheader-message.thtml { -->
+{# begin {templatelocation} #}
 
  <div id="gl-message" class="uk-modal">
   <div class="uk-modal-dialog"> 
@@ -8,4 +7,4 @@
 <aside>
     <h2 class="uk-panel-title">{showhide}{block_title}{block_help}</h2>
 
-<!-- } blockheader-message.thtml -->
+{# end {templatelocation} #}

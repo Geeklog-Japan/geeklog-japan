@@ -1,5 +1,4 @@
-
-<!-- admin/common/edit_permissions.thtml { -->
+{# begin {templatelocation} #}
 
 <table id="admin-permissions" class="uk-table uk-margin-remove uk-table-striped gl-tablelist-remove" style="width:100%; max-width:480px;">
   <thead>
@@ -23,4 +22,4 @@
   </tbody>
 </table>
 
-<!-- } admin/common/edit_permissions.thtml -->
+{# end {templatelocation} #}

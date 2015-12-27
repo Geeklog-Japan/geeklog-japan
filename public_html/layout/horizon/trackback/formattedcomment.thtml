@@ -1,5 +1,4 @@
-
-<!-- trackback/formattedcomment.thtml { -->
+{# begin {templatelocation} #}
 
 <div>
   <ul class="uk-list">
@@ -12,4 +11,4 @@
   <div class="uk-margin">{delete_option}</div>
 </div>
 
-<!-- } trackback/formattedcomment.thtml -->
+{# end {templatelocation} #}

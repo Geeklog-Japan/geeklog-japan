@@ -1,5 +1,4 @@
-
-<!-- admin/lists/searchmenu.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{form_url}" method="post" class="uk-form uk-margin-bottom">
   <fieldset>
@@ -31,4 +30,4 @@
   </fieldset>
 </form>
 
-<!-- } admin/lists/searchmenu.thtml -->
+{# end {templatelocation} #}

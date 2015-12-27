@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- loginform_openid.thtml { -->
 <form class="uk-form uk-form-horizontal" action="{site_url}/users.php?openid_login=1" method="post">
     <div style="display: none;">
         <div class="uk-form-row">
@@ -20,4 +20,5 @@
         </div>
     </noscript>
 </form>
-<!-- } loginform_openid.thtml -->
+
+{# end {templatelocation} #}

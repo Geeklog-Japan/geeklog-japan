@@ -1,5 +1,4 @@
-
-<!-- stats/sitestatistics.thtml { -->
+{# begin {templatelocation} #}
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tbody>
@@ -21,4 +20,4 @@
 
 </table>
 
-<!-- } stats/sitestatistics.thtml -->
+{# end {templatelocation} #}

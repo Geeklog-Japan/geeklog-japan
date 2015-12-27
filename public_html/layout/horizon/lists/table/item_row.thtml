@@ -1,8 +1,7 @@
-
-<!-- lists/table/item_row.thtml { -->
+{# begin {templatelocation} #}
 
                                 <tr>
                                     {item_field}
                                 </tr>
 
-<!-- } lists/table/item_row.thtml -->
+{# end {templatelocation} #}

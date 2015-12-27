@@ -1,5 +1,4 @@
-
-<!-- submit/submitstory.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{site_url}/submit.php" method="post" id="submitstory" class="uk-form uk-form-horizontal">
 
@@ -48,4 +47,4 @@
 
 </form>
 
-<!-- } submit/submitstory.thtml -->
+{# end {templatelocation} #}

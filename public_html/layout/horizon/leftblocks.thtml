@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
     <div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?> id="leftblocks" role="complementary">
       <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="uk-float-right" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
@@ -40,3 +41,5 @@
 
       {geeklog_blocks}
     </div>
+
+{# end {templatelocation} #}

@@ -1,5 +1,4 @@
-
-<!-- admin/user/batchdelete_options.thtml { -->
+{# begin {templatelocation} #}
 
         <div class="uk-form-row">
             <div class="uk-form-controls">
@@ -13,4 +12,4 @@
             </div>
         </div>
 
-<!-- } admin/user/batchdelete_options.thtml -->
+{# end {templatelocation} #}

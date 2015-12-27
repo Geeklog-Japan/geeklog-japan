@@ -1,5 +1,4 @@
-
-<!-- admin/group/groupeditor.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{site_admin_url}/group.php" method="post" id="admin-groupeditor" class="uk-form uk-form-horizontal">
 
@@ -69,4 +68,4 @@
 
 </form>
 
-<!-- } admin/group/groupeditor.thtml -->
+{# end {templatelocation} #}

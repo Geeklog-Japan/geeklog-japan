@@ -1,4 +1,4 @@
-<!-- search/searchform.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{site_url}/search.php" method="get" id="advsearchform" class="uk-form uk-form-horizontal">
 
@@ -62,4 +62,5 @@
         </div>
 
 </form>
-<!-- } search/searchform.thtml -->
+
+{# end {templatelocation} #}

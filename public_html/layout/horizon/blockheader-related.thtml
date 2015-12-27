@@ -1,8 +1,7 @@
-
-<!-- blockheader-related.thtml { -->
+{# begin {templatelocation} #}
 
 <aside>
   <h2 class="uk-h2">{block_title}{block_help}</h2>
   <div>
 
-<!-- } blockheader-related.thtml -->
+{# end {templatelocation} #}

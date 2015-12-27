@@ -1,5 +1,4 @@
-
-<!-- admin/trackback/autodetectlist.thtml { -->
+{# begin {templatelocation} #}
 
 <p class="uk-margin-bottom">{lang_trackback_explain}</p>
 
@@ -9,4 +8,4 @@
   </tbody>
 </table>
 
-<!-- } admin/trackback/autodetectlist.thtml -->
+{# end {templatelocation} #}

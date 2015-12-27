@@ -1,5 +1,4 @@
-
-<!-- profiles/contactuserform.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{site_url}/profiles.php" method="post" id="contactuserform" class="uk-form uk-form-horizontal">
 
@@ -47,4 +46,4 @@
 
 </form>
 
-<!-- } profiles/contactuserform.thtml-->
+{# end {templatelocation} #}

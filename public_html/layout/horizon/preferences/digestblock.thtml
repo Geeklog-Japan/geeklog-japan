@@ -1,5 +1,4 @@
-
-<!-- preferences/digestblock.thtml { -->
+{# begin {templatelocation} #}
 
 <fieldset class="uk-margin-large-top">
   <legend>{lang_digest_top_header}</legend>
@@ -16,4 +15,4 @@
   </div>
 </fieldset>
 
-<!-- } preferences/digestblock.thtml -->
+{# end {templatelocation} #}

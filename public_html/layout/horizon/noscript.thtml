@@ -1,4 +1,4 @@
-<!-- noscript.thtml { -->
+{# begin {templatelocation} #}
 
 <noscript>
     <div class="uk-panel uk-text-center uk-text-danger">{lang_nojavascript}
@@ -6,4 +6,4 @@
     </div>
 </noscript>
 
-<!-- } noscript.thtml -->
+{# end {templatelocation} #}

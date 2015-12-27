@@ -1,5 +1,4 @@
-
-<!-- comment/comment.thtml { -->
+{# begin {templatelocation} #}
 
 <div class="level-{indent}">
   <ul class="uk-list">
@@ -13,4 +12,4 @@
     <li>[{reply_option}</li>{!if parent_link}<li>{parent_link}</li>{!endif}<li>{delete_option}</li><li><a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="bookmark" title="{lang_permlink}">#</a>]</li></ul>
 </div>
 
-<!-- } comment/comment.thtml -->
+{# end {templatelocation} #}

@@ -1,5 +1,4 @@
-
-<!-- admin/plugins/editor.thtml { -->
+{# begin {templatelocation} #}
 
 {start_block_editor}
 <form action="{site_admin_url}/plugins.php" method="post" class="uk-form uk-form-horizontal">
@@ -47,4 +46,4 @@
 </form>
 {end_block}
 
-<!-- } admin/plugins/editor.thtml -->
+{# end {templatelocation} #}

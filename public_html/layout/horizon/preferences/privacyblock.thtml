@@ -1,4 +1,4 @@
-<!-- preferences/privacyblock.thtml { -->
+{# begin {templatelocation} #}
 
 <fieldset class="uk-margin-large-top">
   <legend>{lang_privacy_title}</legend>
@@ -21,4 +21,4 @@
         </div>
 </fieldset>
 
-<!-- } preferences/privacyblock.thtml -->
+{# end {templatelocation} #}

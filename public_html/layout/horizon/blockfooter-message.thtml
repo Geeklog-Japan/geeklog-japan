@@ -1,5 +1,4 @@
-
-<!-- blockfooter-message.thtml { -->
+{# begin {templatelocation} #}
 
 </aside>
 
@@ -12,5 +11,4 @@ $.UIkit.modal('#gl-message').show();
 });
 </script>
 
-
-<!-- } blockfooter-message.thtml -->
+{# end {templatelocation} #}

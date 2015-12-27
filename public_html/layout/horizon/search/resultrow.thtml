@@ -1,8 +1,7 @@
-
-<!-- search/resultrow.thtml { -->
+{# begin {templatelocation} #}
 
 <tr>
   {data_cols}
 </tr>
 
-<!-- } search/resultrow.thtml -->
+{# end {templatelocation} #}

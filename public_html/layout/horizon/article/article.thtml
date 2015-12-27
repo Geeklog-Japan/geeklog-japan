@@ -1,5 +1,4 @@
-
-<!-- article.thtml { -->
+{# begin {templatelocation} #}
 
 <div class="article">
 {formatted_article}
@@ -20,4 +19,4 @@
 {commentbar}
 </div>
 
-<!-- } article.thtml -->
+{# end {templatelocation} #}

@@ -1,5 +1,4 @@
-
-<!-- loginform.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{site_url}/users.php" method="post" id="loginform" class="uk-form uk-form-stacked">
     <fieldset class="noborder_fieldset">
@@ -29,4 +28,4 @@
 {!if oauth_login}<div>{oauth_login}</div>{!endif}
 <div class="uk-clearfix"></div>
 
-<!-- } loginform.thtml -->
+{# end {templatelocation} #}

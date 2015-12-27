@@ -1,5 +1,4 @@
-
-<!-- preferences/deleteaccount.thtml { -->
+{# begin {templatelocation} #}
 
         <div class="uk-form-row uk-panel-box">
             <p class="uk-text-bold">{lang_deleteaccount}</p>
@@ -15,4 +14,4 @@
             </div>
         </div>
 
-<!-- } preferences/deleteaccount.thtml -->
+{# end {templatelocation} #}

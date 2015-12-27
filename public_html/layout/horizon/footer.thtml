@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
         </main>
       </div>
@@ -39,6 +40,8 @@ $.UIkit.modal('#gl-login').show();
     FixHTML('leftblocks', 'centerblocks', 'rightblocks');
   -->
   </script>
+
+{# end {templatelocation} #}
 
 </body>
 

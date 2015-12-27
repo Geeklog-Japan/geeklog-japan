@@ -23,6 +23,7 @@
 </head>
 
 <body dir="{direction}" class="{layout_columns}">
+{# begin {templatelocation} #}
 
   <!-- #container { -->
   <div id="container" class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
@@ -72,3 +73,4 @@
           <p class="uk-text-left uk-margin-small-top">{welcome_msg_jp}&nbsp;{datetime}</p>
           {breadcrumb_trail}
 
+{# end {templatelocation} #}
