@@ -23,6 +23,7 @@
 </head>
 
 <body dir="{direction}" class="{layout_columns}">
+{# start {templatelocation} #}
 
   <!-- #container { -->
   <div id="container">

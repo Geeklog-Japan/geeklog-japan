@@ -1,5 +1,4 @@
-
-<!-- preferences/profile.thtml { -->
+{# start {templatelocation} #}
 
 {noscript}
 
@@ -113,4 +112,4 @@
 
 </form>
 
-<!-- } preferences/profile.thtml -->
+{# end {templatelocation} #}

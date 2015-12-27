@@ -1,5 +1,4 @@
-
-<!-- admin/trackback/serviceeditor.thtml { -->
+{# start {templatelocation} #}
 
 <form action="{site_admin_url}/trackback.php" method="post" id="admin-serviceeditor" class="compact uk-form">
 
@@ -42,4 +41,4 @@
   </div>
 </form>
 
-<!-- } admin/trackback/serviceeditor.thtml -->
+{# end {templatelocation} #}

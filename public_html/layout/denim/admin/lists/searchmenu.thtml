@@ -1,5 +1,4 @@
-
-<!-- admin/lists/searchmenu.thtml { -->
+{# start {templatelocation} #}
 
 <form action="{form_url}" method="post" class="uk-form">
   <div class="admin-list-search">
@@ -28,4 +27,4 @@
   </div>
 </form>
 
-<!-- } admin/lists/searchmenu.thtml -->
+{# end {templatelocation} #}
