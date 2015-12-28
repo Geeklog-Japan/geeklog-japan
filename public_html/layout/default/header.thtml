@@ -1,5 +1,5 @@
 {doctype}
-<html{html_attribute}{xmlns}>
+<html{lang_attribute}{xmlns}>
 
 <head>
 <meta charset="{charset}"{xhtml}>
@@ -70,7 +70,7 @@
       <!-- Center Block Container -->
       <div id="centerblocks">
         <main id="main-content" role="main">
-          <p class="uk-text-left uk-margin-small-top">{welcome_msg_jp}&nbsp;{datetime}</p>
+          <p class="uk-text-left uk-margin-small-top">{welcome_msg}&nbsp;{datetime}</p>
           {breadcrumb_trail}
 
 {# end {templatelocation} #}

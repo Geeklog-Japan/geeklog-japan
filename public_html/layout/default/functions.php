@@ -42,7 +42,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
 /**
  * Return the configuration values for the theme
  */
-function theme_config_horizon()
+function theme_config_default()
 {
     return array(
         'image_type' => 'png',
@@ -55,7 +55,7 @@ function theme_config_horizon()
 /**
  * Return an array of CSS files to be loaded
  */
-function theme_css_horizon()
+function theme_css_default()
 {
     global $_CONF, $LANG_DIRECTION;
 
@@ -72,7 +72,7 @@ function theme_css_horizon()
 /**
  * Return an array of JS libraries to be loaded
  */
-function theme_js_libs_horizon()
+function theme_js_libs_default()
 {
     return array(
        array(
@@ -85,7 +85,7 @@ function theme_js_libs_horizon()
 /**
  * Return an array of JS files to be loaded
  */
-function theme_js_files_horizon()
+function theme_js_files_default()
 {
     global $_CONF;
 
@@ -162,7 +162,7 @@ function theme_js_files_horizon()
 /**
  * Do any other initialisation here
  */
-function theme_init_horizon()
+function theme_init_default()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
 

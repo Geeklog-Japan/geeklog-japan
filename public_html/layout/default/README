@@ -2,11 +2,11 @@
 // +---------------------------------------------------------------------------+
 // | Geeklog 2.1.1                                                             |
 // +---------------------------------------------------------------------------+
-// | Horizon Geeklog Theme                                                     |
+// | Default Geeklog Theme                                                     |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2012-2014 by the following authors:                         |
 // |                                                                           |
-// | Authors: Tetsuko Konma - http://www.ivywe.co.jp/                          |
+// | Authors: Tetsuko Komma - http://www.ivywe.co.jp/                          |
 // |                                                                           |
 // | Horizon theme is based on prior work by:                                  |
 // | Authors: Fumito Arakawa   - http://phize.net/                             |
@@ -35,7 +35,7 @@
   Pofile
 ==============================================================================*/
 
-Geeklog theme using HTML5 + CSS 3.0 and eliminate table tags.
+Geeklog theme using HTML5 + CSS 3.0 + UIkit and eliminate table tags.
 This theme is adopted the Responsive Web Design.
 This theme is mobile friendly.
 

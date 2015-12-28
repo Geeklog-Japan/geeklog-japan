@@ -1,0 +1,8 @@
+		<li id="{menuitem_id}" class="uk-parent" data-uk-dropdown>
+			<a href="">{menuitem_text}</a>
+			<div class="uk-dropdown uk-dropdown-width-2 uk-dropdown-navbar uk-dropdown-bottom">
+				<ul class="uk-nav uk-nav-navbar">
+					{menu_elements}
+				</ul>
+			</div>
+		</li>
