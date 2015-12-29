@@ -20,8 +20,8 @@
 
         <div class="uk-form-row uk-text-small">
 				<ul class="uk-subnav uk-flex-center">
-					{!if lang_signup}<li class="uk-button uk-text-left" style="min-width:11em"><i class="uk-icon-plus-circle"></i> {lang_signup}</li>{!endif}
-                	{!if lang_forgetpassword}<li class="uk-button uk-text-left" style="min-width:11em"><i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}</li>{!endif}
+					{!if lang_signup}<li class="uk-button uk-button-small uk-text-left" style="min-width:11em; padding-left:0.5em"><i class="uk-icon-plus-circle"></i> {lang_signup}</li>{!endif}
+                	{!if lang_forgetpassword}<li class="uk-button uk-button-small uk-text-left" style="min-width:11em; padding-left:0.5em"><i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}</li>{!endif}
 				</ul>
         </div>
     </fieldset>
