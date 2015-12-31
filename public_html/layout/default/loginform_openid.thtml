@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
 
-<form class="uk-form uk-form-horizontal" action="{site_url}/users.php?openid_login=1" method="post">
+<li>
+<form class="uk-form" action="{site_url}/users.php?openid_login=1" method="post" style="min-width:2em">
     <div style="display: none;">
         <div class="uk-form-row">
             <!-- this is revealed by login.js -->
@@ -20,5 +21,6 @@
         </div>
     </noscript>
 </form>
+</li>
 
 {# end {templatelocation} #}

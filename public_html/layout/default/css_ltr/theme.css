@@ -4,3 +4,4 @@
  background:#efefef !important;
 }
 
+.uk-form-row + .uk-form-row {margin-top: 8px;}

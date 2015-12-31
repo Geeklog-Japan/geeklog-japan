@@ -13,6 +13,11 @@
 
 <!-- <meta http-equiv="Pragma" content="no-cache"{xhtml}> -->
 <link rel="start contents" href="{site_url}"{xhtml}>
+
+<meta name="twitter:image:height" content="400"{xhtml}>
+<meta name="twitter:image:width" content="500"{xhtml}>
+<meta name="twitter:url" content="<?php echo COM_getCurrentURL(); ?>"{xhtml}>
+
 {feed_url}
 {rel_links}
 {plg_headercode}
@@ -64,6 +69,8 @@
 
     <!-- #wrapper { -->
     <div id="wrapper">
+
+      {!!autotag assist:staticpage_content id:-top mode:home !!}
 
       <!-- Center Block Container -->
       <div id="centerblocks">
