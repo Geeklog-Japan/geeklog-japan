@@ -1,6 +1,19 @@
 /* Geeklog Horizon Theme 1.0 | Copyright (C) 2012-2015 by Ivy | http://www.ivywe.co.jp | License:GPLv2 */
 
-.gl-hover{
- background:#efefef !important;
+.gl-edit:hover {
+  backgraund: #e8e8e8 !important;
 }
+.gl-edit a.editlink img {
+  filter: alpha(opacity=20);
+  opacity: 0.2;
+}
+.gl-edit:hover a.editlink img {
+  filter: alpha(opacity=100);
+  opacity: 1.0;
+}
+.uk-form-row + .uk-form-row {margin-top: 8px;}
 
+.uk-navbar-nav > li > a[href='#'],
+.uk-navbar-nav > li > a[href=''] {
+  cursor: default;
+}

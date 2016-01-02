@@ -7,10 +7,10 @@
     <ul class="uk-subnav uk-subnav-line uk-flex-left">
 		<?php } ?>
 	    <?php if(SEC_inGroup('Root')){ ?>
-			<li><a type="button" href="{site_url}/admin/clearctl.php">Clear Cache</a></li>
+			<li><a type="button" href="{site_url}/admin/clearctl.php" data-uk-tooltip title="Clear Cache">Cache</a></li>
 		<?php } ?>
 	    <?php if(SEC_inGroup('mediagallery Admin')){ ?>
-			<li><a type="button" href="{site_url}/mediagallery/">Gallery</a></li>
+			<li><a type="button" href="{site_url}/mediagallery/" data-uk-tooltip title="MediaGallery">Gallery</a></li>
 		<?php } ?>
 	    <?php if(SEC_inGroup('Root')){ ?>
     </ul>
