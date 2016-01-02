@@ -600,7 +600,8 @@ function STORY_renderArticle( &$story, $index='', $storytpl='storytext.thtml', $
             $article->set_var( 'edit_link', COM_createLink($LANG01[4], $editUrl) );
             $article->set_var( 'edit_url', $editUrl );
             $article->set_var( 'lang_edit_text',  $LANG01[4] );
-            $article->set_var( 'edit_icon', COM_createLink($editiconhtml, $editUrl) );
+            $attr = array('class' => 'editlink');
+            $article->set_var( 'edit_icon', COM_createLink($editiconhtml, $editUrl, $attr) );
             $article->set_var( 'edit_image', $editiconhtml);
         }
 
