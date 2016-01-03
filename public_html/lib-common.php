@@ -5911,7 +5911,7 @@ function phpblock_whosonline()
 {
     global $_CONF, $_TABLES, $LANG01, $_IMAGE_TYPE;
 
-    $retval = '';
+    $retval = '<ul class="uk-subnav uk-flex-center">';
 
     $expire_time = time() - $_CONF['whosonline_threshold'];
 
@@ -5960,22 +5960,18 @@ function phpblock_whosonline()
                                                 $fullname );
             }
             $url = $_CONF['site_url'] . '/users.php?mode=profile&amp;uid=' . $A['uid'];
-            $retval .= COM_createLink($username, $url);
 
-            if( !empty( $A['photo'] ) AND $_CONF['allow_user_photo'] == 1) {
-                if ($_CONF['whosonline_photo'] == true) {
-                    $usrimg = '<img src="' . $_CONF['site_url']
-                            . '/images/userphotos/' . $A['photo']
-                            . '" alt="" height="30" width="30"' . XHTML . '>';
-                } else {
-                    $usrimg = '<img src="' . $_CONF['layout_url']
+            $usrimg = '<img class="uk-border-circle" src="' . $_CONF['layout_url']
                             . '/images/smallcamera.' . $_IMAGE_TYPE
-                            . '" alt=""' . XHTML . '>';
-                }
+                            . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
 
-                $retval .= '&nbsp;' . COM_createLink($usrimg, $url);
+            if( !empty( $A['photo'] ) AND $_CONF['allow_user_photo'] == 1 AND ( $_CONF['whosonline_photo'] == true ) ) {
+                    $usrimg = '<img class="uk-border-circle" src="' . $_CONF['site_url']
+                            . '/images/userphotos/' . $A['photo']
+                            . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
             }
-            $retval .= '<br' . XHTML . '>';
+            $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
+
             $num_reg++;
         }
         else
@@ -5984,6 +5980,7 @@ function phpblock_whosonline()
             $num_anon++; // count as anonymous
         }
     }
+    $retval .= '</ul>';
 
     $num_anon += DB_count($_TABLES['sessions'], array('uid', 'whos_online'), array(1, 1));
 
@@ -5993,8 +5990,9 @@ function phpblock_whosonline()
         // note that we're overwriting the contents of $retval here
         if( $num_reg > 0 )
         {
-            $retval = $LANG01[112] . ': ' . COM_numberFormat($num_reg)
-                    . '<br' . XHTML . '>';
+            $retval = '<li><img class="uk-border-circle" src="' . $_CONF['layout_url']
+                            . '/images/smallcamera.' . $_IMAGE_TYPE
+                            . '" alt="" height="30" width="30" data-uk-tooltip title="' . $LANG01[112] . ': ' . COM_numberFormat($num_reg) . ' "' . XHTML . '>' . $LANG01[112] . ': ' . COM_numberFormat($num_reg).'</li>';
         }
         else
         {
@@ -6004,8 +6002,10 @@ function phpblock_whosonline()
 
     if( $num_anon > 0 )
     {
-        $retval .= $LANG01[41] . ': ' . COM_numberFormat($num_anon)
-                . '<br' . XHTML . '>';
+        $retval .= '<ul class="uk-subnav uk-flex-left"><li><img class="uk-border-circle" src="' . $_CONF['layout_url']
+                            . '/images/smallcamera.' . $_IMAGE_TYPE
+                            . '" alt="" height="30" width="30" data-uk-tooltip title="' . $LANG01[41] . ': ' . COM_numberFormat($num_anon) . ' "' . XHTML . '>'. $LANG01[41] . ': ' . COM_numberFormat($num_anon) .'</li>'
+                . '</ul>';
     }
 
     return $retval;
