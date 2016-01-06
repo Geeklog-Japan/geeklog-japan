@@ -6,7 +6,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="admin-blockeditor-title">{lang_blocktitle}</label>
         <div class="uk-form-controls">
-			<input type="text" value="{block_title}" name="title" id="admin-blockeditor-title" class="uk-form-width-medium"{xhtml}>
+			<input type="text" value="{block_title}" name="title" id="admin-blockeditor-title" class="uk-form-width-medium" required="1"{xhtml}>
 		</div>
     </div>
     <div class="uk-form-row">
@@ -25,7 +25,7 @@
     </div>
     <div class="uk-form-row">
         <label class="uk-form-label" for="admin-blockeditor-name">{lang_blockname}</label>
-        <div class="uk-form-controls"><input type="text" value="{block_name}" name="name" id="admin-blockeditor-name" class="uk-form-width-medium" describedby="admin-blockeditor-d3"{xhtml}>
+        <div class="uk-form-controls"><input type="text" value="{block_name}" name="name" id="admin-blockeditor-name" class="uk-form-width-medium" describedby="admin-blockeditor-d3" required="1"{xhtml}>
             <span class="uk-form-help-inline" id="admin-blockeditor-d3">{lang_nospaces}</span>
         </div>
     </div>

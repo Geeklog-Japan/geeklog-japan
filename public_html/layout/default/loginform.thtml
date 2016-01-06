@@ -5,13 +5,13 @@
         <legend class="hidden_legend">{lang_login}</legend>
 
         <div class="uk-form-row">
-            <div class="uk-form-controls"><input class="uk-width-1-1" type="text" value="" name="loginname" placeholder="{lang_username}"{xhtml}></div>
+            <div class="uk-form-controls"><input class="uk-width-1-1" type="text" value="" name="loginname" placeholder="{lang_username}" required="1"{xhtml}></div>
         </div>
 
         {services}
 
         <div class="uk-form-row">
-            <input class="uk-width-1-1" type="password" name="passwd" placeholder="{lang_password}"{xhtml}>
+            <input class="uk-width-1-1" type="password" name="passwd" placeholder="{lang_password}" required="1"{xhtml}>
         </div>
 
         <div class="uk-form-row">

@@ -23,12 +23,12 @@
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-mailform-subject">{lang_subject}</label>
-            <div class="uk-form-controls"><input type="text" value="{subject}" name="subject" class="uk-form-width-medium" id="admin-mailform-subject"{xhtml}>
+            <div class="uk-form-controls"><input type="text" value="{subject}" name="subject" class="uk-width-1-1" id="admin-mailform-subject" required="1"{xhtml}>
             </div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-mailform-message">{lang_body}</label>
-            <div class="uk-form-controls"><textarea rows="12" cols="44" name="message" id="admin-mailform-message" class="uk-width-1-1">{message}</textarea>
+            <div class="uk-form-controls"><textarea rows="12" cols="44" name="message" id="admin-mailform-message" class="uk-width-1-1" required="1">{message}</textarea>
             </div>
         </div>
         <div class="uk-form-row">

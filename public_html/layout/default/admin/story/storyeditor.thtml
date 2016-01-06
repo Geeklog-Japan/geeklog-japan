@@ -8,7 +8,7 @@
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-storyeditor-title">{lang_title}</label>
-            <div class="uk-form-controls"><input type="uk-form-width-mediaum" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title" class="uk-form-width-large"{xhtml}></div>
+            <div class="uk-form-controls"><input type="uk-form-width-mediaum" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title" class="uk-form-width-large" required="1"{xhtml}></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-storyeditor-page_title">{lang_page_title}</label>
@@ -16,7 +16,7 @@
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label" for="admin-storyeditor-sid">{lang_sid}</label>
-            <div class="uk-form-controls"><input type="uk-form-width-small" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="uk-form-width-mediaum"{xhtml}></div>
+            <div class="uk-form-controls"><input type="uk-form-width-small" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="uk-form-width-mediaum" required="1"{xhtml}></div>
         </div>
         <div class="uk-form-row"{hide_meta}>
             <label class="uk-form-label" for="admin-storyeditor-metadescription">{lang_metadescription}</label>
@@ -147,7 +147,7 @@
 
         <div class="uk-form-row">
             <label for="admin-storyeditor-introtext">{lang_introtext}</label>
-            <div><textarea cols="70" rows="12" name="introtext" id="admin-storyeditor-introtext" class="uk-width-1-1" aria-describedby="admin-storyeditor-j-d4">{story_introtext}</textarea></div>
+            <div><textarea cols="70" rows="12" name="introtext" id="admin-storyeditor-introtext" class="uk-width-1-1" aria-describedby="admin-storyeditor-j-d4" required="1">{story_introtext}</textarea></div>
         </div>
         <div class="uk-form-row">
             <label for="admin-storyeditor-bodytext">{lang_bodytext}</label>
