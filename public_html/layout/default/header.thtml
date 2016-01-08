@@ -22,7 +22,7 @@
 {rel_links}
 {plg_headercode}
 
-<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="{layout_url}/css_{direction}/ie8.css"{xhtml}><![endif]-->
+<!--[if lt IE 8]><link rel="stylesheet" href="{layout_url}/css_{direction}/ie8.css"{xhtml}><![endif]-->
 <!--[if lt IE 9]><script type="text/javascript" src="{layout_url}/javascript/respond.min.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>

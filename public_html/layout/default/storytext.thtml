@@ -3,12 +3,6 @@
 <article itemscope itemtype="http://schema.org/Article" class="<?php if(SEC_inGroup('Root')){ ?>gl-edit <?php } ?>uk-article">
   <header>
 
-    <ul class="uk-subnav uk-flex-right uk-margin-remove">
-      <li><g:plusone href="{site_url}/article.php/{story_id}"></g:plusone></li>
-      <li><a class="twitter-share-button" data-url="{site_url}/article.php/{story_id}" href="https://twitter.com/intent/tweet?text={story_title}" data-lang="ja">Tweet</a></li>
-      <li><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{!!autotag domain: !!}%2Farticle.php%2F{story_id}&amp;width=150&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId={!!autotag conf:facebook_consumer_key !!}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:20px;" allowTransparency="true"></iframe></li>
-    </ul>
-
     <h1 itemprop="name" class="uk-article-title uk-margin-remove">{start_storylink_anchortag}{story_title}{end_storylink_anchortag}</h1>
 
     <div class="uk-grid">

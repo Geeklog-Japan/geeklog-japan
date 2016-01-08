@@ -48,7 +48,8 @@ $.UIkit.modal('#gl-login').show();
   };
  
   return t;
-}(document, "script", "twitter-wjs"));</script>
+}(document, "script", "twitter-wjs"));
+</script>
 
 
   <!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
