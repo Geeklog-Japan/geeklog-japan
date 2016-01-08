@@ -5965,32 +5965,40 @@ function phpblock_whosonline()
                             . '/images/smallcamera.' . $_IMAGE_TYPE
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
 
+        	$num_reg++;
             if( !empty( $A['photo'] ) AND $_CONF['allow_user_photo'] == 1 AND ( $_CONF['whosonline_photo'] == true ) ) {
+
+				if(!COM_isAnonUser()){
                     $usrimg = '<img class="uk-border-circle" src="' . $_CONF['site_url']
                             . '/images/userphotos/' . $A['photo']
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
-            }
-            $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
-
-            $num_reg++;
+				}
+            } else 
+			{
+			}
+			if(!COM_isAnonUser()){
+	            $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
+			} else {
+			}
         }
         else
         {
-            // this user does not want to show up in Who's Online
-            $num_anon++; // count as anonymous
+	    	// this user does not want to show up in Who's Online
+        	$num_anon++; // count as anonymous
         }
     }
     $retval .= '</ul>';
 
     $num_anon += DB_count($_TABLES['sessions'], array('uid', 'whos_online'), array(1, 1));
 
-    if(( $_CONF['whosonline_anonymous'] == 1 ) &&
-            COM_isAnonUser() )
+    if(( $_CONF['whosonline_anonymous'] == 1 ) && COM_isAnonUser() )
     {
+            $retval = '';
+
         // note that we're overwriting the contents of $retval here
         if( $num_reg > 0 )
         {
-            $retval = '<li><img class="uk-border-circle" src="' . $_CONF['layout_url']
+            $retval = '<ul class="uk-subnav uk-flex-left"><li><img class="uk-border-circle" src="' . $_CONF['layout_url']
                             . '/images/smallcamera.' . $_IMAGE_TYPE
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $LANG01[112] . ': ' . COM_numberFormat($num_reg) . ' "' . XHTML . '>' . $LANG01[112] . ': ' . COM_numberFormat($num_reg).'</li>';
         }
@@ -8271,7 +8279,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
             if (!empty($_CONF['site_name'])) {
                 $title = $_CONF['site_name'] . ' - ' . $title;
             }
-            echo "<html><head><meta charset=\"".$_CONF['default_charset']."\"><title>$title</title></head>\n<body>\n";
+            echo "<html><head><title>$title</title></head>\n<body>\n";
 
             echo '<h1>An error has occurred:</h1>';
             if ($_CONF['rootdebug']) {
@@ -8383,7 +8391,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
         echo "
         <html>
             <head>
-                <meta charset=\"".$_CONF['default_charset']."\"><title>{$title}</title>
+                <title>{$title}</title>
             </head>
             <body>
             <div style=\"width: 100%; text-align: center;\">
@@ -8808,7 +8816,6 @@ function COM_checkInstalled()
 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta charset="'.$_CONF['default_charset'].'\">
 <title>Welcome to Geeklog</title>
 <meta name="robots" content="noindex,nofollow" />
 <style type="text/css">
