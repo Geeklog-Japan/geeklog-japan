@@ -8271,7 +8271,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
             if (!empty($_CONF['site_name'])) {
                 $title = $_CONF['site_name'] . ' - ' . $title;
             }
-            echo "<html><head><title>$title</title></head>\n<body>\n";
+            echo "<html><head><meta charset=\"".$_CONF['default_charset']."\"><title>$title</title></head>\n<body>\n";
 
             echo '<h1>An error has occurred:</h1>';
             if ($_CONF['rootdebug']) {
@@ -8383,7 +8383,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
         echo "
         <html>
             <head>
-                <title>{$title}</title>
+                <meta charset=\"".$_CONF['default_charset']."\"><title>{$title}</title>
             </head>
             <body>
             <div style=\"width: 100%; text-align: center;\">
@@ -8808,6 +8808,7 @@ function COM_checkInstalled()
 '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+<meta charset="'.$_CONF['default_charset'].'\">
 <title>Welcome to Geeklog</title>
 <meta name="robots" content="noindex,nofollow" />
 <style type="text/css">
