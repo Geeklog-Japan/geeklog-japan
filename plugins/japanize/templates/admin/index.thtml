@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <div class="block-center">
 	<h2>{lang_piname}</h2>
 	<div class="block-center-content">
@@ -65,3 +67,5 @@
 	</form>
 	</div>
 </div>
+
+{# end {templatelocation} #}

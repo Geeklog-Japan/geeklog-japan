@@ -1,4 +1,4 @@
-<!--users/loginform.thtml { -->
+{# begin {templatelocation} #}
 
 {start_block_loginagain}
 <p>{lang_message}</p>
@@ -35,4 +35,4 @@
 </div>
 {end_block}
 
-<!--} users/loginform.thtml -->
+{# end {templatelocation} #}

@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- BEGIN validation_error_block -->
 <div class="validation_error_block"><span></span>{validation_error_message}</div>
 <!-- END validation_error_block -->
@@ -81,3 +83,5 @@
 <input type="button" value="{lang_add_element}" class="add_ele_input" onclick="handleAdd(this, '{array_type}', '{arr_name}')"{xhtml}>
 </div>
 <!-- END unkeyed-add-button -->
+
+{# end {templatelocation} #}

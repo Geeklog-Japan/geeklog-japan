@@ -11,6 +11,7 @@
   <link rel="canonical" href="{article_url}">
 </head>
 <body id="print" dir="{direction}">
+{# begin {templatelocation} #}
   <div id="wrapper">
     <div id="header">
       <h1>{story_title}</h1>
@@ -25,5 +26,6 @@
       <p>{page_title} - {site_name}<br>{article_url}</p>
     </div>
   </div>
+{# end {templatelocation} #}
 </body>
 </html>

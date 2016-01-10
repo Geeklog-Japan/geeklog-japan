@@ -1,4 +1,4 @@
-<!-- start centerblock_displayline.thtml -->
+{# begin {templatelocation} #}
 
 <tr>
   <td class="uk-text-truncate" style="max-width:320px">
@@ -21,4 +21,4 @@
   </td>	
 </tr>
 
-<!-- end centerblock_displayline.thtml -->
+{# end {templatelocation} #}

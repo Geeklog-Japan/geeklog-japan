@@ -445,9 +445,9 @@ if (!function_exists('CUSTOM_menuEntries')) {
 
                     if (!empty($pattern)) {
                         if ($A['is_preg'] == 0) {
-                            $selected = (strpos($_CMED_CONF['current_url'], $pattern) === false) ? '' : 'selected';
+                            $selected = (strpos($_CMED_CONF['current_url'], $pattern) === false) ? '' : 'uk-active';
                         } else {
-                            $selected = (preg_match($pattern, $_CMED_CONF['current_url']) == 0)  ? '' : 'selected';
+                            $selected = (preg_match($pattern, $_CMED_CONF['current_url']) == 0)  ? '' : 'uk-active';
                         }
                     }
                     

@@ -6,3 +6,5 @@
 <!-- BEGIN current -->
 <li class="useroption_off sideoption_off">{option_label}&nbsp;{option_count}</li>
 <!-- END current -->
+
+{# end {templatelocation} #}

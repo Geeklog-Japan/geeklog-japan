@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 {noscript}
 <div id="geeklog_config_editor" style="display:none;">
     <form method="post" action="{site_admin_url}/configuration.php" name="group" class="uk-form uk-form-horizontal">
@@ -66,3 +68,5 @@
         </div>
     </div>
 </div>
+
+{# end {templatelocation} #}
