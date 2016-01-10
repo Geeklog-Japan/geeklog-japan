@@ -1,26 +1,36 @@
+{# begin {templatelocation} #}
+
 <!-- start memberlist.thtml -->
 {navmenu}
-<form method="post" action="{site_url}/forum/memberlist.php" style="margin:0px;">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<form class="uk-form" method="post" action="{site_url}/forum/memberlist.php">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td colspan="3" class="pluginHeader" style="padding:5px;width:95%;">{LANG_TITLE}</td>
-        <td colspan="5" class="pluginHeader" style="padding:5px;text-align:right; white-space:nowrap;">{LANG_ACTIVITY}&nbsp;<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}></td>
+        <th colspan="3">{LANG_TITLE}</th>
+        <th colspan="5">{LANG_ACTIVITY}&nbsp;<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}></th>
     </tr>
 </table>
-<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:10px;">    
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellText pluginCellTitle aligncenter" style="padding:5px; width:40%; white-space:nowrap;"><a href="{phpself}?order=1&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading1}</a></td>
-        <td class="pluginCellText pluginCellTitle" style="padding:5px; white-space:nowrap;"><a href="{phpself}?order=2&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading2}</a></td>
-        <td class="pluginCellText pluginCellTitle aligncenter" style="padding:5px; width:120%; white-space:nowrap;"><a href="{phpself}?order=3&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading3}</a></td>
-        <td class="pluginCellText pluginCellTitle aligncenter" style="padding:5px; width:40%; white-space:nowrap;"><a href="{phpself}?order=4&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading4}</a></td>
-        <td class="pluginCellTitle" colspan="4" style="padding:5px 0px 5px 5px; white-space:nowrap; width:120%;">&nbsp;</td>
+        <th class="uk-text-nowrap"><a href="{phpself}?order=1&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading1}</a></td>
+        <th class="uk-text-nowrap"><a href="{phpself}?order=2&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading2}</a></td>
+        <th class="uk-text-nowrap"><a href="{phpself}?order=3&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading3}</a></td>
+        <th class="uk-text-nowrap"><a href="{phpself}?order=4&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading4}</a></td>
+        <th class="uk-text-nowrap" colspan="4">&nbsp;</td>
     </tr>
         {report_records}
 </table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-            <td class="aligncenter">{pagenavigation}</td>
+            <td class="uk-text-center">{pagenavigation}</td>
     </tr>
 </table>
+</div>
 </form>
 <!-- start memberlist.thtml -->
+
+{# end {templatelocation} #}

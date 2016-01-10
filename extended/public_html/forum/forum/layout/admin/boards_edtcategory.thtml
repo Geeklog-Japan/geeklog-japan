@@ -1,31 +1,35 @@
+{# begin {templatelocation} #}
 
-<!-- start boards_editcategory.thtml -->
-<form action="{PHP_SELF}" method="post">
-    <table width="100%" border="0" cellspacing="1" cellpadding="0" style="margin-top:10px;" class="plugin">
+<form class="uk-form" action="{PHP_SELF}" method="post">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
         <tr>
-            <td class="pluginTitle" style="padding-left:10px;">{title}</td>
+            <th>{title}</th>
         </tr>
         <tr>
-            <td class="pluginCellSubTitle" style="padding:0px;">
-                <table width="100%" border="0" cellspacing="1" cellpadding="0">
+            <th>
+				<div class="uk-overflow-container">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                     <tr>
-                        <td style="width:110px;" class="pluginCellSubTitle">{LANG_NAME}</td>
-                        <td class="pluginCellText pluginCellFill" style="white-space:nowrap;"><input type="text" name="name" value="{catname}" size="70"{xhtml}></td>
+                        <th>{LANG_NAME}</th>
+                        <th><input type="text" name="name" value="{catname}" size="70"{xhtml}></th>
                     </tr>
                     <tr>
-                        <td class="pluginCellSubTitle" style="white-space:nowrap;">{LANG_ORDER}&nbsp;</td>
-                        <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="catorder" value="{catorder}" size="5"{xhtml}></td>
+                        <th>{LANG_ORDER}&nbsp;</th>
+                        <th><input type="text" name="catorder" value="{catorder}" size="5"{xhtml}></th>
                     </tr>
                     <tr>
-                        <td class="pluginCellSubTitle">{LANG_DESCRIPTION}</td>
-                        <td class="pluginCellText pluginCellFill"><input type="text" name="dscp" value="{catdscp}" size="70"{xhtml}></td>
+                        <th>{LANG_DESCRIPTION}</th>
+                        <th><input type="text" name="dscp" value="{catdscp}" size="70"{xhtml}></th>
                     </tr>
                 </table>
-            </td>
+				</div>
+            </th>
         </tr>
         <tr>
-            <td class="pluginCellSubTitle aligncenter">
-                <table width="100%" border="0" cellspacing="1" cellpadding="3">
+            <th>
+				<div class="uk-overflow-container">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                     <tr>
                         <td>
                             <input type="submit" name="submit" value="{LANG_SAVE}"{xhtml}>&nbsp;
@@ -38,8 +42,11 @@
                         </td>
                     </tr>
                 </table>
-            </td>
+				</div>
+            </th>
         </tr>
     </table>
+</div>
 </form>
-<!-- end boards_editcategory.thtml -->
+
+{# end {templatelocation} #}

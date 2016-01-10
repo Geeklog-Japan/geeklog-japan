@@ -1,11 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start print.thtml -->
-<form action="{printlink}" method="post" style="margin:0;"><div>
-    <input type="submit" name="btnsubmit" value="{LANG_print}">
-</div></form>
-<!--   Alternative layout -->
-<!--
-<div style="margin: 0; float: right;">
-    <a class="profilebutton" href="{printlink}">{printlinktext}</a>  
-</div>
--->
+	<a class="uk-icon-button uk-icon-print" href="{printlink}"></a>  
 <!-- end print.thtml -->
+
+{# end {templatelocation} #}

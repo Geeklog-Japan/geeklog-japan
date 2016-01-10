@@ -1,13 +1,14 @@
+{# begin {templatelocation} #}
 
-<!-- start messages.thtml -->
 {startblock}
 {navbar}
-<form  name="frm_messages" action="{phpself}" method="post" style="margin:0px;">
+<form class="uk-form"  name="frm_messages" action="{phpself}" method="post">
 <div>
     <input type="hidden" name="op" value=""{xhtml}>
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </div>
-<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:25px; margin-bottom:15px;">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
         <td>
             <select name="forum" style="width:140px" onchange="document.frm_messages.submit();"><option selected="selected" value="-1">{LANG_select1}{select_forum}</option></select>
@@ -16,25 +17,28 @@
         </td>
     </tr>
 </table>
-<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellTitle" style="width:1%; white-space:nowrap;"><img src="{imgset}/trash.png" title="{LANG_deleteall}" alt="" style="border:none;" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.frm_messages.op.value="delchecked"; document.frm_messages.submit();}'{xhtml}></td>
-        <td class="pluginCellTitle" style="width:20%; white-space:nowrap;">{LANG_Author}</td>
-        <td class="pluginCellTitle" style="width:39%; white-space:nowrap;">{LANG_Subject}</td>
-        <td class="pluginCellTitle aligncenter" style="width:10%; white-space:nowrap;">{LANG_Views}</td>
-        <td class="pluginCellTitle aligncenter" style="width:10%; white-space:nowrap;">{LANG_Replies}</td>
-        <td class="pluginCellTitle aligncenter" style="width:20%; white-space:nowrap;">{LANG_Actions}</td>
+        <th class="uk-text-nowrap"><img src="{imgset}/trash.png" title="{LANG_deleteall}" alt="" style="border:none;" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.frm_messages.op.value="delchecked"; document.frm_messages.submit();}'{xhtml}></th>
+        <th class="uk-text-nowrap">{LANG_Author}</th>
+        <th class="uk-text-nowrap">{LANG_Subject}</th>
+        <th class="uk-text-nowrap">{LANG_Views}</th>
+        <th class="uk-text-nowrap">{LANG_Replies}</th>
+        <th class="uk-text-nowrap">{LANG_Actions}</th>
     </tr>
     <tr style="display:{showalert};">
         <td colspan="6" class="pluginAlert">{alertmessage}</td>
     </tr>
 {message_records}
 </table>
-<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:10px;">
+</div>
+
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="aligncenter">{pagenav}</td>
+        <td class="uk-text-center">{pagenav}</td>
     </tr>
 </table>
 </form>
 {endblock}
-<!-- end messages.thtml -->
+
+{# end {templatelocation} #}

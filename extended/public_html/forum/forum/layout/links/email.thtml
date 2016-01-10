@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start email.thtml -->
-<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{emaillink}">{emaillinktext}</a></td>                          
+<a href="{emaillink}"><i class="uk-icon-envelope"></i></a>
 <!-- end email.thtml -->
+
+{# end {templatelocation} #}

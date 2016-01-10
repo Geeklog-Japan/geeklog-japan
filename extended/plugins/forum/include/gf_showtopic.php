@@ -57,8 +57,10 @@ function showrank($rank, $rankname)
     $retval = '';
     $starimage = "<img src=\"%s\" alt=\"%s\" title=\"$rankname\"" . XHTML . ">";
     if ($rank <= 5) {
-        $on  = sprintf($starimage, gf_getImage('rank_on','ranks'), '+');
-        $off = sprintf($starimage, gf_getImage('rank_off','ranks'), '-');
+//        $on  = sprintf($starimage, gf_getImage('rank_on','ranks'), '+');
+        $on  = '<i class="uk-icon-square" style="margin-right:2px"></i>';
+//        $off = sprintf($starimage, gf_getImage('rank_off','ranks'), '-');
+        $off  = '<i class="uk-icon-square-o" style="margin-right:2px"></i>';
         for ($i=1; $i<=$rank; $i++) {
             $retval .= $on;
         }
@@ -67,9 +69,11 @@ function showrank($rank, $rankname)
         }
     } else {
         if ($rank == 6) {
-            $i = sprintf($starimage, gf_getImage('rank_mod','ranks'), 'M');
+//            $i = sprintf($starimage, gf_getImage('rank_mod','ranks'), 'M');
+            $i = '<i class="uk-icon-star-o" style="margin-right:2px"></i>';
         } else if ($rank == 7) {
-            $i = sprintf($starimage, gf_getImage('rank_admin','ranks'), 'A');
+//            $i = sprintf($starimage, gf_getImage('rank_admin','ranks'), 'A');
+            $i = '<i class="uk-icon-star" style="margin-right:2px"></i>';
         }
         $retval = $i . $i . $i . $i. $i;
     }
@@ -154,16 +158,21 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1)
             $avatar = USER_getPhoto($showtopic['uid'],'','',$CONF_FORUM['avatar_width']);
             $min_height = $min_height + 50;
         } else {
-			$avatar = '';
-		}
+            $avatar = '';
+            $min_height = $min_height + 50;
+	}
 
         $regdate = $LANG_GF01['REGISTERED']. ': ' . strftime($_CONF['shortdate'],strtotime($userarray['regdate'])). '<br' . XHTML . '>';
         $numposts = $LANG_GF01['POSTS']. ': ' .$posts;
+/*
         if (DB_count( $_TABLES['sessions'], 'uid', $showtopic['uid']) > 0 AND DB_getItem($_TABLES['userprefs'],'showonline',"uid={$showtopic['uid']}") == 1) {
             $avatar .= '<br' . XHTML . '>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['ONLINE'];
         } else {
             $avatar .= '<br' . XHTML . '>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['OFFLINE'];
         }
+*/
+	$forum_status = $LANG_GF01['STATUS'];
+	$forum_online = $LANG_GF01['ONLINE'];
 
         if ($userarray['sig'] != '') {
             $sig = '<hr size="1" style="width: 95%; color:black; text-align:left; margin-left:0; margin-bottom:0.5em; padding:0;" noshade' . XHTML . '>';
@@ -286,7 +295,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1)
             $is_readonly = DB_getItem($_TABLES['forum_forums'],'is_readonly','forum_id=' . $showtopic['forum']);
             if ($is_readonly == 0 OR forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_edit')) {
                 $quotelink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum={$showtopic['forum']}&amp;id=$replytopicid&amp;quoteid={$showtopic['id']}";
-                $quotelinktext = '<img style="margin: 0 0.5em 0.1em 0;" src="'.gf_getImage('quotes').'" alt=""' . XHTML . '>&nbsp;' . $LANG_GF09['quote'];
+                $quotelinktext = $LANG_GF09['quote'];
                 $topictemplate->set_var ('quotelink', $quotelink);
                 $topictemplate->set_var ('quotelinktext', $quotelinktext);
                 $topictemplate->set_var ('LANG_quote', $LANG_GF01['QUOTEICON']);
@@ -379,6 +388,8 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1)
     $topictemplate->set_var ('user_level', $user_level);
     $topictemplate->set_var ('magical_image', $moodimage);
     $topictemplate->set_var ('avatar', $avatar);
+    $topictemplate->set_var ('forum_status', $forum_status);
+    $topictemplate->set_var ('forum_online', $forum_online);
     $topictemplate->set_var ('regdate', $regdate);
     $topictemplate->set_var ('numposts', $numposts);
 //    $topictemplate->set_var ('location', $location);

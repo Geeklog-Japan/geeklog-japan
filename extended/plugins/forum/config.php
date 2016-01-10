@@ -58,7 +58,7 @@ $CONF_FORUM['autoimagetype'] = true;
 $CONF_FORUM['image_type_override'] = 'gif'; 
 
 // Default date/time format to use if Forum setting for allow user-dateformat is disabled
-$CONF_FORUM['default_Datetime_format'] = $_CONF['shortdate']." ".$_CONF['timeonly'] ;
+$CONF_FORUM['default_Datetime_format'] = $_CONF['shortdate']."<!-- ".$_CONF['timeonly']." -->" ;
 
 // Date format that is shown at the top of of the topic post used if Forum setting for allow user-dateformat is disabled
 $CONF_FORUM['default_Topic_Datetime_format'] = $_CONF['shortdate']." ".$_CONF['timeonly'] ;
@@ -98,10 +98,10 @@ $CONF_FORUM['sort_order_asc'] = true;
 // Place images in the directory /forum/forum/image_set/badges
 // Note Root needs a unique mapping since if you are in the Root group, then you are in all groups
 $CONF_FORUM['grouptags'] = array(
-    'Root'            => 'siteadmin_badge.png',
-    'Logged-in Users' => 'forum_user.png',
-    'Group A'         => 'badge1.png',
-    'Group B'         => 'badge2.png'
+    'Root'            => '<span class="uk-badge">SITE Admin</span>', // siteadmin_badge.png
+    'Logged-in Users' => '<span class="uk-badge">Forum User</span>', // forum_user.png
+    'Group A'         => '<span class="uk-badge">Group A</span>', // badge1.png
+    'Group B'         => '<span class="uk-badge">Group B</span>' // badge2.png
 );
 
 // Should glMenu be used for this menublock

@@ -95,9 +95,9 @@ a.postbutton:hover {
   -webkit-box-shadow: 0px 0px 2px #888;
 }
 
-/* CSS Declarations for Code block feature - default will use the .php one */
+/* CSS Declarations for Code block feature - default will use the .php one
 div .php { max-height:400px; overflow:auto; height:auto; width:auto; min-height:100px; }
 div .html { height:300px; overflow:auto; width:auto; min-height:100px; }
 div .css { height:300px; overflow:auto; width:auto; min-height:100px; }
-
+ */
 /* END of Forum Plugin CSS */

@@ -1,68 +1,82 @@
+{# begin {templatelocation} #}
 
-<!-- start index.thtml --><!-- The following is a divider that works across all platforms and browsers -->
-<table width="100%" cellspacing="0" cellpadding="0" style="margin-top:5px; border:0 none;">
+<!-- The following is a divider that works across all platforms and browsers -->
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellTitle alignleft">{statsmsg}</td>
+        <td>{statsmsg}</td>
     </tr>
 </table>
-<table width="100%" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="border:0 none;">
-        <tr class="pluginRow1">
-                <td style="width:80%; padding:5px;">{totalcatsmsg}</td>
-                <td style="padding-left:20px;">{totalcats}</td>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+                <td>{totalcatsmsg}</td>
+                <td>{totalcats}</td>
         </tr>
-        <tr class="pluginRow2">
-                <td style="padding:5px;">{totalforumsmsg}</td>
-                <td style="padding-left:20px;">{totalforums}</td>
+        <tr>
+                <td>{totalforumsmsg}</td>
+                <td>{totalforums}</td>
         </tr>
-        <tr class="pluginRow1">
-                <td style="padding:5px;">{totaltopicsmsg}</td>
-                <td style="padding-left:20px;">{totaltopics}</td>
+        <tr>
+                <td>{totaltopicsmsg}</td>
+                <td>{totaltopics}</td>
         </tr>
-        <tr class="pluginRow2">
-                <td style="padding:5px;">{totalpostsmsg}</td>
-                <td style="padding-left:20px;">{totalposts}</td>
+        <tr>
+                <td>{totalpostsmsg}</td>
+                <td>{totalposts}</td>
         </tr>
-        <tr class="pluginRow1">
-                <td style="padding:5px;">{totalviewsmsg}</td>
-                <td style="padding-left:20px;">{totalviews}</td>
+        <tr>
+                <td>{totalviewsmsg}</td>
+                <td>{totalviews}</td>
         </tr>
 </table>
-<table width="100%" cellspacing="0" cellpadding="0" style="margin-top:10px; border:0 none;">
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellTitle alignleft">{avgpmsg}</td>
+        <td>{avgpmsg}</td>
     </tr>
 </table>
-<table width="100%" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="border:0 none;">
-        <tr class="pluginRow1">
-                <td style="width:80%; padding:5px;">{category}</td>
-                <td style="padding-left:20px;">{avgcposts}</td>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+                <td>{category}</td>
+                <td>{avgcposts}</td>
         </tr>
-        <tr class="pluginRow2">
-                <td style="padding:5px;">{forum}</td>
-                <td style="padding-left:20px;">{avgfposts}</td>
+        <tr>
+                <td>{forum}</td>
+                <td>{avgfposts}</td>
         </tr>
-        <tr class="pluginRow1">
-                <td style="padding:5px;">{topic}</td>
-                <td style="padding-left:20px;">{avgtposts}</td>
+        <tr>
+                <td>{topic}</td>
+                <td>{avgtposts}</td>
         </tr>
 </table>
-<table width="100%" cellspacing="0" cellpadding="0" style="margin-top:10px; border:0 none;">
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellTitle alignleft">{avgvmsg}</td>
+        <td class="">{avgvmsg}</td>
     </tr>
 </table>
-<table width="100%" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="border:0 none;">
-        <tr class="pluginRow1">
-                <td style="width:80%; padding:5px;">{category}</td>
-                <td style="padding-left:20px;">{avgcviews}</td>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+                <td>{category}</td>
+                <td>{avgcviews}</td>
         </tr>
-        <tr class="pluginRow2">
-                <td style="padding:5px;">{forum}</td>
-                <td style="padding-left:20px;">{avgfviews}</td>
+        <tr>
+                <td>{forum}</td>
+                <td>{avgfviews}</td>
         </tr>
-        <tr class="pluginRow1">
-                <td style="padding:5px;">{topic}</td>
-                <td style="padding-left:20px;">{avgtviews}</td>
+        <tr>
+                <td>{topic}</td>
+                <td>{avgtviews}</td>
         </tr>
 </table>
-<!-- end header.thtml -->
+</div>
+
+{# end {templatelocation} #}

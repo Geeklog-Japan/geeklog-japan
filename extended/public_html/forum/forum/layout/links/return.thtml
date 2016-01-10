@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start return.thtml -->
-<td class="pluginButton" style="white-space:nowrap;"><a {returnlink}>{LANG_return}</a></td>
+<a class="uk-button" {returnlink}>{LANG_return}</a>
 <!-- end return.thtml -->
+
+{# end {templatelocation} #}

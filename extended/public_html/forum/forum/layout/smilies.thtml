@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <div style="float: left; padding: 3px; width: 16px; height: 16px;"><a href="javascript:emoticon(':D')"><img style="border:none; vertical-align:middle;" src="{imgset}/smilies/biggrin.png" alt="Big Grin" title="Big Grin"{xhtml}></a></div>
 <div style="float: left; padding: 3px; width: 16px; height: 16px;"><a href="javascript:emoticon(':)')"><img style="border:none; vertical-align:middle;" src="{imgset}/smilies/smile.png" alt="Smile" title="Smile"{xhtml}></a></div>
 <div style="float: left; padding: 3px; width: 16px; height: 16px;"><a href="javascript:emoticon(':(')"><img style="border:none; vertical-align:middle;" src="{imgset}/smilies/frown.png" alt="Frown" title="Frown"{xhtml}></a></div>
@@ -22,3 +24,5 @@
 <div style="float: left; padding: 3px; width: 16px; height: 16px;"><a href="javascript:emoticon(':mrgreen:')"><img style="border:none; vertical-align:middle;" src="{imgset}/smilies/mrgreen.png" alt="Mr. Green" title="Mr. Green"{xhtml}></a></div>
 <div style="float: left; padding: 3px; width: 16px; height: 16px;"><a href="javascript:emoticon(':sick:')"><img style="border:none; vertical-align:middle;" src="{imgset}/smilies/sick.png" alt="Sick" title="Sick"{xhtml}></a></div>
 <div style="float: left; padding: 3px; width: 16px; height: 16px;"><a href="javascript:emoticon(':tired:')"><img style="border:none; vertical-align:middle;" src="{imgset}/smilies/tired.png" alt="Tired" title="Tired"{xhtml}></a></div>
+
+{# end {templatelocation} #}

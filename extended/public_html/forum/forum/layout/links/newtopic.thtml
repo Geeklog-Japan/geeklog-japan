@@ -1,6 +1,9 @@
+{# begin {templatelocation} #}
+
 <!-- start newtopic.thtml -->
-  <a class="postbutton" href="{newtopiclink}">
-    <img alt="" src="{newtopiclinkimg}"{xhtml}>
+  <a class="uk-button uk-button-primary uk-text-nowrap" href="{newtopiclink}">
     {newtopiclinktext}
   </a>
 <!-- end newtopic.thtml -->
+
+{# end {templatelocation} #}

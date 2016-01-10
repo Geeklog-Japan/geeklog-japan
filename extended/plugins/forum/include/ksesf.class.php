@@ -71,10 +71,10 @@
 	*	+ Deprecated _hook(), Protocols()
 	*	+ Integrated code from kses 0.2.2 into class.
 	*
-	*	@author     Richard R. Vásquez, Jr. (Original procedural code by Ulf Härnhammar)
+	*	@author     Richard R. V叩squez, Jr. (Original procedural code by Ulf H辰rnhammar)
 	*	@link       http://sourceforge.net/projects/kses/ Home Page for Kses
 	*	@link       http://chaos.org/contact/ Contact page with current email address for Richard Vasquez
-	*	@copyright  Richard R. Vásquez, Jr. 2003-2005
+	*	@copyright  Richard R. V叩squez, Jr. 2003-2005
 	*	@version    PHP4 OOP 0.2.2
 	*	@license    http://www.gnu.org/licenses/gpl.html GNU Public License
 	*	@package    kses

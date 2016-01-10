@@ -1,5 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start subscribe_forum.thtml -->
-<form action="{subscribelink}" method="post" style="margin:0"><div>
+<form class="uk-form" action="{subscribelink}" method="post"><div>
     <span>{LANG_subscribe_state}&nbsp;</span>
     <input type="submit" name="subscribelink" value="{LANG_subscribe}"{xhtml}>
 </div></form>
@@ -10,3 +12,5 @@
 </div>
 -->
 <!-- end subscribe_forum.thtml -->
+
+{# end {templatelocation} #}

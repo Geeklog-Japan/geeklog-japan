@@ -47,7 +47,7 @@ $display = '';
 
 //Check is anonymous users can post
 if ($CONF_FORUM['registered_to_post'] && $_USER['uid'] < 2) {
-    $url = $_CONF['site_url']. '/users.php?mode=new';
+    $url = $_CONF['site_url']. '/users.php';
     $display .= COM_startBlock($LANG_GF00['access_denied']);
     $display .= '<br' . XHTML . '>' .$LANG_GF01['loginreqpost']. '<p>';
     $display .= '<meta http-equiv="refresh" content="3; URL=' .$url. '">';

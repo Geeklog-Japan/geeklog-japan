@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start markread.thtml -->
-<td class="pluginButton" style="white-space:nowrap;">[&nbsp;<a {markreadlink}>{LANG_markread}</a>&nbsp;]</td>
+[&nbsp;<a {markreadlink}>{LANG_markread}</a>&nbsp;]
 <!-- end markread.thtml -->
+
+{# end {templatelocation} #}

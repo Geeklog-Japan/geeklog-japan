@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start quotetopic.thtml -->
-<td style="padding-top:3px;"><a class="profilebutton" href="{quotelink}">{quotelinktext}</a></td>                       
+<a class="uk-button uk-button-primary" href="{quotelink}">{quotelinktext}</a>
 <!-- end quotetopic.thtml -->
+
+{# end {templatelocation} #}

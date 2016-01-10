@@ -1,77 +1,56 @@
-<!-- start topic.thtml -->
-<tr class="pluginRow{csscode}">
-        <td style="padding-left:6px; padding-right:6px; height:30px;">{userlink}{topic_post_link_begin}{topic_post_link_end}</td>
-        <td style="padding-left:6px; padding-right:6px;">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                                <td style="width:8px; white-space:nowrap;" class="aligncenter">
-                                    <img alt="" style="vertical-align: middle;" src="{imgset}/icon_minipost.gif"{xhtml}>
-                                    &nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{locked_icon}
-                                </td>
-                                <td class="alignright">
-                                    <div style="vertical-align:top; padding-top:2px;" class="alignright">
-                                        {mod_functions}
-                                    </div>
-                                </td>
-                        </tr>
-                </table>
-        </td>
-</tr>
-<tr class="pluginRow{csscode}">
-    <td style="vertical-align:top; padding:6px; white-space:nowrap;">
-        <div>
-                    {user_level}<br{xhtml}>
-                    {user_levelname}
-        </div>
-        <div>
-                    {magical_image}
-                    <div style="padding-top:3px;">{avatar}</div>{member_badge}
-                    <br{xhtml}>
-                    {regdate}
-                    {numposts}<br{xhtml}>
-                    {location}
-        </div>
-        <div style="background:transparent; width:110px; height:1px;"></div>       
-    </td>
-    <td style="vertical-align:top; padding:6px; width:100%;" class="pluginRow{csscode}">
-            <div style="{comment_minheight};">
-                {topic_comment}
-            </div>
-            <div style="clear:both;"></div>
-            <div style="height:45px; padding-top:10px;display:{show_sig};">
-                    {sig}<br{xhtml}>
-                    {remote_ip}
-            </div>
-    </td>
-</tr>
-<tr class="pluginRow{csscode}" style="display:{preview_mode};">
-    <td style="height:30px;">&nbsp;</td>
-    <td style="padding-left:6px; padding-right:6px;"> 
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td style="white-space:nowrap;">
-                    <table border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            {profile_link}
-                            {email_link}
-                            {website_link}
-                            {pm_link}
-                        </tr>
-                    </table>
-                </td>
-                <td class="alignright" style="float:right; white-space:nowrap;">
-                    <table border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            {edittopic_link}
-                            {quotetopic_link}
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </td>
-</tr>
-<tr>
-        <td colspan="2" class="pluginSolidOutline"><div style="background:transparent; width:1px; height:10px;"></div></td>
-</tr>
-<!-- end topic.thtml -->
+{# begin {templatelocation} #}
+
+<hr>
+<div class="uk-grid">
+	<div class="uk-width-1-1">
+		<i class="uk-icon-comment-o"></i>
+		&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{locked_icon}
+	</div>
+</div>
+
+<div class="uk-grid" style="margin-top:0">
+
+	<div class="uk-width-1-6">
+		<div class="uk-width-large-1-1 uk-text-center">
+			<div class="uk-overlay-toggle">
+				<div class="uk-overlay">
+					{avatar}
+					<div class="uk-overlay-area" style="background:none">
+						<div class="uk-overlay-area-content">
+							{magical_image}
+							{profile_link}
+							{email_link}
+							{website_link}
+							{pm_link}
+						</div>
+					</div>
+				</div>
+			</div>
+			<h4 class="uk-margin-bottom-remove">{userlink}</h4>
+			    {topic_post_link_begin}{topic_post_link_end}
+			<div>{member_badge}</div>
+			<div style="display:{show_sig};">
+				{sig}<br{xhtml}>
+				{remote_ip}
+			</div>
+			<div class="uk-text-muted uk-text-small">
+				{user_level}<br{xhtml}>
+				{user_levelname}<br{xhtml}>
+				{regdate}
+				{numposts}<br{xhtml}>
+				{location}
+			</div>
+		</div>
+	</div>
+	<div class="uk-width-5-6">
+		<div class="uk-text-right">{mod_functions}</div>
+		<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-text-break" style="margin: 1em 0; min-height: 120px">{topic_comment}
+		</div>
+		<div class="uk-text-right">
+			{edittopic_link}
+			{quotetopic_link}
+		</div>
+	</div>
+</div>
+
+{# end {templatelocation} #}

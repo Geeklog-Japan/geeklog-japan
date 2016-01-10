@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start pm.thtml -->
-<td class="pluginRollOut" onmouseover="className='pluginRollOver';this.style.cursor='pointer';" onmouseout="className='pluginRollOut';" style="text-align:center;width:40px;padding:2px;" onclick="window.location.href='{pmlink}'">{LANG_pm}</td>                          
+<a class="uk-icon-button uk-icon-clock-o" {pmlink}>{LANG_pm}</a>                          
 <!-- end pm.thtml -->
+
+{# end {templatelocation} #}

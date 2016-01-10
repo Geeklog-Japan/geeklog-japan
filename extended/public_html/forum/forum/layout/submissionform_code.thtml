@@ -1,7 +1,7 @@
+{# begin {templatelocation} #}
 
-<!-- start submissionform_code.thtml -->
-            <td class="pluginCellSubTitle">&nbsp;{LANG_code}:</td>
-            <td class="pluginCellText pluginCellFill">&nbsp;
+            <th>&nbsp;{LANG_code}:</th>
+            <td>&nbsp;
                 <input type="button" class="button" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle(0)" onmouseover="helpline('b')"{xhtml}>
                 <input type="button" class="button" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle(2)" onmouseover="helpline('i')"{xhtml}>
                 <input type="button" class="button" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle(4)" onmouseover="helpline('u')" {xhtml}>
@@ -44,4 +44,5 @@
                 <br{xhtml}><br{xhtml}>
                 <input type="text" name="helpbox" size="80" maxlength="100" class="helpline" value="{LANG_codetip}"{xhtml}>
             </td>
-<!-- end submissionform_code.thtml -->
+
+{# end {templatelocation} #}

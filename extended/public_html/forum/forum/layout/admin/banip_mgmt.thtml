@@ -1,27 +1,30 @@
+{# begin {templatelocation} #}
 
-<!-- start banip_mgmt.thtml -->
 {startblock}
 {navbar}
-<form id="banform" name="frm_messages" action="{phpself}" method="post" style="margin:0px;">
-<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-top:25px;">
+<form class="uk-form" id="banform" name="frm_messages" action="{phpself}" method="post">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellTitle" style="width:90% white-space:nowrap;">{LANG_IP}</td>
-        <td class="pluginCellTitle" style="width:10%; padding-right:5px; white-space:nowrap;">{LANG_Actions}</td>
+        <th>{LANG_IP}</th>
+        <th>{LANG_Actions}</th>
     </tr>
     <tr style="display:{showalert};">
         <td colspan="6" class="pluginAlert">{alertmessage}</td>
     </tr>
 {ip_records}
 </table>
-
-<table cellspacing="0" cellpadding="4" border="0" width="100%" style="margin-top:10px;">
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="aligncenter">{pagenav}</td>
+        <td class="uk-text-center">{pagenav}</td>
     </tr>
 </table>
+</div>
 
-<div class="clearfix">
-    <fieldset style="float: left; padding: 10px; margin: 10px;">
+<div>
+    <fieldset>
     <!-- A form for baning IP addresses -->
         <legend>{legend}</legend>
         <label for="ipaddress">{lang_ip2}:</label>
@@ -48,4 +51,5 @@
 </div>
 </form>
 {endblock}
-<!-- end banip_mgmt.thtml -->
+
+{# end {templatelocation} #}

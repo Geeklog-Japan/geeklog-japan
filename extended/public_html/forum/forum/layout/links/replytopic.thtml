@@ -1,7 +1,9 @@
+{# begin {templatelocation} #}
+
 <!-- start replytopic.thtml -->
-<!-- {LANG_reply} -->
-  <a class="postbutton" href="{replytopiclink}">
-    <img alt="" src="{replytopiclinkimg}"{xhtml}>
+  <a class="uk-button uk-button-primary uk-text-nowrap" href="{replytopiclink}">
     {replytopiclinktext}
   </a>
 <!-- end replytopic.thtml -->
+
+{# end {templatelocation} #}

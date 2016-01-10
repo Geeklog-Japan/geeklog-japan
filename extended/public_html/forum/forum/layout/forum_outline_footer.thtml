@@ -1,4 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start forum_outline_footer.thtml -->
 <br{xhtml}>
-<!-- end forum_outline_footer.thtml -->
+
+{# end {templatelocation} #}

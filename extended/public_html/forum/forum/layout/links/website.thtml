@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 <!-- start website.thtml -->
-<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{websitelink}">{websitelinktext}</a></td> 
+	<a href="{websitelink}"><i class="uk-icon-home"></i></a>
 <!-- end website.thtml -->
+
+{# end {templatelocation} #}

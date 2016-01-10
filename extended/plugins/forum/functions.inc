@@ -2,7 +2,7 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog Forums Plugin 2.9.0                                               |
+// | Geeklog Forums Plugin 2.9.0 ivywe                                         |
 // +---------------------------------------------------------------------------+
 // | functions.inc                                                             |
 // +---------------------------------------------------------------------------+
@@ -1248,7 +1248,10 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
     $f_tooltip = function_exists('COM_getTooltip');
     $cssid = 0;
     while ($A = DB_fetchArray ($result)) {
-        $fullsubject = "{$A['subject']}\n{$LANG_GF01['POSTEDBY']}:{$A['name']}{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}";
+//        $fullsubject = "{$A['subject']}\n{$LANG_GF01['POSTEDBY']}:{$A['name']}{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}";
+
+        $fullsubject = "{$LANG_GF01['POSTEDBY']}:{$A['name']}{$LANG_GF01['VIEWS']}:{$A['views']}";
+
         if (strlen ($A['subject']) > $CONF_FORUM['cb_subject_size']) {
             $A['subject'] = COM_truncate($A['subject'], $CONF_FORUM['cb_subject_size'], '...');
         }
@@ -1263,13 +1266,14 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
             $lastdate = strftime($CONF_FORUM['default_Datetime_format'], $A['lastupdated']);
         }
         if ($A['uid'] > 1) {
-            $topicinfo = "{$A['subject']}<br" . XHTML . ">{$LANG_GF01['STARTEDBY']} " . COM_getDisplayName($A['uid']) . ', ';
+            $topicinfo = COM_getDisplayName($A['uid']) ;
             //$topicinfo .= sprintf($LANG_GF01['LASTREPLYBY'],COM_getDisplayName($A['uid']));
         } else {
-            $topicinfo = "{$A['subject']}<br" . XHTML . ">{$LANG_GF01['STARTEDBY']},{$A['name']},";
+            $topicinfo = "{$A['name']}";
         }
 
-        $topicinfo .= "{$firstdate}<br" . XHTML . ">{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}<br" . XHTML . ">";
+//        $topicinfo .= "{$firstdate} " . " {$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}</span>";
+//        $topicinfo .= "{$firstdate} " . " {$LANG_GF01['VIEWS']}:{$A['views']}"."</span>";
 
         if (empty ($A['last_reply_rec']) OR $A['last_reply_rec'] < 1) {
             $lastid = $A['id'];
@@ -1280,16 +1284,16 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
             $lastid = $B['id'];
             $lastcomment = $B['comment'];
             if ($B['uid'] > 1) {
-                $topicinfo .= sprintf($LANG_GF01['LASTREPLYBY'],COM_getDisplayName($B['uid']));
+	          $lastpostuser = sprintf("%s",COM_getDisplayName($B['uid']));
             } else {
-                $topicinfo .= sprintf($LANG_GF01['LASTREPLYBY'],$B['name']);
+	          $lastpostuser = sprintf("%s",$B['name']);
             }
         }
         $lastpostinfo = strip_tags(COM_truncate($lastcomment, $CONF_FORUM['contentinfo_numchars'], '...'));
         $lastpostinfo = str_replace(LB, "<br" . XHTML . ">", forum_mb_wordwrap($lastpostinfo, $CONF_FORUM['linkinfo_width'], LB));
 
         $cssid = ($cssid == 1) ? 2 : 1;
-
+$f_tooltip=0;
         if ($f_tooltip) {
             $lastpostlink = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic={$A['id']}&amp;lastpost=true#{$lastid}";
             $block->set_var ('tooltip_date', COM_getTooltip($lastdate, $lastpostinfo, $lastpostlink));
@@ -1298,9 +1302,15 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
         } else {
             $block->set_var ('lastpostinfo', $lastpostinfo);
             $block->set_var ('topicinfo', $topicinfo);
-            $block->set_var ('date', $lastdate);
+            $block->set_var ('date', $firstdate);
+            $block->set_var ('lastdate', $lastdate);
             $block->set_var ('topic_subject', $A['subject']);
         }
+
+        $block->set_var ('lastpostuser', $lastpostuser);
+
+
+
         $block->set_var ('lastpostid', $lastid);
         $block->set_var ('cssid', $cssid);
         $block->set_var ('img_dir', $CONF_FORUM['imgset']);
@@ -1310,6 +1320,7 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
         $block->set_var ('fullsubject', $fullsubject);
         $block->set_var ('views', $A['views']);
         $block->set_var ('replies', $A['replies']);
+        $block->set_var ('posts', $A['replies']+1);
         $block->set_var ('lastpostby',$A['name']);
         $block->parse ('block_records', 'record',true);
     }
@@ -1704,11 +1715,11 @@ function forumPLG_getMemberBadge($uid) {
         if (!SEC_inGroup('Root',$uid)) {
             foreach ($CONF_FORUM['grouptags'] as $groupid => $buttonimg) {
                 if (SEC_inGroup($groupid,$uid)) {
-                    return "<img alt=\"\" src=\"{$CONF_FORUM['imgset']}/badges/{$buttonimg}\"" . XHTML . "><br" . XHTML . ">";
+                    return "{$buttonimg}<br" . XHTML . ">";
                 }
             }
         } else {
-            return "<img alt=\"\" src=\"{$CONF_FORUM['imgset']}/badges/{$CONF_FORUM['grouptags']['Root']}\"" . XHTML . "><br" . XHTML . ">";
+            return "{$CONF_FORUM['grouptags']['Root']}<br" . XHTML . ">";
         }
     }
 }
