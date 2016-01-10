@@ -580,44 +580,67 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
 
 // テーマ変数をセットする 
 // Set theme variables
-require_once( 'custom/custom_templatesetvars.php' );
+if (file_exists($_CONF['path'].'systemcustom/custom_templatesetvars.php')) {
+	require_once( 'custom/custom_templatesetvars.php' );
+}
 
 // 静的ページコンテンツの内容を返す 
 // Return Staticpage content
-require_once( 'custom/custom_getstaticpage.php' );
+if (file_exists( $_CONF['path'].'systemcustom/custom_getstaticpage.php')) {
+    require_once( 'custom/custom_getstaticpage.php' );
+}
 
 // テーマ変更時にデフォルトテーマをセットしているユーザのテーマも強制的に変更する
 // Force user's theme when site theme is changed
-require_once( 'custom/custom_forcethemechange.php' );
+if (file_exists($_CONF['path'].'systemcustom/custom_forcethemechange.php')) {
+	require_once( 'custom/custom_forcethemechange.php' );
+}
 
 // 新着記事リストを表示する 
 // List new articles
-require_once( 'custom/phpblock_lastarticles.php' );
+if (file_exists($_CONF['path'].'system/custom/phpblock_lastarticles.php')) {
+	require_once( 'custom/phpblock_lastarticles.php' );
+}
 
 // ログインユーザの権限を表示する 
 // Show rights
-require_once( 'custom/phpblock_showrights.php' );
+if (file_exists($_CONF['path'].'system/custom/phpblock_showrights.php')) {
+//	require_once( 'custom/phpblock_showrights.php' );
+}
 
 // サイトのテーマを変更する 
 // Change site theme
-require_once( 'custom/phpblock_themetester.php' );
+if (file_exists( $_CONF['path'].'system/custom/phpblock_themetester.php')) {
+	require_once( 'custom/phpblock_themetester.php' );
+}
 
+/*
 // アクセス数を表示する 
 // Display access number
-require_once( 'custom/phpblock_stats.php' );
+if (file_exists($_CONF['path'].'system/custom/phpblock_stats.php')) {
+	require_once( 'custom/phpblock_stats.php' );
+}
 
 // ユーザーエージェント判定のテンプレート変数を追加する 
 // Add theme variable of useragent
-require_once( 'custom/useragent.class.php' );
+if (file_exists($_CONF['path'].'system/custom/useragent.class.php')) {
+//	require_once( 'custom/useragent.class.php' );
+}
 
 // RSS Aggregator
+if (file_exists($_CONF['path'].'system/custom/phpblock_rssaggregator.php')) {
 // require_once( 'custom/phpblock_rssaggregator.php' );
+}
 
 // 404
+if (file_exists($_CONF['path'].'system/custom/custom_handle404.php')) {
 // require_once( 'custom/custom_handle404.php' );
+}
 
 // Forum Center Block
+if (file_exists($_CONF['path'].'system/custom/custom_centerblock_forum.php')) {
 // require_once( 'custom/custom_centerblock_forum.php' );
-
+}
+*/
 
 ?>
