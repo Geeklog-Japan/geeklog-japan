@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <form action="{site_admin_url}/plugins/custommenu/index.php" method="post" class="compact">
   <div class="admin_basic">
@@ -92,3 +93,5 @@
     </div>
   </div>
 </form>
+
+{# end {templatelocation} #}

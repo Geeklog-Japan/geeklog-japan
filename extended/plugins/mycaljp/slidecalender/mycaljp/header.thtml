@@ -1,1 +1,5 @@
+{# begin {templatelocation} #}
+
     <th class="{weekday_class}">{title_weekday}</th>
+
+{# end {templatelocation} #}

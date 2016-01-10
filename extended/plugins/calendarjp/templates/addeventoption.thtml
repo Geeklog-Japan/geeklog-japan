@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <form method="post" action="{site_url}{addevent_formurl}">
     <div>
@@ -8,3 +9,5 @@
         <input type="hidden" name="view" value="addentry"{xhtml}>
     </div>
 </form>
+
+{# end {templatelocation} #}

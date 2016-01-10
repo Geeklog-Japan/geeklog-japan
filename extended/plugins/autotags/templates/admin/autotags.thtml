@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
   {start_block_editor}
   <form action="{site_admin_url}/plugins/autotags/index.php" method="post">
       <table border="0" cellspacing="0" cellpadding="3" width="100%">
@@ -43,3 +45,5 @@
     </p>
   </form>
   {end_block}
+
+{# end {templatelocation} #}

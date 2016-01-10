@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <div class="admin-menu">
     <img src="{icon}" class="admin-menu-icon"{xhtml}>
     <div class="admin-menu-items">
@@ -8,3 +10,6 @@
     </div>
     <div class="clearboth"></div>
 </div>
+
+{# end {templatelocation} #}
+

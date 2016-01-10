@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <li id="{menuitem_id}" class="menuitem {menuitem_class}"><a href="{menuitem_url}"{class_property}>{menuitem_text}<!--[if gte IE 7]><!--></a><!--<![endif]-->
 <!--[if lte IE 6]><table><tr><td><![endif]-->
 <ul>
@@ -5,3 +7,5 @@
 </ul>
 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 </li>
+
+{# end {templatelocation} #}

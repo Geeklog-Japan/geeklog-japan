@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <div class="block-center">
 	<h2>{lang_title}</h2>
 	{done}
@@ -16,3 +18,5 @@
 		</div>
 	</form>
 </div>
+
+{# end {templatelocation} #}

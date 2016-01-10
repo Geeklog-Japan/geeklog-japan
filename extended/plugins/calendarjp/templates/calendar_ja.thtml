@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- Begin Calendar -->
 {navbar}
@@ -90,3 +91,5 @@
     </tr>
 </table></div>
 <!-- End Calendar -->
+
+{# end {templatelocation} #}

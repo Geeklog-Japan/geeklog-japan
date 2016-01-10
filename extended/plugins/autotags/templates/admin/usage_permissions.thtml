@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <table cellpadding="0" cellspacing="0" class="admin-list-smalltable">
     <tr>
         <th class="edit-perm-up admin-list-headerfield">{lang_owner}</th>
@@ -12,3 +14,5 @@
         <td class="edit-perm-down admin-list-field"><b>U</b><br{xhtml}><input type="checkbox" name="perm_anon[]" value="2"{anon_checked}{xhtml}></td>
     </tr>
 </table>
+
+{# end {templatelocation} #}

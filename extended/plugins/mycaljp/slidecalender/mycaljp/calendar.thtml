@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- calendar.thtml -->
 <p class="skip"><a href="#calendar">サイトカレンダーをスキップ</a></p>
 <div class="mycaljp_slide">
@@ -17,3 +19,5 @@
   </table>
 </div>
 <p class="skip"><a name="calendar" id="calendar"> </a></p>
+
+{# end {templatelocation} #}

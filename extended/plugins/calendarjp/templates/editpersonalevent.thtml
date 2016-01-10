@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <form action="{site_url}/calendarjp/event.php" name="events" class="form-theme" method="post">
     <table border="0" cellspacing="0" cellpadding="3" class="events">
@@ -123,3 +124,5 @@
         </tr>
     </table>
 </form>
+
+{# end {templatelocation} #}

@@ -1,5 +1,4 @@
-
-<!-- plugins/calendarjp/templates/admin/eventeditor_advanced.thtml { -->
+{# begin {templatelocation} #}
 
 <form action="{site_admin_url}/plugins/calendarjp/index.php" name="events" method="post" id="calendar-eventeditor" class="compact" onsubmit='set_postcontent();'>
   <div class="admin_basic">
@@ -144,4 +143,4 @@
   </div>
 </form>
 
-<!-- } plugins/calendarjp/templates/admin/eventeditor_advanced.thtml -->
+{# end {templatelocation} #}

@@ -1,0 +1,39 @@
+{# begin {templatelocation} #}
+
+
+<!-- start navbar.thtml -->
+
+<div class="uk-grid">
+  <div class="uk-width-5-10">{search_forum}</div>
+  <div class="uk-width-5-10 uk-text-right">{select_forum}</div>
+</div>
+
+<!--
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td colspan="5" style="padding-right:0px;">{navmenu}</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="padding-right:0px;">
+			<div class="uk-overflow-container">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+                <tr>
+                    <td  class="uk-text-nowrap">
+                        {search_forum}
+                    </td>
+                    <td  class="uk-text-right; uk-text-nowrap">
+                        {select_forum}
+                    </td>
+                </tr>
+            </table>
+			</div>
+        </td>
+    </tr>
+</table>
+</div>
+-->
+
+<!-- end navbar.thtml -->
+
+{# end {templatelocation} #}
