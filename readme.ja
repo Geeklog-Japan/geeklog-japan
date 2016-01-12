@@ -1,3 +1,247 @@
+Geeklog日本語版
+
+							2015年 12月21日
+							Geeklog Japan
+
+1. 概要
+
+Geeklog Japanでは、Geeklog本家版を元に日本語化する作業およびよくつかわれる
+プラグインを配布しています。
+
+Geeklog本家版: http://www.geeklog.net/
+
+	* ロケール等を設定する日本語化プラグインの追加
+	* 有用なプラグイン、カスタム関数やブロックの同梱
+	* オリジナルのGeeklogに先行したバグ修正
+
+extended/には、上記標準版に対してさらに多くのアドオンを追加しています。
+
+Geeklog日本語版の詳細な情報については http://www.geeklog.jp/をご覧ください。
+
+
+2. Geeklog 2.1.1-jp-1.2の内容
+
+オリジナルのGeeklogに対して、以下のソースファイルを追加、修正しています。
+
+  (1)本体の修正
+
+    o インストール前チェック(Precheck)の追加
+
+	public_html/admin/install/precheck.php
+	public_html/admin/install/precheck.js
+	public_html/admin/install/precheck.css
+		インストール前のサーバーの日本語環境をチェックするプログラムで
+		す。インストール画面の「日本語環境のインストール前チェック」を
+		クリックして実行します。
+		php.ini .htaccess siteconfig.php設定方法の指南を行います。
+		データベースの設定画面で、ただしい情報を入力すればデータベース
+		名が自動的にリストボックスで表示されます。
+		※ JavaScriptが無効の場合はテキスト入力になります。
+
+    o インストーラーの修正
+
+	public_html/admin/install/index.php
+		インストールのエンコードをUTF-8固定にしています。
+
+	public_html/admin/install/disable-plugins.php
+		インストール時に、プログラムで指定しているプラグイン以外は無効
+		とします。
+		インストールすると不具合が発生するプラグインのインストールを防
+		ぐことができます。
+
+
+    o その他本体の修正
+
+	public_html/admin/story.php
+		記事編集時に、時刻指定で年月日の順番になるよう、言語専用テンプ
+		レートファイルを呼ぶハックを追加しています。
+		日本語用言語専用テンプレートファイルとして以下をすべてのテーマ
+		で追加して提供しています。
+
+		public_html/layout/ 以下の各テーマの以下のファイル:
+			admin/story/storyeditor_advanced.japanese_utf-8.thtml
+			admin/story/storyeditor.japanese_utf-8.thtml
+
+
+  (2) プラグインの追加
+
+    すべてのプラグインはCSRF対策を加えています。
+    Geeklog 1.8.1から、すべてのプラグインはGeeklog 1.6からのプラグイン管理の
+    機能である、圧縮ファイルによるプラグインアップロードに対応しました。
+
+	日本語化プラグイン(Japanize) バージョン 1.0.6RC5
+		Geeklogを日本語サイトとして活用するための数々の設定や、
+		機能追加を行っています。
+		日本語版開発の多くは、ハックではなく、このプラグインに
+		任せています。かならずインストールして、実行してください。
+		実行しない場合、メール送信などで不具合が発生します。
+
+
+
+    o /extendedに同梱　インストールの方法はそれぞれドキュメントを参照のこと。
+
+	自動タグプラグイン(Autotags) バージョン 1.1.1
+		日本語言語ファイルとタグ管理画面のテンプレートを変更しました。
+		本家の最新バージョンv1.1.1をマージしました。
+
+	カレンダーjpプラグイン(Calendarjp) バージョン 2.2.0
+		Calendarプラグインを日本語サイト向けにローカライズして
+		機能アップさせました。
+
+	CAPTCHAプラグイン(Captcha) バージョン 4.0.2
+		画像を使用した認証を提供します。
+
+	カスタムメニュープラグイン(Custommenu) バージョン 0.7.0
+		グローバルメニューを管理画面で設定します。
+
+	Dataproxyプラグイン(Dataproxy) バージョン 2.0.0
+		Geeklogのコンテンツ(記事、静的ページ、掲示板等)を取得
+		する共通のAPIを提供します。
+
+	Dbmanプラグイン(Dbman) バージョン 0.7.1
+		データベースのバックアップやリストアを実行します。
+		定期バックアップ等も。(mysqldumpコマンドを使用しません。)
+
+	ファイル管理プラグイン(Filemgmt) バージョン 1.6.0.jp3
+		ファイルのダウンロード機能を提供します。
+		※ダウンロードプラグイン(Download)が提供されています。
+
+	掲示板プラグイン(Forum) バージョン 2.9.0hg
+		掲示板機能を提供します。
+
+	Mycaljpプラグイン(Mycaljp) バージョン 2.2.0
+		サイトカレンダーを表示する提供するPHPブロック関数
+		phpblock_mycaljp2() を提供します。
+		※DataproxyプラグインのAPIを利用しているため、
+		Dataproxyプラグインのインストールが必要です。
+
+	話題譲渡プラグイン(Nmoxtopicown) バージョン1.0.12
+		トピックとその中の記事の所有者を変更する機能を提供します。
+
+	サイトマッププラグイン(Sitemap) バージョン 2.0.0
+		Geeklogサイトのサイトマップ表示とGoogle Sitemaps用XMLを作成し
+		ます。
+		※DataproxyプラグインのAPIを利用しているため、
+		Dataproxyプラグインのインストールが必要です。
+
+	テーマエディタープラグイン(Themedit) バージョン 1.2.1
+		テンプレートとカスケーディング・スタイルシートの編集や画像の管
+		理機能を提供します。
+
+
+  (3) カスタム関数とPHPブロック関数の追加
+
+    system/lib-custom.phpのコメントアウトをはずして利用してください。
+    ソースは、system/custom/ にあります。
+
+	system/custom/custom_forcethemechange.php
+		サイトのデフォルトテーマが変化した場合のコールバック関数
+		サイトのテーマを変更したらサイトのテーマを利用している
+		ユーザーのテーマも自動的に新テーマに変更します。
+
+	system/custom/custom_getstaticpage.php
+		静的ページコンテンツの内容を返すカスタム関数
+		CUSTOM_getStaticpage()
+		静的ページPHPやアプリケーション等で活用します。
+
+	system/custom/phpblock_lastarticles.php
+		新着記事のタイトルリンクを表示するPHPブロック関数
+		phpblock_lastarticles() phpblock_lastarticles2()
+		ブロックや静的ページPHPで活用します。
+		※複数フィード新着表示は RSSアグリゲータ(rssAggregator) を
+		  活用してください。
+
+	system/custom/phpblock_showrights.php
+		現在ログインしているユーザーの権限を表示するPHPブロック関数
+		phpblock_showrights()
+		ブロックや静的ページPHPで活用します。
+
+	system/custom/phpblock_stats.php
+		ページアクセス回数を表示するPHPブロック関数
+		phpblock_stats()
+		ブロックや静的ページPHPで活用します。
+
+	system/custom/phpblock_themetester.php
+		テーマを変更するテーマチェンジャーのPHPブロック関数
+		phpblock_themetester()
+		当初テーマテスターとして開発されましたが、その後、
+		機能としてはテーマチェンジャーに変わっており、
+		変更したテーマがデータベースに保存されるようになりました。
+
+	system/custom/custom_templatesetvars.php
+		テンプレート変数を生成します。
+		{topic_id}, {sp_id}, {home_id}, {login_status}, {prof_url_jp}
+		{custom_class}, {custom_os}, {custom_browser}, {custom_version},
+		{custom_alias}, {custom_mobile}
+
+	system/custom/useragent.class.php
+		ユーザーエージェントのテンプレート変数を生成します。
+		class:{custom_class} os:{custom_os} browser:{custom_browser}
+		alias:{custom_alias} version:{custom_version} mobile:{custom_mobile}
+
+
+  (4) テーマの追加
+
+    UIkitを最大限活用したDenimベースのHorizonを追加しました。
+
+
+  (5) その他
+
+	readme
+		本ファイルで、オリジナル版に対する日本語版の開発概要を紹介
+		しています。
+
+    https://github.com/Geeklog-jp/geeklog-jp
+	CHANGES.jp
+		Geeklog 2.0に関する修正内容です。
+
+	CHANGES-1.8.jp
+		Geeklog 1.8に関する修正内容です。(保守用のブランチ
+		作成の前までです。)
+
+	CHANGES-1.7.jp
+		Geeklog 1.7に関する修正内容です。(保守用のブランチ
+		作成の前までです。)
+
+	CHANGES-1.6.jp
+		Geeklog 1.6に関する修正内容です。(保守用のブランチ
+		作成の前までです。)
+
+	CHANGES-1.5.jp
+		Geeklog 1.5に関する修正内容です。(保守用のブランチ
+		作成の前までです。)
+
+	emailgeeklogstories.en
+		オリジナルのemailgeeklogstoriesです。
+
+	emailgeeklogstories
+		emailgeeklogstoriesを日本語化したものです。
+
+	NEWS
+		配布パッケージのNEWSです。
+
+	readme.ja
+		オリジナルのreadmeを日本語化したものです。
+
+	readme.en
+		オリジナルのreadmeです。
+
+	release_jp.php
+		リリースのためのバージョン管理ファイルです。
+
+
+3. Geeklog日本語版の修正履歴
+
+   すべてのGeeklog日本語版のIssueは以下から参照できます。
+
+   https://github.com/Geeklog-jp/geeklog-jp/issues/
+   https://github.com/Geeklog-jp/geeklog-japan/issues/
+
+以上
+================================================================
+以下は旧readme.jaの内容です。
+================================================================
+
                                 Geeklog Readme
                                 2013年 2月21日
 
