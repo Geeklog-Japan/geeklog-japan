@@ -4552,7 +4552,7 @@ function COM_showBlocks($side, $topic = '')
     // to COM_formatBlock
     foreach ($blocks as $A) {
         if (($A['type'] === 'dynamic') ||
-				SEC_hasAccess($A['owner_id'], $A['group_id'], $A['perm_owner'], $A['perm_group'], $A['perm_members'], $A['perm_anon'] ) > 0) {
+                SEC_hasAccess($A['owner_id'], $A['group_id'], $A['perm_owner'], $A['perm_group'], $A['perm_members'], $A['perm_anon'] ) > 0) {
            $retval .= COM_formatBlock($A, $_USER['noboxes']);
         }
     }
@@ -5965,33 +5965,34 @@ function phpblock_whosonline()
                             . '/images/smallcamera.' . $_IMAGE_TYPE
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
 
-        	$num_reg++;
+            $num_reg++;
             if( !empty( $A['photo'] ) AND $_CONF['allow_user_photo'] == 1 AND ( $_CONF['whosonline_photo'] == true ) ) {
 
-				if(!COM_isAnonUser()){
+                if(!COM_isAnonUser()){
                     $usrimg = '<img class="uk-border-circle" src="' . $_CONF['site_url']
                             . '/images/userphotos/' . $A['photo']
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
-				}
+                }
             } else 
-			{
-			}
-			if(!COM_isAnonUser()){
-	            $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
-			} else {
-			}
+            {
+            }
+            if(!COM_isAnonUser()){
+                $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
+            } else {
+            }
         }
         else
         {
-	    	// this user does not want to show up in Who's Online
-        	$num_anon++; // count as anonymous
+            // this user does not want to show up in Who's Online
+            $num_anon++; // count as anonymous
         }
     }
     $retval .= '</ul>';
 
     $num_anon += DB_count($_TABLES['sessions'], array('uid', 'whos_online'), array(1, 1));
 
-    if(( $_CONF['whosonline_anonymous'] == 1 ) && COM_isAnonUser() )
+    if(( $_CONF['whosonline_anonymous'] == 1 ) &&
+            COM_isAnonUser() )
     {
             $retval = '';
 
@@ -8274,6 +8275,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
 
             header('HTTP/1.1 500 Internal Server Error');
             header('Status: 500 Internal Server Error');
+            header('Content-Type: text/html; charset=' . COM_getCharset());
 
             $title = 'An Error Occurred';
             if (!empty($_CONF['site_name'])) {
