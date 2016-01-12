@@ -1,0 +1,29 @@
+# configuration file samples
+db-config.php.dist
+public_html/siteconfig.php.dist
+system/lib-custom.php.dist
+
+public_html/.htaccess
+
+data/layout_cache/**
+data/layout_css/**
+
+logs/*.log
+public_html/images/articles
+public_html/images/userphotos
+public_html/images/topics
+
+^config.php
+plugins/calendar/config.php
+plugins/links/config.php
+plugins/polls/config.php
+plugins/spamx/config.php
+plugins/staticpages/config.php
+
+backups/*.sql
+backups/*.tar.gz
+backups/*.tgz
+backups/*.zip
+
+#ignore thumbnails created by windows
+**/Thumbs.db
