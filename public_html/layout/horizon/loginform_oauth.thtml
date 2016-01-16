@@ -1,13 +1,13 @@
 {# begin {templatelocation} #}
 
 <!-- {lang_oauth_service} -->
-<li>
-<form class="uk-form" action="{site_url}/users.php?oauth_login={oauth_service}" method="post">
+<div>
+	<form class="uk-form" action="{site_url}/users.php?oauth_login={oauth_service}" method="post">
             {# <input type="submit" value="" id="login_{oauth_service}"{xhtml}> #}
 
             {# OAuth Button Style 1: Login buttons with icons (uncomment line below) #}
             <input type="submit" value="" style="background: url({oauth_sign_in_image}) left top no-repeat; border: none; width:40px; height:40px"{xhtml}>
-</form>
-</li>
+	</form>
+</div>
 
 {# end {templatelocation} #}

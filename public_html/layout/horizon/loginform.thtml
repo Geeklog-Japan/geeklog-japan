@@ -5,13 +5,13 @@
         <legend class="hidden_legend">{lang_login}</legend>
 
         <div class="uk-form-row">
-            <div class="uk-form-controls"><input class="uk-width-1-1" type="text" value="" name="loginname" placeholder="{lang_username}" required="1"{xhtml}></div>
+            <div class="uk-form-controls"><input class="uk-width-1-1" type="text" value="" name="loginname" placeholder="{lang_username}" required{xhtml}></div>
         </div>
 
         {services}
 
         <div class="uk-form-row">
-            <input class="uk-width-1-1" type="password" name="passwd" placeholder="{lang_password}" required="1"{xhtml}>
+            <input class="uk-width-1-1" type="password" name="passwd" placeholder="{lang_password}" required{xhtml}>
         </div>
 
         <div class="uk-form-row">
@@ -19,18 +19,18 @@
         </div>
 
         <div class="uk-form-row uk-text-small">
-				<ul class="uk-subnav uk-flex-center">
-					{!if lang_signup}<li class="uk-button uk-text-left" style="min-width:11em; padding-left:0.5em"><i class="uk-icon-plus-circle"></i> {lang_signup}</li>{!endif}
-                	{!if lang_forgetpassword}<li class="uk-button uk-text-left" style="min-width:11em; padding-left:0.5em"><i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}</li>{!endif}
-				</ul>
+			<div class="uk-form-controls">
+				{!if lang_signup}<i class="uk-icon-plus-circle"></i> {lang_signup}{!endif}
+                {!if lang_forgetpassword}<i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}{!endif}
+        	</div>
         </div>
 
     </fieldset>
 </form>
 
-{!!if openid_login || oauth_login !!}<ul class="uk-subnav uk-flex-center">{!endif}
+{!!if openid_login || oauth_login !!}<div class="uk-subnav uk-flex-center">{!endif}
 {openid_login}
 {oauth_login}
-{!!if openid_login || oauth_login !!}</ul>{!endif}
+{!!if openid_login || oauth_login !!}</div>{!endif}
 
-<!-- } loginform.thtml -->
+{# end {templatelocation} #}

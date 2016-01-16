@@ -30,9 +30,6 @@
 <body dir="{direction}" class="{layout_columns}">
 {# begin {templatelocation} #}
 
-  <!-- #container { -->
-  <div id="container" class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
-
     <nav class="uk-navbar uk-margin-bottom" data-uk-sticky="{ top:-100, animation: 'uk-animation-slide-top', boundary:true }">
       <a class="uk-navbar-brand uk-hidden-small" href="{site_url}"><img src="{layout_url}/images/logomark.svg" alt="{site_name}" style="height:32px; width:auto; margin-bottom:3px"></a>
       <ul class="uk-navbar-nav uk-hidden-small">
@@ -55,7 +52,7 @@
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
           <li><a href="{site_url}/usersettings.php?mode=edit"><i class="uk-icon-cog"></i> {$LANG01[48]}</a></li>
           <li><a href="{site_url}/users.php?mode=logout"><i class="uk-icon-sign-out"></i> {$LANG01[35]}</a></li>
-<?php } else { if ($_CONF['disable_new_user_registration']==0) {?>
+<?php } else { if ($_CONF['disable_new_user_registration']==0) { ?>
           <li><a href="{site_url}/users.php?mode=new"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
 <?php } ?>
           <li><a href="{site_url}/users.php"><i class="uk-icon-sign-in"></i> {$LANG01[58]}</a></li>
@@ -65,7 +62,8 @@
       </div>
     </div>
 
-    <hr class="separator"{xhtml}>
+  <!-- #container { -->
+  <div id="container" class="uk-container uk-container-center uk-margin-large-bottom">
 
     <!-- #wrapper { -->
     <div id="wrapper">
