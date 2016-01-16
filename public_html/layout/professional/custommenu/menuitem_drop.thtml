@@ -1,12 +1,9 @@
 {# begin {templatelocation} #}
 
-		<li id="{menuitem_id}" class="uk-parent" data-uk-dropdown>
-			<a href="">{menuitem_text}</a>
-			<div class="uk-dropdown uk-dropdown-width-2 uk-dropdown-navbar uk-dropdown-bottom">
-				<ul class="uk-nav uk-nav-navbar">
-					{menu_elements}
-				</ul>
-			</div>
-		</li>
+<li id="{menuitem_id}" class="menuitem {menuitem_class}"><a href="{menuitem_url}"{class_property}>{menuitem_text}</a>
+<ul>
+{menu_elements}
+</ul>
+</li>
 
 {# end {templatelocation} #}
