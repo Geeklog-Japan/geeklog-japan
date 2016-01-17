@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/mediagallery.class.php                  |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -42,17 +42,23 @@ class dpxyDriver_Mediagallery extends dpxyDriver
 		
 		static $retval = NULL;
 		
-		if ($retval === NULL) {
-			$sql = "SELECT config_value "
-				 . "  FROM {$_TABLES['mg_config']} "
-				 . "WHERE (config_name = 'loginrequired')";
-			$result = DB_query($sql);
-			
-			if (DB_error()) {
-				$retval = TRUE;	// just to be on the safe side
-			} else {
-				$A = DB_fetchArray($result, FALSE);
-				$retval = ((int) $A['config_value'] != 0);
+		$mgVersion = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
+		
+		if (version_compare($mgVersion, '1.7.0') >= 0) {
+			$retval = (bool) $_MG_CONF['loginrequired'];
+		} else {
+			if ($retval === NULL) {
+				$sql = "SELECT config_value "
+					 . "  FROM {$_TABLES['mg_config']} "
+					 . "WHERE (config_name = 'loginrequired')";
+				$result = DB_query($sql);
+				
+				if (DB_error()) {
+					$retval = TRUE;	// just to be on the safe side
+				} else {
+					$A = DB_fetchArray($result, FALSE);
+					$retval = ((int) $A['config_value'] != 0);
+				}
 			}
 		}
 		

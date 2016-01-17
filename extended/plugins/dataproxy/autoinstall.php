@@ -8,7 +8,7 @@
 // |                                                                           |
 // | This file provides helper functions for the automatic plugin install.     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2012 by the following authors:                         |
+// | Copyright (C) 2009-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Hiroron           - hiroron AT hiroron DOT com                   |
 // |          mystral-kk        - geeklog AT mystral-kk DOT net                |

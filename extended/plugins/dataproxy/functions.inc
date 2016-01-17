@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/functions.inc                                   |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
