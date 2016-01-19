@@ -7,9 +7,9 @@ tsuchi AT geeklog DOT jp
 2013/01/02 v2.0.1  modified & updated by mystral-kk (geeklog AT mystral-kk DOT net)
 2013/09/07 v2.0.2  a minor bug fix (geeklog AT mystral-kk DOT net)
 2014/02/09 v2.1.0  Updated to work with Geeklog-2.1.0
-
+2016/01/19 v2.1.1  Modified to use {welcome_msg} instead of {welcome_msg_jp}
 --------------------------------------------------------------------------------
-概要: Geeklog-2.1.0 を日本人流にするプラグインです
+概要: Geeklog-2.1.1 を日本人流にするプラグインです
        詳細については管理画面をご参照ください
 --------------------------------------------------------------------------------
 ファイル構成

@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/japanize/autoinstall.php                                  |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2014 by the following authors:                         |
+// | Copyright (C) 2009-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tsuchi           - tsuchi AT geeklog DOT jp                      |
 // |          mystral-kk       - geeklog AT mystral-kk DOT net                 |
@@ -27,7 +27,7 @@
 // +---------------------------------------------------------------------------+
 
 if (stripos($_SERVER['PHP_SELF'], 'autoinstall.php') !== false) {
-	die('This file cannot be used on its own.');
+    die('This file cannot be used on its own.');
 }
 
 /**
@@ -37,44 +37,44 @@ if (stripos($_SERVER['PHP_SELF'], 'autoinstall.php') !== false) {
 * @return   array               Plugin information
 */
 function plugin_autoinstall_japanize($pi_name) {
-	global $_JPN_CONF;
-	
-	include_once 'version.php';
+    global $_JPN_CONF;
+    
+    include_once 'version.php';
 
-	return array(
-		'info'            => array(
-			'pi_name'         => 'japanize',
-			'pi_display_name' => 'Japanize',
-			'pi_version'      => $_JPN_CONF['version'],
-			'pi_gl_version'   => '2.1.0',
-			'pi_homepage'     => 'http://www.geeklog.jp/filemgmt/index.php?id=340',
-		),
-		'groups'          => array(
-			'Japanize Admin' => 'Has full access to Japanize features',
-		),
-		'features'        => array(
-			'japanize.edit'  => 'Access to Japanize editor',
-		),
-		'mappings'        => array(
-			'japanize.edit'  => array('Japanize Admin'),
-		),
-		'tables'          => array(),
-	);
+    return array(
+        'info'            => array(
+            'pi_name'         => 'japanize',
+            'pi_display_name' => 'Japanize',
+            'pi_version'      => $_JPN_CONF['version'],
+            'pi_gl_version'   => '2.1.1',
+            'pi_homepage'     => 'http://www.geeklog.jp/filemgmt/index.php?id=340',
+        ),
+        'groups'          => array(
+            'Japanize Admin' => 'Has full access to Japanize features',
+        ),
+        'features'        => array(
+            'japanize.edit'  => 'Access to Japanize editor',
+        ),
+        'mappings'        => array(
+            'japanize.edit'  => array('Japanize Admin'),
+        ),
+        'tables'          => array(),
+    );
 }
 
 function plugin_load_configuration_japanize($pi_name) {
-	global $_CONF;
+    global $_CONF;
 
-	require_once $_CONF['path_system'] . 'classes/config.class.php';
-	require_once 'install_defaults.php';
+    require_once $_CONF['path_system'] . 'classes/config.class.php';
+    require_once 'install_defaults.php';
 
-	return plugin_initconfig_japanize();
+    return plugin_initconfig_japanize();
 }
 
 function plugin_compatible_with_this_version_japanize($pi_name) {
-	return function_exists('DB_escapeString') &&
-		   function_exists('COM_truncate') &&
-		   function_exists('MBYTE_strpos') &&
-		   function_exists('SEC_createToken') &&
-		   !function_exists('custom_mail');
+    return function_exists('DB_escapeString') &&
+           function_exists('COM_truncate') &&
+           function_exists('MBYTE_strpos') &&
+           function_exists('SEC_createToken') &&
+           !function_exists('custom_mail');
 }
