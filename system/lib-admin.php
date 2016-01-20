@@ -883,8 +883,8 @@ function ADMIN_getListField_users($fieldname, $fieldvalue, $A, $icon_arr)
         case 'username':
             $photoico = '';
             if (!empty ($A['photo'])) {
-                $photoico = "&nbsp;<img src=\"{$_CONF['layout_url']}/images/smallcamera."
-                          . $_IMAGE_TYPE . '" alt="{$LANG04[77]}"' . XHTML . '>';
+                $photoico = "&nbsp;<img src=\"{$_CONF['site_url']}/images/userphotos/"
+                          . $A['photo'] . "\" alt=\"{$A['username']}\" class=\"uk-border-circle\" style=\"width:30px; height:30px\"" . XHTML . '>';
             } else {
                 $photoico = '';
             }
