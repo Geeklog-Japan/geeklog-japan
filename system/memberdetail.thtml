@@ -2,7 +2,7 @@
 <!-- To be located under theme/custom directory - Example XSilver/custom/memberdetail.thtml -->
 {startblock}
 {message}
-<form action="{post_url}" method="post">
+<form action="{post_url}" method="post" class="uk-form">
     <table cellspacing="0" cellpadding="2" width="100%">
         <tr>
             <td align="right" class="alignleft" style="vertical-align:middle;padding-left:10px;"><b>{USERNAME}</b><br{xhtml}><small style="color:#676767">{USERNAME_HELP}</small></td>
