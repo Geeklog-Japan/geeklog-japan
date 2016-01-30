@@ -2,12 +2,16 @@
 Geeklog 日本語化（Japanize)プラグイン
 tsuchi AT geeklog DOT jp
 2008/09/27
-2011/02/07         update
-2012/12/31 v2.0.0  modified & updated by mystral-kk (geeklog AT mystral-kk DOT net)
-2013/01/02 v2.0.1  modified & updated by mystral-kk (geeklog AT mystral-kk DOT net)
-2013/09/07 v2.0.2  a minor bug fix (geeklog AT mystral-kk DOT net)
-2014/02/09 v2.1.0  Updated to work with Geeklog-2.1.0
-2016/01/19 v2.1.1  Modified to use {welcome_msg} instead of {welcome_msg_jp}
+2011/02/07          update
+2012/12/31 v2.0.0   modified & updated by mystral-kk (geeklog AT mystral-kk DOT net)
+2013/01/02 v2.0.1   modified & updated by mystral-kk (geeklog AT mystral-kk DOT net)
+2013/09/07 v2.0.2   a minor bug fix (geeklog AT mystral-kk DOT net)
+2014/02/09 v2.1.0   Updated to work with Geeklog-2.1.0
+2015/06/10          Added README.md
+2015/06/13          Changed $_CONF['url_rewrite'] setting to true
+2016/01/19 v2.1.1   Modified to use {welcome_msg} instead of {welcome_msg_jp}
+2016/01/30 v2.1.1.1 Modified to use {lang_attribute} instead of {html_attribute}
+
 --------------------------------------------------------------------------------
 概要: Geeklog-2.1.1 を日本人流にするプラグインです
        詳細については管理画面をご参照ください

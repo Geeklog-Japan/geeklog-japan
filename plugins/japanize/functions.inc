@@ -50,7 +50,7 @@ if (!is_callable('CUSTOM_convertEncoding') &&
 }
 
 /**
-* Converts language file name to language ID
+* Convert language file name to language ID
 *
 * @param   string   $language
 * @return  string
@@ -110,10 +110,9 @@ function JAPANIZE_languageToLangId($language) {
 }
 
 /**
-* Sets a variable to {html_attribute} template var
+* Set a variable to {lang_attribute} / {html_attribute} template var
 *
 * @param   object  $template
-* @return  (void)
 */
 function JAPANIZE_setHtmlAttribute(&$template) {
     global  $_USER, $_CONF;
@@ -137,7 +136,7 @@ function JAPANIZE_setHtmlAttribute(&$template) {
         
         if ((count($l) === 1) && (strlen($langId) === 2)) {
             // Do nothing
-        } else if (count($l) === 2) {
+        } elseif (count($l) === 2) {
             if (($l[0] === 'i') || ($l[0] === 'x')) {
                 $langId = implode('-', $l);
             } elseif (strlen($l[0]) === 2) {
@@ -164,7 +163,8 @@ function JAPANIZE_setHtmlAttribute(&$template) {
             break;
     }
 
-    $template->set_var( 'html_attribute', $html_attribute);
+    $template->set_var('lang_attribute', $html_attribute);
+    $template->set_var('html_attribute', $html_attribute);	// Left for compatibility
 }
 
 function JAPANIZE_execute($type, $lang) {
@@ -289,7 +289,7 @@ function plugin_upgrade_japanize() {
 }
 
 function plugin_autouninstall_japanize() {
-    // Undoes all Japanizations
+    // Undo all Japanizations
     for ($type = 1; $type <= 5; $type ++) {
         JAPANIZE_execute($type, 'en');
     }
@@ -365,6 +365,8 @@ function plugin_templatesetvars_japanize($templatename, &$template) {
                             ? ''
                             : $LANG01[67] . COM_getDisplayName() . $LANG_JPN['keisyo'];
             $template->set_var('welcome_msg', $welcome_msg_jp);
+
+            // Override {lang_attribute}
             JAPANIZE_setHtmlAttribute($template);
     }
 }
