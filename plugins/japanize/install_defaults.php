@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/japanize/install_defaults.php                             |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2014 by the following authors:                         |
+// | Copyright (C) 2009-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tsuchi           - tsuchi AT geeklog DOT jp                      |
 // |          mystral-kk       - geeklog AT mystral-kk DOT net                 |
@@ -27,7 +27,7 @@
 // +---------------------------------------------------------------------------+
 
 if (stripos($_SERVER['PHP_SELF'], 'install_defaults.php') !== false) {
-	die('This file cannot be used on its own!');
+    die('This file cannot be used on its own!');
 }
 
 global $_JAPANIZE_DEFAULT;
@@ -44,7 +44,7 @@ $_JAPANIZE_DEFAULT = array();
 * @return   boolean     true: success; false: an error occurred
 */
 function plugin_initconfig_japanize() {
-	global $_JAPANIZE_CONF, $_JAPANIZE_DEFAULT;
+    global $_JAPANIZE_CONF, $_JAPANIZE_DEFAULT;
 
-	return true;
+    return true;
 }
