@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- blank.thtml -->
                         <td style="width:100%; height:20px; white-space:nowrap;"><span class="pluginSolidFill">{LANG_blank}</span></td>
 
 {# end {templatelocation} #}

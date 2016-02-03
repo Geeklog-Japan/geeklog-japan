@@ -14,7 +14,6 @@
 {prevtopic_link} {nexttopic_link} </div>
 </div>
 
-
 <div>{pagenavigation}</div>
 
 {# end {templatelocation} #}

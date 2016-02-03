@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 {start_block_userprofile}
     <table cellspacing="0" cellpadding="3">
         <tr>
@@ -116,3 +117,4 @@
     </table>
 {end_block}
 
+{# end {templatelocation} #}

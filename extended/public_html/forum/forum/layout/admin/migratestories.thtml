@@ -50,8 +50,6 @@
 	<dd style="display:{show_message};">{status_message}</dd>
 </dl>
 
-
-
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>

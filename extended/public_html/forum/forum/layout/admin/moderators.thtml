@@ -35,7 +35,6 @@
 
 <input name="promptadd" type="submit" value="{LANG_addmod}" style="padding:3px;"{xhtml}></td>
 
-
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
         <tr>

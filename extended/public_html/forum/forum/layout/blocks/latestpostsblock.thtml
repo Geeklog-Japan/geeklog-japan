@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start latestpostsblock.thtml -->
 <dl>
     <dt>
         <td class="pluginTinyText">{LANG_ORDERBY}<a href="{phpself}?mode=forumblock&amp;order=new">{LANG_NEW}</a> <a href="{phpself}?mode=forumblock&amp;order=views">{LANG_VIEWS}</a> <a href="{phpself}?mode=forumblock&amp;order=posts" class="uk-text-bold">{LANG_POSTS}</a><div style="text-align:center;">{view_modemsg}</div>
@@ -8,6 +7,5 @@
     <dd>
             {block_records}
 </dl>
-<!-- end latestpostsblock.thtml -->
 
 {# end {templatelocation} #}

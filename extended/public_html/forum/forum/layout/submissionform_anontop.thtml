@@ -11,6 +11,5 @@
             <td><input type="text" name="aname" value="{name}" size="40" maxlength="50" tabindex="1"{xhtml}>&nbsp;&nbsp;</td>
         </tr>
         <tr>
-<!-- end submissionform_anontop.thtml -->
 
 {# end {templatelocation} #}

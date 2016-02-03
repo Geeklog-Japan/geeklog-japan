@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start centerblock_displayline.thtml -->
-
 <tr>
   <td class="uk-text-nowrap">
      <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}"><i class="uk-icon-arrow-circle-right"></i> {topic_subject}</a>
@@ -22,7 +20,5 @@
 	<a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}">{date}</a>
   </td>	
 </tr>
-
-<!-- end centerblock_displayline.thtml -->
 
 {# end {templatelocation} #}

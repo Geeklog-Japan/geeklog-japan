@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start newposts.thtml -->
 [&nbsp;<a {newpostslink}>{LANG_newposts}</a>&nbsp;]
-<!-- end newposts.thtml -->
 
 {# end {templatelocation} #}

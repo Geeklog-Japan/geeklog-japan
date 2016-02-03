@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- notifications.thtml -->
 {navmenu}
 
 <div class="uk-overflow-container">

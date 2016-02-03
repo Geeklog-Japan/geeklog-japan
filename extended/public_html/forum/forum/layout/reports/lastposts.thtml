@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- lastposts.thtml -->
 <a class="pluginButton" {lastpostslink}>{LANG_lastposts}</a>
 
 {# end {templatelocation} #}

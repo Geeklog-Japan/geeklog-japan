@@ -7,6 +7,6 @@
         <td class="uk-text-nowrap">{date}</td>
         <td class="uk-text-center">{num_comments}</td>
     </tr>
-    <!-- end migrate_records.thtml -->
+    
 
 {# end {templatelocation} #}

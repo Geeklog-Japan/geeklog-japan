@@ -1,7 +1,3 @@
 {# begin {templatelocation} #}
-
-<!-- start return.thtml -->
 <a class="uk-button" {returnlink}>{LANG_return}</a>
-<!-- end return.thtml -->
-
 {# end {templatelocation} #}

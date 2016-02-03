@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start forum_rules.thtml -->
-
 <div class="uk-width-4-10 uk-text-right">
 <ul class="uk-list uk-list-line">
 <li>{anonymous_msg}&nbsp;{anon_perm_image}</li>
@@ -10,7 +8,5 @@
 <li>{censor_msg}&nbsp;{censor_perm_image}</li>
 </ul>
 </div>
-
-<!-- end forum_rules.thtml -->
 
 {# end {templatelocation} #}

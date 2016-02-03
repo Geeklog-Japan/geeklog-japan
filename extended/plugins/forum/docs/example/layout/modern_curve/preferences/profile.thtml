@@ -1,5 +1,4 @@
-
-<!-- preferences/profile.thtml { -->
+{# begin {templatelocation} #}
 
 {noscript}
 
@@ -14,7 +13,7 @@
   </fieldset>
 </div>
 
-<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="linear">
+<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="uk-form linear">
 
 <div id="pe_namepass" class="jsenabled_show">
   <fieldset>
@@ -125,4 +124,4 @@
 
 </form>
 
-<!-- } preferences/profile.thtml -->
+{# end {templatelocation} #}

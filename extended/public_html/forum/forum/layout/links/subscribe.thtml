@@ -1,9 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start subscribe.thtml -->
-
 <a class="uk-button" href="{notifylink}">{notifylinktext}</a>
-
-<!-- end subscribe.thtml -->
 
 {# end {templatelocation} #}

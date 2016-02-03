@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start forum_legend.thtml -->
-
 <!--
 
 <div class="uk-width-3-10">
@@ -21,6 +19,5 @@
 </div>
 
 -->
-<!-- end forum_legend.thtml -->
 
 {# end {templatelocation} #}

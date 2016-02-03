@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start print.thtml -->
 	<a class="uk-icon-button uk-icon-print" href="{printlink}"></a>  
-<!-- end print.thtml -->
 
 {# end {templatelocation} #}

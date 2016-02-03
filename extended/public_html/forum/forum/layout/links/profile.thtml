@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start profile.thtml -->
 	<a href="{profilelink}"><i class="uk-icon-user"></i></a>
-<!-- end profile.thtml -->
 
 {# end {templatelocation} #}

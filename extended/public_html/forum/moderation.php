@@ -260,7 +260,7 @@ if (forum_modPermission($forum,$_USER['uid'])) {
         $subject = DB_getItem($_TABLES['forum_topic'],"subject","id='$msgpid'");
         $alertmessage .= sprintf($LANG_GF02['msg64'],$fortopicid,$subject);
 
-        $promptform  = '<p><form action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
+        $promptform  = '<p><form class="uk-form" action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
         $promptform .= '<div>';
         $promptform .= '<input type="hidden" name="modconfirmdelete" value="1"' . XHTML . '>';
         $promptform .= '<input type="hidden" name="msgid" value="' .$fortopicid. '"' . XHTML . '>';
@@ -300,7 +300,7 @@ if (forum_modPermission($forum,$_USER['uid'])) {
         } else {
             $topictitle = DB_getItem($_TABLES['forum_topic'],"subject","id='$fortopicid'");
             $promptform  = '<div style="padding:10px 0 5px 0px;">';
-            $promptform .= '<form action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
+            $promptform .= '<form class="uk-form" action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
             $promptform .= '<div><input type="hidden" name="moveid" value="' .$fortopicid. '"' . XHTML . '>';
             $promptform .= '<input type="hidden" name="confirm_move" value="1"' . XHTML . '>';
             $promptform .= '<input type="hidden" name="forum" value="' .$forum. '"' . XHTML . '>';
@@ -354,7 +354,7 @@ if (forum_modPermission($forum,$_USER['uid'])) {
         }
         $alertmessage .= sprintf($LANG_GF02['msg69'], $ip_address) . '</p>';
 
-        $promptform  = '<p><form action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
+        $promptform  = '<p><form class="uk-form" action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
         $promptform .= '<div style="text-align: center;"><input type="hidden" name="hostip" value="' .$forumpostipnum['ip']. '"' . XHTML . '>';
         $promptform .= '<input type="hidden" name="confirmbanip" value="1"' . XHTML . '>';
         $promptform .= '<input type="hidden" name="forum" value="' .$forum. '"' . XHTML . '>';

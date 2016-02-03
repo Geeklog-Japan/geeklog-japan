@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- report_record.thtml -->
 <tr>
     <td>{post_start_ahref}{post_subject}{post_end_ahref}</td>
     <td class="uk-text-nowrap">{post_replies}</td>

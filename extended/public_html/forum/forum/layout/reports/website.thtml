@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- website.thtml -->
                         <td style="background: center url({layout_url}/navbar/images/button.gif); white-space:nowrap;"><a class="pluginButton" {websitelink}{LANG_website}</a></td>
 
 {# end {templatelocation} #}
