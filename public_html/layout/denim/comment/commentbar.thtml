@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <div class="commentbar_status">
   {start_storylink_anchortag}<strong>{story_title}</strong>{end_storylink_anchortag}

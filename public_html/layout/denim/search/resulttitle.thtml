@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <tr>
   <td colspan="3">{data}</td>

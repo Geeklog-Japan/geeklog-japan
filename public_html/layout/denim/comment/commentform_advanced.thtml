@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {noscript}
 <div id="advanced_editor" style="display:none;">

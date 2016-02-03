@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <tr class="pluginRow{cssid}">
   <td class="admin-list-field"><a href="{service_url}">{service_name}</a></td>

@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <form action="{site_url}/submit.php" method="post" id="submitstory" class="compact uk-form">
 

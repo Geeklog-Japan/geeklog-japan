@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <p class="storyrow">{row_number}&nbsp;{story_title}&nbsp;{story_date}</p>
 

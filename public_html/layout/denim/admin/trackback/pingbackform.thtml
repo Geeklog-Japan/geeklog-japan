@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <form action="{site_admin_url}/trackback.php" method="post" id="pingbackform" class="compact uk-form">
   <fieldset>

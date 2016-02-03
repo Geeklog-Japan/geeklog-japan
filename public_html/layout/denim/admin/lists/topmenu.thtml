@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <div id="admin-topmenu" class="clearfix">
   {icon}

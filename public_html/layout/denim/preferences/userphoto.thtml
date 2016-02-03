@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <dt><label for="profile-photo">{lang_userphoto}</label></dt>
 <dd><input type="file" name="photo" id="profile-photo" aria-describedby="userphoto-photo"{xhtml}></dd>

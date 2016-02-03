@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <dl id="searchresults-found">
   <dt>{lang_matchesfor}</dt>

@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <dd>
   <p class="groupinstructions">{lang_groupinstructions}</p>

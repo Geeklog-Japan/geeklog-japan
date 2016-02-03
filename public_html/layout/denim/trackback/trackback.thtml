@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <aside id="trackback">
   <h2>{lang_trackback}</h2>

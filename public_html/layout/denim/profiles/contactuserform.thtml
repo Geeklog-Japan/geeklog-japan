@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <form action="{site_url}/profiles.php" method="post" id="contactuserform" class="compact uk-form">
 

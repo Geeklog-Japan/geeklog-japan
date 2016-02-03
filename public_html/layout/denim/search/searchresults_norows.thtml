@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <p id="searchresults_norows">{no_rows_msg}</p>
 

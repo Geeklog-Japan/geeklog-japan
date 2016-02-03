@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <form action="{site_url}/search.php" method="get" id="advsearchform" class="compact uk-form">
 

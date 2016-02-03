@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <form action="{form_url}" method="post" class="uk-form">
   <div class="admin-list-search">

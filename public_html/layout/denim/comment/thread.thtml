@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <ul class="comment_thread level-{indent}">
   <li class="thread_title"><a href="{site_url}/comment.php?mode=display&amp;format=threaded&amp;order={order}&amp;pid={pid}">{title}</a></li>

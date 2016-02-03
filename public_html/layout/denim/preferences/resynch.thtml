@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
       <dt><label for="profile-resynch">{lang_resynch}</label></dt>
       <dd><input type="checkbox" {resynch_checked} name="resynch" id="profile-resynch"{xhtml}></dd>

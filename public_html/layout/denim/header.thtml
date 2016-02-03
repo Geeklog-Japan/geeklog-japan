@@ -23,7 +23,7 @@
 </head>
 
 <body dir="{direction}" class="{layout_columns}">
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
   <!-- #container { -->
   <div id="container">
@@ -56,3 +56,4 @@
           <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
           {breadcrumb_trail}
 
+{# end {templatelocation} #}

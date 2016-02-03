@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <form action="{site_url}/comment.php" method="post" id="reportcomment" class="uk-form">
 

@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {start_block_userprofile}
   <dl id="profile-userprofile">

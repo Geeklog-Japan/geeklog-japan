@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <tr class="resultrow{cssid}">
   {data_cols}

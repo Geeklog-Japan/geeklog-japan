@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <p class="commentrow">{row_number} {comment_title}{comment_date}</p>
 

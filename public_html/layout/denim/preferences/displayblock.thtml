@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <fieldset>
   <legend>{lang_misc_title}</legend>

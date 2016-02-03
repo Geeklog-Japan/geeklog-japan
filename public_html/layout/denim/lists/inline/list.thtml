@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
                             {list_top}
                             <div class="admin-list-search">

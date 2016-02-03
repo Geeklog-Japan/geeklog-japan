@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {start_feed_editor}
 <form action="{site_admin_url}/syndication.php" method="post" id="admin-feededitor" class="compact uk-form">
