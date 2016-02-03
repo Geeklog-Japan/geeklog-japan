@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- This is an example template file for the Custom User Registration Feature -->
 <!-- To be located under theme/custom directory - Example XSilver/custom/memberdetail.thtml -->
 {startblock}
@@ -28,3 +30,5 @@
     </table>
 </form>
 {endblock}
+
+{# end {templatelocation} #}
