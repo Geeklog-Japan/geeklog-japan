@@ -10,6 +10,9 @@
     </div>
     <!-- } #wrapper -->
 
+  </div>
+  <!-- } #container -->
+
 	<div class="uk-margin-large-top uk-margin-large-bottom uk-text-center"><a class="uk-icon-small uk-icon-hover uk-icon-chevron-up" data-uk-smooth-scroll="" href="#"></a></div>
 
     <footer id="footer" role="contentinfo" class="uk-clearfix">
@@ -21,9 +24,6 @@
         </p>
       </div>
     </footer>
-
-  </div>
-  <!-- } #container -->
 
   {plg_footercode}
 

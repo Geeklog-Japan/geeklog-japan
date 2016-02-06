@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 {start_block_editor}
 
 <form action="{site_admin_url}/plugins/staticpages/index.php" method="post" id="sp-editor" class="uk-form uk-form-horizontal">
@@ -196,4 +197,5 @@
 
 </form>
 {end_block}
+
 {# end {templatelocation} #}

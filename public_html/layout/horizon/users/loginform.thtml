@@ -9,11 +9,11 @@
 
         <form action="{site_url}/users.php" method="post" id="userloginform" class="uk-form uk-panel uk-panel-box uk-margin-bottom">
             <div class="uk-form-row">
-                <input class="uk-width-1-1" type="text" value="" name="loginname" id="users-loginform-loginname" placeholder="{lang_username}"{xhtml}>
+                <input class="uk-width-1-1" type="text" value="" name="loginname" id="users-loginform-loginname" placeholder="{lang_username}" required{xhtml}>
             </div>
             {services}
             <div class="uk-form-row">
-                <input value="" class="uk-width-1-1" type="password" name="passwd" id="users-loginform-passwd" placeholder="{lang_password}"{xhtml}>
+                <input value="" class="uk-width-1-1" type="password" name="passwd" id="users-loginform-passwd" placeholder="{lang_password}" required{xhtml}>
             </div>
             <div class="uk-form-row">
                 <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"{xhtml}>
