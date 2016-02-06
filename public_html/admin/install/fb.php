@@ -1,13 +1,13 @@
 <?php
 
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.7                                                               |
+// | Geeklog 2.0                                                               |
 // +---------------------------------------------------------------------------+
 // | public_html/admin/install/fb.php                                          |
 // |                                                                           |
 // | Part of Geeklog pre-installation check scripts                            |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2011 by the following authors:                         |
+// | Copyright (C) 2009-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: mystral-kk - geeklog AT mystral-kk DOT net                       |
 // +---------------------------------------------------------------------------+
@@ -33,15 +33,15 @@
 * "db-config.php" visually.
 *
 * @author   mystral-kk <geeklog AT mystral-kk DOT net>
-* @date     2011-01-05
-* @version  1.4.0
+* @date     2016-02-06
+* @version  1.4.7
 * @license  GPLv2 or later
 */
 define('DS', DIRECTORY_SEPARATOR);
 define('LB', "\n");
 define('OS_WIN', strcasecmp(substr(PHP_OS, 0, 3), 'WIN') === 0);
 define('TARGET', 'db-config.php');
-define('PRECHECK_VERSION', '1.3.4');
+define('PRECHECK_VERSION', '1.4.7');
 
 /**
 * Convert charset of a string to SJIS
@@ -126,48 +126,51 @@ EOD;
 
 $body = '';
 $parent = @realpath($path . DS . '..');
-if ($parent !== FALSE) {
+
+if ($parent !== false) {
 	$body .= '<p>[ <a href="fb.php?mode=' . $mode . '&amp;path='
 		  .  rawurlencode($parent) . '">一つ上のフォルダへ</a> ]</p>' . LB;
 }
 
-if (($dh = @opendir($path)) === FALSE) {
+if (($dh = @opendir($path)) === false) {
 	$body .= '<p>エラー：ディレクトリを開けません。検索を終了します。</p>' . LB;
 } else {
-	while (($entry = readdir($dh)) !== FALSE) {
+	$body .= '<ul>' . LB;
+
+	while (($entry = readdir($dh)) !== false) {
 		$fullpath = $path . DS . $entry;
+		
 		if (is_dir($fullpath)) {
-			if (($entry != '.') AND ($entry != '..')) {
-				$body .= '<img alt="フォルダのアイコン" src="layout/folder.png" />&nbsp;<a href="fb.php?mode='
-					  . $mode . '&amp;path=' . rawurlencode($fullpath) . '">'
-					  .  htmlspecialchars(convertCharset($entry), ENT_QUOTES)
-					  .  '</a><br />' . LB;
+			if (($entry !== '.') && ($entry != '..')) {
+				$body .= '<li><a href="fb.php?mode=' . $mode . '&amp;path=' . rawurlencode($fullpath) . '">'
+					  .  '/' . htmlspecialchars(convertCharset($entry), ENT_QUOTES, 'utf-8')
+					  .  '</a></li>' . LB;
 			}
 		} else {
-			if ($entry == TARGET) {
-				$body .= '<img alt="ファイルのアイコン" src="layout/text.png" />  '
-					  .  '<span style="color: green;">'
+			if ($entry === TARGET) {
+				$body .= '<li><span style="color: green;">'
 					  . TARGET . '</span>  [ <a href="precheck.php?mode='
 					  . $mode . '&amp;step=0&amp;path='
 					  .  rawurlencode(dirname($fullpath) . DS)
-					  .  '">このファイルを使用する</a> ]<br />' . LB;
-				$result = TRUE;
+					  .  '">このファイルを使用する</a> ]</li>' . LB;
+				$result = true;
 			}
 		}
 	}
 	
 	closedir($dh);
+	$body .= '</ul>' . LB;
 }
 
-if ($result === TRUE) {
+if ($result === true) {
 	$msg = '<p class="info"><strong>' . TARGET . '</strong>が見つかりました。このファイルでよければ、<strong>[ このファイルを使用する ]</strong>をクリックしてください。</p>' . LB;
 	$curpath = '<p class="found">';
 } else {
 	$msg = '<p class="info">下に表示されているリンクをクリックして、<strong>' . TARGET . '</strong>を探してください。</p>' . LB;
 	$curpath = '<p class="curpath">';
 }
-$curpath .= '<strong>現在のパス</strong>：' . convertCharset($path) . '</p>' . LB;
 
+$curpath .= '<strong>現在のパス</strong>：' . convertCharset($path) . '</p>' . LB;
 $body .= '<br /><p class="precheck-version">Geeklogインストール前チェック&nbsp;&nbsp;Ver' . PRECHECK_VERSION . '</p>' . LB
        . '</div>' . LB . '</div>' . LB . '</body>' . LB . '</html>' . LB;
 

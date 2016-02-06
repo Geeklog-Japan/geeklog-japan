@@ -7,7 +7,7 @@
 // |                                                                           |
 // | Part of Geeklog pre-installation check scripts                            |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2006-2012 by the following authors:                         |
+// | Copyright (C) 2006-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: mystral-kk - geeklog AT mystral-kk DOT net                       |
 // +---------------------------------------------------------------------------+
@@ -33,8 +33,8 @@
 * most common errors / omissions when setting up a new Geeklog site ...
 *
 * @author   mystral-kk <geeklog AT mystral-kk DOT net>
-* @date     2012-11-20
-* @version  1.4.6
+* @date     2016-02-06
+* @version  1.4.7
 * @license  GPLv2 or later
 */
 if (version_compare(PHP_VERSION, '5.0.0') < 0) {
@@ -49,7 +49,7 @@ define('GL_VERSION', '2.0.0');
 // DO NOT CHANGE ANYTHING BELOW THIS LINE!
 //===================================================================
 
-define('PRECHECK_VERSION', '1.4.6');
+define('PRECHECK_VERSION', '1.4.7');
 define('LB', "\n");
 define('DS', DIRECTORY_SEPARATOR);
 define('THIS_SCRIPT', basename(__FILE__));
@@ -61,11 +61,11 @@ $gl_version = preg_replace('/[^0-9\.]/', '', GL_VERSION);
 
 if (version_compare($gl_version, '1.5.0') < 0) {
 	die('e_precheck_not_supported');
-} else if (version_compare($gl_version, '1.6.0') < 0) {
+} elseif (version_compare($gl_version, '1.6.0') < 0) {
 	define('MIN_PHP_VERSION', '4.1.0');
-} else if (version_compare($gl_version, '1.7.0') < 0) {
+} elseif (version_compare($gl_version, '1.7.0') < 0) {
 	define('MIN_PHP_VERSION', '4.3.0');
-} else if (version_compare($gl_version, '1.8.0') < 0) {
+} elseif (version_compare($gl_version, '1.8.0') < 0) {
 	define('MIN_PHP_VERSION', '4.4.0');
 } else {
 	define('MIN_PHP_VERSION', '5.2.0');
@@ -73,7 +73,7 @@ if (version_compare($gl_version, '1.5.0') < 0) {
 
 if (version_compare($gl_version, '1.7.0') < 0) {
 	define('MIN_MYSQL_VERSION', '3.23.2');
-} else if (version_compare($gl_version, '1.8.1') < 0) {
+} elseif (version_compare($gl_version, '1.8.1') < 0) {
 	define('MIN_MYSQL_VERSION', '4.0.18');
 } else {
 	define('MIN_MYSQL_VERSION', '4.1.3');
@@ -162,7 +162,7 @@ class Precheck
 	{
 		$retval = '<span class="';
 		
-		if (($this->error === 0) AND ($this->warning === 0)) {
+		if (($this->error === 0) && ($this->warning === 0)) {
 			$retval .= 'good">' . PRECHECK_str('ok') . '</span>';
 		} else {
 			$retval .= ($this->error > 0 ? 'bad' : 'none')
@@ -175,7 +175,7 @@ class Precheck
 		if ($msg != '') {
 			$retval .= '<br />';
 			
-			if (($this->error === 0) AND ($this->warning === 0)) {
+			if (($this->error === 0) && ($this->warning === 0)) {
 				$retval .= '<p class="good">' . $msg . '</p>';
 			} else {
 				$retval .= $msg;
@@ -195,21 +195,21 @@ class Precheck
 	private function _realpath($path)
 	{
 		// Resolves path parts (single dot, double dot and double delimiters)
-		$path  = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
-		$head_slash = (substr($path, 0, 1) === DIRECTORY_SEPARATOR);
-		$tail_slash = (substr($path, -1) === DIRECTORY_SEPARATOR);
-		$parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+		$path  = str_replace(array('/', '\\'), DS, $path);
+		$head_slash = (substr($path, 0, 1) === DS);
+		$tail_slash = (substr($path, -1) === DS);
+		$parts = array_filter(explode(DS, $path), 'strlen');
 		$absolutes = array();
 		
 		foreach ($parts as $part) {
 			if ($part === '..') {
 				array_pop($absolutes);
-			} else if ($part !== '.') {
+			} elseif ($part !== '.') {
 				$absolutes[] = $part;
 			}
 		}
 		
-		$path = implode(DIRECTORY_SEPARATOR, $absolutes);
+		$path = implode(DS, $absolutes);
 		
 		// Resolves any symlinks
 		if (is_link($path)) {
@@ -217,11 +217,11 @@ class Precheck
 		}
 		
 		if ($head_slash) {
-			$path = DIRECTORY_SEPARATOR . $path;
+			$path = DS . $path;
 		}
 		
 		if ($tail_slash) {
-			$path .= DIRECTORY_SEPARATOR;
+			$path .= DS;
 		}
 		
 		return $path;
@@ -243,8 +243,8 @@ class Precheck
 		if (file_exists($siteconfig)) {
 			require_once $siteconfig;
 			
-			if (isset($_CONF['path']) AND
-				($_CONF['path'] !== '/path/to/Geeklog/') AND
+			if (isset($_CONF['path']) &&
+				($_CONF['path'] !== '/path/to/Geeklog/') &&
 				file_exists($_CONF['path'] . 'db-config.php')) {
 				return $_CONF['path'];
 			}
@@ -253,7 +253,7 @@ class Precheck
 		// Checks the parent directory of path_html
 		$path = $this->_realpath(PRECHECK_ROOT . '../../../');
 		
-		return file_exists($path . 'db-config.php') ? $path : FALSE;
+		return file_exists($path . 'db-config.php') ? $path : false;
 	}
 	
 	protected function _return_bytes($val)
@@ -261,7 +261,7 @@ class Precheck
 		$val = trim($val);
 		$last = strtolower($val[strlen($val) - 1]);
 		
-		switch($last) {
+		switch ($last) {
 			// 'G' is availabe since PHP 5.1.0
 			case 'g':
 				$val *= 1024;
@@ -277,16 +277,17 @@ class Precheck
 	}
 	
 	/**
-	* Check the default setting of PHP
+	* Check for the default setting of PHP
 	*
-	* @return       string
+	* @return   string
 	*/
 	public function menuCheckPHPSettings()
 	{
 		$this->error   = 0;
 		$this->warning = 0;
 		
-		$has_php540 = (version_compare(PHP_VERSION, '5.4.0') >= 0);
+		$hasPhp540 = (version_compare(PHP_VERSION, '5.4.0') >= 0);
+		$useCgi    = (stripos(PHP_SAPI, 'cgi') !== false);
 		$msgs = array();
 		
 		$s_warning = '<span class="warning">' . PRECHECK_str('warning')
@@ -295,31 +296,31 @@ class Precheck
 				   . '</span>&nbsp;';
 		
 		// magic_quotes_gpc (removed as of PHP-5.4.0)
-		if (!$has_php540 AND @get_magic_quotes_gpc()) {
+		if (!$hasPhp540 && @get_magic_quotes_gpc()) {
 			$msgs[] = $s_warning . PRECHECK_str('w_magic_quotes_gpc');
-			$this->warning ++;
+			$this->warning++;
 		}
 		
 		// magic_quotes_runtime (removed as of PHP-5.4.0)
-		if (!$has_php540 AND @get_magic_quotes_runtime()) {
+		if (!$hasPhp540 && @get_magic_quotes_runtime()) {
 			$msgs[] = $s_warning . PRECHECK_str('w_get_magic_quotes_runtime');
-			$this->warning ++;
+			$this->warning++;
 		}
 		
 		if (!is_callable('ini_get')) {
 			$msgs[] = $s_error . PRECHECK_str('e_ini_get_disabled');
-			$this->error ++;
+			$this->error++;
 		} else {
 			// display_errors
 			if (ini_get('display_errors')) {
 				$msgs[] = $s_warning . PRECHECK_str('w_display_errors');
-				$this->warning ++;
+				$this->warning++;
 			}
 			
 			// magic_quotes_sybase (removed as of PHP-5.4.0)
-			if (!$has_php540 AND @ini_get('magic_quotes_sybase')) {
+			if (!$hasPhp540 && @ini_get('magic_quotes_sybase')) {
 				$msgs[] = $s_warning . PRECHECK_str('w_magic_quotes_sybase');
-				$this->warning ++;
+				$this->warning++;
 			}
 			
 			// mbstring.language
@@ -327,50 +328,50 @@ class Precheck
 			if (strcasecmp($mbstring_language, 'japanese') !== 0) {
 				if (strcasecmp($mbstring_language, 'neutral') === 0) {
 					$msgs[] = $s_warning . PRECHECK_str('w_mbstring_language_neutral');
-					$this->warning ++;
+					$this->warning++;
 				} else {
 					$msgs[] = $s_error . PRECHECK_str('e_mbstring_language_others');
-					$this->error ++;
+					$this->error++;
 				}
 			}
 			
 			// mbstring.http_output
 			$mbstring_http_output = ini_get('mbstring.http_output');
-			if ((strcasecmp($mbstring_http_output, 'pass') !== 0) AND
-				(strcasecmp($mbstring_http_output, 'utf-8') !== 0)) {
+			if ((strcasecmp($mbstring_http_output, 'pass') !== 0) &&
+					(strcasecmp($mbstring_http_output, 'utf-8') !== 0)) {
 				$msgs[] = $s_error . PRECHECK_str('e_mbstring_http_output');
-				$this->error ++;
+				$this->error++;
 			}
 			
 			$mbstring_encoding_translation = @ini_get('mbstring.encoding_translation');
 			
 			if ($mbstring_encoding_translation) {
 				$msgs[] = $s_error . PRECHECK_str('e_mbstring_encoding_translation');
-				$this->error ++;
+				$this->error++;
 			}
 			
 			// mbstring.internal_encoding
 			$mbstring_internal_encoding = ini_get('mbstring.internal_encoding');
 			
-			if (($mbstring_internal_encoding != '') AND
-				(strcasecmp($mbstring_internal_encoding, 'utf-8') !== 0)) {
+			if (($mbstring_internal_encoding != '') &&
+					(strcasecmp($mbstring_internal_encoding, 'utf-8') !== 0)) {
 				$msgs[] = $s_warning . PRECHECK_str('w_mbstring.internal_encoding');
-				$this->warning ++;
+				$this->warning++;
 			}
 			
 			// default_charset
 			$default_charset = @ini_get('default_charset');
 			
-			if (($default_charset != '') AND
+			if (($default_charset != '') &&
 				(strcasecmp($default_charset, 'utf-8') !== 0)) {
 				$msgs[] = $s_error . PRECHECK_str('e_default_charset');
-				$this->error ++;
+				$this->error++;
 			}
 			
 			// register_globals (removed as of PHP-5.4.0)
-			if (!$has_php540 AND @ini_get('register_globals')) {
+			if (!$hasPhp540 && @ini_get('register_globals')) {
 				$msgs[] = $s_warning . PRECHECK_str('w_register_globals');
-				$this->warning ++;
+				$this->warning++;
 			}
 			
 			// memory_limit
@@ -378,7 +379,13 @@ class Precheck
 			
 			if ($mem < 1024 * 1024 * MIN_MEMORY_LIMIT) {
 				$msgs[] = $s_warning . PRECHECK_str('w_memory_limit');
-				$this->warning ++;
+				$this->warning++;
+			}
+			
+			// cgi.fix_pathinfo
+			if ($useCgi && (@ini_get('cgi.fix_pathinfo') == 0)) {
+				$msgs[] = $s_warning . PRECHECK_str('w_cgi_fix_pathinfo');
+				$this->warning++;
 			}
 		}
 		
@@ -419,62 +426,62 @@ class Precheck
 		// path_html/siteconfig.php
 		if (!is_writable($path_html . DS . 'siteconfig.php')) {
 			$msgs[] = $s_error . PRECHECK_str('e_siteconfig_php');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path/db-config.php
 		if (!is_writable($path . 'db-config.php')) {
 			$msgs[] = $s_error . PRECHECK_str('e_db_config_php');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path/data
 		if (!is_writable($path . 'data' . DS)) {
 			$msgs[] = $s_error . PRECHECK_str('e_data');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path/backups
 		if (!is_writable($path . 'backups' . DS)) {
 			$msgs[] = $s_error . PRECHECK_str('e_backups');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path/logs/error.log
 		if (!is_writable($path . 'logs' . DS . 'error.log')) {
 			$msgs[] = $s_error . PRECHECK_str('e_error_log');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path/logs/access.log
 		if (!is_writable($path . 'logs' . DS . 'access.log')) {
 			$msgs[] = $s_error . PRECHECK_str('e_access_log');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path/logs/spamx.log
 		if (!is_writable($path . 'logs' . DS . 'spamx.log')) {
 			$msgs[] = $s_error . PRECHECK_str('e_spamx_log');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path_html/backend/geeklog.rss
 		if (!is_writable($path_html . DS . 'backend' . DS . 'geeklog.rss')) {
 			$msgs[] = $s_error . PRECHECK_str('e_backend_geeklog_rss');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path_html/backend
 		if (!is_writable($path_html . DS . 'backend' . DS)) {
 			$msgs[] = $s_error . PRECHECK_str('e_backend');
-			$this->error ++;
+			$this->error++;
 		}
 		
 		// path_html/sitemap.xml
 		if (version_compare($gl_version, '1.8.0') >= 0) {
 			if (!is_writable($path_html . DS . 'sitemap.xml')) {
 				$msgs[] = $s_error . PRECHECK_str('e_sitemapxml');
-				$this->error ++;
+				$this->error++;
 			}
 		}
 		
@@ -509,6 +516,7 @@ class Precheck
 			'magic_quotes_sybase', 'mbstring_language', 'mbstring_http_output',
 			'mbstring_encoding_translation', 'mbstring_internal_encoding',
 			'default_charset', 'register_globals', 'memory_limit',
+			'cgi_fix_pathinfo',
 		);
 		
 		if (in_array($item, $items)) {
@@ -538,7 +546,7 @@ class Precheck
 		if (file_exists($siteconfig)) {
 			$content = file_get_contents($siteconfig);
 			
-			if ($content !== FALSE) {
+			if ($content !== false) {
 				if (OS_WIN) {
 					$path = str_replace("//", "/", $this->path);
 				    $path = str_replace("'", "\\'", $path);
@@ -548,28 +556,28 @@ class Precheck
 				
 				$content = str_replace('/path/to/Geeklog/', $path, $content);
 				
-				if (file_put_contents($siteconfig, $content) !== FALSE) {
-					return TRUE;
+				if (file_put_contents($siteconfig, $content) !== false) {
+					return true;
 				}
 			}
 		}
 		
-		return FALSE;
+		return false;
 	}
 	
-	protected function _formatInfo($item, $value, $result, $additionalInfo = NULL)
+	protected function _formatInfo($item, $value, $result, $additionalInfo = null)
 	{
 		$retval = '<li>' . PRECHECK_str($item) . ': ' . $value . '&nbsp;';
 		
 		if ($result === 'good') {
 			$retval .= '<span class="good">' . PRECHECK_str('ok') . '</span>';
-		} else if ($result === 'warning') {
+		} elseif ($result === 'warning') {
 			$retval .= '<span class="warning">' . PRECHECK_str('warning') . '</span>';
-		} else if ($result === 'bad') {
+		} elseif ($result === 'bad') {
 			$retval .= '<span class="bad">' . PRECHECK_str('error') . '</span>';
 		}
 		
-		if ($additionalInfo !== NULL) {
+		if ($additionalInfo !== null) {
 			$retval .= '&nbsp;' . $additionalInfo;
 		}
 		
@@ -596,7 +604,7 @@ class Precheck
 				'item_php_version', PHP_VERSION, 'bad',
 				PRECHECK_str('e_php_version1') . MIN_PHP_VERSION . PRECHECK_str('e_php_version2')
 			);
-			$this->fatal_error ++;
+			$this->fatal_error++;
 		}
 		
 		// Checks PHP extensions
@@ -612,7 +620,7 @@ class Precheck
 			$dbms[] = 'Microsoft SQL Server';
 		}
 		
-		if ((version_compare($gl_version, '1.7.0') >= 0) AND in_array('pgsql', $extensions)) {
+		if ((version_compare($gl_version, '1.7.0') >= 0) && in_array('pgsql', $extensions)) {
 			$dbms[] = 'PostgreSQL';
 		}
 		
@@ -622,7 +630,7 @@ class Precheck
 			$retval .= $this->_formatInfo('item_database', $dbms, 'good');
 		 } else {
 			$retval .= $this->_formatInfo('item_database', $dbms, 'bad', PRECHECK_str('e_database_disabled'));
-			$this->fatal_error ++;
+			$this->fatal_error++;
 		}
 		
 		// Checks mbstring functions
@@ -630,7 +638,7 @@ class Precheck
 			$retval .= $this->_formatInfo('item_mbstring', PRECHECK_str('enabled'), 'good');
 		} else {
 			$retval .= $this->_formatInfo('item_mbstring', PRECHECK_str('e_disabled'), 'bad', PRECHECK_str('e_mbstring_disabled'));
-			$this->fatal_error ++;
+			$this->fatal_error++;
 		}
 		
 		$retval .= '</ol>';
@@ -660,7 +668,7 @@ class Precheck
 			$fb = '<p style="margin: 20px 0;"><a class="big-button" href="fb.php">'
 				. PRECHECK_str('use_filebrowser') . '</a></p>' . LB;
 			$retval .= $this->_formatInfo('item_dbconfig_path', PRECHECK_str('e_dbconfig_not_found'), 'bad', $fb);
-			$this->fatal_error ++;
+			$this->fatal_error++;
 		}
 		
 		$retval .= '</ol>' . LB;
@@ -702,7 +710,7 @@ class Precheck
 				. '</li>' . LB;
 		$this->fatal_error += $this->error;
 		
-		if (($this->mode === 'install') OR ($this->mode === 'migrate')) {
+		if (($this->mode === 'install') || ($this->mode === 'migrate')) {
 			$retval .= '<li><strong>' . PRECHECK_str('check_path') . '</strong>:'
 					.  $this->displayErrorAndWarning($this->menuCheckWritable())
 					.  '</li>' . LB;
@@ -721,7 +729,7 @@ class Precheck
 			if ($this->mode === 'install') {
 				$target = THIS_SCRIPT . '?mode=install&amp;step=4&amp;path='
 						. rawurlencode($this->path);
-			} else if ($this->mode === 'migrate') {
+			} elseif ($this->mode === 'migrate') {
 				$target = 'migrate.php?'
 						. "dbconfig_path="
 						. rawurlencode($this->path . 'db-config.php')
@@ -861,8 +869,8 @@ class Precheck
 			$host = '127.0.0.1';
 		}
 		
-		if (($type === 'mysql') OR ($type === 'mysql-innodb')) {
-			if (($db = @mysql_connect($host, $user, $pass)) === FALSE) {
+		if (($type === 'mysql') || ($type === 'mysql-innodb')) {
+			if (($db = @mysql_connect($host, $user, $pass)) === false) {
 				return $err;
 			}
 			
@@ -875,14 +883,14 @@ class Precheck
 				return $err;
 			}
 			
-			if (($result = @mysql_query("SHOW DATABASES", $db)) === FALSE) {
+			if (($result = @mysql_query("SHOW DATABASES", $db)) === false) {
 				return $err;
 			}
 			
-			while (($A = mysql_fetch_assoc($result)) !== FALSE) {
-				if (($A['Database'] !== 'mysql') AND
-					($A['Database'] !== 'information_schema') AND
-					($A['Database'] !== 'performance_schema')) {
+			while (($A = mysql_fetch_assoc($result)) !== false) {
+				if (($A['Database'] !== 'mysql') &&
+						($A['Database'] !== 'information_schema') &&
+						($A['Database'] !== 'performance_schema')) {
 					$retval[] = $A['Database'];
 				}
 			}
@@ -894,19 +902,19 @@ class Precheck
 			}
 			
 			return $retval;
-		} else if ($type === 'mssql') {
-			if (($db = @mssql_connect($host, $user, $pass)) === FALSE) {
+		} elseif ($type === 'mssql') {
+			if (($db = @mssql_connect($host, $user, $pass)) === false) {
 				return $err;
 			}
 			
 			// @TODO: Add extra checks here
 			
 			return '';
-		} else if ($type === 'pgsql') {
+		} elseif ($type === 'pgsql') {
 			$cns = 'host=' . $host . ' dbname=information_schema' . $name
 				 . ' user=' . $user . ' password=' . $pass;
 			
-			if (($db = @pg_connect($cns)) === FALSE) {
+			if (($db = @pg_connect($cns)) === false) {
 				return $err;
 			}
 			
@@ -928,15 +936,15 @@ class Precheck
 	{
 		$retval = '';
 		
-		if (($db = @mysql_connect($host, $user, $pass)) !== FALSE) {
-			if (mysql_select_db($name, $db) === TRUE) {
+		if (($db = @mysql_connect($host, $user, $pass)) !== false) {
+			if (mysql_select_db($name, $db) === true) {
 				if ($utf8 === 'yes') {
 					$result = mysql_query("SHOW VARIABLES LIKE 'character_set_%'", $db);
 					
-					if ($result !== FALSE) {
-						while (($A = mysql_fetch_assoc($result)) !== FALSE) {
+					if ($result !== false) {
+						while (($A = mysql_fetch_assoc($result)) !== false) {
 							if ($A['Variable_name'] === 'character_set_database') {
-								$retval = ($A['Value'] !== 'utf8')
+								$retval = (($A['Value'] !== 'utf8') && ($A['Value'] !== 'utf8mb4'))
 										? 'e_database_not_utf8'
 										: '';
 								break;
@@ -950,7 +958,7 @@ class Precheck
 					// with '\'
 					$prefix = str_replace('_', '\\_', $prefix);
 					
-					if (($result = mysql_query("SHOW TABLES LIKE '{$prefix}%'", $db)) !== FALSE) {
+					if (($result = mysql_query("SHOW TABLES LIKE '{$prefix}%'", $db)) !== false) {
 						$retval = (mysql_num_rows($result) !== 0)
 								? 'e_database_not_empty'
 								: '';
@@ -974,13 +982,13 @@ class Precheck
 	{
 		$retval = '';
 		
-		if (($db = @mssql_connect($host, $user, $pass)) !== FALSE) {
+		if (($db = @mssql_connect($host, $user, $pass)) !== false) {
 			// Escapes the db name with '[' and ']'
 			if (!preg_match('/^\[.*\]$/', $name)) {
 				$name = '[' . $name . ']';
 			}
 			
-			if (mssql_select_db($name, $db) === TRUE) {
+			if (mssql_select_db($name, $db) === true) {
 				// @TODO: Adds code to count tables here
 			}
 			
@@ -1003,7 +1011,7 @@ class Precheck
 		$cns = 'host=' . $host . ' dbname=' . $name . ' user=' . $user
 			 . ' password=' . $pass;
 		
-		if (($db = @pg_connect($cns)) !== FALSE) {
+		if (($db = @pg_connect($cns)) !== false) {
 			// @TODO: Adds code to count tables here
 			
 			@pg_close($db);
@@ -1080,11 +1088,11 @@ $step = 0;
 
 if (isset($_GET['step'])) {
 	$step = intval($_GET['step']);
-} else if (isset($_POST['step'])) {
+} elseif (isset($_POST['step'])) {
 	$step = intval($_POST['step']);
 }
 
-if (($step < 1) OR ($step > 4)) {
+if (($step < 1) || ($step > 4)) {
 	$step = 0;
 }
 
@@ -1092,7 +1100,7 @@ $mode = '';
 
 if (isset($_GET['mode'])) {
 	$mode = $_GET['mode'];
-} else if (isset($_POST['mode'])) {
+} elseif (isset($_POST['mode'])) {
 	$mode = $_POST['mode'];
 }
 
@@ -1104,7 +1112,7 @@ $path = '';
 
 if (isset($_GET['path'])) {
 	$path = trim($_GET['path']);
-} else if (isset($_POST['path'])) {
+} elseif (isset($_POST['path'])) {
 	$path = trim($_POST['path']);
 }
 
@@ -1126,7 +1134,7 @@ if ($mode === 'lookupdb') {
     header('Content-Type: text/html; charset=utf-8');
 	echo $result;
 	exit;
-} else if ($mode === 'checkdb') {
+} elseif ($mode === 'checkdb') {
 	$result = $precheck->checkDb();
     header('Content-Type: text/plain; charset=utf-8');
 	echo $result;
@@ -1162,21 +1170,21 @@ if ($mode === 'info') {
 		case 0: // Checks PHP setting
 			$content .= $precheck->step0();
 			
-			if (($precheck->fatal_error > 0) OR ($precheck->error > 0)) {
+			if (($precheck->fatal_error > 0) || ($precheck->error > 0)) {
 				break;
 			}
 			
-			/* Fall through intentionally */
+			// Fall through intentionally
 		    $precheck->step = 1;
 			
 		case 1:	// Check the path to "db-config.php"
 			$content .= $precheck->step1();
 			
-			if (($precheck->fatal_error > 0) OR ($precheck->error > 0)) {
+			if (($precheck->fatal_error > 0) || ($precheck->error > 0)) {
 				break;
 			}
 			
-			/* Fall through intentionally */
+			// Fall through intentionally
 		    $precheck->step = 2;
 		
 		case 2:	// Select install type
