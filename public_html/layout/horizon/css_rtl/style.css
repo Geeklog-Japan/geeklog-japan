@@ -58,14 +58,14 @@ Based on Denim 1.1.0 | Copyright (C) 2012-2015 by dengen | http://www.trybese.co
 
 .ext-link {
   background-color: transparent;
-  background: url("../images/external.png") center right no-repeat;
+  background: url("images/external.png") center right no-repeat;
   background-attachment: scroll;
   padding-left: 13px;
 }
 
 .feed-link {
   background-color: transparent;
-  background: url("../images/feed.png") center right no-repeat;
+  background: url("images/feed.png") center right no-repeat;
   background-attachment: scroll;
   padding: 2px 0 2px 16px;
 }
@@ -434,7 +434,7 @@ a.pluginButton:hover {
   color: #00F;
   text-align: center;
   padding-top: 2px;
-  background: center url("../images/navbar/button_over.gif");
+  background: center url("images/navbar/button_over.gif");
   background-repeat: repeat-x;
   display: block;
   height: 19px;
@@ -715,7 +715,7 @@ a.pluginButton:hover {
   margin: 0 0 .5em 0;
   padding: 0 24px 0 0;
   border-bottom: 1px solid #CCC;
-  background: url("../images/icon_info.png") no-repeat 0 0;
+  background: url("images/icon_info.png") no-repeat 0 0;
   font-weight: bold;
   color: #666;
 }
@@ -2045,7 +2045,7 @@ body.center-right #config_content {
   #rightblocks .sideoption a:hover,
   #leftblocks .sideoption_off,
   #rightblocks .sideoption_off {
-    background: url("../images/arrow-right.png") no-repeat #F7F7F7;
+    background: url("images/arrow-right.png") no-repeat #F7F7F7;
     -webkit-background-size: 24px auto;
     -moz-background-size: 24px auto;
     background-size: 24px auto;
@@ -2138,7 +2138,7 @@ h4 img {
 .block-right,
 .block-list {
   margin: 0 8px .5em 8px;
-  padding: 8px 0;
+  padding: 0 0 16px 0;
   font-size: 13px;
 }
 
@@ -2196,7 +2196,7 @@ h4 img {
 }
 
 input[type="text"].search {
-  background: url("../images/search.png") left center no-repeat #FFF;
+  background: url("images/search.png") left center no-repeat #FFF;
   padding-right: 24px;
   width: 120px;
   color: #999;
@@ -2341,7 +2341,7 @@ div.third-party-login {
 
   h2.show,
   #block-left-search > h2.show {
-    background: url("../images/arrow-down.png") no-repeat #3B6998;
+    background: url("images/arrow-down.png") no-repeat #3B6998;
     -webkit-background-size: 36px auto;
     -moz-background-size: 36px auto;
     background-size: 36px auto;
@@ -2350,7 +2350,7 @@ div.third-party-login {
 
   h2.hide,
   #block-left-search > h2.hide {
-    background: url("../images/arrow-up.png") no-repeat #3B6998;
+    background: url("images/arrow-up.png") no-repeat #3B6998;
     -webkit-background-size: 36px auto;
     -moz-background-size: 36px auto;
     background-size: 36px auto;
