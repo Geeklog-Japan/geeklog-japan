@@ -314,6 +314,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
     // Load HTML templates
     $story_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/story');
     if ($_CONF['advanced_editor'] && $_USER['advanced_editor']) {
+        $story_templates->set_file(array('editor'=>'storyeditor_advanced.thtml'));
         $thtml = $_CONF['path_layout'] . 'admin/story/storyeditor_advanced.' . $_CONF['language'] . '.thtml';
         if (file_exists($thtml)) {
             $thtml = 'storyeditor_advanced.' . $_CONF['language'] . '.thtml';
@@ -353,7 +354,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
         $story_templates->set_file('editor', $thtml);
         $advanced_editormode = false;
     }
-     $story_templates->set_var('hour_mode',      $_CONF['hour_mode']);
+    $story_templates->set_var('hour_mode', $_CONF['hour_mode']);
 
     if ($story->hasContent()) {
         $previewContent = STORY_renderArticle($story, 'p');
@@ -406,6 +407,10 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
                                    sprintf ($delbutton, $jsconfirm));
         $story_templates->set_var ('delete_option_no_confirmation',
                                    sprintf ($delbutton, ''));
+
+        $story_templates->set_var('allow_delete', true);
+        $story_templates->set_var('lang_delete', $LANG_ADMIN['delete']);
+        $story_templates->set_var('confirm_message', $MESSAGE[76]);
     }
     if (($mode == 'editsubmission') || ($story->type == 'submission')) {
         $story_templates->set_var ('submission_option',
