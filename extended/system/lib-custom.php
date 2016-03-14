@@ -52,6 +52,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
 // lib-common.php and see how $_COM_VERBOSE was used throughout the code
 $_CST_VERBOSE = false;
 
+
 /**
 * Sample PHP Block function
 *
@@ -610,27 +611,27 @@ if (file_exists($_CONF['path'].'system/custom/custom_handle404.php')) {
 
 // テーマ変数をセットする 
 // Set theme variables
-// if (file_exists($_CONF['path'].'system/custom/custom_templatesetvars.php')) {
-// 	 require_once( 'custom/custom_templatesetvars.php' ); 
-// }
+if (file_exists($_CONF['path'].'system/custom/custom_templatesetvars.php')) {
+	 require_once( 'custom/custom_templatesetvars.php' ); 
+}
 
 // ユーザーエージェント判定のテンプレート変数を追加する 
 // Add theme variable of useragent
-// if (file_exists($_CONF['path'].'system/custom/useragent.class.php')) {
-// 	require_once( 'custom/useragent.class.php' );
-// }
+if (file_exists($_CONF['path'].'system/custom/useragent.class.php')) {
+	require_once( 'custom/useragent.class.php' );
+}
 
 // ログインユーザの権限を表示する 
 // Show rights
-// if (file_exists($_CONF['path'].'system/custom/phpblock_showrights.php')) {
+if (file_exists($_CONF['path'].'system/custom/phpblock_showrights.php')) {
 //	require_once( 'custom/phpblock_showrights.php' );
-// }
+}
 
 // サイトのテーマを変更する 
 // Change site theme
-// if (file_exists( $_CONF['path'].'system/custom/phpblock_themetester.php')) {
-// 	require_once( 'custom/phpblock_themetester.php' );
-// }
+if (file_exists( $_CONF['path'].'system/custom/phpblock_themetester.php')) {
+	require_once( 'custom/phpblock_themetester.php' );
+}
 
 // RSS Aggregator
 //if (file_exists($_CONF['path'].'system/custom/phpblock_rssaggregator.php')) {
@@ -638,9 +639,9 @@ if (file_exists($_CONF['path'].'system/custom/custom_handle404.php')) {
 //}
 
 // Forum Center Block
-// if (file_exists($_CONF['path'].'system/custom/custom_centerblock_forum.php')) {
-//    require_once( 'custom/custom_centerblock_forum.php' );
-// }
+if (file_exists($_CONF['path'].'system/custom/custom_centerblock_forum.php')) {
+   require_once( 'custom/custom_centerblock_forum.php' );
+}
 // Uses: Install autotag plugin and create autotag
 // autotag: (title) forumcenterblock
 //          (mode) Use PHP
