@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<h3>{lang_data_source}&nbsp;({num_items})</h3>
+{category_list}
+<hr{xhtml}>
+
+{# end {templatelocation} #}

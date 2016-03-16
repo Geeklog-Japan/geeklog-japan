@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Geeklog Mycaljp Plugin Documentation</title>
+  <link rel="stylesheet" type="text/css" href="./../../../docs/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<h1>Geeklog Mycaljp Plugin Documentation</h1>
+
+<p>The following information explains the configuration options of the Geeklog Mycaljp Plugin.
+For install instructions please read the readme_jp.html file found in the /path/to/geeklog/public_html/admin/plugins/mycaljp/ directory.</p>
+
+<h2><a name="config.php">Configuration</a></h2>
+
+<p>The configuration of the Mycaljp Plugin can be changed from the Configuration admin panel:</p>
+
+<h3><a name="config_main">General Mycaljp Settings</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_headertitleyear">headertitleyear</a></td>
+  <td>'Y年'</td>
+  <td>Format of the part of the header title means year.<br>
+'Y' A full numeric representation of a year, 4 digits. (Examples: 1999 or 2003)<br>
+'y' A two digit representation of a year. (Examples: 99 or 03)</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_headertitlemonth">headertitlemonth</a></td>
+  <td>'m月'</td>
+  <td>Format of the part of the header title means month.<br>
+'m' Numeric representation of a month, with leading zeros. (01 through 12)<br>
+'n' Numeric representation of a month, without leading zeros. (1 through 12)<br>
+'F' A full textual representation of a month. (January through December)<br>
+'M' A short textual representation of a month, three letters. (Jan through Dec)</td>
+</tr>
+<tr>
+  <td><a name="desc_titleorder">titleorder</a></td>
+  <td>Month Year</td>
+  <td>Order to display the year and month of the header title.<br>In general, if you want to make Japanese style, then select the 'Month Year'. If you want to make Western style, then select the 'Year Month'.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_sunday">sunday</a></td>
+  <td>'日'</td>
+  <td>String of sunday.</td>
+</tr>
+<tr>
+  <td><a name="desc_monday">monday</a></td>
+  <td>'月'</td>
+  <td>String of monday.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_tuesday">tuesday</a></td>
+  <td>'火'</td>
+  <td>String of tuesday.</td>
+</tr>
+<tr>
+  <td><a name="desc_wednesday">wednesday</a></td>
+  <td>'水'</td>
+  <td>String of wednesday.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_thursday">thursday</a></td>
+  <td>'木'</td>
+  <td>String of thursday.</td>
+</tr>
+<tr>
+  <td><a name="desc_friday">friday</a></td>
+  <td>'金'</td>
+  <td>String of friday.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_saturday">saturday</a></td>
+  <td>'土'</td>
+  <td>String of saturday.</td>
+</tr>
+<tr>
+  <td><a name="desc_showholiday">showholiday</a></td>
+  <td>true</td>
+  <td>Whether to display color-coded Saturday, Sunday and holidays. (true=yes, false=no)</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_checkjpholiday">checkjpholiday</a></td>
+  <td>true</td>
+  <td>Whether to consider the Japanese holiday. (true=yes, false=no)<br>If set true, then display the Japanese holidays different color.<br>If set false, then display normal color.</td>
+</tr>
+<tr>
+  <td><a name="desc_enablesrblocks">enablesrblocks</a></td>
+  <td>true</td>
+  <td>Whether to display the right blocks in the content-list page displayed after clicking on the link on the site calendar. (true=yes, false=no)</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_showstoriesintro">showstoriesintro</a></td>
+  <td>true</td>
+  <td>Whether to display the intro section of the articles in the content-list page displayed after clicking on the link on the site calendar. (true=yes, false=no)<br>
+  If set true, then display the intro section of the articles.<br>If set false, then display the title-list of the articles.</td>
+</tr>
+<tr>
+  <td><a name="desc_use_theme">use_theme</a></td>
+  <td>false</td>
+  <td>Whether to apply a template that is provided in the theme.<br>Sets whether to use the template in the &lt;public_html&gt;/layout/theme/mycaljp directory.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_template">template</a></td>
+  <td>Default</td>
+  <td>Select the template used to display the site calendar.<br>This plugin provides several templates from the start.<br>Also, the template that contains "_multi_language" in the name has been set for multi-language environment.</td>
+</tr>
+<tr>
+  <td><a name="desc_date_format">date_format</a></td>
+  <td>'[Y-m-d]'</td>
+  <td>Date format used in the content-list page displayed after clicking on the link on the site calendar.<br>Parameters to be used in 'date_format' is the same as the format parameters of the function <a href="http://www.php.net/manual/ja/function.date.php">date()</a> of PHP.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_supported_contents">supported_contents</a></td>
+  <td>-</td>
+  <td>Contents list as the target of the search feature of this plugin.</td>
+</tr>
+<tr>
+  <td><a name="desc_enabled_contents">enabled_contents</a></td>
+  <td>-</td>
+  <td>Set whether the search is enable for each content. (1=enable, 0=disable)</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="config_staticpages">Staticpages Settings</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_sp_type">sp_type</a></td>
+  <td>Only pages that appear on the center block</td>
+  <td>Static pages as the target of the search feature of this plugin.<br>
+0: All<br>
+1: Only pages that appear on the center block<br>
+2: Only pages that do NOT appear on the center block</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_sp_except">sp_except</a></td>
+  <td>'formmail'</td>
+  <td>ID of staticpages to be excluded from the search of the site calendar.</td>
+</tr>
+</table>
+
+
+
+<h3><a name="config_mycaljp_block">Block Settings</a></h3>
+
+<table class="config">
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_block_enable">block_enable</a></td>
+  <td>true</td>
+  <td>Enable block.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_block_isleft">block_isleft</a></td>
+  <td>1</td>
+  <td>Whether to display the block on the left (when set to 1)
+    or right (when set to 0).</td>
+</tr>
+<tr>
+  <td><a name="desc_block_order">block_order</a></td>
+  <td>10</td>
+  <td>The order the block appears in the column.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_block_topic_option">block_topic_option</a></td>
+  <td>all</td>
+  <td>Set to 'All' for block to appear on all pages. Set to 'Homepage Only' for block to appear on just the homepage. Set to 'Selected Topics' for block to appear only in Topics selected in the Topic setting.</td>
+</tr>
+<tr>
+  <td><a name="desc_block_topic">block_topic</a></td>
+  <td>-</td>
+  <td>The topics the block will appear for if the Topic Options is set to 'Select Topics'.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_block_group_id">block_group_id</a></td>
+  <td>Mycaljp Admin</td>
+  <td>The group used by permissions.</td>
+</tr>
+</table>
+
+
+</body>
+</html>

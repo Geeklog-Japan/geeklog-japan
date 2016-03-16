@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<ul>
+{items}
+</ul>
+
+{# end {templatelocation} #}
