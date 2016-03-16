@@ -4,11 +4,9 @@
 <div class="validation_error_block"><span></span>{validation_error_message}</div>
 <!-- END validation_error_block -->
 
-
 <!-- BEGIN delete-button -->
 <input type="button" class="del-link" value="x" onclick="gl_cfg_remove(this);"{xhtml}>
 <!-- END delete-button -->
-
 
 <!-- BEGIN text-element -->
 <div{hide_row} class="config_name"><div class="config_label">{display_name} {doc_link} {unset_link}</div>
@@ -18,7 +16,6 @@
 </div>
 <!-- END text-element -->
 
-
 <!-- BEGIN text-area -->
 <div class="config_name"><div class="config_label">{display_name} {doc_link} {unset_link}</div>
 <input type="hidden" value="true" name="{name}[nameholder]"{xhtml}>
@@ -27,7 +24,6 @@
 </div>
 <!-- END text-area -->
 
-
 <!-- BEGIN placeholder-element -->
 <div{hide_row} class="config_name"><div class="config_label">{display_name}</div>
 <input type="hidden" value="true" name="{name}[nameholder]"{xhtml}>
@@ -35,7 +31,6 @@
 {delete}
 </div>
 <!-- END placeholder-element -->
-
 
 <!-- BEGIN select-element -->
 <div{hide_row} class="config_name"><div class="config_label">{display_name} {doc_link} {unset_link}</div>
@@ -49,13 +44,11 @@
 </div>
 <!-- END select-element -->
 
-
 <!-- BEGIN unset-param -->
 <div class="config_name"><div class="config_label">{display_name} {doc_link}</div>
 <div class="restore"><a href="#{name}" class="restore_param">{lang_enable}</a></div>
 </div>
 <!-- END unset-param -->
-
 
 <!-- BEGIN list-element -->
 <div{hide_row} class="config_name"><div class="config_label" style="vertical-align:top">{display_name} {doc_link} {unset_link}</div>
@@ -69,14 +62,12 @@
 </div>
 <!-- END list-element -->
 
-
 <!-- BEGIN keyed-add-button -->
 <div id="add_{id_name}" class="config_name">
 <input type="button" value="{lang_add_element}" class="add_ele_input" onclick="handleAdd(this, '{array_type}', '{arr_name}')"{xhtml}>
 <input type="text" style="width: 65px"{xhtml}>
 </div>
 <!-- END keyed-add-button -->
-
 
 <!-- BEGIN unkeyed-add-button -->
 <div id="add_{id_name}" class="config_name">

@@ -57,7 +57,7 @@
         <div class="uk-form-row uk-margin-large-top">
             <div class="uk-form-controls">
                 <input type="hidden" name="mode" value="search"{xhtml}>
-                <input type="submit" value="{lang_search}"{xhtml}>
+                <input type="submit" value="{lang_search}" class="uk-button uk-form-width-medium"{xhtml}>
             </div>
         </div>
 

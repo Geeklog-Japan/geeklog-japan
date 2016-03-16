@@ -47,8 +47,9 @@
     <div id="uk-offcanvas" class="uk-offcanvas">
       <div class="uk-offcanvas-bar">
         <ul class="uk-nav uk-nav-offcanvas">
+          <li><a href="{site_url}">HOME</a></li>
           {menu_elements}
-
+          <li><a href="{site_url}"><i class="uk-icon-cog"></i> {$LANG01[48]}</a></li>
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
           <li><a href="{site_url}/usersettings.php?mode=edit"><i class="uk-icon-cog"></i> {$LANG01[48]}</a></li>
           <li><a href="{site_url}/users.php?mode=logout"><i class="uk-icon-sign-out"></i> {$LANG01[35]}</a></li>
@@ -62,17 +63,15 @@
       </div>
     </div>
 
-  <!-- #container { -->
+  {# begin #container #}
   <div id="container" class="uk-container uk-container-center uk-margin-large-bottom">
 
-    <!-- #wrapper { -->
+    {# begin #wrapper #}
     <div id="wrapper">
 
-      {!!autotag assist:staticpage_content id:-top mode:home !!}
-
-      <!-- Center Block Container -->
+      {# begin Center Block Container #}
       <div id="centerblocks">
-        <main id="main-content" role="main">
+        <main id="main-content">
           <p class="uk-text-left uk-margin-small-top">{welcome_msg}&nbsp;{datetime}</p>
           {breadcrumb_trail}
 

@@ -41,7 +41,7 @@
 
         <div class="uk-form-row uk-margin-large-top">
             <div class="uk-form-controls">
-                <input type="submit" name="mode" value="{lang_preview}"{xhtml}>
+                <input type="submit" name="mode" value="{lang_preview}" class="uk-button uk-form-width-medium"{xhtml}>
                 <input type="hidden" name="type" value="story"{xhtml}>
                 <input type="hidden" name="uid" value="{story_uid}"{xhtml}>
                 <input type="hidden" name="sid" value="{story_sid}"{xhtml}>

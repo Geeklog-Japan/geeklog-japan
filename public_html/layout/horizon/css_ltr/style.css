@@ -1783,7 +1783,6 @@ body.center-right #config_content {
 #centerblocks div.block-center {
   margin: 0 0 1em 0;
   padding: 0 0 2em 0;
-  border-bottom: 1px solid #CCC;
 }
 
 /*--------------------------------------
@@ -2597,7 +2596,6 @@ div.third-party-login {
   font-size: 1em;
   text-align: left;
   white-space: normal;
-  font-family: Calibri, Tahoma, Geneva, sans, sans-serif;
   position: absolute;
   left: 2.2em;
   top: 2.2em;
@@ -2614,7 +2612,6 @@ div.third-party-login {
 }
 
 .gl-tooltip:hover em {
-  font-family: Candara, Tahoma, Geneva, sans, sans-serif;
   font-size: 1.2em;
   font-weight: bold;
   display: block;
