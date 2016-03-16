@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+<a href="https://plus.google.com/share?url={currenturl}" target="out"><img src="http://i.yimg.jp/images/xbrand/images/gplus1button.png" width="32" height="20" alt="Google +1ボタン" title="Google +1ボタン">
+
+{# end {templatelocation} #}

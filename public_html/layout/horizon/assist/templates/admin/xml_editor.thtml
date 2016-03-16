@@ -1,0 +1,67 @@
+{# begin {templatelocation} #}
+
+<div id="databox_admin">
+{about_thispage}
+<form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+
+  <fieldset style="width:94%">
+    <legend>XML</legend>
+
+    <!-- data -->
+    <table>
+        <!-- seq -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_seq}</th>
+            <td style="width:70%">
+                {seq}
+                <input type="hidden" name="seq" value="{seq}"{xhtml}>
+
+            </td>
+        </tr>
+
+
+        <!-- tag -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_tag}<span class="must">{lang_must}</span></th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="tag" value="{tag}"{xhtml}>
+            </td>
+        </tr>
+
+        <!-- value -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_value}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
+            </td>
+        </tr>
+
+        <!-- field -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_field}<span class="must">{lang_must}</span></th>
+            <td style="width:70%">
+                {list_field}
+            </td>
+        </tr>
+
+        <!-- 保存日 -->
+        <tr>
+            <th style="width:30%" class="alignright">{lang_udatetime}</th>
+            <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
+        </tr>
+
+    </table>
+  </fieldset>
+
+        <!-- 【保存 キャンセル  削除】 -->
+                <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+
+                <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+                <input type="hidden" value="{code}" name="old_code"{xhtml}>
+                {delete_option}{lang_delete_help}
+                <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</form>
+</div>
+
+{# end {templatelocation} #}
+

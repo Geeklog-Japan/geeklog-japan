@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+<h1>{actionname}</h1>
+<form action="{actionprg}" method="post">
+<div>{lang_checklist}{checklist}</div>
+<div>
+<input type='submit' name='action' value='{lang_submit}'{xhtml}>
+<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<input type="hidden" value="{mode}" name="mode"{xhtml}>
+</div>
+</form>
+
+{# end {templatelocation} #}

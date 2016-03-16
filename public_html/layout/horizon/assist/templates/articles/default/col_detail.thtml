@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+    <li>{data_link}<!-- <a href="{data_url}">{data_title}</a> -->{data_description} (id: {data_id}) (code: {data_code})  {data_description}   {data_datefield}  {data_value}  {zipcode}  {tel}  {additionfield1}    {additionfield2}</li>
+
+{# end {templatelocation} #}

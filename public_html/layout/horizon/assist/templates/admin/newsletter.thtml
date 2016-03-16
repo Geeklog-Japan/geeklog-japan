@@ -1,0 +1,144 @@
+{# begin {templatelocation} #}
+
+<form name="frmmailsetting" action="{site_admin_url}/plugins/{script}" method="post">
+  <fieldset style="width:94%; border:none">
+    {mail_msg}
+  </fieldset>
+
+  <fieldset style="width:94%">
+    <legend>{mail_msg1}</legend>
+    <table style="width:98%">
+        <tr>
+            <th style="width:30%; text-align:right" >{lang_fromname}{help_fromname}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="fromname" value="{fromname}"{xhtml}>
+            </td>
+        </tr>
+        <!-- 差出人メールアドレス -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_replyto}{help_replyto}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="replyto" value="{replyto}"{xhtml}>
+            </td>
+        </tr>
+        <!-- SUBJECT接頭子 -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_sprefix}{help_sprefix}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="sprefix" value="{sprefix}"{xhtml}>
+            </td>
+        </tr>  
+        <!-- sid -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_sid}{help_sid}</th>
+            <td style="width:70%">
+            <select name="sid"; style="width:400px">
+                {optionlist_sid}
+            </select>
+            </td>
+        </tr>
+
+
+
+        <!-- 冒頭文　本文　 introhtml  or bodyhtml -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_introbody}{help_introbody}</th>
+            <td style="width:70%">{list_introbody}</td>
+        </tr>
+
+    </table>
+    </fieldset>
+
+  <fieldset style="width:94%">
+    <legend>{mail_msg2}</legend>
+    <table style="width:98%">
+        <!-- テスト送信先 -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_testto}{help_testto}</th>
+            <td style="width:70%">
+                <input type="text" size="60" maxlength="160" name="testto" value="{testto}"{xhtml}>
+                <input type="submit" value="{lang_testsend}" name="mode"{xhtml}>
+            </td>
+        </tr>
+    </table>
+  </fieldset>
+  <fieldset style="width:94%">
+    <legend>{mail_msg3}</legend>
+    <table style="width:98%">
+        <!-- 送信先環境 -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_toenv}{help_toenv}</th>
+            <td style="width:70%">{list_toenv}</td>
+        </tr>
+        <!-- 送信先グループ -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_selectgroup}{help_selectgroup}</th>
+            <td style="width:70%">
+            <select name="selectgroup"; style="width:400px">
+                {optionlist_selectgroup}
+      </select>
+      <br{xhtml}>{user_wkymlmguser}
+      <!-- オプション　ユーザの受信許可設定を無視して送る　 overstyr -->
+      <br{xhtml}>
+        <input type="checkbox" name="overstyr" value="1" {is_checked_overstyr}{xhtml}>{lang_overstyr}{help_overstyr}
+
+            </td>
+        </tr>
+
+
+    </table>
+  </fieldset>
+  <fieldset style="width:94%">
+    <legend>{mail_msg4}</legend>
+    <table style="width:98%">
+        <!-- 開始uid -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_sendto}{help_sendto}</th>
+            <td style="width:70%">
+                {lang_uidfrom}<input type="text" size="5" maxlength="160" name="uidfrom" value="{uidfrom}"{xhtml}>
+                ～{lang_uidto}<input type="text" size="5" maxlength="160" name="uidto" value="{uidto}"{xhtml}>
+        <input type="submit" value="{lang_send}" name="mode"{xhtml}>
+        <br{xhtml}>{lang_sendto_remarks}
+            </td>
+        </tr>
+        <!-- 開始日時 -->
+        <tr>
+            <th style="width:30%; text-align:right">{lang_reserv_datetime}{help_reserv_datetime}</th>
+            <td style="width:70%">
+                <select name="{datetime}_year">
+                    {datetime_year_options}
+                </select>{lang_yy}
+                <select name="{datetime}_month">
+                    {datetime_month_options}
+                </select>{lang_mm}
+                <select name="{datetime}_day">
+                    {datetime_day_options}
+                </select>{lang_dd}
+                 &nbsp;
+                <select name="{datetime}_hour">
+                    {datetime_hour_options}
+                </select>:
+                <select name="{datetime}_minute">
+                    {datetime_minute_options}
+        </select>
+        <br{xhtml}>
+                <input type="text" size="12" maxlength="4" name="bulkmm" value="{bulkmm}"{xhtml}>{minute}{every}
+                <input type="text" size="12" maxlength="4" name="bulkcnt" value="{bulkcnt}"{xhtml}>{increments}
+        <input type="submit" value="{lang_reserv}" name="mode"{xhtml}>
+        <br{xhtml}>{lang_reserv_datetime_remarks}
+            </td>
+        </tr>
+
+
+
+    </table>
+  </fieldset>
+
+    <!-- 【保存 】 -->
+    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    {list_reserv}
+</form>
+
+{# end {templatelocation} #}

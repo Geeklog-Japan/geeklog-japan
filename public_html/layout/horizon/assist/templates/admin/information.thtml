@@ -1,0 +1,20 @@
+{# begin {templatelocation} #}
+
+<h2>{piname}</h2>
+<h3>information</h3>
+{about_thispage}
+<p>OS:{php_os} DB:{dbms} {dbversion} PHP Version:{phpversion}</p>
+<p>Plugin Version:{version}</p>
+<p>Facebook OAuth Application ID:{fbid}</p>
+<p> <a href="{document_url}" target="_blank">{lang_document}</a>
+(
+<a href="{document_url}assist.html" target="_blank">{lang_configuration}</a>
+:<a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a>
+:<a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvar}</a>
+)</p>
+
+<form name='assist_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='assist'></form>
+<p> <a style='text-decoration: none;' href='#' onclick="document.assist_conf_link.submit()">{lang_configuration}</a></p>
+
+{# end {templatelocation} #}

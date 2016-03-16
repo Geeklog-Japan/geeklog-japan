@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+<dl>
+
+{stories_col}
+</dl>
+
+<p><a href="{rss_url}">{rss_title}</a></p>
+<p class="more"><a href="{more_url}">{more_title}</a></p>
+
+{# end {templatelocation} #}

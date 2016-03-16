@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<dt><a href="{link}">{title}</a></dt>
+<dd>{pubdate}</dd>
+<dd>{description}</dd>
+
+{# end {templatelocation} #}

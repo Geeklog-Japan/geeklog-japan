@@ -1,0 +1,24 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <div class='pagenav'>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+  <div style="clear:both"></div>
+
+  <ul>
+    <li>{lang_name} ({lang_count})</li>
+{row_var}
+  </ul>
+
+  <div class='pagenav'>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div>
+
+{# end {templatelocation} #}

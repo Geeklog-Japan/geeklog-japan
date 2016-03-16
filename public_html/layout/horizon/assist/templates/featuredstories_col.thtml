@@ -1,0 +1,9 @@
+<!-- plugins/assist/templates/featuredstories_col.thtml  20120507{ -->
+
+<p>featured!</p>
+<dt>{day}{new_img}</dt>
+<dd><a href="{url}">{title}</a></dd>
+{meta_description}
+{introtext}
+
+<!-- } plugins/assist/templates/featuredstories_col.thtml -->

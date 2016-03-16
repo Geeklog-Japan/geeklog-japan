@@ -1,0 +1,29 @@
+{# begin {templatelocation} #}
+
+<div>
+
+    <div class='order'>
+        {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_tel}|{order_zipcode}
+    </div>
+    <div class='order_random'>{order_random}</div>
+    <div class='cur_order'>{cur_order}</div>
+    <div class='pagenav' {pagenavinone}>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+  <div style="clear:both"></div>
+
+  <ul>
+    <li>{lang_title} ({lang_id}) ({lang_code})|{lang_description}|{lang_date}{lang_addfield}{name_zipcode}{name_tel}{name_additionfield1}{name_additionfield2}</li>
+    {row_var}
+  </ul>
+
+  <div class='pagenav' {pagenavinone}>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div>
+
+{# end {templatelocation} #}

@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<dl class="uk-description-list-horizontal">
+{stories_col}
+</dl>
+
+{!if rss_title}<p class="uk-float-left"><a href="{rss_url}">{rss_title}</a></p>{!endif}
+<p class="uk-float-right"><a href="{more_url}">{more_title}</a></p>
+
+<div style="clear:both"></div>
+
+{# end {templatelocation} #}

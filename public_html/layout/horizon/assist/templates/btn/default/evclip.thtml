@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>
+<a href="#" onclick="Evernote.doClip(&#123&#125); return false;">
+<img src="http://static.evernote.com/article-clipper.png" alt="Clip to Evernote" /></a>
+
+{# end {templatelocation} #}
+
+
+
+
+

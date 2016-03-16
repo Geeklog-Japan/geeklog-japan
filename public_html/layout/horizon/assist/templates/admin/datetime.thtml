@@ -1,0 +1,26 @@
+{# begin {templatelocation} #}
+
+<form action="{datetime_script}" method="post" >
+    {datetime_title}
+    <select name="{datetime}_year">
+        {datetime_year_options}
+    </select>{lang_yy}
+    <select name="{datetime}_month">
+        {datetime_month_options}
+    </select>{lang_mm}
+    <select name="{datetime}_day">
+        {datetime_day_options}
+    </select>
+    <select name="{datetime}_hour">
+        {datetime_hour_options}
+    </select>:
+    <select name="{datetime}_minute">
+        {datetime_minute_options}
+    </select>
+    <input type="hidden" name="mode" value="datetime">
+    <input type="submit" name="btnsubmit" value="{save_changes}"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</form>
+
+{# end {templatelocation} #}
+

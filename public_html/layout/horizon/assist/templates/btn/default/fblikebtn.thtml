@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+<iframe src="//www.facebook.com/plugins/like.php?href={currenturl}&amp;width=150&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId={appid}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:20px;" allowTransparency="true"></iframe>
+
+{# end {templatelocation} #}

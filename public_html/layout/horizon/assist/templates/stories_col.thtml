@@ -1,0 +1,6 @@
+{# begin {templatelocation} #}
+
+<dt>{day}{new_img}</dt>
+<dd><a href="{url}">{title}</a></dd>
+
+{# end {templatelocation} #}

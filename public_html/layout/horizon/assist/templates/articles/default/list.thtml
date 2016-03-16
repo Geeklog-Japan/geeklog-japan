@@ -1,0 +1,16 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <ul class="uk-breadcrumb"><li><a href="{site_url}/">{home}</a></li></ul>
+
+  <h2>{topic_name}</h2>
+  <p>{msg}</p>
+
+  <ul>
+{nav_var}
+  </ul>
+
+</div>
+
+{# end {templatelocation} #}
