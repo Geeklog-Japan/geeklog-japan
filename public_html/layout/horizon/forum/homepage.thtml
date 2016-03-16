@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-{category_records}
-
-{# end {templatelocation} #}

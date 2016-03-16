@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-    <li>{category_link} {category_description}({count}) &nbsp;{category_name} &nbsp;{category_url}</li>
-
-{# end {templatelocation} #}

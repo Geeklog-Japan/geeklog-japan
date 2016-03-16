@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-    <h3>{group_name} </h3>
-
-{# end {templatelocation} #}

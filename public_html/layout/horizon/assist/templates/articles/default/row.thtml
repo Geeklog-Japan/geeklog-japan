@@ -1,6 +1,0 @@
-{# begin {templatelocation} #}
-
-{grp_var}
-{col_var}
-
-{# end {templatelocation} #}
