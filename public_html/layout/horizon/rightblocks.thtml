@@ -1,10 +1,10 @@
 {# begin {templatelocation} #}
 
-    <div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?> id="rightblocks" role="complementary">
-      <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="editlink uk-float-right" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
-	  <aside>
-        {geeklog_blocks}
-	  </aside>
-    </div>
+  <div id="rightblocks" role="complementary">
+    <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="editlink uk-float-right" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
+    <aside>
+      {geeklog_blocks}
+    </aside>
+  </div>
 
 {# end {templatelocation} #}

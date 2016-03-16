@@ -1,10 +1,6 @@
-/*! UIkit 2.23.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-/* ========================================================================
-   For Horizon
- ========================================================================== */
-html {
-  font: normal 14px / 20px "Helvetica Neue", Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
-}
+/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+
+/* Componets style */
 nav .uk-nav > li > a {
   padding: 2px 10px;
   font-size: 14px;
@@ -67,8 +63,6 @@ h1,
   text-indent: 100%;
   overflow: hidden;
   white-space: nowrap;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
 }
 .uk-dotnav > * > :hover,
 .uk-dotnav > * > :focus {
@@ -80,8 +74,6 @@ h1,
 }
 .uk-dotnav > .uk-active > * {
   background: rgba(50, 50, 50, 0.4);
-  -webkit-transform: scale(1.3);
-  transform: scale(1.3);
 }
 .uk-dotnav-contrast > * > * {
   background: rgba(255, 255, 255, 0.4);
@@ -289,11 +281,9 @@ h1,
   box-sizing: border-box;
   height: 20px;
   margin-bottom: 15px;
-  background: #f7f7f7;
+  background: #eeeeee;
   overflow: hidden;
   line-height: 20px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07), inset 0 2px 2px rgba(0, 0, 0, 0.07);
-  border-radius: 4px;
 }
 * + .uk-progress {
   margin-top: 15px;
@@ -301,17 +291,13 @@ h1,
 .uk-progress-bar {
   width: 0;
   height: 100%;
-  background: #009dd8;
+  background: #00a8e6;
   float: left;
   -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
   font-size: 12px;
   color: #ffffff;
   text-align: center;
-  background-image: -webkit-linear-gradient(top, #00b4f5, #008dc5);
-  background-image: linear-gradient(to bottom, #00b4f5, #008dc5);
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 .uk-progress-mini {
   height: 6px;
@@ -320,19 +306,13 @@ h1,
   height: 12px;
 }
 .uk-progress-success .uk-progress-bar {
-  background-color: #82bb42;
-  background-image: -webkit-linear-gradient(top, #9fd256, #6fac34);
-  background-image: linear-gradient(to bottom, #9fd256, #6fac34);
+  background-color: #8cc14c;
 }
 .uk-progress-warning .uk-progress-bar {
-  background-color: #f9a124;
-  background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
-  background-image: linear-gradient(to bottom, #fbb450, #f89406);
+  background-color: #faa732;
 }
 .uk-progress-danger .uk-progress-bar {
-  background-color: #d32c46;
-  background-image: -webkit-linear-gradient(top, #ee465a, #c11a39);
-  background-image: linear-gradient(to bottom, #ee465a, #c11a39);
+  background-color: #da314b;
 }
 .uk-progress-striped .uk-progress-bar {
   background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -359,20 +339,14 @@ h1,
     background-position: 30px 0;
   }
 }
-.uk-progress-mini,
-.uk-progress-small {
-  border-radius: 500px;
-}
 .uk-accordion-title {
   margin-top: 0;
   margin-bottom: 15px;
   padding: 5px 15px;
-  background: #f7f7f7;
+  background: #eeeeee;
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
 }
 .uk-accordion-content {
   padding: 0 15px 15px 15px;
@@ -398,11 +372,9 @@ h1,
   color: #444444;
 }
 .uk-nav-autocomplete > li.uk-active > a {
-  background: #009dd8;
+  background: #00a8e6;
   color: #ffffff;
   outline: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 .uk-nav-autocomplete .uk-nav-header {
   color: #999999;
@@ -472,49 +444,26 @@ h1,
   text-align: center;
   color: #444444;
   text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-origin: border-box;
 }
 a.uk-datepicker-table-muted {
   color: #999999;
 }
 .uk-datepicker-table a:hover,
 .uk-datepicker-table a:focus {
-  background-color: #fafafa;
+  background-color: #dddddd;
   color: #444444;
   outline: none;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-bottom-color: rgba(0, 0, 0, 0.3);
-  text-shadow: 0 1px 0 #ffffff;
 }
 .uk-datepicker-table a:active {
-  background-color: #f5f5f5;
+  background-color: #cccccc;
   color: #444444;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-top-color: rgba(0, 0, 0, 0.3);
-  background-image: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .uk-datepicker-table a.uk-active {
-  background: #009dd8;
+  background: #00a8e6;
   color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom-color: rgba(0, 0, 0, 0.4);
-  background-origin: border-box;
-  background-image: -webkit-linear-gradient(top, #00b4f5, #008dc5);
-  background-image: linear-gradient(to bottom, #00b4f5, #008dc5);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 .uk-htmleditor-navbar {
-  background: #f7f7f7;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background-origin: border-box;
-  background-image: -webkit-linear-gradient(top, #ffffff, #eeeeee);
-  background-image: linear-gradient(to bottom, #ffffff, #eeeeee);
+  background: #eeeeee;
 }
 .uk-htmleditor-navbar:before,
 .uk-htmleditor-navbar:after {
@@ -537,45 +486,26 @@ a.uk-datepicker-table-muted {
   display: block;
   box-sizing: border-box;
   text-decoration: none;
-  height: 41px;
+  height: 40px;
   padding: 0 15px;
   line-height: 40px;
   color: #444444;
   font-size: 11px;
   cursor: pointer;
-  margin-top: -1px;
-  margin-left: -1px;
-  border: 1px solid transparent;
-  border-bottom-width: 0;
-  text-shadow: 0 1px 0 #ffffff;
 }
 .uk-htmleditor-navbar-nav > li:hover > a,
 .uk-htmleditor-navbar-nav > li > a:focus {
-  background-color: transparent;
-  color: #444444;
-  outline: none;
-  position: relative;
-  z-index: 1;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.uk-htmleditor-navbar-nav > li > a:active {
   background-color: #f5f5f5;
   color: #444444;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.uk-htmleditor-navbar-nav > li > a:active {
+  background-color: #dddddd;
+  color: #444444;
 }
 .uk-htmleditor-navbar-nav > li.uk-active > a {
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   color: #444444;
-  border-left-color: rgba(0, 0, 0, 0.1);
-  border-right-color: rgba(0, 0, 0, 0.1);
-  border-top-color: rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .uk-htmleditor-navbar-flip {
   float: right;
@@ -589,8 +519,6 @@ a.uk-datepicker-table-muted {
   border-right: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
   background: #ffffff;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
 }
 .uk-htmleditor-content:before,
 .uk-htmleditor-content:after {
@@ -610,7 +538,7 @@ a.uk-datepicker-table-muted {
 }
 .uk-htmleditor-fullscreen .uk-htmleditor-content {
   position: absolute;
-  top: 41px;
+  top: 40px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -649,32 +577,6 @@ a.uk-datepicker-table-muted {
 .uk-htmleditor .CodeMirror {
   padding: 10px;
   box-sizing: border-box;
-}
-.uk-htmleditor-navbar-nav:first-child > li:first-child > a {
-  border-top-left-radius: 4px;
-}
-.uk-htmleditor-navbar-flip .uk-htmleditor-navbar-nav > li > a {
-  margin-left: 0;
-  margin-right: -1px;
-}
-.uk-htmleditor-navbar-flip .uk-htmleditor-navbar-nav:first-child > li:first-child > a {
-  border-top-left-radius: 0;
-}
-.uk-htmleditor-navbar-flip .uk-htmleditor-navbar-nav:last-child > li:last-child > a {
-  border-top-right-radius: 4px;
-}
-.uk-htmleditor-fullscreen .uk-htmleditor-navbar {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-}
-.uk-htmleditor-fullscreen .uk-htmleditor-content {
-  border: none;
-  border-radius: 0;
-}
-.uk-htmleditor-fullscreen .uk-htmleditor-navbar-nav > li > a {
-  border-radius: 0 !important;
 }
 .uk-slider {
   position: relative;
@@ -847,8 +749,6 @@ a.uk-datepicker-table-muted {
   font-size: 16px;
   line-height: 22px;
   cursor: pointer;
-  border: 1px solid #444444;
-  border-radius: 4px;
 }
 .uk-notify-message > .uk-close {
   visibility: hidden;
@@ -860,22 +760,18 @@ a.uk-datepicker-table-muted {
 .uk-notify-message-primary {
   background: #ebf7fd;
   color: #2d7091;
-  border-color: rgba(45, 112, 145, 0.3);
 }
 .uk-notify-message-success {
   background: #f2fae3;
   color: #659f13;
-  border-color: rgba(101, 159, 19, 0.3);
 }
 .uk-notify-message-warning {
   background: #fffceb;
   color: #e28327;
-  border-color: rgba(226, 131, 39, 0.3);
 }
 .uk-notify-message-danger {
   background: #fff1f0;
   color: #d85030;
-  border-color: rgba(216, 80, 48, 0.3);
 }
 .uk-search {
   display: inline-block;
@@ -943,7 +839,7 @@ a.uk-datepicker-table-muted {
 .uk-dropdown-search {
   width: 300px;
   margin-top: 0;
-  background: #ffffff;
+  background: #f5f5f5;
   color: #444444;
 }
 .uk-open > .uk-dropdown-search {
@@ -951,18 +847,16 @@ a.uk-datepicker-table-muted {
   animation: uk-slide-top-fixed 0.2s ease-in-out;
 }
 .uk-navbar-flip .uk-dropdown-search {
-  margin-top: 12px;
-  margin-right: -16px;
+  margin-top: 5px;
+  margin-right: -15px;
 }
 .uk-nav-search > li > a {
   color: #444444;
 }
 .uk-nav-search > li.uk-active > a {
-  background: #009dd8;
+  background: #00a8e6;
   color: #ffffff;
   outline: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 .uk-nav-search .uk-nav-header {
   color: #999999;
@@ -1081,14 +975,7 @@ a.uk-datepicker-table-muted {
 }
 .uk-nestable-panel {
   padding: 5px;
-  background: #f7f7f7;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom-color: rgba(0, 0, 0, 0.3);
-  background-origin: border-box;
-  background-image: -webkit-linear-gradient(top, #ffffff, #eeeeee);
-  background-image: linear-gradient(to bottom, #ffffff, #eeeeee);
-  text-shadow: 0 1px 0 #ffffff;
+  background: #f5f5f5;
 }
 .uk-sortable {
   position: relative;
@@ -1154,8 +1041,6 @@ a.uk-datepicker-table-muted {
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
   line-height: 18px;
-  border-radius: 3px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 .uk-tooltip:after {
   content: "";
@@ -1218,5 +1103,3 @@ a.uk-datepicker-table-muted {
   border-bottom-color: transparent;
   border-right-color: #333333;
 }
-
-

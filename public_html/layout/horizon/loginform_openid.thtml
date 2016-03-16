@@ -1,10 +1,10 @@
 {# begin {templatelocation} #}
 
-<div>
-	<form class="uk-form" action="{site_url}/users.php?openid_login=1" method="post" style="min-width:2em">
+<li>
+  <form class="uk-form" action="{site_url}/users.php?openid_login=1" method="post" style="min-width:2em">
     <div style="display: none;">
         <div class="uk-form-row">
-            <!-- this is revealed by login.js -->
+            {# this is revealed by login.js #}
             <label class="uk-form-label"><img alt="" src="{site_url}/images/openid_login_icon.png"{xhtml}></label>
             <div class="uk-form-controls">
                 <input type="submit" value="{lang_openid_login}"{xhtml}>
@@ -20,7 +20,7 @@
             </div>
         </div>
     </noscript>
-	</form>
-</div>
+  </form>
+</li>
 
 {# end {templatelocation} #}

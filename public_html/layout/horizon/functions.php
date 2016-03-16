@@ -62,8 +62,8 @@ function theme_css_horizon()
     $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
 
     return array(
-        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
-        array('file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/add_to_uikit.css',  'priority' => 90),
+        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' =>        array('media' => 'all'), 'priority' => 80),
+        array('file'       => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css/components/uikit.gradient.css',  'priority' => 90),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'priority' => 100),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'priority' => 110)
     );
@@ -153,7 +153,7 @@ function theme_js_files_horizon()
         ),
        array(
             'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
-            'footer'    => true, // Not requred, default = true
+            'footer'    => false, // Not requred, default = true
             'priority'  => 220 // Not requred, default = 100
         ),
     );

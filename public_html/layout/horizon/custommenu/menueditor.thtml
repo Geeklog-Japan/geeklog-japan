@@ -94,7 +94,7 @@
         <label class="uk-form-label" for="cmeditor-pattern">{lang_pattern}</label>
         <div class="uk-form-controls">
             <input type="text" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="uk-form-width-medium"{xhtml}>
-        	<label>{lang_is_preg}:</label>
+          <label>{lang_is_preg}:</label>
             <input type="checkbox" class="uk-margin-small-top" name="is_preg" aria-describedby="cmeditor-d10"{val_is_preg}{xhtml}>
             <span class="uk-form-help-inline" id="cmeditor-d10">{lang_pattern_info}</span>
         </div>
