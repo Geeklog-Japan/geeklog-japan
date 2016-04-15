@@ -362,15 +362,20 @@ if ( $A = DB_fetchArray( $result ) ) {
     $display .= PLG_showCenterblock (3, $page, $topic); // bottom blocks
 
     // Print Google-like paging navigation
-    if (!isset ($_CONF['hide_main_page_navigation']) ||
-            ($_CONF['hide_main_page_navigation'] == 0)) {
-        if (empty ($topic)) {
+    if (!isset($_CONF['hide_main_page_navigation']) ||
+            ($_CONF['hide_main_page_navigation'] == 'false')) {
+        if (empty($topic)) {
             $base_url = $_CONF['site_url'] . '/index.php';
         } else {
             $base_url = $_CONF['site_url'] . '/index.php?topic=' . $topic;
         }
-        $display .= COM_printPageNavigation ($base_url, $page, $num_pages);
-    }
+        $display .= COM_printPageNavigation($base_url, $page, $num_pages);
+    } else {
+        if ($_CONF['hide_main_page_navigation'] == 'frontpage' AND !empty($topic)) {
+            $base_url = $_CONF['site_url'] . '/index.php?topic=' . $topic;
+            $display .= COM_printPageNavigation($base_url, $page, $num_pages);
+        }
+    }    
 } else { // no stories to display
     if ($page == 1) {
         if (!isset ($_CONF['hide_no_news_msg']) ||
