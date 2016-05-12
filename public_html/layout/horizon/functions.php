@@ -165,6 +165,8 @@ function theme_js_files_horizon()
 function theme_init_horizon()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
+    
+    $_CONF['theme_oauth_icons'] = 0; // Default is false (not required). Will use Geeklogs own OAuth icons for login form else use icons in theme images directory
 
     $_CONF['left_blocks_in_footer'] = 1;
 
