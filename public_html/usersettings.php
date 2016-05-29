@@ -412,56 +412,57 @@ function editpreferences()
     if (strpos ($LANG04[52], '%d') === false) {
         $maxtext = $LANG04[52] . ' ' . $_CONF['limitnews'];
     } else {
-        $maxtext = sprintf ($LANG04[52], $_CONF['limitnews']);
+        $maxtext = sprintf($LANG04[52], $_CONF['limitnews']);
     }
-    $preferences->set_var ('lang_maxstories_text', $maxtext);
-    $preferences->set_var ('lang_dateformat', $LANG04[42]);
-    $preferences->set_var ('lang_excluded_items_title', $LANG04[137]);
-    $preferences->set_var ('lang_excluded_items', $LANG04[54]);
-    $preferences->set_var ('lang_exclude_title', $LANG04[136]);
-    $preferences->set_var ('lang_topics', $LANG04[48]);
-    $preferences->set_var ('lang_emailedtopics', $LANG04[76]);
-    $preferences->set_var ('lang_digest_top_header', $LANG04[131]);
-    $preferences->set_var ('lang_digest_help_header', $LANG04[132]);
-    $preferences->set_var ('lang_boxes_title', $LANG04[144]);
-    $preferences->set_var ('lang_boxes_help_title', $LANG04[143]);
-    $preferences->set_var ('lang_boxes', $LANG04[55]);
-    $preferences->set_var ('lang_displaymode', $LANG04[57]);
-    $preferences->set_var ('lang_displaymode_text', $LANG04[60]);
-    $preferences->set_var ('lang_sortorder', $LANG04[58]);
-    $preferences->set_var ('lang_sortorder_text', $LANG04[61]);
-    $preferences->set_var ('lang_comment_title', $LANG04[133]);
-    $preferences->set_var ('lang_comment_help_title', $LANG04[134]);
-    $preferences->set_var ('lang_comment_help', $LANG04[135]);
-    $preferences->set_var ('lang_commentlimit', $LANG04[59]);
-    $preferences->set_var ('lang_commentlimit_text', $LANG04[62]);
-    $preferences->set_var ('lang_privacy_title', $LANG04[141]);
-    $preferences->set_var ('lang_privacy_help_title', $LANG04[141]);
-    $preferences->set_var ('lang_privacy_help', $LANG04[142]);
-    $preferences->set_var ('lang_emailfromadmin', $LANG04[100]);
-    $preferences->set_var ('lang_emailfromadmin_text', $LANG04[101]);
-    $preferences->set_var ('lang_emailfromuser', $LANG04[102]);
-    $preferences->set_var ('lang_emailfromuser_text', $LANG04[103]);
-    $preferences->set_var ('lang_showonline', $LANG04[104]);
-    $preferences->set_var ('lang_showonline_text', $LANG04[105]);
-    $preferences->set_var ('lang_submit', $LANG04[9]);
+    $preferences->set_var('lang_maxstories_text', $maxtext);
+    $preferences->set_var('lang_dateformat', $LANG04[42]);
+    $preferences->set_var('lang_excluded_items_title', $LANG04[137]);
+    $preferences->set_var('lang_excluded_items', $LANG04[54]);
+    $preferences->set_var('lang_exclude_title', $LANG04[136]);
+    $preferences->set_var('lang_topics', $LANG04[48]);
+    $preferences->set_var('lang_emailedtopics', $LANG04[76]);
+    $preferences->set_var('lang_digest_top_header', $LANG04[131]);
+    $preferences->set_var('lang_digest_help_header', $LANG04[132]);
+    $preferences->set_var('lang_boxes_title', $LANG04[144]);
+    $preferences->set_var('lang_boxes_help_title', $LANG04[143]);
+    $preferences->set_var('lang_boxes', $LANG04[55]);
+    $preferences->set_var('lang_blocks', $LANG04[151]);
+    $preferences->set_var('lang_displaymode', $LANG04[57]);
+    $preferences->set_var('lang_displaymode_text', $LANG04[60]);
+    $preferences->set_var('lang_sortorder', $LANG04[58]);
+    $preferences->set_var('lang_sortorder_text', $LANG04[61]);
+    $preferences->set_var('lang_comment_title', $LANG04[133]);
+    $preferences->set_var('lang_comment_help_title', $LANG04[134]);
+    $preferences->set_var('lang_comment_help', $LANG04[135]);
+    $preferences->set_var('lang_commentlimit', $LANG04[59]);
+    $preferences->set_var('lang_commentlimit_text', $LANG04[62]);
+    $preferences->set_var('lang_privacy_title', $LANG04[141]);
+    $preferences->set_var('lang_privacy_help_title', $LANG04[141]);
+    $preferences->set_var('lang_privacy_help', $LANG04[142]);
+    $preferences->set_var('lang_emailfromadmin', $LANG04[100]);
+    $preferences->set_var('lang_emailfromadmin_text', $LANG04[101]);
+    $preferences->set_var('lang_emailfromuser', $LANG04[102]);
+    $preferences->set_var('lang_emailfromuser_text', $LANG04[103]);
+    $preferences->set_var('lang_showonline', $LANG04[104]);
+    $preferences->set_var('lang_showonline_text', $LANG04[105]);
+    $preferences->set_var('lang_submit', $LANG04[9]);
 
-    $display_name = COM_getDisplayName ($_USER['uid']);
+    $display_name = COM_getDisplayName($_USER['uid']);
 
-    $preferences->set_var ('lang_authors_exclude', $LANG04[46]);
-    $preferences->set_var ('lang_boxes_exclude', $LANG04[47]);
+    $preferences->set_var('lang_authors_exclude', $LANG04[46]);
+    $preferences->set_var('lang_boxes_exclude', $LANG04[47]);
 
-    $preferences->set_var ('start_block_display',
-            COM_startBlock ($LANG04[45] . ' ' . $display_name));
-    $preferences->set_var ('start_block_digest',
-            COM_startBlock ($LANG04[75] . ' ' . $display_name));
-    $preferences->set_var ('start_block_comment',
-            COM_startBlock ($LANG04[64] . ' ' . $display_name));
-    $preferences->set_var ('start_block_privacy',
-            COM_startBlock ($LANG04[99] . ' ' . $display_name));
-    $preferences->set_var ('end_block', COM_endBlock ());
+    $preferences->set_var('start_block_display',
+            COM_startBlock($LANG04[45] . ' ' . $display_name));
+    $preferences->set_var('start_block_digest',
+            COM_startBlock($LANG04[75] . ' ' . $display_name));
+    $preferences->set_var('start_block_comment',
+            COM_startBlock($LANG04[64] . ' ' . $display_name));
+    $preferences->set_var('start_block_privacy',
+            COM_startBlock($LANG04[99] . ' ' . $display_name));
+    $preferences->set_var('end_block', COM_endBlock());
 
-    $preferences->set_var ('display_headline',
+    $preferences->set_var('display_headline',
                            $LANG04[45] . ' ' . $display_name);
     $preferences->set_var ('exclude_headline',
                            $LANG04[46] . ' ' . $display_name);
