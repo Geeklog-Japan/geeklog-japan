@@ -47,7 +47,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('stylus', function() {
-    return gulp.src('./src/stylus/style.styl')
+    return gulp.src('./src/stylus/*.styl')
         .pipe(stylus({
             use: nib(),
             compress: false
@@ -78,13 +78,15 @@ gulp.task('copy_LR', function() {
         .pipe(gulp.dest('./dest/css_rtl/'));
 });
 
-gulp.task('swap_LR', function() {
-    return shell.task('r2 ./dest/css_rtl/style.css ./dest/css_rtl/style.css --no-compress')();
+gulp.task('rtlcss', function() {
+    return gulp.src(['!./dest/css_rtl/*.min.css', './dest/css_rtl/*.css'])
+        .pipe(rtlcss())
+        .pipe(gulp.dest('./dest/css_rtl/'));
 });
 
-gulp.task('fix_issue', function() {
-    return gulp.src('./dest/css_rtl/style.css')
-        .pipe(replace(/\.gl-tooltip span((?:\n|.)+?)margin-right/mg,
+gulp.task('modify1', function() {
+    return gulp.src(['!./dest/css_ltr/*.min.css', './dest/css_ltr/*.css'])
+        .pipe(replace(/$\s*\/\*rtl:ignore\*\//mg,
             function(str, p1, offset, s) {
                 return '.gl-tooltip span' + p1 + 'margin-left';
             }))
@@ -97,9 +99,9 @@ gulp.task('fix_issue', function() {
 
 gulp.task('modify', function(done) {
 
-    var regex = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^@media\s+[^\n]+\{\n(?:\n|.)*?\n\})|(^(?:#|\.|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n\})/mg;
+    var regex = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^@media\s+[^\n]+\{\n(?:\n|.)*?\n\})|(^(?:#|\.|\*|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n\})/mg;
 
-    var files = glob.sync('./dest/css_?t?/style.css');
+    var files = glob.sync('./dest/css_?t?/style*(.gradient|.almost-flat).css');
 
     files.forEach(function(file) {
 
@@ -142,7 +144,7 @@ function modifyMedia(content) {
 
     var matches = regex.exec(content);
 
-    var regex2 = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^  (?:#|\.|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n  \})/mg;
+    var regex2 = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^  (?:#|\.|\*|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n  \})/mg;
 
     var ms, str = '', tmp;
 
