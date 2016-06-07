@@ -65,7 +65,7 @@
     <legend>{lang_phpblockoptions}</legend>
 
     <dl>
-      <dt><label for="admin-blockeditor-phpblockfn">{lang_blockfunction}</label></dt>
+      <dt></dt>
       <dd><input type="text" size="40" maxlength="50" value="{block_phpblockfn}" name="phpblockfn" id="admin-blockeditor-phpblockfn" class="text"{xhtml}></dd>
       <dd class="description">{lang_phpblockwarning}</dd>
     </dl>
@@ -93,7 +93,7 @@
       <dt><label for="admin-blockeditor-content">{lang_blockcontent}</label></dt>
       <dd><textarea cols="40" rows="12" name="content" id="admin-blockeditor-content">{block_content}</textarea></dd>
       <dt>{lang_autotags}</dt>
-      <dd><input type="checkbox" name="allow_autotags" {allow_autotags}{xhtml}><span class="fieldhelp">{lang_use_autotags}</span></dd>
+      <dd><input type="checkbox" name="allow_autotags" {allow_autotags}{xhtml}>({lang_use_autotags})</dd>
     </dl>
 
     <p class="description">{lang_allowed_html}</p>
