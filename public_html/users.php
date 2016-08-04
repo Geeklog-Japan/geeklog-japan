@@ -33,17 +33,16 @@
 // +---------------------------------------------------------------------------+
 
 /**
-* This file handles user authentication
-*
-* @author   Tony Bibbs <tony@tonybibbs.com>
-* @author   Mark Limburg <mlimburg@users.sourceforge.net>
-* @author   Jason Whittenburg
-*
-*/
+ * This file handles user authentication
+ *
+ * @author   Tony Bibbs <tony@tonybibbs.com>
+ * @author   Mark Limburg <mlimburg@users.sourceforge.net>
+ * @author   Jason Whittenburg
+ */
 
 /**
-* Geeklog common function library
-*/
+ * Geeklog common function library
+ */
 require_once 'lib-common.php';
 require_once $_CONF['path_system'] . 'lib-user.php';
 $VERBOSE = false;
@@ -55,16 +54,14 @@ $VERBOSE = false;
 // echo COM_debug($_POST);
 
 /**
-* Emails password to a user
-*
-* This will email the given user their password.
-*
-* @param    string      $username       Username for which to get and email password
-* @param    int         $msg            Message number of message to show when done
-* @return   string      Optionally returns the HTML for the default form if the user info can't be found
-*
-*/
-function emailpassword ($username, $msg = 0)
+ * Emails password to a user
+ * This will email the given user their password.
+ *
+ * @param    string $username Username for which to get and email password
+ * @param    int    $msg      Message number of message to show when done
+ * @return   string      Optionally returns the HTML for the default form if the user info can't be found
+ */
+function emailpassword($username, $msg = 0)
 {
     global $_CONF, $_TABLES, $LANG04;
 
@@ -98,12 +95,11 @@ function emailpassword ($username, $msg = 0)
 }
 
 /**
-* User request for a new password - send email with a link and request id
-*
-* @param username string   name of user who requested the new password
-* @return         string   form or meta redirect
-*
-*/
+ * User request for a new password - send email with a link and request id
+ *
+ * @param username string   name of user who requested the new password
+ * @return         string   form or meta redirect
+ */
 function requestpassword($username)
 {
     global $_CONF, $_TABLES, $LANG04;
@@ -118,9 +114,9 @@ function requestpassword($username)
         if (($_CONF['usersubmission'] == 1) && ($A['status'] == USER_ACCOUNT_AWAITING_APPROVAL)) {
             return COM_refresh ($_CONF['site_url'] . '/index.php?msg=48');
         }
-        $reqid = substr (md5 (uniqid (rand (), 1)), 1, 16);
-        DB_change ($_TABLES['users'], 'pwrequestid', "$reqid",
-                   'uid', $A['uid']);
+        $reqid = substr(md5(uniqid(rand(), 1)), 1, 16);
+        DB_change($_TABLES['users'], 'pwrequestid', "$reqid",
+            'uid', $A['uid']);
 
         $mailtext = sprintf ($LANG04[88], $username);
         $mailtext .= $_CONF['site_url'] . '/users.php?mode=newpwd&uid=' . $A['uid'] . '&rid=' . $reqid . "\n\n";
@@ -151,24 +147,23 @@ function requestpassword($username)
 }
 
 /**
-* Display a form where the user can enter a new password.
-*
-* @param uid       int      user id
-* @param requestid string   request id for password change
-* @return          string   new password form
-*
-*/
-function newpasswordform ($uid, $requestid)
+ * Display a form where the user can enter a new password.
+ *
+ * @param uid       int      user id
+ * @param requestid string   request id for password change
+ * @return          string   new password form
+ */
+function newpasswordform($uid, $requestid)
 {
     global $_CONF, $_TABLES, $LANG04;
 
     $pwform = COM_newTemplate($_CONF['path_layout'] . 'users');
     $pwform->set_file (array ('newpw' => 'newpassword.thtml'));
 
-    $pwform->set_var ('user_id', $uid);
-    $pwform->set_var ('user_name', DB_getItem ($_TABLES['users'], 'username',
-                                               "uid = '{$uid}'"));
-    $pwform->set_var ('request_id', $requestid);
+    $pwform->set_var('user_id', $uid);
+    $pwform->set_var('user_name', DB_getItem($_TABLES['users'], 'username',
+        "uid = '{$uid}'"));
+    $pwform->set_var('request_id', $requestid);
 
     $pwform->set_var ('lang_explain', $LANG04[90]);
     $pwform->set_var ('lang_username', $LANG04[2]);
@@ -184,17 +179,15 @@ function newpasswordform ($uid, $requestid)
 }
 
 /**
-* Creates a user
-*
-* Creates a user with the give username and email address
-*
-* @param    string      $username       username to create user for
-* @param    string      $email          email address to assign to user
-* @param    string      $email_conf     confirmation email address check
-* @return   string      HTML for the form again if error occurs, otherwise nothing.
-*
-*/
-function createuser ($username, $email, $email_conf)
+ * Creates a user
+ * Creates a user with the give username and email address
+ *
+ * @param    string $username   username to create user for
+ * @param    string $email      email address to assign to user
+ * @param    string $email_conf confirmation email address check
+ * @return   string      HTML for the form again if error occurs, otherwise nothing.
+ */
+function createuser($username, $email, $email_conf)
 {
     global $_CONF, $_TABLES, $LANG01, $LANG04;
 
@@ -208,22 +201,21 @@ function createuser ($username, $email, $email_conf)
         $_CONF['disallow_domains'] = '';
     }
 
-    if (COM_isEmail ($email) && !empty ($username) && ($email === $email_conf)
-            && !USER_emailMatches ($email, $_CONF['disallow_domains'])
-            && (strlen ($username) <= 16)) {
-
-        $ucount = DB_count ($_TABLES['users'], 'username',
-                            DB_escapeString($username));
-        $ecount = DB_count ($_TABLES['users'], 'email', DB_escapeString($email));
-
-        if ($ucount == 0 AND $ecount == 0) {
+    if (COM_isEmail($email) && !empty($username) && ($email === $email_conf)
+        && !USER_emailMatches($email, $_CONF['disallow_domains'])
+        && (strlen($username) <= 16)
+    ) {
+        $ucount = DB_count($_TABLES['users'], 'username',
+            DB_escapeString($username));
+        $ecount = DB_count($_TABLES['users'], 'email', DB_escapeString($email));
 
             // For Geeklog, it would be okay to create this user now. But check
             // with a custom userform first, if one exists.
             if ($_CONF['custom_registration'] &&
-                    function_exists ('CUSTOM_userCheck')) {
-                $ret = CUSTOM_userCheck ($username, $email);
-                if (!empty ($ret)) {
+                function_exists('CUSTOM_userCheck')
+            ) {
+                $ret = CUSTOM_userCheck($username, $email);
+                if (!empty($ret)) {
                     // no, it's not okay with the custom userform
                     $retval = COM_createHTMLDocument(CUSTOM_userForm($ret['string']));
 
@@ -247,10 +239,11 @@ function createuser ($username, $email, $email_conf)
             $uid = USER_createAccount ($username, $email);
 
             if ($_CONF['usersubmission'] == 1) {
-                if (DB_getItem ($_TABLES['users'], 'status', "uid = $uid")
-                        == USER_ACCOUNT_AWAITING_APPROVAL) {
-                    $retval = COM_refresh ($_CONF['site_url']
-                                           . '/index.php?msg=48');
+                if (DB_getItem($_TABLES['users'], 'status', "uid = $uid")
+                    == USER_ACCOUNT_AWAITING_APPROVAL
+                ) {
+                    $retval = COM_refresh($_CONF['site_url']
+                        . '/index.php?msg=48');
                 } else {
                     $retval = emailpassword ($username, 1);
                 }
@@ -261,8 +254,9 @@ function createuser ($username, $email, $email_conf)
             return $retval;
         } else {
             if ($_CONF['custom_registration'] &&
-                    function_exists ('CUSTOM_userForm')) {
-                $retval .= CUSTOM_userForm ($LANG04[19]);
+                function_exists('CUSTOM_userForm')
+            ) {
+                $retval .= CUSTOM_userForm($LANG04[19]);
             } else {
                 $retval .= newuserform ($LANG04[19]);
             }
@@ -295,37 +289,36 @@ function createuser ($username, $email, $email_conf)
 }
 
 /**
-* Shows the user login form
-* after failed attempts to either login or access a page requiring login.
-*
-* @param    boolean $hide_forgotpw_link whether to hide "forgot password?" link
-* @param    int     $userstatus         status of the user's account
-* @return   string                      HTML for login form
-*
-*/
+ * Shows the user login form
+ * after failed attempts to either login or access a page requiring login.
+ *
+ * @param    boolean $hide_forgotpw_link whether to hide "forgot password?" link
+ * @param    int     $userstatus         status of the user's account
+ * @return   string                      HTML for login form
+ */
 function loginform($hide_forgotpw_link = false, $userstatus = -1)
 {
     global $LANG04;
 
     $cfg = array(
-        'hide_forgotpw_link' => $hide_forgotpw_link
+        'hide_forgotpw_link' => $hide_forgotpw_link,
     );
 
     if ($userstatus == USER_ACCOUNT_DISABLED) {
-        $cfg['title']   = $LANG04[114];
+        $cfg['title'] = $LANG04[114];
         $cfg['message'] = $LANG04[115];
         $cfg['hide_forgotpw_link'] = true;
-        $cfg['no_newreg_link']     = true;
+        $cfg['no_newreg_link'] = true;
     } elseif ($userstatus == USER_ACCOUNT_AWAITING_APPROVAL) {
-        $cfg['title']   = $LANG04[116];
+        $cfg['title'] = $LANG04[116];
         $cfg['message'] = $LANG04[117];
         $cfg['hide_forgotpw_link'] = true;
-        $cfg['no_newreg_link']     = true;
+        $cfg['no_newreg_link'] = true;
     } elseif ($userstatus == -2) { // No error user just visited page to login
-        $cfg['title']   = $LANG04['user_login'];
+        $cfg['title'] = $LANG04['user_login'];
         $cfg['message'] = $LANG04['user_login_message'];
     } else { // Status should be -1 which is login error
-        $cfg['title']   = $LANG04[65];
+        $cfg['title'] = $LANG04[65];
         $cfg['message'] = $LANG04[66];
     }
 
@@ -333,13 +326,13 @@ function loginform($hide_forgotpw_link = false, $userstatus = -1)
 }
 
 /**
-* Shows the user registration form
-*
-* @param    int     $msg        message number to show
-* @param    string  $referrer   page to send user to after registration
-* @return   string  HTML for user registration page
-*/
-function newuserform ($msg = '')
+ * Shows the user registration form
+ *
+ * @param    int    $msg      message number to show
+ * @param    string $referrer page to send user to after registration
+ * @return   string  HTML for user registration page
+ */
+function newuserform($msg = '')
 {
     global $_CONF, $LANG04;
 
@@ -386,11 +379,10 @@ function newuserform ($msg = '')
 }
 
 /**
-* Shows the password retrieval form
-*
-* @return   string  HTML for form used to retrieve user's password
-*
-*/
+ * Shows the password retrieval form
+ *
+ * @return   string  HTML for form used to retrieve user's password
+ */
 function getpasswordform()
 {
     global $_CONF, $LANG04;
@@ -413,25 +405,24 @@ function getpasswordform()
 }
 
 /**
-* Account does not exist - show both the login and register forms
-*
-* @param    string  $msg        message to display if one is needed
-* @return   string  HTML for form
-*
-*/
+ * Account does not exist - show both the login and register forms
+ *
+ * @param    string $msg message to display if one is needed
+ * @return   string  HTML for form
+ */
 function defaultform($msg)
 {
     global $_CONF, $LANG04;
 
     $retval = '';
 
-    if (! empty($msg)) {
+    if (!empty($msg)) {
         $retval .= COM_showMessageText($msg, $LANG04[21]);
     }
 
     $retval .= loginform(true);
 
-    if (! $_CONF['disable_new_user_registration']) {
+    if (!$_CONF['disable_new_user_registration']) {
         $retval .= newuserform();
     }
 
@@ -441,20 +432,20 @@ function defaultform($msg)
 }
 
 /**
-* Display message after a login error
-*
-* @param    int     $msg            message number for custom handler
-* @param    string  $message_title  title for the message box
-* @param    string  $message_text   text of the message box
-* @return   void                    function does not return!
-*
-*/
+ * Display message after a login error
+ *
+ * @param    int    $msg           message number for custom handler
+ * @param    string $message_title title for the message box
+ * @param    string $message_text  text of the message box
+ * @return   void                    function does not return!
+ */
 function displayLoginErrorAndAbort($msg, $message_title, $message_text)
 {
     global $_CONF;
 
     if ($_CONF['custom_registration'] &&
-            function_exists('CUSTOM_loginErrorHandler')) {
+        function_exists('CUSTOM_loginErrorHandler')
+    ) {
         // Typically this will be used if you have a custom main site page
         // and need to control the login process
         CUSTOM_loginErrorHandler($msg);
@@ -472,17 +463,15 @@ function displayLoginErrorAndAbort($msg, $message_title, $message_text)
 }
 
 /**
-* Helper function: When magic_quotes_gpc = On, everything in $_GET and $_POST
-* has already been auto-escaped. So we need to undo this before re-creating
-* the GET or POST request.
-*
-* NOTE: Assumes that is only being called when magic_quotes_gpc = On
-*
-* @param    ref     $value  value to un-escape
-* @return   mixed           un-escaped value or array of values
-* @see      COM_stripslashes
-*
-*/
+ * Helper function: When magic_quotes_gpc = On, everything in $_GET and $_POST
+ * has already been auto-escaped. So we need to undo this before re-creating
+ * the GET or POST request.
+ * NOTE: Assumes that is only being called when magic_quotes_gpc = On
+ *
+ * @param    ref $value value to un-escape
+ * @return   mixed           un-escaped value or array of values
+ * @see      COM_stripslashes
+ */
 function stripslashes_gpc_recursive(&$value)
 {
     if (is_array($value)) {
@@ -496,103 +485,112 @@ function stripslashes_gpc_recursive(&$value)
 }
 
 /**
-* Re-send a request after successful re-authentication
-*
-* Re-creates a GET or POST request based on data passed along in a form. Used
-* in case of an expired security token so that the user doesn't lose changes.
-*
-*/
+ * Re-send a request after successful re-authentication
+ * Re-creates a GET or POST request based on data passed along in a form. Used
+ * in case of an expired security token so that the user doesn't lose changes.
+ */
 function resend_request()
 {
     global $_CONF;
 
-    require_once 'HTTP/Request.php';
+    require_once 'HTTP/Request2.php';
 
     $method = '';
     if (isset($_POST['token_requestmethod'])) {
         $method = COM_applyFilter($_POST['token_requestmethod']);
     }
-    $returnurl = '';
+    $returnUrl = '';
     if (isset($_POST['token_returnurl'])) {
-        $returnurl = urldecode($_POST['token_returnurl']);
-        if (substr($returnurl, 0, strlen($_CONF['site_url'])) !=
-                $_CONF['site_url']) {
+        $returnUrl = urldecode($_POST['token_returnurl']);
+        if (substr($returnUrl, 0, strlen($_CONF['site_url'])) !=
+            $_CONF['site_url']
+        ) {
             // only accept URLs on our site
-            $returnurl = '';
+            $returnUrl = '';
         }
     }
-    $postdata = '';
+    $postData = '';
     if (isset($_POST['token_postdata'])) {
-        $postdata = urldecode($_POST['token_postdata']);
+        $postData = urldecode($_POST['token_postdata']);
     }
-    $getdata = '';
+    $getData = '';
     if (isset($_POST['token_getdata'])) {
-        $getdata = urldecode($_POST['token_getdata']);
+        $getData = urldecode($_POST['token_getdata']);
     }
     $files = '';
     if (isset($_POST['token_files'])) {
         $files = urldecode($_POST['token_files']);
     }
 
-    if (SECINT_checkToken() && !empty($method) && !empty($returnurl) &&
-            ((($method == 'POST') && !empty($postdata)) ||
-             (($method == 'GET') && !empty($getdata)))) {
-
+    if (SECINT_checkToken() && !empty($method) && !empty($returnUrl) &&
+        ((($method === 'POST') && !empty($postData)) ||
+            (($method === 'GET') && !empty($getData)))
+    ) {
         $magic = get_magic_quotes_gpc();
-        $req = new HTTP_Request($returnurl);
-        if ($method == 'POST') {
-            $req->setMethod(HTTP_REQUEST_METHOD_POST);
-            $data = unserialize($postdata);
+
+        if ($method === 'POST') {
+            $req = new HTTP_Request2($returnUrl, HTTP_Request2::METHOD_POST);
+            $data = unserialize($postData);
             foreach ($data as $key => $value) {
                 if ($key == CSRF_TOKEN) {
-                    $req->addPostData($key, SEC_createToken());
+                    $req->addPostParameter($key, SEC_createToken());
                 } else {
                     if ($magic) {
                         $value = stripslashes_gpc_recursive($value);
                     }
-                    $req->addPostData($key, $value);
+                    $req->addPostParameter($key, $value);
                 }
             }
-            if (! empty($files)) {
+            if (!empty($files)) {
                 $files = unserialize($files);
             }
-            if (! empty($files)) {
+            if (!empty($files)) {
                 foreach ($files as $key => $value) {
-                    $req->addPostData('_files_' . $key, $value);
+                    $req->addPostParameter('_files_' . $key, $value);
                 }
             }
         } else {
-            $req->setMethod(HTTP_REQUEST_METHOD_GET);
-            $data = unserialize($getdata);
-            foreach ($data as $key => $value) {
+            $data = unserialize($getData);
+
+            foreach ($data as $key => &$value) {
                 if ($key == CSRF_TOKEN) {
-                    $req->addQueryString($key, SEC_createToken());
-                } else {
+                    $value = SEC_createToken();
+                }                else {
                     if ($magic) {
                         $value = stripslashes_gpc_recursive($value);
                     }
-                    $req->addQueryString($key, $value);
                 }
             }
+
+            $returnUrl = $returnUrl . '?' . http_build_query($data);
+            $req = new HTTP_Request2($returnUrl, HTTP_Request2::METHOD_GET);
         }
-        $req->addHeader('User-Agent', 'Geeklog/' . VERSION);
+
+        $req->setHeader('User-Agent', 'Geeklog/' . VERSION);
         // need to fake the referrer so the new token matches
-        $req->addHeader('Referer', COM_getCurrentUrl());
+        $req->setHeader('Referer', COM_getCurrentUrl());
         foreach ($_COOKIE as $cookie => $value) {
             $req->addCookie($cookie, $value);
         }
-        $response = $req->sendRequest();
 
-        if (PEAR::isError($response)) {
-            if (! empty($files)) {
+        try {
+            $response = $req->send();
+            $status = $response->getStatus();
+
+            if ($status == 200) {
+                COM_output($response->getBody());
+            } else {
+                throw new HTTP_Request2_Exception('HTTP error: status code = ' . $status);
+            }
+        } catch (HTTP_Request2_Exception $e) {
+            if (!empty($files)) {
                 SECINT_cleanupFiles($files);
             }
-            trigger_error("Resending $method request failed: " . $response->getMessage());
-        } else {
-            COM_output($req->getResponseBody());
+
+            trigger_error("Resending $method request failed: " . $e->getMessage());
         }
     } else {
-        if (! empty($files)) {
+        if (!empty($files)) {
             SECINT_cleanupFiles($files);
         }
         echo COM_refresh($_CONF['site_url'] . '/index.php');
@@ -666,64 +664,35 @@ case 'create':
     }
     break;
 
-case 'getpassword':
-    if ($_CONF['passwordspeedlimit'] == 0) {
-        $_CONF['passwordspeedlimit'] = 300; // 5 minutes
-    }
-    COM_clearSpeedlimit ($_CONF['passwordspeedlimit'], 'password');
-    $last = COM_checkSpeedlimit ('password');
-    if ($last > 0) {
-        $display .= COM_showMessageText(
-                        sprintf($LANG04[93], $last, $_CONF['passwordspeedlimit']),
-                        $LANG12[26]
-        );
-    } else {
-        $display .= getpasswordform ();
-    }
-    $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[25]));
-    break;
-
-case 'newpwd':
-    $uid = COM_applyFilter ($_GET['uid'], true);
-    $reqid = COM_applyFilter ($_GET['rid']);
-    if (!empty ($uid) && is_numeric ($uid) && ($uid > 0) &&
-            !empty ($reqid) && (strlen ($reqid) == 16)) {
-        $valid = DB_count ($_TABLES['users'], array ('uid', 'pwrequestid'),
-                           array ($uid, $reqid));
-        if ($valid == 1) {
-            $display .= newpasswordform ($uid, $reqid);
-            $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[92]));
-        } else { // request invalid or expired
-            $display .= COM_showMessage (54);
-            $display .= getpasswordform ();
-            $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[25]));
+    case 'getpassword':
+        if ($_CONF['passwordspeedlimit'] == 0) {
+            $_CONF['passwordspeedlimit'] = 300; // 5 minutes
         }
-    } else {
-        // this request doesn't make sense - ignore it
-        $display = COM_refresh ($_CONF['site_url']);
-    }
-    break;
+        COM_clearSpeedlimit($_CONF['passwordspeedlimit'], 'password');
+        $last = COM_checkSpeedlimit('password');
+        if ($last > 0) {
+            $display .= COM_showMessageText(
+                sprintf($LANG04[93], $last, $_CONF['passwordspeedlimit']),
+                $LANG12[26]
+            );
+        } else {
+            $display .= getpasswordform();
+        }
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[25]));
+        break;
 
-case 'setnewpwd':
-    if ( (empty ($_POST['passwd']))
-            or ($_POST['passwd'] != $_POST['passwd_conf']) ) {
-        $display = COM_refresh ($_CONF['site_url']
-                 . '/users.php?mode=newpwd&amp;uid=' . $_POST['uid']
-                 . '&amp;rid=' . $_POST['rid']);
-    } else {
-        $uid = COM_applyFilter ($_POST['uid'], true);
-        $reqid = COM_applyFilter ($_POST['rid']);
-        if (!empty ($uid) && is_numeric ($uid) && ($uid > 0) &&
-                !empty ($reqid) && (strlen ($reqid) == 16)) {
-            $valid = DB_count ($_TABLES['users'], array ('uid', 'pwrequestid'),
-                               array ($uid, $reqid));
+    case 'newpwd':
+        $uid = COM_applyFilter($_GET['uid'], true);
+        $reqid = COM_applyFilter($_GET['rid']);
+        if (!empty($uid) && is_numeric($uid) && ($uid > 0) &&
+            !empty($reqid) && (strlen($reqid) == 16)
+        ) {
+            $valid = DB_count($_TABLES['users'], array('uid', 'pwrequestid'),
+                array($uid, $reqid));
             if ($valid == 1) {
-                SEC_updateUserPassword($_POST['passwd'], $uid);
-
-                DB_delete ($_TABLES['sessions'], 'uid', $uid);
-                DB_change ($_TABLES['users'], 'pwrequestid', "NULL",
-                           'uid', $uid);
-                $display = COM_refresh ($_CONF['site_url'] . '/users.php?msg=53');
+                $display .= newpasswordform($uid, $reqid);
+                $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[92]));
+>>>>>>> Replaced PEAR HTTP_Request class with HTTP_Request2
             } else { // request invalid or expired
                 $display .= COM_showMessage (54);
                 $display .= getpasswordform ();
@@ -732,6 +701,43 @@ case 'setnewpwd':
         } else {
             // this request doesn't make sense - ignore it
             $display = COM_refresh ($_CONF['site_url']);
+=======
+            $display = COM_refresh($_CONF['site_url']);
+        }
+        break;
+
+    case 'setnewpwd':
+        if ((empty($_POST['passwd']))
+            || ($_POST['passwd'] != $_POST['passwd_conf'])
+        ) {
+            $display = COM_refresh($_CONF['site_url']
+                . '/users.php?mode=newpwd&amp;uid=' . $_POST['uid']
+                . '&amp;rid=' . $_POST['rid']);
+        } else {
+            $uid = COM_applyFilter($_POST['uid'], true);
+            $reqid = COM_applyFilter($_POST['rid']);
+            if (!empty($uid) && is_numeric($uid) && ($uid > 0) &&
+                !empty($reqid) && (strlen($reqid) == 16)
+            ) {
+                $valid = DB_count($_TABLES['users'], array('uid', 'pwrequestid'),
+                    array($uid, $reqid));
+                if ($valid == 1) {
+                    SEC_updateUserPassword($_POST['passwd'], $uid);
+
+                    DB_delete($_TABLES['sessions'], 'uid', $uid);
+                    DB_change($_TABLES['users'], 'pwrequestid', "NULL",
+                        'uid', $uid);
+                    $display = COM_refresh($_CONF['site_url'] . '/users.php?msg=53');
+                } else { // request invalid or expired
+                    $display .= COM_showMessage(54);
+                    $display .= getpasswordform();
+                    $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[25]));
+                }
+            } else {
+                // this request doesn't make sense - ignore it
+                $display = COM_refresh($_CONF['site_url']);
+            }
+>>>>>>> Replaced PEAR HTTP_Request class with HTTP_Request2
         }
     }
     break;
@@ -755,11 +761,27 @@ case 'emailpasswd':
             $username = DB_getItem ($_TABLES['users'], 'username',
                                     "email = '$email' AND ((remoteservice IS NULL) OR (remoteservice = ''))");
         }
-        if (!empty ($username)) {
-            $display .= requestpassword($username);
+        COM_clearSpeedlimit($_CONF['passwordspeedlimit'], 'password');
+        $last = COM_checkSpeedlimit('password');
+        if ($last > 0) {
+            $display .= COM_showMessageText(
+                sprintf($LANG04[93], $last, $_CONF['passwordspeedlimit']),
+                $LANG12[26]
+            );
+            $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG12[26]));
         } else {
-            $display = COM_refresh ($_CONF['site_url']
-                                    . '/users.php?mode=getpassword');
+            $username = COM_applyFilter($_POST['username']);
+            $email = COM_applyFilter($_POST['email']);
+            if (empty($username) && !empty($email)) {
+                $username = DB_getItem($_TABLES['users'], 'username',
+                    "email = '$email' AND ((remoteservice IS NULL) OR (remoteservice = ''))");
+            }
+            if (!empty($username)) {
+                $display .= requestpassword($username);
+            } else {
+                $display = COM_refresh($_CONF['site_url']
+                    . '/users.php?mode=getpassword');
+            }
         }
     }
     break;
@@ -777,7 +799,17 @@ case 'new':
         }
     }
 
-    $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[22]));
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[22]));
+        break;
+
+    case 'tokenexpired':
+        // deliberate fallthrough (see below)
+    default:
+        // prevent dictionary attacks on passwords
+        COM_clearSpeedlimit($_CONF['login_speedlimit'], 'login');
+        if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
+            displayLoginErrorAndAbort(82, $LANG12[26], $LANG04[112]);
+        }
 
     break;
 
@@ -785,11 +817,12 @@ case 'tokenexpired':
 // deliberate fallthrough (see below)
 default:
 
-    // prevent dictionary attacks on passwords
-    COM_clearSpeedlimit($_CONF['login_speedlimit'], 'login');
-    if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
-        displayLoginErrorAndAbort(82, $LANG12[26], $LANG04[112]);
-    }
+        } elseif ($_CONF['user_login_method']['openid'] &&
+            ($_CONF['usersubmission'] == 0) &&
+            !$_CONF['disable_new_user_registration'] &&
+            (isset($_GET['openid_login']) && ($_GET['openid_login'] == '1'))
+        ) {
+            // Here we go with the handling of OpenID authentification.
 
     $loginname = '';
     if (isset ($_POST['loginname'])) {
@@ -811,26 +844,16 @@ default:
             $status = -1;
         }
 
-    } elseif (( $_CONF['usersubmission'] == 0) && $_CONF['user_login_method']['3rdparty'] && ($service != '')) {
-        /* Distributed Authentication */
-        //pass $loginname by ref so we can change it ;-)
-        $status = SEC_remoteAuthentication($loginname, $passwd, $service, $uid);
-
-    } elseif ($_CONF['user_login_method']['openid'] &&
-            ($_CONF['usersubmission'] == 0) &&
-            !$_CONF['disable_new_user_registration'] &&
-            (isset($_GET['openid_login']) && ($_GET['openid_login'] == '1'))) {
-        // Here we go with the handling of OpenID authentification.
-
-        $query = array_merge($_GET, $_POST);
-
-        if (isset($query['identity_url']) &&
-                ($query['identity_url'] != 'http://')) {
-            $property = sprintf('%x', crc32($query['identity_url']));
-            COM_clearSpeedlimit($_CONF['login_speedlimit'], 'openid');
-            if (COM_checkSpeedlimit('openid', $_CONF['login_attempts'],
-                                    $property) > 0) {
-                displayLoginErrorAndAbort(82, $LANG12[26], $LANG04[112]);
+            if (isset($query['identity_url']) &&
+                ($query['identity_url'] != 'http://')
+            ) {
+                $property = sprintf('%x', crc32($query['identity_url']));
+                COM_clearSpeedlimit($_CONF['login_speedlimit'], 'openid');
+                if (COM_checkSpeedlimit('openid', $_CONF['login_attempts'],
+                        $property) > 0
+                ) {
+                    displayLoginErrorAndAbort(82, $LANG12[26], $LANG04[112]);
+                }
             }
         }
 
@@ -839,10 +862,50 @@ default:
         $consumer = new SimpleConsumer();
         $handler = new SimpleActionHandler($query, $consumer);
 
-        if (isset($query['identity_url']) && $query['identity_url'] != 'http://') {
-            $identity_url = $query['identity_url'];
-            $ret = $consumer->find_identity_info($identity_url);
-            if (!$ret) {
+            if (isset($query['identity_url']) && $query['identity_url'] != 'http://') {
+                $identity_url = $query['identity_url'];
+                $ret = $consumer->find_identity_info($identity_url);
+                if (!$ret) {
+                    COM_updateSpeedlimit('login');
+                    $property = sprintf('%x', crc32($query['identity_url']));
+                    COM_updateSpeedlimit('openid', $property);
+                    COM_errorLog('Unable to find an OpenID server for the identity URL ' . $identity_url);
+                    echo COM_refresh($_CONF['site_url'] . '/users.php?msg=89');
+                    exit;
+                } else {
+                    // Found identity server info.
+                    list($identity_url, $server_id, $server_url) = $ret;
+
+                    // Redirect the user-agent to the OpenID server
+                    // which we are requesting information from.
+                    header('Location: ' . $consumer->handle_request(
+                            $server_id, $server_url,
+                            oidUtil::append_args($_CONF['site_url'] . '/users.php',
+                                array('openid_login' => '1',
+                                      'open_id'      => $identity_url)), // Return to.
+                            $_CONF['site_url'], // Trust root.
+                            null,
+                            "email,nickname,fullname")); // Required fields.
+                    exit;
+                }
+            } elseif (isset($query['openid.mode']) || isset($query['openid_mode'])) {
+                $openid_mode = '';
+                if (isset($query['openid.mode'])) {
+                    $openid_mode = $query['openid.mode'];
+                } elseif (isset($query['openid_mode'])) {
+                    $openid_mode = $query['openid_mode'];
+                }
+                if ($openid_mode === 'cancel') {
+                    COM_updateSpeedlimit('login');
+                    echo COM_refresh($_CONF['site_url'] . '/users.php?msg=90');
+                    exit;
+                } else {
+                    $openid = $handler->getOpenID();
+                    $req = new ConsumerRequest($openid, $query, 'GET');
+                    $response = $consumer->handle_response($req);
+                    $response->doAction($handler);
+                }
+            } else {
                 COM_updateSpeedlimit('login');
                 $property = sprintf('%x', crc32($query['identity_url']));
                 COM_updateSpeedlimit('openid', $property);
@@ -865,17 +928,18 @@ default:
                         "email,nickname,fullname")); // Required fields.
                 exit;
             }
-        } elseif (isset($query['openid.mode']) || isset($query['openid_mode'])) {
-            $openid_mode = '';
-            if (isset($query['openid.mode'])) {
-                $openid_mode = $query['openid.mode'];
-            } else if(isset($query['openid_mode'])) {
-                $openid_mode = $query['openid_mode'];
-            }
-            if ($openid_mode == 'cancel') {
-                COM_updateSpeedlimit('login');
-                echo COM_refresh($_CONF['site_url'] . '/users.php?msg=90');
-                exit;
+
+        } elseif ($_CONF['user_login_method']['oauth'] &&
+            ($_CONF['usersubmission'] == 0) &&
+            !$_CONF['disable_new_user_registration'] &&
+            isset($_GET['oauth_login'])
+        ) {
+            // Here we go with the handling of OAuth authentification.
+            $modules = SEC_collectRemoteOAuthModules();
+            $active_service = (count($modules) == 0) ? false : in_array($_GET['oauth_login'], $modules);
+            if (!$active_service) {
+                $status = -1;
+                COM_errorLog("OAuth login failed - there was no consumer available for the service:" . $_GET['oauth_login']);
             } else {
                $openid = $handler->getOpenID();
                $req = new ConsumerRequest($openid, $query, 'GET');
@@ -950,7 +1014,7 @@ default:
             if ($cooktime > 0) {
                 // They want their cookie to persist for some amount of time so set it now
                 if ($VERBOSE) {
-                    COM_errorLog('Trying to set permanent cookie',1);
+                    COM_errorLog("Trying to set permanent cookie with time of $cooktime", 1);
                 }
                 SEC_setCookie($_CONF['cookie_name'], $_USER['uid'],
                               time() + $cooktime);
@@ -965,51 +1029,62 @@ default:
                 $userid = COM_applyFilter ($userid, true);
                 if ($userid > 1) {
                     if ($VERBOSE) {
-                        COM_errorLog ('NOW trying to set permanent cookie',1);
-                        COM_errorLog ('Got '.$userid.' from perm cookie in users.php',1);
+                        COM_errorLog('Trying to set permanent cookie', 1);
                     }
-                    // Create new session
-                    $userdata = SESS_getUserDataFromId ($userid);
-                    $_USER = $userdata;
-                    if ($VERBOSE) {
-                        COM_errorLog ('Got '.$_USER['username'].' for the username in user.php',1);
+                    SEC_setCookie($_CONF['cookie_name'], $_USER['uid'],
+                        time() + $cooktime);
+                    SEC_setCookie($_CONF['cookie_password'],
+                        $_USER['passwd'], time() + $cooktime);
+                }
+            } else {
+                $userid = $_COOKIE[$_CONF['cookie_name']];
+                if (empty($userid) || ($userid === 'deleted')) {
+                    unset($userid);
+                } else {
+                    $userid = COM_applyFilter($userid, true);
+                    if ($userid > 1) {
+                        if ($VERBOSE) {
+                            COM_errorLog('NOW trying to set permanent cookie', 1);
+                            COM_errorLog('Got ' . $userid . ' from perm cookie in users.php', 1);
+                        }
+                        // Create new session
+                        $userdata = SESS_getUserDataFromId($userid);
+                        $_USER = $userdata;
+                        if ($VERBOSE) {
+                            COM_errorLog('Got ' . $_USER['username'] . ' for the username in user.php', 1);
+                        }
                     }
                 }
             }
         }
 
-        // Now that we have users data see if their theme cookie is set.
-        // If not set it
-        if (! empty($_USER['theme'])) {
-            setcookie($_CONF['cookie_theme'], $_USER['theme'],
-                      time() + 31536000, $_CONF['cookie_path'],
-                      $_CONF['cookiedomain'], $_CONF['cookiesecure']);
-        }
+            // Now that we have users data see if their theme cookie is set.
+            // If not set it
+            if (!empty($_USER['theme'])) {
+                setcookie($_CONF['cookie_theme'], $_USER['theme'],
+                    time() + 31536000, $_CONF['cookie_path'],
+                    $_CONF['cookiedomain'], $_CONF['cookiesecure']);
+            }
 
-        if (!empty($_SERVER['HTTP_REFERER'])
+            if (!empty($_SERVER['HTTP_REFERER'])
                 && (strstr($_SERVER['HTTP_REFERER'], '/users.php') === false)
                 && (substr($_SERVER['HTTP_REFERER'], 0,
-                        strlen($_CONF['site_url'])) == $_CONF['site_url'])) {
-            $indexMsg = $_CONF['site_url'] . '/index.php?msg=';
-            if (substr ($_SERVER['HTTP_REFERER'], 0, strlen ($indexMsg)) == $indexMsg) {
-                $display .= COM_refresh ($_CONF['site_url'] . '/index.php');
-            } else {
-                // If user is trying to login - force redirect to index.php
-                if (strstr ($_SERVER['HTTP_REFERER'], 'mode=login') === false) {
-                    $display .= COM_refresh ($_SERVER['HTTP_REFERER']);
+                        strlen($_CONF['site_url'])) == $_CONF['site_url'])
+            ) {
+                $indexMsg = $_CONF['site_url'] . '/index.php?msg=';
+                if (substr($_SERVER['HTTP_REFERER'], 0, strlen($indexMsg)) == $indexMsg) {
+                    $display .= COM_refresh($_CONF['site_url'] . '/index.php');
                 } else {
                     $display .= COM_refresh ($_CONF['site_url'] . '/index.php');
                 }
             }
         } else {
-            $display .= COM_refresh ($_CONF['site_url'] . '/index.php');
-        }
-    } else {
-        // On failed login attempt, update speed limit
-        if (!empty($loginname) || !empty($passwd) || !empty($service) ||
-                ($mode == 'tokenexpired')) {
-            COM_updateSpeedlimit('login');
-        }
+            // On failed login attempt, update speed limit
+            if (!empty($loginname) || !empty($passwd) || !empty($service) ||
+                ($mode === 'tokenexpired')
+            ) {
+                COM_updateSpeedlimit('login');
+            }
 
         $msg = 0;
         if (isset($_REQUEST['msg'])) {
@@ -1019,81 +1094,91 @@ default:
             $display .= COM_showMessage($msg);
         }
 
-        switch ($mode) {
-        case 'create':
-            // Got bad account info from registration process, show error
-            // message and display form again
-            if ($_CONF['custom_registration'] AND
-                    function_exists('CUSTOM_userForm')) {
-                $display .= CUSTOM_userForm();
-            } else {
-                $display .= newuserform();
-            }
-            break;
-
-        case 'tokenexpired':
-            // check to see if this was the last allowed attempt
-            if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
-                $files = '';
-                if (isset($_POST['token_files'])) {
-                    $files = urldecode($_POST['token_files']);
-                }
-                if (! empty($files)) {
-                    SECINT_cleanupFiles($files);
-                }
-                displayLoginErrorAndAbort(82, $LANG04[163], $LANG04[164]);
-            } else {
-                $returnurl = '';
-                if (isset($_POST['token_returnurl'])) {
-                    $returnurl = urldecode($_POST['token_returnurl']);
-                }
-                $method = '';
-                if (isset($_POST['token_requestmethod'])) {
-                    $method = COM_applyFilter($_POST['token_requestmethod']);
-                }
-                $postdata = '';
-                if (isset($_POST['token_postdata'])) {
-                    $postdata = urldecode($_POST['token_postdata']);
-                }
-                $getdata = '';
-                if (isset($_POST['token_getdata'])) {
-                    $getdata = urldecode($_POST['token_getdata']);
-                }
-                $files = '';
-                if (isset($_POST['token_files'])) {
-                    $files = urldecode($_POST['token_files']);
-                }
-                if (SECINT_checkToken() && !empty($method) &&
-                        !empty($returnurl) &&
-                        ((($method == 'POST') && !empty($postdata)) ||
-                        (($method == 'GET') && !empty($getdata)))) {
-                    $display .= COM_showMessage(81);
-                    $display .= SECINT_authform($returnurl, $method,
-                                                $postdata, $getdata, $files);
-                } else {
-                    if (! empty($files)) {
-                        SECINT_cleanupFiles($files);
+            switch ($mode) {
+                case 'create':
+                    // Got bad account info from registration process, show error
+                    // message and display form again
+                    if ($_CONF['custom_registration'] &&
+                        function_exists('CUSTOM_userForm')
+                    ) {
+                        $display .= CUSTOM_userForm();
+                    } else {
+                        $display .= newuserform();
                     }
-                    echo COM_refresh($_CONF['site_url'] . '/index.php');
-                    exit;
-                }
-            }
-            break;
+                    break;
 
-        default:
-            // check to see if this was the last allowed attempt
-            if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
-                displayLoginErrorAndAbort(82, $LANG04[113], $LANG04[112]);
-            } else { // Show login form
-                if(($msg != 69) && ($msg != 70)) {
-                    if (COM_isAnonUser()) {
-                        if ($_CONF['custom_registration'] AND
-                                function_exists('CUSTOM_loginErrorHandler')) {
-                            // Typically this will be used if you have a custom
-                            // main site page and need to control the login process
-                            $display .= CUSTOM_loginErrorHandler($msg);
+                case 'tokenexpired':
+                    // check to see if this was the last allowed attempt
+                    if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
+                        $files = '';
+                        if (isset($_POST['token_files'])) {
+                            $files = urldecode($_POST['token_files']);
+                        }
+                        if (!empty($files)) {
+                            SECINT_cleanupFiles($files);
+                        }
+                        displayLoginErrorAndAbort(82, $LANG04[163], $LANG04[164]);
+                    } else {
+                        $returnurl = '';
+                        if (isset($_POST['token_returnurl'])) {
+                            $returnurl = urldecode($_POST['token_returnurl']);
+                        }
+                        $method = '';
+                        if (isset($_POST['token_requestmethod'])) {
+                            $method = COM_applyFilter($_POST['token_requestmethod']);
+                        }
+                        $postdata = '';
+                        if (isset($_POST['token_postdata'])) {
+                            $postdata = urldecode($_POST['token_postdata']);
+                        }
+                        $getdata = '';
+                        if (isset($_POST['token_getdata'])) {
+                            $getdata = urldecode($_POST['token_getdata']);
+                        }
+                        $files = '';
+                        if (isset($_POST['token_files'])) {
+                            $files = urldecode($_POST['token_files']);
+                        }
+                        if (SECINT_checkToken() && !empty($method) &&
+                            !empty($returnurl) &&
+                            ((($method === 'POST') && !empty($postdata)) ||
+                                (($method === 'GET') && !empty($getdata)))
+                        ) {
+                            $display .= COM_showMessage(81);
+                            $display .= SECINT_authform($returnurl, $method,
+                                $postdata, $getdata, $files);
                         } else {
-                            $display .= loginform(false, $status);
+                            if (!empty($files)) {
+                                SECINT_cleanupFiles($files);
+                            }
+                            echo COM_refresh($_CONF['site_url'] . '/index.php');
+                            exit;
+                        }
+                    }
+                    break;
+
+                default:
+                    // check to see if this was the last allowed attempt
+                    if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
+                        displayLoginErrorAndAbort(82, $LANG04[113], $LANG04[112]);
+                    } else { // Show login form
+                        if (($msg != 69) && ($msg != 70)) {
+                            if (COM_isAnonUser()) {
+                                if ($_CONF['custom_registration'] &&
+                                    function_exists('CUSTOM_loginErrorHandler')
+                                ) {
+                                    // Typically this will be used if you have a custom
+                                    // main site page and need to control the login process
+                                    $display .= CUSTOM_loginErrorHandler($msg);
+                                } else {
+                                    $display .= loginform(false, $status);
+                                }
+                            } else {
+                                // user is already logged in
+                                $display .= COM_startBlock($LANG04['user_login']);
+                                $display .= '<p>' . $LANG04['user_logged_in_message'] . '</p>';
+                                $display .= COM_endBlock();
+                            }
                         }
                     } else {
                         // user is already logged in
