@@ -30,14 +30,13 @@
 // +---------------------------------------------------------------------------+
 
 /**
-* This class is used to set JavaScript, JavaScript Files, jQuery JavaScript Libraries
-* and CSS files that need to be loaded either in the header of the footer.
-*
-* @author Tom Homer
-*
-*/
-class scripts {
-
+ * This class is used to set JavaScript, JavaScript Files, jQuery JavaScript Libraries
+ * and CSS files that need to be loaded either in the header of the footer.
+ *
+ * @author Tom Homer
+ */
+class Scripts
+{
     private $library_files; // Array of available jQuery library files that can be loaded
     private $library_files_footer; // Location of loading library files
 
@@ -62,15 +61,11 @@ class scripts {
     private $lang; // Array of language variables used in JavaScript
 
     /**
-    * Constructor
-    *
-    * This initializes the scriptsobject
-    *
-    */
-    function __construct() {
-
-        global $_CONF, $_USER;
-
+     * Constructor
+     * This initializes the scriptsobject
+     */
+    public function __construct()
+    {
         $this->library_files = array();
         $this->library_files_footer = true;
         $this->jquery_ui_cdn = false;
@@ -99,14 +94,12 @@ class scripts {
     }
 
     /**
-    * Build a list of available JavaScript Libraries
-    *
-    * @access    private
-    * @return    boolean
-    *
-    */
-    private function findJavaScriptLibraries() {
-
+     * Build a list of available JavaScript Libraries
+     *
+     * @return    boolean
+     */
+    private function findJavaScriptLibraries()
+    {
         global $_CONF;
 
         $theme_path = '/layout/' . $_CONF['theme'];
@@ -195,16 +188,14 @@ class scripts {
     }
 
     /**
-    * Set JavaScript Libraries to load
-    *
-    * @param    $name       name of JavaScript library to flag for loading
-    * @param    $footer     set to true to include script in footer, else script placed in header
-    * @access   public
-    * @return   boolean
-    *
-    */
-    public function setJavaScriptLibrary($name, $footer = true) {
-
+     * Set JavaScript Libraries to load
+     *
+     * @param    string      $name       name of JavaScript library to flag for loading
+     * @param    boolean     $footer     set to true to include script in footer, else script placed in header
+     * @return   boolean
+     */
+    public function setJavaScriptLibrary($name, $footer = true)
+    {
         global $_CONF;
 
         $name = strtolower($name);
@@ -302,52 +293,43 @@ class scripts {
     }
 
     /**
-    * Set JavaScript to load
-    *
-    * @param    $script     script to include in page
-    * @param    $wrap       set to true to place script tags around contents of $script
-    * @param    $footer     set to true to include script in footer, else script placed in header
-    * @access   public
-    * @return   boolean
-    *
-    */
-    public function setJavaScript($script, $wrap = false, $footer = true) {
-
+     * Set JavaScript to load
+     *
+     * @param    string      $script     script to include in page
+     * @param    boolean     $wrap       set to true to place script tags around contents of $script
+     * @param    boolean     $footer     set to true to include script in footer, else script placed in header
+     * @return   boolean
+     */
+    public function setJavaScript($script, $wrap = false, $footer = true)
+    {
         // If header code make sure header not already set
         if ($this->header_set && !$footer) {
             return false;
         }
 
-        if ($footer) {
-            $location = 'footer';
-        } else {
-            $location = 'header';
-        }
+        $location = $footer ? 'footer' : 'header';
 
         if ($wrap) {
             $script = '<script type="text/javascript">' . $script . '</script>';
         }
 
         $this->scripts[$location][] = $script;
-
         $this->javascript_set = true;
 
         return true;
     }
 
     /**
-    * Set JavaScript file to load
-    *
-    * @param    $name       name of JavaScript file
-    * @param    $file       location of file relative to public_html directory. Include '/' at beginning
-    * @param    $footer     set to true to include script in footer, else script placed in header
-    * @param    $priority   In what order the script should be loaded in
-    * @access   public
-    * @return   boolean
-    *
-    */
-    public function setJavaScriptFile($name, $file, $footer = true, $priority = 100) {
-
+     * Set JavaScript file to load
+     *
+     * @param    string      $name       name of JavaScript file
+     * @param    string      $file       location of file relative to public_html directory. Include '/' at beginning
+     * @param    boolean     $footer     set to true to include script in footer, else script placed in header
+     * @param    int         $priority   In what order the script should be loaded in
+     * @return   boolean
+     */
+    public function setJavaScriptFile($name, $file, $footer = true, $priority = 100)
+    {
         global $_CONF;
 
         // If header code make sure header not already set
@@ -380,19 +362,16 @@ class scripts {
     }
 
     /**
-    * Set CSS file to load. Used only by class.
-    *
-    * This function is used to include any CSS needed by the JavaScript Libraries
-    *
-    * @param    $name       name of CSS file
-    * @param    $file       location of file relative to public_html directory. Include '/' at beginning
-    * @param    $load       set to true to load script right away. Should only be loaded when related script is loaded
-    * @access   private
-    * @return   boolean
-    *
-    */
-    private function setCSSFilePrivate($name, $file, $load = true) {
-
+     * Set CSS file to load. Used only by class.
+     * This function is used to include any CSS needed by the JavaScript Libraries
+     *
+     * @param    string      $name       name of CSS file
+     * @param    string      $file       location of file relative to public_html directory. Include '/' at beginning
+     * @param    boolean     $load       set to true to load script right away. Should only be loaded when related script is loaded
+     * @return   boolean
+     */
+    private function setCSSFilePrivate($name, $file, $load = true)
+    {
         global $_CONF;
 
         // If header code make sure header not already set
@@ -421,35 +400,31 @@ class scripts {
     }
 
     /**
-    * Set language variables used in JavaScript.
-    *
-    * @param    $lang_array   array of language variables
-    * @access   public
-    * @return   boolean
-    *
-    */
-    public function setLang($lang_array) {
-
+     * Set language variables used in JavaScript.
+     *
+     * @param    array     $lang_array   array of language variables
+     * @return   boolean
+     */
+    public function setLang($lang_array)
+    {
         $this->lang = array_merge($this->lang, $lang_array);
 
         return true;
     }
 
     /**
-    * Set CSS file to load
-    *
-    * @param    $name       name of CSS file
-    * @param    $file       location of file relative to public_html directory. Include '/' at beginning
-    * @param    $constant   Future use. Set to true if file is planned to be loaded all the time (Caching/Compression)
-    * @param    $attributes (optional) array of extra attributes
-    * @param    $priority   In what order the script should be loaded in
-    * @param    $type       Type of css file  (current possible choices are theme or other)
-    * @access   public
-    * @return   boolean
-    *
-    */
-    public function setCSSFile($name, $file, $constant = true, $attributes = array(), $priority = 100, $type = '') {
-
+     * Set CSS file to load
+     *
+     * @param    string      $name       name of CSS file
+     * @param    string      $file       location of file relative to public_html directory. Include '/' at beginning
+     * @param    boolean     $constant   Future use. Set to true if file is planned to be loaded all the time (Caching/Compression)
+     * @param    array       $attributes (optional) array of extra attributes
+     * @param    int         $priority   In what order the script should be loaded in
+     * @param    string      $type       Type of css file  (current possible choices are theme or other)
+     * @return   boolean
+     */
+    public function setCSSFile($name, $file, $constant = true, $attributes = array(), $priority = 100, $type = '')
+    {
         global $_CONF;
 
         // If header code make sure header not already set
@@ -486,8 +461,9 @@ class scripts {
         $this->css_files[$name]['extra'] = $extra;
         $this->css_files[$name]['priority'] = $priority;
         $this->css_files[$name]['constant'] = $constant;
-        if ($_CONF['theme_etag'] AND $type == 'theme') {
-            // Don't load css regular way for themes with etag enabled
+
+        if ($_CONF['theme_etag'] && ($type === 'theme')) {
+            // Don't load css regular way for themes with eTag enabled
             $this->css_files[$name]['load'] = false;
         } else {
             $this->css_files[$name]['load'] = true;
@@ -498,15 +474,13 @@ class scripts {
 
 
     /**
-    * Set CSS in header using style tag
-    *
-    * @param    $css        css to include in head
-    * @access   public
-    * @return   boolean
-    *
-    */
-    public function setCSS($css) {
-
+     * Set CSS in header using style tag
+     *
+     * @param    string      $css        css to include in head
+     * @return   boolean
+     */
+    public function setCSS($css)
+    {
         // If header code make sure header not already set
         if ($this->header_set) {
             return false;
@@ -520,14 +494,12 @@ class scripts {
     }
 
     /**
-    * Returns header code (JavaScript and CSS) to include in the Head of the webpage
-    *
-    * @access   public
-    * @return   string
-    *
-    */
-    public function getHeader() {
-
+     * Returns header code (JavaScript and CSS) to include in the Head of the webpage
+     *
+     * @return   string
+     */
+    public function getHeader()
+    {
         global $_CONF, $MESSAGE, $LANG_DIRECTION;
 
         $this->header_set = true;
@@ -656,10 +628,13 @@ EOD;
     }
 
     /**
-    * Convert from array to JavaScript object format string
-    *
-    */
-    private function _array_to_jsobj($src) {
+     * Convert from array to JavaScript object format string
+     *
+     * @param  array $src
+     * @return string
+     */
+    private function _array_to_jsobj($src)
+    {
         $retval = '{';
         foreach ($src as $key => $val) {
             $retval .= "$key:";
@@ -674,15 +649,13 @@ EOD;
     }
 
     /**
-    * Returns JavaScript footer code to be placed just before </body>
-    *
-    * @access   public
-    * @return   string
-    *
-    */
-    public function getFooter() {
-
-        global $_CONF, $_USER;
+     * Returns JavaScript footer code to be placed just before </body>
+     *
+     * @return   string
+     */
+    public function getFooter()
+    {
+        global $_CONF;
 
         $footercode = '';
 
