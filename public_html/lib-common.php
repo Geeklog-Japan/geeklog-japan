@@ -76,6 +76,10 @@ if (is_callable('set_error_handler')) {
         error_reporting());
 }
 
+if (is_callable('set_exception_handler')) {
+    set_exception_handler('COM_handleException');
+}
+
 /**
  * Configuration Include:
  * You do NOT need to modify anything here any more!
