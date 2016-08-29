@@ -43,7 +43,12 @@
 class Url
 {
     /**
-     * @var Url|null
+     * @var Url
+     */
+    private static $instance;
+
+    /**
+     * @var array
      */
     private static $instance = null;
 
