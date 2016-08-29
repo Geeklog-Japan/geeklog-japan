@@ -59,7 +59,7 @@ function contactemail($uid,$cc,$author,$authoremail,$subject,$message)
     if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) ||
                              ($_CONF['emailuserloginrequired'] == 1))
                          && ($uid != 2)) {
-        return COM_refresh($_CONF['site_url'] . '/index.php?msg=85');
+        COM_redirect($_CONF['site_url'] . '/index.php?msg=85');
     }
 
     // check for correct 'to' user preferences
@@ -72,7 +72,7 @@ function contactemail($uid,$cc,$author,$authoremail,$subject,$message)
     }
     if ((($P['emailfromadmin'] != 1) && $isAdmin) ||
         (($P['emailfromuser'] != 1) && !$isAdmin)) {
-        return COM_refresh ($_CONF['site_url'] . '/index.php?msg=85');
+        COM_redirect($_CONF['site_url'] . '/index.php?msg=85');
     }
 
     // check mail speedlimit
@@ -142,10 +142,10 @@ function contactemail($uid,$cc,$author,$authoremail,$subject,$message)
             }
 
             COM_updateSpeedlimit('mail');
-
-            $retval .= COM_refresh($_CONF['site_url']
-                                   . '/users.php?mode=profile&amp;uid=' . $uid
-                                   . '&amp;msg=' . ($sent ? '27' : '85'));
+            COM_redirect(
+                $_CONF['site_url'] . '/users.php?mode=profile&amp;uid=' . $uid . '&amp;msg='
+                . ($sent ? '27' : '85')
+            );
         } else {
             $subject = strip_tags ($subject);
             $subject = substr ($subject, 0, strcspn ($subject, "\r\n"));
@@ -317,41 +317,42 @@ function mailstory($sid, $to, $toemail, $from, $fromemail, $shortmsg)
 
     require_once $_CONF['path_system'] . 'lib-story.php';
 
-    $storyurl = COM_buildUrl($_CONF['site_url'] . '/article.php?story=' . $sid);
+    $storyUrl = COM_buildUrl($_CONF['site_url'] . '/article.php?story=' . $sid);
+
     if ($_CONF['url_rewrite']) {
-        $retval = COM_refresh($storyurl . '?msg=85');
+        $redirect = $storyUrl . '?msg=85';
     } else {
-        $retval = COM_refresh($storyurl . '&amp;msg=85');
+        $redirect = $storyUrl . '&amp;msg=85';
     }
 
     // check for correct $_CONF permission
     if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) ||
                              ($_CONF['emailstoryloginrequired'] == 1))) {
-        return $retval;
+        COM_redirect($redirect);
     }
 
     // check if emailing of stories is disabled
     if ($_CONF['hideemailicon'] == 1) {
-        return $retval;
+        COM_redirect($redirect);
     }
 
     // check mail speedlimit
     COM_clearSpeedlimit($_CONF['speedlimit'], 'mail');
     if (COM_checkSpeedlimit('mail') > 0) {
-        return $retval;
+        COM_redirect($redirect);
     }
 
     $story = new Story();
     $result = $story->loadFromDatabase($sid, 'view');
 
     if ($result != STORY_LOADED_OK) {
-        return COM_refresh($_CONF['site_url'] . '/index.php');
+        COM_redirect($_CONF['site_url'] . '/index.php');
     }
 
-    $shortmsg = COM_stripslashes ($shortmsg);
-    $mailtext = sprintf ($LANG08[23], $from, $fromemail) . LB;
-    if (strlen ($shortmsg) > 0) {
-        $mailtext .= LB . sprintf ($LANG08[28], $from) . $shortmsg . LB;
+    $shortmsg = COM_stripslashes($shortmsg);
+    $mailtext = sprintf($LANG08[23], $from, $fromemail) . LB;
+    if (strlen($shortmsg) > 0) {
+        $mailtext .= LB . sprintf($LANG08[28], $from) . $shortmsg . LB;
     }
 
     // just to make sure this isn't an attempt at spamming users ...
@@ -415,12 +416,12 @@ function mailstory($sid, $to, $toemail, $from, $fromemail, $shortmsg)
     DB_query ("UPDATE {$_TABLES['stories']} SET numemails = numemails + 1 WHERE sid = '$sid'");
 
     if ($_CONF['url_rewrite']) {
-        $retval = COM_refresh($storyurl . '?msg=' . ($sent ? '27' : '85'));
+        $redirect = $storyUrl . '?msg=' . ($sent ? '27' : '85');
     } else {
-        $retval = COM_refresh($storyurl . '&amp;msg=' . ($sent ? '27' : '85'));
+        $redirect = $storyUrl . '&amp;msg=' . ($sent ? '27' : '85');
     }
 
-    return $retval;
+    COM_redirect($redirect);
 }
 
 /**
@@ -457,7 +458,7 @@ function mailstoryform ($sid, $cc=false, $to = '', $toemail = '', $from = '',
     $result = $story->loadFromDatabase($sid, 'view');
 
     if ($result != STORY_LOADED_OK) {
-        return COM_refresh($_CONF['site_url'] . '/index.php');
+        COM_redirect($_CONF['site_url'] . '/index.php');
     }
 
     if ($msg > 0) {
@@ -543,16 +544,17 @@ switch ($what) {
                     $_POST['authoremail'], $_POST['subject'],
                     $_POST['message']);
         } else {
-            $display .= COM_refresh ($_CONF['site_url'] . '/index.php');
+            COM_redirect($_CONF['site_url'] . '/index.php');
         }
         break;
 
     case 'emailstory':
-        $sid = COM_applyFilter ($_GET['sid']);
-        if (empty ($sid)) {
-            $display = COM_refresh ($_CONF['site_url'] . '/index.php');
-        } else if ($_CONF['hideemailicon'] == 1) {
-            $display = COM_refresh (COM_buildUrl ($_CONF['site_url']
+        $sid = COM_applyFilter($_GET['sid']);
+
+        if (empty($sid)) {
+            COM_redirect($_CONF['site_url'] . '/index.php');
+        } elseif ($_CONF['hideemailicon'] == 1) {
+            COM_redirect(COM_buildUrl($_CONF['site_url']
                                     . '/article.php?story=' . $sid));
         } else {
             $display = mailstoryform ($sid, $_CONF['mail_cc_default']);
@@ -562,8 +564,9 @@ switch ($what) {
 
     case 'sendstory':
         $sid = COM_applyFilter($_POST['sid']);
+
         if (empty($sid)) {
-            $display = COM_refresh($_CONF['site_url'] . '/index.php');
+            $display = COM_redirect($_CONF['site_url'] . '/index.php');
         } else {
             if (empty($_POST['toemail']) || empty($_POST['fromemail']) ||
                     !COM_isEmail($_POST['toemail']) ||
@@ -620,7 +623,7 @@ switch ($what) {
             $display = contactform ($uid, $_CONF['mail_cc_default'], $subject);
             $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG04[81]));
         } else {
-            $display .= COM_refresh ($_CONF['site_url'] . '/index.php');
+            COM_redirect($_CONF['site_url'] . '/index.php');
         }
         break;
 }
