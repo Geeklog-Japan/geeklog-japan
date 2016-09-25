@@ -443,7 +443,6 @@ class OAuthConsumer {
     protected function _saveUserPhoto($from, $to) {
         // Use Pear HTTP Request 2 since first Facebook url to profile picture redirects to a new location
         $ret = '';
-        require_once 'HTTP/Request2.php';
         $request = new HTTP_Request2($from, HTTP_Request2::METHOD_GET);
         $request->setConfig(array(
             'adapter' => 'HTTP_Request2_Adapter_Socket',
