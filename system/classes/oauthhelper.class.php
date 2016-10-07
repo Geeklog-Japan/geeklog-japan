@@ -491,7 +491,7 @@ class OAuthConsumer {
         $path_parts = pathinfo($to_path);
         $filename = $path_parts['basename'];
 
-        $upload = new upload();
+        $upload = new Upload();
         if (!empty ($_CONF['image_lib'])) {
             if ($_CONF['image_lib'] == 'imagemagick') {
                 // Using imagemagick

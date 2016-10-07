@@ -47,96 +47,73 @@
 */
 
 /**
-* This class is used to time program execution. This is particularly handy for
-* performance trouble shooting.
-*
-* @author Tony Bibbs
-*
-*/
-class timerobject {
-
-    // PRIVATE PROPERTIES
-
+ * This class is used to time program execution. This is particularly handy for
+ * performance trouble shooting.
+ *
+ * @author Tony Bibbs
+ */
+class timerobject
+{
     /**
-    * @access private
-    */
-    var $_starttime = '';
-    /**
-    * @access private
-    */
-    var $_endtime = '';
-    /**
-    * @access private
-    */
-    var $_elapsedtime = '';
-    /**
-    * @access private
-    */
-    var $_precision = 2;
-
-    // PUBLIC METHODS
+     * @var float
+     */
+    private $_starttime = 0.0;
 
     /**
-    * Constructor
-    *
-    * This initializes the timerobject and sets the default
-    * precision of results to two decimal places
-    *
-    */
-    function timerobject()
-    {
-    }
+     * @var float
+     */
+    private $_endtime = 0.0;
 
     /**
-    * Set precision on timer results
-    *
-    * This sets how many significant digits get
-    * sent back when elapsedTime is called
-    *
-    * @param    int     $num_dec_places     Number of significant digits
-    *
-    */
-    function setPrecision($num_dec_places)
+     * @var float
+     */
+    private $_elapsedtime = 0.0;
+
+    /**
+     * @var int
+     */
+    private $_precision = 2;
+
+    /**
+     * Set precision on timer results
+     * This sets how many significant digits get
+     * sent back when elapsedTime is called
+     *
+     * @param    int $num_dec_places Number of significant digits
+     */
+    public function setPrecision($num_dec_places)
     {
         $this->_precision = $num_dec_places;
     }
 
     /**
-    * Deprecated - use setPrecision instead
-    *
-    * @deprecated since Geeklog 1.6.0
-    * @see setPrecision
-    */
-    function setPercision($num_dec_places)
+     * Deprecated - use setPrecision instead
+     *
+     * @param  int $num_dec_places
+     * @deprecated since Geeklog 1.6.0
+     * @see        setPrecision
+     */
+    public function setPercision($num_dec_places)
     {
-        return $this->setPrecision($num_dec_places);
-    }
-
-
-    /**
-    * Starts the timer
-    *
-    */
-    function startTimer()
-    {
-        $mtime = microtime();
-        $mtime = explode(' ', $mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $this->_starttime = $mtime;
+        $this->setPrecision($num_dec_places);
     }
 
     /**
-    * Stops the timer
-    *
-    * @return   float   elapsed time to degree of precision specified
-    *
-    */
-    function stopTimer()
+     * Starts the timer
+     */
+    public function startTimer()
     {
-        $mtime = microtime();
-        $mtime = explode(' ',$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $this->_endtime = $mtime;
+        $this->_starttime = microtime(true);
+    }
+
+    /**
+     * Stops the timer
+     *
+     * @return   float   elapsed time to degree of precision specified
+     */
+    public function stopTimer()
+    {
+        $this->_endtime = microtime(true);
         $this->_setElapsedTime();
 
         // We are going to assume that when the timer is stopped
@@ -145,48 +122,37 @@ class timerobject {
     }
 
     /**
-    * Restarts the timer
-    *
-    * Same as startTimer excepts this clears everything out first
-    *
-    */
-    function restart()
+     * Restarts the timer
+     * Same as startTimer excepts this clears everything out first
+     */
+    public function restart()
     {
-        $this->_endtime = '';
-        $this->_elapsedtime = '';
+        $this->_endtime = 0.0;
+        $this->_elapsedtime = 0.0;
 
         $this->startTimer();
     }
 
     /**
-    * Gets the elapsed time
-    *
-    * This returns the elapsed time with the proper number of
-    * significant digits
-    *
-    * @return   float   Elasped time in seconds formatted to degree of precision specified
-    *
-    */
-    function getElapsedTime()
+     * Gets the elapsed time
+     * This returns the elapsed time with the proper number of
+     * significant digits
+     *
+     * @return   string   Elapsed time in seconds formatted to degree of precision specified
+     */
+    public function getElapsedTime()
     {
         return sprintf("%.{$this->_precision}f", $this->_elapsedtime);
     }
 
-    // PRIVATE METHODS
-
     /**
-    * Sets the elapsed time
-    *
-    * once stop timer is called this gets called to calculate
-    * the elapsed time for later retrieval
-    *
-    * @access private
-    */
-    function _setElapsedTime()
+     * Sets the elapsed time
+     * once stop timer is called this gets called to calculate
+     * the elapsed time for later retrieval
+     */
+    private function _setElapsedTime()
     {
         $this->_elapsedtime = $this->_endtime - $this->_starttime;
     }
 
 }
-
-?>

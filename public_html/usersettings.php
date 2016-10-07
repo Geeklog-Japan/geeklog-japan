@@ -800,9 +800,9 @@ function handlePhotoUpload($delete_photo = '')
 
     require_once ($_CONF['path_system'] . 'classes/upload.class.php');
 
-    $upload = new upload();
-    if (!empty ($_CONF['image_lib'])) {
-        if ($_CONF['image_lib'] == 'imagemagick') {
+    $upload = new Upload();
+    if (!empty($_CONF['image_lib'])) {
+        if ($_CONF['image_lib'] === 'imagemagick') {
             // Using imagemagick
             $upload->setMogrifyPath ($_CONF['path_to_mogrify']);
         } elseif ($_CONF['image_lib'] == 'netpbm') {

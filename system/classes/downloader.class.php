@@ -39,63 +39,77 @@
 */
 class downloader
 {
-    // Private Properties
     /**
-    * @access private
-    */
-    var $_errors;               // Array
-    /**
-    * @access private
-    */
-    var $_warnings;             // Array
-    /**
-    * @access private
-    */
-    var $_debugMessages;        // Array
-    /**
-    * @access private
-    */
-    var $_allowedExtensions;    // Array
-    /**
-    * @access private
-    */
-    var $_availableExtensions;  // Array
-    /**
-    * @access private
-    */
-    var $_allowedIPS;           // Array
-    /**
-    * @access private
-    */
-    var $_sourceDirectory;      // String
-    /**
-    * @access private
-    */
-    var $_logFile;              // String
-    /**
-    * @access private
-    */
-    var $_doLogging;            // Boolean
-    /**
-    * @access private
-    */
-    var $_debug;                // Boolean
-    /**
-    * @access private
-    */
-    var $_limitByIP;            // Boolean
+     * @var array
+     */
+    private $_errors = array();
 
     /**
-    * Constructor
-    *
-    */
-    function downloader()
+     * @var array
+     */
+    private $_warnings = array();
+
+    /**
+     * @var array
+     */
+    private $_debugMessages = array();
+
+    /**
+     * @var array
+     */
+    private $_allowedExtensions = array();
+
+    /**
+     * @var array
+     */
+    private $_availableExtensions = array();
+
+    /**
+     * @var array
+     */
+    private $_availableMimeTypes = array();
+
+    /**
+     * @var array
+     */
+    private $_allowedIPS = array();
+
+    /**
+     * @var string
+     */
+    private $_sourceDirectory = '';
+
+    /**
+     * @var string
+     */
+    private $_logFile = '';
+
+    /**
+     * @var bool
+     */
+    private $_doLogging = false;
+
+    /**
+     * @var bool
+     */
+    private $_debug = false;
+
+    /**
+     * @var bool
+     */
+    private $_limitByIP = false;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
         $this->_errors = array();
         $this->_warnings = array();
         $this->_debugMessages = array();
         $this->_allowedExtensions = array();
         $this->_availableExtensions = array();
+        $this->_availableMimeTypes = array();
         $this->_sourceDirectory = '';
         $this->_logFile = '';
         $this->_doLogging = false;
@@ -104,9 +118,8 @@ class downloader
         $this->_setAvailableExtensions ();
     }
 
-    // PRIVATE METHODS
-
     /**
+<<<<<<< HEAD
     * Adds a warning that was encountered
     *
     * @param    string      $warningTextText of warning
@@ -114,16 +127,24 @@ class downloader
     *
     */
     function _addWarning($warningText)
+=======
+     * Adds a warning that was encountered
+     *
+     * @param    string $warningText Text of warning
+     */
+    private function _addWarning($warningText)
+>>>>>>> Refactored some code
     {
-        $nwarnings = count($this->_warnings);
-        $nwarnings = $nwarnings + 1;
-        $this->_warnings[$nwarnings] = $warningText;
+        $numWarnings = count($this->_warnings);
+        $numWarnings = $numWarnings + 1;
+        $this->_warnings[$numWarnings] = $warningText;
         if ($this->loggingEnabled()) {
             $this->_logItem('Warning',$warningText);
         }
     }
 
     /**
+<<<<<<< HEAD
     * Adds an error that was encountered
     *
     * @param    string      $errorText  Text of error
@@ -131,16 +152,24 @@ class downloader
     *
     */
     function _addError($errorText)
+=======
+     * Adds an error that was encountered
+     *
+     * @param    string $errorText Text of error
+     */
+    private function _addError($errorText)
+>>>>>>> Refactored some code
     {
-        $nerrors = count($this->_errors);
-        $nerrors = $nerrors + 1;
-        $this->_errors[$nerrors] = $errorText;
+        $numErrors = count($this->_errors);
+        $numErrors = $numErrors + 1;
+        $this->_errors[$numErrors] = $errorText;
         if ($this->loggingEnabled()) {
             $this->_logItem('Error',$errorText);
         }
     }
 
     /**
+<<<<<<< HEAD
     * Adds a debug message
     *
     * @param    string      $debugText      Text of debug message
@@ -148,16 +177,24 @@ class downloader
     *
     */
     function _addDebugMsg($debugText)
+=======
+     * Adds a debug message
+     *
+     * @param    string $debugText Text of debug message
+     */
+    private function _addDebugMsg($debugText)
+>>>>>>> Refactored some code
     {
-        $nmsgs = count($this->_debugMessages);
-        $nmsgs = $nmsgs + 1;
-        $this->_debugMessages[$nmsgs] = $debugText;
+        $numMessages = count($this->_debugMessages);
+        $numMessages = $numMessages + 1;
+        $this->_debugMessages[$numMessages] = $debugText;
         if ($this->loggingEnabled()) {
             $this->_logItem('Debug',$debugText);
         }
     }
 
     /**
+<<<<<<< HEAD
     * Logs an item to the log file
     *
     * @param    string      $logtype        can be 'warning' or 'error'
@@ -167,6 +204,15 @@ class downloader
     *
     */
     function _logItem($logtype, $text)
+=======
+     * Logs an item to the log file
+     *
+     * @param    string $logType can be 'warning' or 'error'
+     * @param    string $text    Text to log to log file
+     * @return   boolean     true on success otherwise false
+     */
+    private function _logItem($logType, $text)
+>>>>>>> Refactored some code
     {
         $timestamp = strftime("%c");
         if (!$file = fopen($this->_logFile, 'a')) {
@@ -175,18 +221,30 @@ class downloader
             $this->_addError('Error writing to log file: ' . $this->_logFile . '.  Logging has been disabled');
             return false;
         }
+<<<<<<< HEAD
         fputs ($file, "$timestamp - $logtype: $text \n");
+=======
+        fputs($file, "{$timestamp} - {$logType}: {$text} " . PHP_EOL);
+>>>>>>> Refactored some code
         fclose($file);
         return true;
     }
 
     /**
+<<<<<<< HEAD
     * Defines superset of available Mime types.
     *
     * @param    array       $extensions     string array of valid mime types this object will accept
     *
     */
     function _setAvailableExtensions($extensions = array())
+=======
+     * Defines superset of available Mime types.
+     *
+     * @param    array $extensions string array of valid mime types this object will accept
+     */
+    private function _setAvailableExtensions($extensions = array())
+>>>>>>> Refactored some code
     {
         if (count($extensions) == 0) {
             $this->_availableMimeTypes =
@@ -206,7 +264,6 @@ class downloader
                     'jpg'  => 'image/jpeg',
                     'jpeg' => 'image/jpeg',
                     'png'  => 'image/png',
-                    'png'  => 'image/x-png',
                     'mp3'  => 'audio/mpeg',
                     'wav'  => 'audio/wav',
                     'pdf'  => 'application/pdf',
@@ -226,9 +283,8 @@ class downloader
         }
     }
 
-    // Public Methods
-
     /**
+<<<<<<< HEAD
     * Extra security option that forces all attempts to download a file to be
     * done so from a set of VERY specific IP's.  This is only good for those
     * who are paranoid
@@ -238,6 +294,16 @@ class downloader
     *
     */
     function limitByIP($validIPS = array('127.0.0.1'))
+=======
+     * Extra security option that forces all attempts to download a file to be
+     * done so from a set of VERY specific IP's.  This is only good for those
+     * who are paranoid
+     *
+     * @param    array $validIPS Array of valid IP addresses to allow file uploads from
+     * @return   boolean     returns true on success otherwise false
+     */
+    public function limitByIP($validIPS = array('127.0.0.1'))
+>>>>>>> Refactored some code
     {
         if (is_array($validIPS)) {
             $this->_limitByIP = true;
@@ -250,6 +316,7 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * Sets log file
     *
     * @param        string      $logFile    fully qualified path to log files
@@ -257,8 +324,16 @@ class downloader
     *
     */
     function setLogFile($logFile = '')
+=======
+     * Sets log file
+     *
+     * @param        string $logFile fully qualified path to log files
+     * @return       boolean                 true on success otherwise false
+     */
+    public function setLogFile($logFile = '')
+>>>>>>> Refactored some code
     {
-        if (empty($logFile) OR !file_exists($logFile)) {
+        if (empty($logFile) || !file_exists($logFile)) {
             // Log file doesn't exist, produce warning
             $this->_addWarning('Log file, ' . $logFile . ' does not exists, setLogFile() method failed');
             $this->_doLogging = false;
@@ -269,17 +344,25 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * Enables/disables logging of errors and warnings
     *
     * @param    boolean     $switch     flag, true or false
     *
     */
     function setLogging($switch)
+=======
+     * Enables/disables logging of errors and warnings
+     *
+     * @param    boolean $switch flag, true or false
+     */
+    public function setLogging($switch)
+>>>>>>> Refactored some code
     {
-        if ($switch AND !empty($this->_logFile)) {
+        if ($switch && !empty($this->_logFile)) {
             $this->_doLogging = true;
         } else {
-            if ($switch AND empty($this->_logFile)) {
+            if ($switch && empty($this->_logFile)) {
                 $this->_addWarning('Unable to enable logging because no log file was set.  Use setLogFile() method');
             }
             $this->_doLogging = false;
@@ -287,17 +370,26 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * Returns whether or not logging is enabled
     *
     * @return   boolean     true if logging is enabled otherwise false
     *
     */
     function loggingEnabled()
+=======
+     * Returns whether or not logging is enabled
+     *
+     * @return   boolean     true if logging is enabled otherwise false
+     */
+    public function loggingEnabled()
+>>>>>>> Refactored some code
     {
         return $this->_doLogging;
     }
 
     /**
+<<<<<<< HEAD
     * Will force the debug messages in this class to be
     * printed
     *
@@ -305,6 +397,14 @@ class downloader
     *
     */
     function setDebug($switch)
+=======
+     * Will force the debug messages in this class to be
+     * printed
+     *
+     * @param    boolean $switch flag, true or false
+     */
+    public function setDebug($switch)
+>>>>>>> Refactored some code
     {
         if ($switch) {
             $this->_debug = true;
@@ -316,6 +416,7 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * This function will print any errors out.  This is useful in debugging
     *
     * @param    boolean     $verbose    will print errors to web browser if true
@@ -323,77 +424,112 @@ class downloader
     *
     */
     function printErrors($verbose=true)
+=======
+     * This function will print any errors out.  This is useful in debugging
+     *
+     * @param    boolean $verbose will print errors to web browser if true
+     * @return   boolean     string of all errors
+     */
+    public function printErrors($verbose = true)
+>>>>>>> Refactored some code
     {
-        if (isset($this->_errors) AND is_array($this->_errors)) {
+        if (isset($this->_errors) && is_array($this->_errors)) {
             $retval = '';
             reset($this->_errors);
-            $nerrors = count($this->_errors);
-            for ($i = 1; $i <= $nerrors; $i++) {
+            $numErrors = count($this->_errors);
+
+            for ($i = 1; $i <= $numErrors; $i++) {
                 if ($verbose) {
-                    print current($this->_errors) . "<br" . XHTML . ">\n";
+                    echo current($this->_errors) . '<br' . XHTML . '>' . PHP_EOL;
                 } else {
-                    $retval .= current($this->_errors) . "<br" . XHTML . ">\n";
+                    $retval .= current($this->_errors) . '<br' . XHTML . '>' . PHP_EOL;
                 }
                 next($this->_errors);
             }
             return $retval;
+        } else {
+            return '';
         }
     }
 
     /**
+<<<<<<< HEAD
     * This function will print any warnings out.  This is useful in debugging
     *
     */
     function printWarnings()
+=======
+     * This function will print any warnings out.  This is useful in debugging
+     */
+    public function printWarnings()
+>>>>>>> Refactored some code
     {
-        if (isset($this->_warnings) AND is_array($this->_warnings)) {
+        if (isset($this->_warnings) && is_array($this->_warnings)) {
             reset($this->_warnings);
-            $nwarnings = count($this->_warnings);
-            for ($i = 1; $i <= $nwarnings; $i++) {
-                print current($this->_warnings) . "<br" . XHTML . ">\n";
+            $numWarnings = count($this->_warnings);
+            for ($i = 1; $i <= $numWarnings; $i++) {
+                print current($this->_warnings) . '<br' . XHTML . '>' . PHP_EOL;
                 next($this->_warnings);
             }
         }
     }
 
     /**
+<<<<<<< HEAD
     * This function will print any debug messages out.
     *
     */
     function printDebugMsgs()
+=======
+     * This function will print any debug messages out.
+     */
+    public function printDebugMsgs()
+>>>>>>> Refactored some code
     {
-        if (isset($this->_debugMessages) AND is_array($this->_debugMessages)) {
+        if (isset($this->_debugMessages) && is_array($this->_debugMessages)) {
             reset($this->_debugMessages);
-            $nmsgs = count($this->_debugMessages);
-            for ($i = 1; $i <= $nmsgs; $i++) {
-                print current($this->_debugMessages) . "<br" . XHTML . ">\n";
+            $numMessages = count($this->_debugMessages);
+            for ($i = 1; $i <= $numMessages; $i++) {
+                print current($this->_debugMessages) . '<br' . XHTML . '>' . PHP_EOL;
                 next($this->_debugMessages);
             }
         }
     }
 
     /**
+<<<<<<< HEAD
     * Returns if any errors have been encountered thus far
     *
     * @return       boolean     True if errors occurred otherwise false
     *
     */
     function areErrors()
+=======
+     * Returns if any errors have been encountered thus far
+     *
+     * @return       boolean     True if errors occurred otherwise false
+     */
+    public function areErrors()
+>>>>>>> Refactored some code
     {
-        if (count($this->_errors) > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (count($this->_errors) > 0);
     }
 
     /**
+<<<<<<< HEAD
     * Sets allowed mime types for this instance
     *
     * @param  array  $validExtensions  Array of allowed extensions and mime types
     *
     */
     function setAllowedExtensions($validExtensions = array())
+=======
+     * Sets allowed mime types for this instance
+     *
+     * @param  array $validExtensions Array of allowed extensions and mime types
+     */
+    public function setAllowedExtensions($validExtensions = array())
+>>>>>>> Refactored some code
     {
         // This is a subset of _availableMimetypes.  Go ahead and make sure
         // all the mime types passed to this function are in the
@@ -408,17 +544,26 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * Gets allowed mime types for this instance
     *
     * @return   array       array of allowed mime types/file extensions
     *
     */
     function getAllowedExtensions()
+=======
+     * Gets allowed mime types for this instance
+     *
+     * @return   array       array of allowed mime types/file extensions
+     */
+    public function getAllowedExtensions()
+>>>>>>> Refactored some code
     {
         return $this->_allowedExtensions;
     }
 
     /**
+<<<<<<< HEAD
     * Checks to see that mime type for current file is allowed for upload
     *
     * @param        string      $extension      Verifies file extension is allowed for download
@@ -426,6 +571,14 @@ class downloader
     *
     */
     function checkExtension($extension)
+=======
+     * Checks to see that mime type for current file is allowed for upload
+     *
+     * @param        string $extension Verifies file extension is allowed for download
+     * @return       boolean     true if allowed otherwise false
+     */
+    public function checkExtension($extension)
+>>>>>>> Refactored some code
     {
         if (!in_array($extension,array_keys($this->getAllowedExtensions()))) {
             $this->_addError('File type, .' . $extension . ', not in list of allowed file types available for download');
@@ -436,6 +589,7 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * Sets file upload path
     *
     * @param    string      $uploadDir      Directory on server to store uploaded files
@@ -443,6 +597,14 @@ class downloader
     *
     */
     function setPath($uploadDir)
+=======
+     * Sets file upload path
+     *
+     * @param    string $uploadDir Directory on server to store uploaded files
+     * @return   boolean     true on success otherwise false
+     */
+    public function setPath($uploadDir)
+>>>>>>> Refactored some code
     {
         if (!is_dir($uploadDir)) {
             $this->_addError('Specified source directory, ' . $uploadDir . ' is not a valid directory');
@@ -460,17 +622,26 @@ class downloader
     }
 
     /**
+<<<<<<< HEAD
     * Returns directory to upload to
     *
     * @return   string      returns directory where files for downloading reside
     *
     */
     function getPath()
+=======
+     * Returns directory to upload to
+     *
+     * @return   string      returns directory where files for downloading reside
+     */
+    public function getPath()
+>>>>>>> Refactored some code
     {
         return $this->_sourceDirectory;
     }
 
     /**
+<<<<<<< HEAD
     * Attempts to dowload a file
     *
     * @param    string      $fileName       file to download without path
@@ -478,6 +649,14 @@ class downloader
     *
     */
     function downloadFile($fileName)
+=======
+     * Attempts to dowload a file
+     *
+     * @param    string $fileName file to download without path
+     * @return   boolean     true on success otherwise false
+     */
+    public function downloadFile($fileName)
+>>>>>>> Refactored some code
     {
         // Before we do anything, let's see if we are limiting file downloads by
         // IP address and, if so, verify the user is originating from one of
@@ -496,14 +675,25 @@ class downloader
             $strPathSeparator = '/';
         }
 
+<<<<<<< HEAD
         if(!is_file($this->_sourceDirectory . $fileName)) {
             echo "<br" . XHTML . ">{$this->sourceDirectory}{$filename} does not exist";
+=======
+        if (!is_file($this->_sourceDirectory . $fileName)) {
+            echo "<br" . XHTML . ">{$this->_sourceDirectory}{$fileName} does not exist";
+>>>>>>> Refactored some code
         }
 
 
         // Ensure file exists and is accessible
+<<<<<<< HEAD
         if(!is_file($this->_sourceDirectory . $fileName) OR
             ($this->_sourceDirectory <> (dirname($this->_sourceDirectory . $strPathSeparator .$fileName) .$strPathSeparator)) ) {
+=======
+        if (!is_file($this->_sourceDirectory . $fileName) ||
+            ($this->_sourceDirectory <> (dirname($this->_sourceDirectory . $strPathSeparator . $fileName) . $strPathSeparator))
+        ) {
+>>>>>>> Refactored some code
             $this->_addError('Specified file ' . $this->_sourceDirectory . $fileName . ' does not exist or is not accessible');
             return false;
         }
@@ -516,8 +706,13 @@ class downloader
         }
 
         // OK, file is valid, get file extension
+<<<<<<< HEAD
         $pos = strrpos($fileName,'.') + 1;
         $fextension = substr($fileName, $pos);
+=======
+        $pos = strrpos($fileName, '.') + 1;
+        $fileExtension = substr($fileName, $pos);
+>>>>>>> Refactored some code
 
         // If application has not set the allowedExtensions then initialize to the default
         if(count($this->_allowedExtensions) == 0) {
@@ -525,15 +720,19 @@ class downloader
         }
 
         // Send headers.
-        if ($this->checkExtension($fextension)) {
+        if ($this->checkExtension($fileExtension)) {
             // Display file inside browser.
-            header('Content-Type: ' . $this->_availableMimeTypes[$fextension]);
+            header('Content-Type: ' . $this->_availableMimeTypes[$fileExtension]);
             header('Content-Transfer-Encoding: binary');
+<<<<<<< HEAD
             header('Content-Length: '
                    . filesize($this->_sourceDirectory . $fileName));
+=======
+            header('Content-Length: ' . filesize($this->_sourceDirectory . $fileName));
+>>>>>>> Refactored some code
 
             // send images as 'inline' everything else as 'attachment'
-            if (substr($this->_availableMimeTypes[$fextension], 0, 6) == 'image/') {
+            if (substr($this->_availableMimeTypes[$fileExtension], 0, 6) === 'image/') {
                 header('Content-Disposition: inline; filename="' . $fileName . '"');
             } else {
                 header('Content-Disposition: attachment; filename="' . $fileName . '"');
@@ -547,7 +746,6 @@ class downloader
 
         return true;
     }
-
 }
 
 ?>
