@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
 
-          </div>
+<!-- footer.thtml { -->
+
         </div>
         <!--[if !IE]> Using conditional comments to avoid Win IE 6 bugs <![endif]-->
         <!--[if !IE]> (When combined with multiple floating elements, floating bug duplicate last element content) <![endif]-->
@@ -24,7 +24,6 @@
           <li class="execution_textandtime">{execution_textandtime}</li>
         </ul>
         </div>
-        <div style="clear: both;"></div>
       </div>
       <!-- } #footer -->
 
@@ -33,15 +32,15 @@
 
     {plg_footercode}
 
-    {# Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
-       The argument from the left, the right block container, the middle block left the right block id attribute value #}
-    <script type="text/javascript">
-    <!--
-    FixHTML('leftblocks', 'centerblocks', 'rightblocks');
-    -->
-    </script>
+<!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
+     The argument from the left, the right block container, the middle block left the right block id attribute value -->
+<script type="text/javascript">
+<!--
+  FixHTML('leftblocks', 'centerblocks', 'rightblocks');
+-->
+</script>
+
+<!-- } footer.thtml -->
 
   </body>
 </html>
-
-{# end {templatelocation} #}
