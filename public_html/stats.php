@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.0                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | stats.php                                                                 |
 // |                                                                           |
@@ -69,8 +69,8 @@ $text_arr = array(
     'form_url' => $_CONF['site_url'] . '/stats.php',
 );
 
-$totalhits = DB_getItem ($_TABLES['vars'], 'value', "name = 'totalhits'");
-$data_arr[] = array('title' => $LANG10[2], 'stats' => COM_NumberFormat ($totalhits));
+$totalhits = DB_getItem($_TABLES['vars'], 'value', "name = 'totalhits'");
+$data_arr[] = array('title' => $LANG10[2], 'stats' => COM_NumberFormat($totalhits));
 
 if ($_CONF['lastlogin']) {
     // if we keep track of the last login date, count the number of users
@@ -83,23 +83,23 @@ if ($_CONF['lastlogin']) {
 } else {
     // otherwise, just count all users with status 'active'
     // (i.e. those that logged in at least once and have not been banned since)
-    $active_users = DB_count ($_TABLES['users'], 'status', 3);
+    $active_users = DB_count($_TABLES['users'], 'status', 3);
     $active_users--; // don't count the anonymous user account
 }
-$data_arr[] = array('title' => $LANG10[27], 'stats' => COM_NumberFormat ($active_users));
+$data_arr[] = array('title' => $LANG10[27], 'stats' => COM_NumberFormat($active_users));
 
-$topicsql = COM_getTopicSql ('AND', 0, 'ta');
+$topicsql = COM_getTopicSql('AND', 0, 'ta');
 
-$id = array ('draft_flag', 'date');
-$values = array ('0', 'NOW()');
+$id = array('draft_flag', 'date');
+$values = array('0', 'NOW()');
 
 $sql = "SELECT COUNT(DISTINCT sid) AS count, SUM(comments) AS ccount
     FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
     WHERE ta.type = 'article' AND ta.id = sid
-    AND (draft_flag = 0) AND (date <= NOW())" . COM_getPermSQL ('AND') . $topicsql;
+    AND (draft_flag = 0) AND (date <= NOW())" . COM_getPermSQL('AND') . $topicsql;
 
-$result = DB_query ($sql);
-$A = DB_fetchArray ($result);
+$result = DB_query($sql);
+$A = DB_fetchArray($result);
 if (empty ($A['ccount'])) {
     $A['ccount'] = 0;
 }
@@ -112,7 +112,7 @@ $data_arr[] = array(
 $plg_stats = PLG_getPluginStats(3);
 if (count($plg_stats) > 0) {
     foreach ($plg_stats as $pstats) {
-        if (is_array ($pstats[0])) {
+        if (is_array($pstats[0])) {
             foreach ($pstats as $pmstats) {
                 $data_arr[] = array('title' => $pmstats[0], 'stats' => $pmstats[1]);
             }
@@ -122,7 +122,7 @@ if (count($plg_stats) > 0) {
     }
 }
 
-$display .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
+$display .= ADMIN_simpleList('', $header_arr, $text_arr, $data_arr);
 
 // old stats plugin API call, for backward compatibilty
 $display .= PLG_getPluginStats(1);
@@ -169,7 +169,7 @@ if ($nrows > 0) {
         $data_arr[$i] = $A;
 
     }
-    $display .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
+    $display .= ADMIN_simpleList('', $header_arr, $text_arr, $data_arr);
 } else {
     $display .= COM_startBlock($LANG10[7]);
     $display .= $LANG10[10];
@@ -180,7 +180,7 @@ if ($nrows > 0) {
 $sql = "SELECT sid,title,comments
     FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
     WHERE ta.type = 'article' AND ta.id = sid
-    AND (draft_flag = 0) AND (date <= NOW()) AND (comments > 0)" . COM_getPermSQL ('AND') . $topicsql . " ORDER BY comments DESC LIMIT 10";
+    AND (draft_flag = 0) AND (date <= NOW()) AND (comments > 0)" . COM_getPermSQL('AND') . $topicsql . " ORDER BY comments DESC LIMIT 10";
 
 $result = DB_query($sql);
 $nrows = DB_numRows($result);
@@ -220,15 +220,14 @@ if ($nrows > 0) {
 }
 
 // Top Ten Trackback Comments
-
 if ($_CONF['trackback_enabled'] || $_CONF['pingback_enabled']) {
     $sql = "SELECT s.sid, s.title, COUNT(*) AS count
         FROM {$_TABLES['stories']} s,{$_TABLES['trackback']} AS t, {$_TABLES['topic_assignments']} ta
         WHERE ta.type = 'article' AND ta.id = s.sid
-        AND (s.draft_flag = 0) AND (s.date <= NOW()) AND (s.sid = t.sid) AND (t.type = 'article')" . COM_getPermSql ('AND') . $topicsql . " GROUP BY t.sid, s.sid, s.title ORDER BY count DESC LIMIT 10";
+        AND (s.draft_flag = 0) AND (s.date <= NOW()) AND (s.sid = t.sid) AND (t.type = 'article')" . COM_getPermSQL('AND') . $topicsql . " GROUP BY t.sid, s.sid, s.title ORDER BY count DESC LIMIT 10";
 
-    $result = DB_query ($sql);
-    $nrows = DB_numRows ($result);
+    $result = DB_query($sql);
+    $nrows = DB_numRows($result);
     if ($nrows > 0) {
         $header_arr = array(
             array(
@@ -257,7 +256,7 @@ if ($_CONF['trackback_enabled'] || $_CONF['pingback_enabled']) {
             $A['count'] = COM_NumberFormat($A['count']);
             $data_arr[$i] = $A;
         }
-        $display .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
+        $display .= ADMIN_simpleList('', $header_arr, $text_arr, $data_arr);
 
     } else {
         $display .= COM_startBlock($LANG10[25]);
@@ -270,7 +269,7 @@ if ($_CONF['trackback_enabled'] || $_CONF['pingback_enabled']) {
 $sql = "SELECT sid,title,numemails
     FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
     WHERE ta.type = 'article' AND ta.id = sid
-    AND (numemails > 0) AND (draft_flag = 0) AND (date <= NOW())" . COM_getPermSQL ('AND') . $topicsql . " ORDER BY numemails DESC LIMIT 10";
+    AND (numemails > 0) AND (draft_flag = 0) AND (date <= NOW())" . COM_getPermSQL('AND') . $topicsql . " ORDER BY numemails DESC LIMIT 10";
 
 $result = DB_query($sql);
 $nrows = DB_numRows($result);
@@ -304,7 +303,7 @@ if ($nrows > 0) {
         $data_arr[$i] = $A;
 
     }
-    $display .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
+    $display .= ADMIN_simpleList('', $header_arr, $text_arr, $data_arr);
 } else {
     $display .= COM_startBlock($LANG10[22]);
     $display .= $LANG10[24];
@@ -316,5 +315,3 @@ $display .= PLG_getPluginStats(2);
 $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG10[1]));
 
 COM_output($display);
-
-?>

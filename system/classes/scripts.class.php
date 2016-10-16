@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.8                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | scripts.class.php                                                         |
 // |                                                                           |
@@ -122,12 +122,12 @@ class Scripts
         // When upgrading jQuery UI include the Redmond theme and all Core, Interactions and Widgets
         // Include minified version only of js
         $version_jQuery_ui = '1.11.4'; // '1.11.2'; // '1.10.3'; // '1.10.1'; // '1.10.0'; // '1.8.20'; // '1.8.11';
-        $this->jquery_ui_cdn_file = 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $version_jQuery_ui .'/jquery-ui.min.js';
+        $this->jquery_ui_cdn_file = 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $version_jQuery_ui . '/jquery-ui.min.js';
 
         // Set jQuery UI CSS
         $this->setCSSFilePrivate('jquery.ui', $theme_path . '/jquery_ui/jquery-ui.css', false);
         $this->setCSSFilePrivate('jquery.ui.theme', $theme_path . '/jquery_ui/jquery.ui.theme.css', false);
-        $this->setCSSFilePrivate('jquery.ui.geeklog', $theme_path . '/jquery_ui/jquery.ui.geeklog.css', false);    
+        $this->setCSSFilePrivate('jquery.ui.geeklog', $theme_path . '/jquery_ui/jquery.ui.geeklog.css', false);
 
         // Set jQuery UI Core
         $names[] = 'jquery.ui.core';
@@ -246,14 +246,13 @@ class Scripts
     }
 
     /**
-    * Set Libraries file to load. Used only by class.
-    *
-    * @access   private
-    * @return   boolean
-    *
-    */
-    private function setJavaScriptLibraries() {
-
+     * Set Libraries file to load. Used only by class.
+     *
+     * @access   private
+     * @return   boolean
+     */
+    private function setJavaScriptLibraries()
+    {
         global $_CONF;
 
         $librarycode = '';
@@ -348,7 +347,7 @@ class Scripts
         if (strrpos($path, '?') !== false) {
             $path = substr($path, 0, strrpos($path, '?'));
         }
-        if (! is_file($path) || ! is_readable($path)) {
+        if (!is_file($path) || !is_readable($path)) {
             return false;
         }
 
@@ -386,7 +385,7 @@ class Scripts
 
         // Make sure file exists and is readable. We don't want any 403 or 404, right?
         $path = substr($_CONF['path_html'], 0, -1) . $file;
-        if (! is_file($path) || ! is_readable($path)) {
+        if (!is_file($path) || !is_readable($path)) {
             return false;
         }
 
@@ -443,7 +442,7 @@ class Scripts
         if (strrpos($path, '?') !== false) {
             $path = substr($path, 0, strrpos($path, '?'));
         }
-        if (! is_file($path) || ! is_readable($path)) {
+        if (!is_file($path) || !is_readable($path)) {
             return false;
         }
 
@@ -471,7 +470,6 @@ class Scripts
 
         return true;
     }
-
 
     /**
      * Set CSS in header using style tag
@@ -508,15 +506,15 @@ class Scripts
 
         // Sort CSS Files based on priority
         $priority = array();
-        foreach($this->css_files as $k => $d) {
-          $priority[$k] = $d['priority'];
+        foreach ($this->css_files as $k => $d) {
+            $priority[$k] = $d['priority'];
         }
         array_multisort($priority, SORT_ASC, $this->css_files);
 
         // See if theme uses ETag, if so load first
         if ($_CONF['theme_etag']) {
             $csslink = '<link rel="stylesheet" type="text/css" href="'
-                     . $_CONF['layout_url'] . '/style.css.php?theme=' . $_CONF['theme'] . '&amp;dir=' . $LANG_DIRECTION . '" media="all"' . XHTML . '>' . LB;
+                . $_CONF['layout_url'] . '/style.css.php?theme=' . $_CONF['theme'] . '&amp;dir=' . $LANG_DIRECTION . '" media="all"' . XHTML . '>' . LB;
             $headercode = $csslink . $headercode;
         }
         // Set CSS Files
@@ -539,9 +537,9 @@ class Scripts
 
             if ($file['load'] && !empty($href)) {
                 $csslink = '<link rel="' . $rel
-                         . '" type="' . $type
-                         . '" href="' . $href
-                         . '"' . $file['extra'] . XHTML . '>' . LB;
+                    . '" type="' . $type
+                    . '" href="' . $href
+                    . '"' . $file['extra'] . XHTML . '>' . LB;
 
                 if (isset($file['name']) && $file['name'] == 'theme') { // load theme css first
                     $headercode = $csslink . $headercode;
@@ -573,7 +571,7 @@ class Scripts
             'tooltip_select_date' => $MESSAGE[118],
             'tabs_more'           => $MESSAGE[119],
             'confirm_delete'      => $MESSAGE[76],
-            'confirm_send'        => $MESSAGE[120]
+            'confirm_send'        => $MESSAGE[120],
         );
         if (!empty($this->lang)) {
             $lang = array_merge($lang, $this->lang);
@@ -584,7 +582,7 @@ class Scripts
             'layout_url'     => $_CONF['layout_url'],
             'xhtml'          => XHTML,
             'lang'           => $lang,
-            'theme_options'  => $_CONF['theme_options']
+            'theme_options'  => $_CONF['theme_options'],
         );
         $str = $this->_array_to_jsobj($src);
         // Strip '{' and '}' from both ends of $str
@@ -612,8 +610,8 @@ EOD;
 
         // Sort JavaScript Files based on priority (this is for both header and footer)
         $priority = array();
-        foreach($this->script_files as $k => $d) {
-          $priority[$k] = $d['priority'];
+        foreach ($this->script_files as $k => $d) {
+            $priority[$k] = $d['priority'];
         }
         array_multisort($priority, SORT_ASC, $this->script_files);
 
@@ -645,6 +643,7 @@ EOD;
             }
         }
         $retval = rtrim($retval, ',') . '}';
+
         return $retval;
     }
 
@@ -683,7 +682,4 @@ EOD;
 
         return $footercode;
     }
-
 }
-
-?>

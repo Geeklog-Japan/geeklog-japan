@@ -1217,8 +1217,7 @@ switch ($action) {
         } else {
             $page .= COM_showMessageText($LANG_DB_BACKUP['no_myisam'],'',true,'error');
         }
-    }
-    break;
+        break;
 
     case 'innodb':
         $pagetitle = $LANG_DB_BACKUP['convert_title'];
@@ -1285,13 +1284,12 @@ switch ($action) {
         $page .= DBADMIN_optimize();
         break;
 
-case 'doinnodb':
-    $pagetitle = $LANG_DB_BACKUP['convert_title'];
-    if (innodb_supported()) {
+    case 'dooptimize':
         $startwith = '';
         if (isset($_GET['startwith'])) {
             $startwith = COM_applyFilter($_GET['startwith']);
         }
+        $pagetitle = $LANG_DB_BACKUP['optimize_title'];
         if (!empty($startwith) || SEC_checkToken()) {
             $failures = 0;
             if (isset($_GET['failures'])) {

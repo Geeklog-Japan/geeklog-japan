@@ -246,7 +246,13 @@ $LANG03 = array(
     42 => 'Unsubscribe',
     43 => 'Unsubscribe from reply notifications',
     44 => 'Your Name',
-    45 => "Thank you for your comment. You must wait {$_CONF['commentspeedlimit']} seconds to post a new comment."
+    45 => "Thank you for your comment. You must wait {$_CONF['commentspeedlimit']} seconds to post a new comment.",
+    100 => 'Comment Manager',
+    101 => 'Existing Comments',
+    102 => 'Bulk Action',
+    103 => 'Ban this user',
+    104 => 'Ban this IP address with the Spamx plugin',
+    105 => 'IP Address',
 );
 
 ###############################################################################
@@ -1906,6 +1912,7 @@ $LANG_ADMIN = array (
     'token_expired' => 'The security token for this operation has expired. Please authenticate again to continue.',
     'reauth_msg'    => 'The security token for this operation has expired. If you want to continue with this operation, then please authenticate again below. This will ensure that the changes you just made will not be lost.',
     'authenticate'  => 'Authenticate',
+    'approve'       => 'Approve',
     'device'        => 'Device',
     'device_desc'   => 'For what device do you want this item to display for?',
     'for_all'       => 'All',

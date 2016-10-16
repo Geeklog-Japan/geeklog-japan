@@ -246,7 +246,13 @@ $LANG03 = array(
     42 => 'Unsubscribe',
     43 => 'Unsubscribe from reply notifications',
     44 => 'Your Name',
-    45 => "Thank you for your comment. You must wait {$_CONF['commentspeedlimit']} seconds to post a new comment."
+    45 => "Thank you for your comment. You must wait {$_CONF['commentspeedlimit']} seconds to post a new comment.",
+    100 => 'Comment Manager',
+    101 => 'Existing Comments',
+    102 => 'Bulk Action',
+    103 => 'Ban this user',
+    104 => 'Ban this IP address with the Spamx plugin',
+    105 => 'IP Address',
 );
 
 ###############################################################################
@@ -1501,6 +1507,9 @@ $MESSAGE = array(
     118 => 'Click to select a date',
     119 => 'More..',
     120 => 'Send this?',
+    121 => 'Saved a URL routing item.',
+    122 => 'Could not save a URL routing item.',
+    123 => 'Deleted a URL routing item.',
     130 => 'Your language item has been successfully deleted.',
     131 => 'Your language item has been successfully saved.',
     140 => 'Deleted comment(s).',

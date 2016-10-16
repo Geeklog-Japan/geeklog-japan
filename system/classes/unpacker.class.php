@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.8                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | unpacker.class.php                                                        |
 // |                                                                           |
@@ -37,12 +37,10 @@ use splitbrain\PHPArchive\Zip;
 
 /**
  * Geeklog plugin unpacker - Archive Libs Wrapper
- *
  * This class wraps calls to pecl Zip, pear Zip, pear Tar, using the best
  * package available to unpack or list information about the archive.
  *
  * @author Justin Carlson, justin DOT carlson AT gmail DOT com
- *
  */
 class Unpacker
 {
@@ -74,7 +72,6 @@ class Unpacker
     private $u_size = null; // uncompressed archive size
     private $type = null; // archive type
     private $comp = null; // archive compression type (private)
-
 
     /**
      * Constructor
@@ -157,7 +154,6 @@ class Unpacker
     }
 
     /**
-     *
      * Decides which loader to call, or returns false if one isn't found.
      *
      * @return bool result of loading archive passed
@@ -238,11 +234,11 @@ class Unpacker
 
         if (method_exists($this, $handler)) {
             $this->contents = $this->$handler();
+
             return $this->contents;
         } else {
             return $this->setError('405', 'Unpacker called getlist ' . 'with unknown handler.');
         }
-
     }
 
     /**
@@ -300,6 +296,7 @@ class Unpacker
                 $this->contents[$i]['compressed'] = $zip_entry['comp_size'];
                 $this->contents[$i]['method'] = $zip_entry['comp_method'];
             }
+
             // return the contents list
             return $this->contents;
         } else {
@@ -315,7 +312,6 @@ class Unpacker
             } catch (ArchiveIOException $e) {
                 return $this->setError(-1, $e->getMessage());
             }
-
         }
     }
 
@@ -412,7 +408,6 @@ class Unpacker
             } catch (ArchiveIOException $e) {
                 return $this->setError(-3, $e->getMessage());
             }
-
         }
     }
 
@@ -497,8 +492,7 @@ class Unpacker
     {
         $this->errorNo = $errorNo;
         $this->error = $error;
+
         return false;
     }
 }
-
-?>

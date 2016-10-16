@@ -880,6 +880,9 @@ function COM_siteHeader($what = 'menu', $pagetitle = '', $headercode = '')
     global $_CONF, $_TABLES, $_USER, $LANG01, $LANG_BUTTONS, $LANG_DIRECTION,
            $_IMAGE_TYPE, $topic, $_COM_VERBOSE, $_SCRIPTS, $relLinks;
     global $_GLOBAL_WHAT;
+
+    COM_errorLog('Warning! ' . __FUNCTION__ . ' will be deprecated with Geeklog-2.1.2.  Please use COM_createHTMLDocument instead.');
+
     $_GLOBAL_WHAT = $what;
 
     // If the theme implemented this for us then call their version instead.
@@ -1273,6 +1276,8 @@ function COM_siteHeader($what = 'menu', $pagetitle = '', $headercode = '')
 function COM_siteFooter($rightBlock = -1, $custom = '')
 {
     global $_CONF, $LANG01, $_PAGE_TIMER, $topic, $LANG_BUTTONS, $_SCRIPTS, $_GLOBAL_WHAT;
+
+    COM_errorLog('Warning! ' . __FUNCTION__ . ' will be deprecated with Geeklog-2.1.2.  Please use COM_createHTMLDocument instead.');
 
     // If the theme implemented this for us then call their version instead.
     $function = $_CONF['theme'] . '_siteFooter';

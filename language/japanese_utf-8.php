@@ -254,7 +254,13 @@ $LANG03 = array(
     42 => '通知を解除',
     43 => '返信の通知を解除',
     44 => 'あなたの名前',
-    45 => "コメントをありがとうございます。 新たなコメント投稿のために {$_CONF['commentspeedlimit']} 秒以上お待ちください。"
+    45 => "コメントをありがとうございます。 新たなコメント投稿のために {$_CONF['commentspeedlimit']} 秒以上お待ちください。",
+    100 => 'コメント管理',
+    101 => '既存のコメント',
+    102 => '一括操作',
+    103 => 'このユーザーを禁止する',
+    104 => 'このIPアドレスをSpamxプラグインで禁止する',
+    105 => 'IPアドレス',
 );
 
 ###############################################################################
@@ -1500,6 +1506,9 @@ $MESSAGE = array(
     118 => 'クリックして日付を選択してください',
     119 => 'More..',
     120 => 'この項目を送信しますか?',
+    121 => 'URLルーティングのデータを保存しました。',
+    122 => 'URLルーティングのデータを保存できませんでした。',
+    123 => 'URLルーティングのデータを削除しました。',
     130 => '言語アイテムを削除しました。',
     131 => '言語アイテムを保存しました。',
     140 => 'コメントを削除しました。',
@@ -1908,14 +1917,15 @@ $LANG_ADMIN = array(
     'token_expired' => 'この操作のセキュリティトークンは期限切れになりました。続けるには再度認証してください。',
     'reauth_msg' => 'この操作のセキュリティトークンは期限切れになりました。続けるには下の認証を行ってください。そうすれば今回の編集作業を失うことはありません。',
     'authenticate' => '認証する',
-    'device'        => 'Device',
-    'device_desc'   => 'For what device do you want this item to display for?',
-    'for_all'       => 'All',
-    'for_mobile'    => 'For Mobile',
-    'for_computer'  => 'For Computer',
-    'all'           => 'All',
-    'mobile'        => 'Mobile',
-    'computer'      => 'Computer'
+    'approve' => '承認する',
+    'device'        => 'デバイス',
+    'device_desc'   => 'このアイテムを表示するデバイス',
+    'for_all'       => '全て',
+    'for_mobile'    => 'モバイル用',
+    'for_computer'  => 'コンピューター用',
+    'all'           => '全て',
+    'mobile'        => 'モバイル',
+    'computer'      => 'コンピューター'
 );
 
 # Localisation of the texts for the various drop-down menus that are actually
@@ -2240,6 +2250,7 @@ $LANG_confignames['Core'] = array(
     'censorlist' => 'バッドワード',
     'ip_lookup' => 'IPアドレス検索',
     'url_rewrite' => 'URLリライト',
+    'url_routing' => 'URLルーティング',
     'cdn_hosted' => 'CDNのjQueryを使用する',
     'meta_tags' => 'メタタグ',
     'meta_description' => 'サイトの説明文のメタタグ',

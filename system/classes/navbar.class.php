@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +-------------------------------------------------------------------------+
-// | Geeklog 1.8                                                             |
+// | Geeklog 2.1                                                             |
 // +-------------------------------------------------------------------------+
 // | navbar.class.php                                                        |
 // |                                                                         |
@@ -31,13 +31,11 @@
 // +-------------------------------------------------------------------------+
 
 /**
-* This class will allow you to setup and generate a CSS Tab Menu and breadcrumb link trail
-* Version 1.1 June 4, 2006
-*
-* @author       Blaine Lang <blaine@portalparts.com>
-*
-*/
-
+ * This class will allow you to setup and generate a CSS Tab Menu and breadcrumb link trail
+ * Version 1.1 June 4, 2006
+ *
+ * @author       Blaine Lang <blaine@portalparts.com>
+ */
 /* Example Use
     include ($_CONF['path_system'] . 'classes/navbar.class.php');
 
@@ -135,15 +133,10 @@ class navbar
         }
     }
 
-<<<<<<< HEAD
-
-    function set_selected($selected)
-=======
     /**
      * @param  string $selected
      */
     public function set_selected($selected)
->>>>>>> Refactored some code
     {
         $this->_selected = $selected;
     }
@@ -165,47 +158,6 @@ class navbar
         $this->_onclick[$item] = $option;
     }
 
-<<<<<<< HEAD
-    function generate() {
-        global $_CONF;
-        $navtemplate = COM_newTemplate($_CONF['path_layout'] . 'navbar');
-        $navtemplate->set_file (array (
-            'navbar'       => 'navbar.thtml',
-            'menuitem'     => 'menuitem.thtml'));
-
-        if ($this->_parms != '') {
-            $navtemplate->set_var( 'parms',  $this->_parms);
-        }
-
-        for ($i=1; $i <= count($this->_menuitems); $i++)  {
-            $label = key($this->_menuitems);
-            $linkurl = current($this->_menuitems);
-            if ( is_array($this->_onclick) && array_key_exists($label,$this->_onclick) ) {
-                $onclick = " onclick='{$this->_onclick[$label]}'";
-                $navtemplate->set_var( 'onclick', $onclick);
-                $navtemplate->set_var( 'link', ($linkurl == '') ? '#' : $linkurl);
-            } else {
-                $navtemplate->set_var( 'onclick', '');
-                $navtemplate->set_var( 'link', $linkurl);
-            }
-            if ($label == $this->_selected) {
-                $navtemplate->set_var( 'cssactive', ' id="active"');
-                $navtemplate->set_var( 'csscurrent',' id="current"');
-            } else {
-                $navtemplate->set_var( 'cssactive', '');
-                $navtemplate->set_var( 'csscurrent','');
-            }
-            $navtemplate->set_var( 'label',  $label);
-            $navtemplate->parse( 'menuitems', 'menuitem', true );
-            next($this->_menuitems);
-        }
-        $navtemplate->parse ('output', 'navbar');
-        $retval = $navtemplate->finish($navtemplate->get_var('output'));
-        return $retval;
-    }
-
-    function openBreadcrumbs() {
-=======
     /**
      * @return string
      */
@@ -253,18 +205,14 @@ class navbar
 
     public function openBreadcrumbs()
     {
->>>>>>> Refactored some code
         global $_CONF;
 
         $this->_bctemplate = COM_newTemplate($_CONF['path_layout'] . 'navbar');
-        $this->_bctemplate->set_file (array (
-            'breadcrumbs'   => 'breadcrumbs.thtml',
-            'link'          => 'breadcrumb_link.thtml'));
+        $this->_bctemplate->set_file(array(
+            'breadcrumbs' => 'breadcrumbs.thtml',
+            'link'        => 'breadcrumb_link.thtml'));
     }
 
-<<<<<<< HEAD
-    function add_breadcrumbs($url,$label,$title='') {
-=======
     /**
      * @param  string $url
      * @param  string $label
@@ -272,52 +220,40 @@ class navbar
      */
     public function add_breadcrumbs($url, $label, $title = '')
     {
->>>>>>> Refactored some code
         if ($this->_numbreadcrumbs == '') {
             $this->_numbreadcrumbs = 0;
         }
-        $this->_bctemplate->set_var('link_url',$url);
-        $this->_bctemplate->set_var('link_label',$label);
-        $this->_bctemplate->set_var('link_title',$title);
+        $this->_bctemplate->set_var('link_url', $url);
+        $this->_bctemplate->set_var('link_label', $label);
+        $this->_bctemplate->set_var('link_title', $title);
         if ($this->_numbreadcrumbs > 0) {
-            $this->_bctemplate->set_var('link_separator','/&nbsp;');
+            $this->_bctemplate->set_var('link_separator', '/&nbsp;');
 
-        }  else {
-            $this->_bctemplate->set_var('link_separator','');
+        } else {
+            $this->_bctemplate->set_var('link_separator', '');
         }
-        $this->_bctemplate->parse('breadcrumb_links','link',true);
+        $this->_bctemplate->parse('breadcrumb_links', 'link', true);
         $this->_numbreadcrumbs = $this->_numbreadcrumbs + 1;
     }
 
-<<<<<<< HEAD
-    function add_lastBreadcrumb($label) {
-=======
     /**
      * @param  string $label
      */
     public function add_lastBreadcrumb($label)
     {
->>>>>>> Refactored some code
         if (trim($label) != '') {
             $label = "/&nbsp;$label";
-            $this->_bctemplate->set_var('last_label',$label);
+            $this->_bctemplate->set_var('last_label', $label);
         }
     }
 
-<<<<<<< HEAD
-    function closeBreadcrumbs() {
-=======
     /**
      * @return string
      */
     public function closeBreadcrumbs()
     {
->>>>>>> Refactored some code
         $this->_bctemplate->parse('output', 'breadcrumbs');
-        return $this->_bctemplate->finish ($this->_bctemplate->get_var('output'));
+
+        return $this->_bctemplate->finish($this->_bctemplate->get_var('output'));
     }
-
-
 }
-
-?>

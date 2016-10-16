@@ -180,6 +180,7 @@ class TimeZoneConfig
         }
 
         if ($useDateTimeZone) {
+            $T = DateTimeZone::listAbbreviations();
 
             foreach ($T as $tzId => $entries) {
                 $shortName = strtoupper($tzId);
@@ -275,7 +276,4 @@ class TimeZoneConfig
 
         return strcmp($tz1, $tz2);
     }
-
 }
-
-?>

@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.8                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | timer.class.php                                                           |
 // |                                                                           |
@@ -154,5 +154,4 @@ class timerobject
     {
         $this->_elapsedtime = $this->_endtime - $this->_starttime;
     }
-
 }
