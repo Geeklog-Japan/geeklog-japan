@@ -1,7 +1,7 @@
 <?php
 
 // +---------------------------------------------------------------------------+
-// | Precheck for Geeklog 2.0                                                  |
+// | Precheck for Geeklog 2.1                                                  |
 // +---------------------------------------------------------------------------+
 // | public_html/admin/install/precheck.php                                    |
 // |                                                                           |
@@ -33,8 +33,8 @@
 * most common errors / omissions when setting up a new Geeklog site ...
 *
 * @author   mystral-kk <geeklog AT mystral-kk DOT net>
-* @date     2016-02-06
-* @version  1.4.7
+* @date     2016-10-22
+* @version  1.5.0
 * @license  GPLv2 or later
 */
 if (version_compare(PHP_VERSION, '5.0.0') < 0) {
@@ -43,13 +43,13 @@ if (version_compare(PHP_VERSION, '5.0.0') < 0) {
 
 error_reporting(E_ALL);
 
-define('GL_VERSION', '2.0.0');
+define('GL_VERSION', '2.1.2');
 
 //===================================================================
 // DO NOT CHANGE ANYTHING BELOW THIS LINE!
 //===================================================================
 
-define('PRECHECK_VERSION', '1.4.7');
+define('PRECHECK_VERSION', GL_VERSION);
 define('LB', "\n");
 define('DS', DIRECTORY_SEPARATOR);
 define('THIS_SCRIPT', basename(__FILE__));
@@ -67,8 +67,10 @@ if (version_compare($gl_version, '1.5.0') < 0) {
 	define('MIN_PHP_VERSION', '4.3.0');
 } elseif (version_compare($gl_version, '1.8.0') < 0) {
 	define('MIN_PHP_VERSION', '4.4.0');
-} else {
+} elseif (version_compare($gl_version, '2.1.2') < 0) {
 	define('MIN_PHP_VERSION', '5.2.0');
+} else {
+	define('MIN_PHP_VERSION', '5.3.3');
 }
 
 if (version_compare($gl_version, '1.7.0') < 0) {
@@ -612,11 +614,12 @@ class Precheck
 		$extensions = array_map('strtolower', $extensions);
 		$dbms = array();
 		
-		if (in_array('mysql', $extensions)) {
+		if (in_array('mysqli', $extensions) || in_array('mysql', $extensions)) {
 			$dbms[] = 'MySQL';
 		}
 		
-		if (in_array('mssql', $extensions)) {
+		// MSSQL support was dropped with Geeklog-2.1.2
+		if ((version_compare($gl_version, '2.1.1') <= 0) && in_array('mssql', $extensions)) {
 			$dbms[] = 'Microsoft SQL Server';
 		}
 		
@@ -865,16 +868,25 @@ class Precheck
 		$user = isset($_GET['user']) ? $_GET['user'] : '';
 		$pass = isset($_GET['pass']) ? $_GET['pass'] : '';
 		
-		if ($host == 'localhost') {
+		if ($host === 'localhost') {
 			$host = '127.0.0.1';
 		}
 		
 		if (($type === 'mysql') || ($type === 'mysql-innodb')) {
-			if (($db = @mysql_connect($host, $user, $pass)) === false) {
+			$isMysqli = false;
+			
+			if (class_exists('mysqli')) {
+				$isMysqli = true;
+				$db = new mysqli($host, $user, $pass);
+				
+				if (!$db instanceof mysqli) {
+					return $err;
+				}
+			} elseif (($db = @mysql_connect($host, $user, $pass)) === false) {
 				return $err;
 			}
 			
-			$v = mysql_get_server_info($db);
+			$v = $isMysqli ? $db->server_info : mysql_get_server_info($db);
 			
 			if (version_compare($v, MIN_MYSQL_VERSION) < 0) {
 				$err .= PRECHECK_str('e_mysql1') . '(<strong>' . $v
@@ -883,17 +895,32 @@ class Precheck
 				return $err;
 			}
 			
-			if (($result = @mysql_query("SHOW DATABASES", $db)) === false) {
-				return $err;
-			}
-			
-			while (($A = mysql_fetch_assoc($result)) !== false) {
-				if (($A['Database'] !== 'mysql') &&
-						($A['Database'] !== 'information_schema') &&
-						($A['Database'] !== 'performance_schema')) {
-					$retval[] = $A['Database'];
+			if ($isMysqli) {
+				if (($result = $db->query("SHOW DATABASES")) === false) {
+					return $err;
+				}
+				
+				while (($A = ($result->fetch_assoc())) !== null) {
+					if (($A['Database'] !== 'mysql') &&
+							($A['Database'] !== 'information_schema') &&
+							($A['Database'] !== 'performance_schema')) {
+						$retval[] = $A['Database'];
+					}
+				}
+			} else {
+				if (($result = @mysql_query("SHOW DATABASES", $db)) === false) {
+					return $err;
+				}
+				
+				while (($A = mysql_fetch_assoc($result)) !== false) {
+					if (($A['Database'] !== 'mysql') &&
+							($A['Database'] !== 'information_schema') &&
+							($A['Database'] !== 'performance_schema')) {
+						$retval[] = $A['Database'];
+					}
 				}
 			}
+			
 			
 			$retval = implode(';', $retval);
 			
@@ -936,40 +963,78 @@ class Precheck
 	{
 		$retval = '';
 		
-		if (($db = @mysql_connect($host, $user, $pass)) !== false) {
-			if (mysql_select_db($name, $db) === true) {
-				if ($utf8 === 'yes') {
-					$result = mysql_query("SHOW VARIABLES LIKE 'character_set_%'", $db);
+		if (class_exists('mysqli')) {
+			$db = new mysqli($host, $user, $pass);
+			
+			if (!mysqli_connect_error()) {
+				if ($db->select_db($name) === true) {
+					if ($utf8 === 'yes') {
+						$result = $db->query("SHOW VARIABLES LIKE 'character_set_%'");
 					
-					if ($result !== false) {
-						while (($A = mysql_fetch_assoc($result)) !== false) {
-							if ($A['Variable_name'] === 'character_set_database') {
-								$retval = (($A['Value'] !== 'utf8') && ($A['Value'] !== 'utf8mb4'))
-										? 'e_database_not_utf8'
-										: '';
-								break;
+						if ($result !== false) {
+							while (($A = $result->fetch_assoc()) !== null) {
+								if ($A['Variable_name'] === 'character_set_database') {
+									$retval = (($A['Value'] !== 'utf8') && ($A['Value'] !== 'utf8mb4'))
+											? 'e_database_not_utf8'
+											: '';
+									break;
+								}
 							}
 						}
 					}
-				}
 				
-				if ($retval === '') {
-					// '_' is a wild character in MySQL, so we have to escape it
-					// with '\'
-					$prefix = str_replace('_', '\\_', $prefix);
+					if ($retval === '') {
+						// '_' is a wild character in MySQL, so we have to escape it
+						// with '\'
+						$prefix = str_replace('_', '\\_', $prefix);
 					
-					if (($result = mysql_query("SHOW TABLES LIKE '{$prefix}%'", $db)) !== false) {
-						$retval = (mysql_num_rows($result) !== 0)
-								? 'e_database_not_empty'
-								: '';
+						if (($result = $db->query("SHOW TABLES LIKE '{$prefix}%'")) !== false) {
+							$retval = ($result->num_rows != 0)
+									? 'e_database_not_empty'
+									: '';
+						}
 					}
 				}
-			}
 			
-			@mysql_close($db);
-		}
+				@$db->close();
+				$db = null;
+			}
+		} else {
+			if (($db = @mysql_connect($host, $user, $pass)) !== false) {
+				if (mysql_select_db($name, $db) === true) {
+					if ($utf8 === 'yes') {
+						$result = mysql_query("SHOW VARIABLES LIKE 'character_set_%'", $db);
+					
+						if ($result !== false) {
+							while (($A = mysql_fetch_assoc($result)) !== false) {
+								if ($A['Variable_name'] === 'character_set_database') {
+									$retval = (($A['Value'] !== 'utf8') && ($A['Value'] !== 'utf8mb4'))
+											? 'e_database_not_utf8'
+											: '';
+									break;
+								}
+							}
+						}
+					}
+				
+					if ($retval === '') {
+						// '_' is a wild character in MySQL, so we have to escape it
+						// with '\'
+						$prefix = str_replace('_', '\\_', $prefix);
+					
+						if (($result = mysql_query("SHOW TABLES LIKE '{$prefix}%'", $db)) !== false) {
+							$retval = (mysql_num_rows($result) !== 0)
+									? 'e_database_not_empty'
+									: '';
+						}
+					}
+				}
+			
+				@mysql_close($db);
+			}
 		
-		return $retval;
+			return $retval;
+		}
 	}
 	
 	/**
