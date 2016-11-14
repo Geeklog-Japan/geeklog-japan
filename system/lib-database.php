@@ -39,6 +39,8 @@ if (stripos($_SERVER['PHP_SELF'], 'lib-database.php') !== false) {
     die('This file can not be used on its own!');
 }
 
+global $_CONF, $_DB, $_TABLES, $_DB_dbms, $_DB_host, $_DB_name, $_DB_user, $_DB_pass, $_DB_table_prefix;
+
 // +---------------------------------------------------------------------------+
 // | Table definitions, these are used by the install program to create the    |
 // | database schema.  If you don't like the tables names, change them PRIOR   |

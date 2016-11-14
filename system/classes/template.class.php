@@ -371,6 +371,26 @@ class Template
         return false;
     }
 
+    /**
+     * Return the root directory of the templates
+     *
+     * @return array|string
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Return unknowns
+     *
+     * @return string
+     */
+    public function getUnknowns()
+    {
+        return $this->unknowns;
+    }
+
     /******************************************************************************
      * Sets the policy for dealing with unresolved variable names.
      *
@@ -1133,7 +1153,7 @@ class Template
      * @return    string
      * @see       set_root
      */
-    private function filename($fileName)
+    public function filename($fileName)
     {
         if ($this->debug & 4) {
             echo "<p><b>filename:</b> filename = $fileName</p>\n";
@@ -1240,7 +1260,7 @@ class Template
      * @return    void
      * @see       $halt_on_error
      */
-    private function halt($msg)
+    public function halt($msg)
     {
         $this->last_error = $msg;
 
