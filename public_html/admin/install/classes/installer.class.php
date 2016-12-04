@@ -531,7 +531,17 @@ HTML;
                 : $this->env['gl_path'] . 'public_html/' . self::DB_CONFIG_FILE;
 
             // If the script was able to locate all the system files/directories move onto the next step
-            header('Location: index.php?mode=check_permissions&dbconfig_path=' . urlencode($this->env['dbconfig_path']));
+            $args = array(
+                'mode' => 'check_permissions',
+                'dbconfig_path' => $this->env['dbconfig_path'],
+            );
+
+            if (!empty($this->env['language'])) {
+                $args['language'] = $this->env['language'];
+            }
+
+            $url = 'index.php?' . http_build_query($args);
+            header('Location: ' . $url);
         }
 
         $this->env['base_file'] = str_replace('\\', '/', BASE_FILE);
@@ -3890,6 +3900,15 @@ HTML;
                 }
             }
 
+            // Check for any upgrade info and/or warning messages for specific upgrade path. Skip if continued has been clicked already
+            if ($this->post('upgrade_check') !== 'confirmed') {
+                $retval = $this->checkUpgradeMessage($version);
+                if (!empty($retval)) {
+                    return $retval;
+                }
+            }
+
+
             if (!$this->doDatabaseUpgrades($version)) {
                 $display .= $this->getAlertMsg(sprintf($LANG_MIGRATE[47], $version, self::GL_VERSION));
                 $upgrade_error = true;
@@ -3968,8 +3987,6 @@ HTML;
         }
 
         // check the default theme
-        $theme = '';
-
         if (empty($_CONF['theme'])) {
             // try old conf value
             $theme = $_OLD_CONF['theme'];
@@ -4115,8 +4132,8 @@ HTML;
 
         // Check if there are any missing files or plugins
         if ($missing_images || ($missing_plugins > 0) || ($disabled_plugins > 0)) {
-            $display .= '<h2>' . $LANG_MIGRATE[37] . '</h2>' . LB
-                . '<p>' . $LANG_MIGRATE[38] . '</p>' . LB;
+            $display .= '<h2>' . $LANG_MIGRATE[37] . '</h2>' . PHP_EOL
+                . '<p>' . $LANG_MIGRATE[38] . '</p>' . PHP_EOL;
             // Plugins
             if ($missing_plugins > 0) {
                 $display .= $this->getAlertMsg($LANG_MIGRATE[32] . ' <code>' . $_CONF['path'] . 'plugins/</code> ' . $LANG_MIGRATE[33], 'notice');
