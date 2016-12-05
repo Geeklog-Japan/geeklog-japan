@@ -189,6 +189,9 @@ $LANG_SUCCESS = array(
     25 => 'No, thanks.  I will manually delete them afterwards.'
 );
 
+// +---------------------------------------------------------------------------+
+// migration
+
 $LANG_MIGRATE = array(
     0 => 'תהליך הנדידה ישכתב כל מידע קיים במאגר המידע.',
     1 => 'לפני שתמשיכו',
@@ -318,7 +321,13 @@ $LANG_ERROR = array(
     7 => 'הקובץ שהועלה עובר את הוראת post_max_size ב-php.ini. אנא העלו את קובץ מאגר המידע שלכם בשיטה אחרת, למשל FTP.',
     8 => 'שגיאה',
     9 => 'כשל בחיבור למאגר המידע שלכם עם השגיאה: ',
-    10 => 'בידקו את הגדרות מאגר המידע שלכם'
+    10 => 'בידקו את הגדרות מאגר המידע שלכם',
+    11 => 'Warning',
+    12 => 'Information',
+    14 => 'Upgrade Notices',
+    15 => 'Topic IDs and Names max length have changed from 128 to 75. This may cause issues when topic ids are truncated (if id is larger than 75 characters) during the upgrade. Please double check your topic ids that are larger than 75 characters will be unique when the max length is changed.',
+    16 => 'Topic IDs and Names have changed from 128 to 75. It has been detected you need to modify 1 or more topic ids before this upgrade can proceed.',
+    17 => 'Professional Theme support has been dropped from Geeklog. If you are currently using the Professional theme or Professional_css theme from Geeklog 2.1.1 or older your website may not function properly.'
 );
 
 // +---------------------------------------------------------------------------+
@@ -412,3 +421,5 @@ $LANG_LABEL = array(
     'migrate_file'   => $LANG_MIGRATE[6],
     'plugin_upload'  => $LANG_PLUGINS[10]
 );
+
+?>
