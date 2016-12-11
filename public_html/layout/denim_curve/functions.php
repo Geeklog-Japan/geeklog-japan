@@ -42,10 +42,10 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
 /**
  * Return the configuration values for the theme
  */
-function theme_config_denim()
+function theme_config_denim_curve()
 {
     $options = array(
-        'uikit_theme' => 'default', // you can set this variable to 'default' or 'gradient' or 'almost-flat'
+        'uikit_theme' => 'gradient',
         'uikit_components'  => array(
             'accordion'     => 0,
             'autocomplete'  => 0,
@@ -71,12 +71,12 @@ function theme_config_denim()
         ),
         'use_minified_css'  => 0,   // 1:use  or 0:no_use minified css
         'header_search'     => 1,   // 1:show or 0:hide header searchbox
-        'block_left_search' => 1,   // 1:show or 0:hide left block searchbox
+        'block_left_search' => 0,   // 1:show or 0:hide left block searchbox
         'welcome_msg'       => 1,   // 1:show or 0:hide welcome message
         'trademark_msg'     => 0,   // 1:show or 0:hide trademark message on footer
         'execution_time'    => 0,   // 1:show or 0:hide execution time on footer
         'pagenavi_string'   => 1,   // 1:show or 0:hide text string of page navigation
-        'header_brand_type' => 1,   // 1:text or 0:image type of header brand (site name)
+        'header_brand_type' => 0,   // 1:text or 0:image type of header brand (site name)
         'off_canvas_mode'   => 2,   // 0:push 1:slide 2:reveal or 3:none mode of UIkit off-canvas animation
     );
 
@@ -85,6 +85,7 @@ function theme_config_denim()
         'doctype'    => 'xhtml5',
         'supported_version_theme' => '2.0.0', // support new theme format for the later Geeklog 2.0.0
         'theme_plugins' => 'denim', // Not requred, you can specify compatible theme of template stored with some plugins
+        'theme_default' => 'denim',
         'options'    => $options // Not requred, some options of this theme
     );
 }
@@ -92,11 +93,11 @@ function theme_config_denim()
 /**
  * Return an array of CSS files to be loaded
  */
-function theme_css_denim()
+function theme_css_denim_curve()
 {
     global $_CONF, $LANG_DIRECTION;
 
-    $theme_var = theme_config_denim();
+    $theme_var = theme_config_denim_curve();
 
     $direction = ($LANG_DIRECTION === 'rtl') ? '_rtl' : '';
     $ui_theme = '';
@@ -146,7 +147,7 @@ function theme_css_denim()
 /**
  * Return an array of JS libraries to be loaded
  */
-function theme_js_libs_denim()
+function theme_js_libs_denim_curve()
 {
     return array(
        array(
@@ -159,11 +160,11 @@ function theme_js_libs_denim()
 /**
  * Return an array of JS files to be loaded
  */
-function theme_js_files_denim()
+function theme_js_files_denim_curve()
 {
     global $_CONF;
 
-    $theme_var = theme_config_denim();
+    $theme_var = theme_config_denim_curve();
 
     $result = array();
     $result[] = array(
@@ -173,7 +174,7 @@ function theme_js_files_denim()
     );
 
     $result[] = array(
-        'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
+        'file'     => '/layout/' . $theme_var['theme_default'] . '/javascript/script.js',
         'footer'   => true, // Not required, default = true
         'priority' => 100 // Not required, default = 100
     );
@@ -197,7 +198,7 @@ function theme_js_files_denim()
 /**
  * Do any other initialisation here
  */
-function theme_init_denim()
+function theme_init_denim_curve()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
 
