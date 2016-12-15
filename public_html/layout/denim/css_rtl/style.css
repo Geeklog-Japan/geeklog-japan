@@ -86,6 +86,7 @@ fieldset {
   margin: 0 0 1em 0;
   padding: 8px 12px;
   border: 1px solid #CCC;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -177,7 +178,7 @@ select[multiple="multiple"] {
 }
 
 option {
-  padding-left: 4px ;
+  padding-left: 4px /* for Firefox */;
 }
 
 input[type="text"]:focus,
@@ -1609,7 +1610,7 @@ body.center-right #config_content {
     overflow: visible;
     float: right;
     width: 100%;
-    margin-right: -230px ;
+    margin-right: -230px /* -[R] */;
   }
 
   body.js_off #centerblocks {
@@ -2051,7 +2052,7 @@ body.center-right #config_content {
 }
 
 .brand-image .site_name a {
-  background: url("../images/logo2.png") 100% 0 no-repeat;
+  background: url("../images/logo2.png") 0 0 no-repeat;
   text-indent: -3000px;
   display: block;
   width: 100%;
@@ -2620,6 +2621,7 @@ h4 img {
 .block-message {
   margin: 1.5em 0;
   padding: 0;
+  -webkit-border-radius: 6px;
   border-radius: 6px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
@@ -2638,6 +2640,7 @@ h4 img {
   text-shadow: 0 1px 1px rgba(0,0,0,.3);
   font-weight: bold;
   border: 1px solid rgba(0,0,0,.2);
+  -webkit-border-radius: 6px 6px 0 0;
   border-radius: 6px 6px 0 0;
 }
 
@@ -2648,6 +2651,7 @@ h4 img {
   color: #404040;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
   border: 1px solid rgba(0,0,0,.2);
+  -webkit-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
 }
 
@@ -2724,7 +2728,7 @@ h4 img {
 }
 
 input[type="text"].search {
-  background: url("../images/search.png") right center no-repeat #FFF;
+  background: url("../images/search.png") left center no-repeat #FFF;
   padding-right: 24px;
   width: 120px;
   color: #999;
@@ -2739,56 +2743,56 @@ input[type="text"].search {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 0;
+  background-position: 100% 0;
 }
 
 #login_twitter {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -23px;
+  background-position: 100% -23px;
 }
 
 #login_linkedin {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -44px;
+  background-position: 100% -44px;
 }
 
 #login_google {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -66px;
+  background-position: 100% -66px;
 }
 
 #login_yahoo {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -88px;
+  background-position: 100% -88px;
 }
 
 #login_microsoft {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -110px;
+  background-position: 100% -110px;
 }
 
 #login_github {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -132px;
+  background-position: 100% -132px;
 }
 
 #login_openid {
   right: 0;
   width: 141px;
   background: url("/images/oauth-login-with-sprite.png") no-repeat;
-  background-position: 0 -154px;
+  background-position: 100% -154px;
 }
 
 #loginform fieldset {
@@ -3113,9 +3117,9 @@ div.third-party-login {
 --------------------------------------*/
 
 .gl-tooltip span {
-  margin-right: -999em;
+  margin-left: -999em;
   position: absolute;
-  text-align: right;
+  text-align: left;
   width: 250px;
 }
 
@@ -3128,9 +3132,10 @@ div.third-party-login {
 }
 
 .gl-tooltip:hover span {
+  -webkit-border-radius: 8px;
   border-radius: 8px;
-  -webkit-box-shadow: 2px 2px 8px #666;
-  box-shadow: 2px 2px 8px #666;
+  -webkit-box-shadow: -2px 2px 8px #666;
+  box-shadow: -2px 2px 8px #666;
   font-size: 1em;
   text-align: right;
   white-space: normal;
@@ -3139,7 +3144,7 @@ div.third-party-login {
   right: 2.2em;
   top: 2.2em;
   z-index: 99;
-  margin-right: 0;
+  margin-left: 0;
   width: 250px;
 }
 
@@ -3248,6 +3253,7 @@ span.warning em {
 #commentbar {
   padding: 3px;
   background: none repeat scroll 100% 0 #EEE;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   zoom: 1;
 }
@@ -3650,7 +3656,7 @@ span.warning em {
 #exclude_topic > .checkboxes-list > li,
 #boxesblock > .checkboxes-list > li {
   /* display: inline */
-  margin-right: .5em;
+  margin-left: .5em;
 }
 
 /*--------------------------------------
@@ -3739,7 +3745,7 @@ span.warning em {
 
 /* Account Information */
 #profile-userprofile {
-  overflow: hidden ;
+  overflow: hidden /* Adjust floating element */;
   margin: 0;
   padding: 0;
   zoom: 1;
@@ -3872,6 +3878,7 @@ dd#profile-user_photo {
   border: 1px solid rgba(0,0,0,.2);
   padding: 10px;
   line-height: 1.25;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
@@ -4507,6 +4514,7 @@ body.center-right #config_content {
     display: inline-block;
     border: 1px solid #666;
     border-color: #BEDAF3;
+    -webkit-border-radius: 2px 2px 2px 2px;
     border-radius: 2px 2px 2px 2px;
     background: #E4EDF5;
     color: #369;
@@ -4526,6 +4534,7 @@ body.center-right #config_content {
     display: inline-block;
     border: 1px solid #666;
     border-color: #79B1E7;
+    -webkit-border-radius: 2px 2px 2px 2px;
     border-radius: 2px 2px 2px 2px;
     background: #A8C4E0;
     color: #2A527A;
