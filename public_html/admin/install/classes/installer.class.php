@@ -37,6 +37,11 @@ class Installer
     private $LANG = array();
 
     /**
+     * @var array
+     */
+    private $upgradeMessages = array();
+
+    /**
      * Replaces all newlines in a string with <br> or <br />,
      * depending on the detected setting.  Ported from "lib-common.php"
      *
@@ -167,6 +172,9 @@ HTML;
         $this->env['language_selector'] = '';
         $language = $this->post('language', $this->get('language', self::DEFAULT_LANGUAGE));
 
+        // Upgrade Message check flag for if continue button clicked if any messages present
+        $this->env['upgrade_check'] = $this->get('upgrade_check', $this->post('upgrade_check', ''));
+
         // Include language file
         if (!file_exists(PATH_INSTALL . 'language/' . $language . '.php')) {
             $language = self::DEFAULT_LANGUAGE;
@@ -262,7 +270,7 @@ HTML;
         }
 
         return '<div class="notice"><span class="' . $style . '">' . $type . ':</span> '
-        . $message . '</div>' . PHP_EOL;
+            . $message . '</div>' . PHP_EOL;
     }
 
     /**
@@ -286,6 +294,52 @@ HTML;
                 die(1);
             }
         }
+    }
+
+    /**
+     * Check if any message for upgrades,  exit the installer
+     *
+     * @param  string $currentVersion
+     * @return string
+     */
+    private function checkUpgradeMessage($currentVersion)
+    {
+        $retval = '';
+
+        if ($this->doDatabaseUpgrades($currentVersion, true) && !empty($this->upgradeMessages)) {
+            $prompt = 'information';
+            $retval = '<h1 class="heading">' . $this->LANG['ERROR'][14] . '</h1>' . PHP_EOL; // Upgrade Notice
+            $this->env['site_url'] = $this->get('site_url', $this->post('site_url', $this->getSiteUrl()));
+            $this->env['site_admin_url'] = $this->get('site_admin_url', $this->post('site_admin_url', $this->getSiteAdminUrl()));
+
+            foreach ($this->upgradeMessages as $version => $message) {
+                $retval .= '<h2>' . $this->LANG['INSTALL'][111] . ' ' . $version . '</h2>' . PHP_EOL;
+                foreach ($message as $type => $message_id) {
+                    $retval .= $this->getAlertMessage($this->LANG['ERROR'][$message_id], $type);
+
+                    // record what type of prompt we need
+                    if ($type === 'information' || $type === 'warning' || $type === 'error') {
+                        if ($prompt !== 'error') {
+                            if ($prompt == 'information') {
+                                $prompt = $type;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Add prompt
+            if ($prompt === 'error') {
+                $retval .= MicroTemplate::quick(PATH_LAYOUT, 'upgrade_prompt_error', $this->env);
+            } else {
+                // add current version to array so set in template
+                $this->env['currentVersion'] = $currentVersion;
+
+                $retval .= MicroTemplate::quick(PATH_LAYOUT, 'upgrade_prompt_warning', $this->env);
+            }
+        }
+
+        return $retval;
     }
 
     /**
@@ -386,7 +440,7 @@ HTML;
      * Make a nice display name from the language filename
      *
      * @param   string $filename filename without the extension
-     * @return  string          language name to display to the user
+     * @return  string           language name to display to the user
      */
     private function prettifyLanguageName($filename)
     {
@@ -875,7 +929,7 @@ HTML;
     public function getHelpLink($var)
     {
         return '(<a href="help.php?language=' . $this->env['language'] . '&amp;label=' . $var
-        . '#' . $var . '" target="_blank">?</a>)';
+            . '#' . $var . '" target="_blank">?</a>)';
     }
 
     /**
@@ -1940,16 +1994,18 @@ HTML;
          * it's the correct version. Else, try some heuristics (below).
          * Note: Need to handle 'sr1' etc. appendices.
          */
-        $dbVersion = DB_getItem($_TABLES['vars'], 'value', "name = 'database_version'");
+        if (DB_checkTableExists('vars')) {
+            $dbVersion = DB_getItem($_TABLES['vars'], 'value', "name = 'database_version'");
 
-        if (!empty($dbVersion)) {
-            $v = explode('.', $dbVersion);
+            if (!empty($dbVersion)) {
+                $v = explode('.', $dbVersion);
 
-            if (count($v) === 3) {
-                $v[2] = (int) $v[2];
-                $version = implode('.', $v);
+                if (count($v) === 3) {
+                    $v[2] = (int) $v[2];
+                    $version = implode('.', $v);
 
-                return $version;
+                    return $version;
+                }
             }
         }
 
@@ -2362,14 +2418,23 @@ HTML;
     /**
      * Perform database upgrades
      *
-     * @param   string $currentGlVersion Current Geeklog version
-     * @return  bool                     True if successful
+     * @param  string $currentGlVersion Current Geeklog version
+     * @param  bool   $checkForMessage
+     * @return bool                     True if successful
      */
-    private function doDatabaseUpgrades($currentGlVersion)
+    private function doDatabaseUpgrades($currentGlVersion, $checkForMessage = false)
     {
         global $_TABLES, $_CONF, $_SP_CONF, $_DB, $_DB_dbms, $_DB_table_prefix;
 
-        $_DB->setDisplayError(true);
+        // Upgrade messages only supported for Geeklog 2.1.2 and higher
+        if ($checkForMessage && (version_compare($currentGlVersion, '2.1.1') < 0)) {
+            $currentGlVersion = '2.1.1';
+        }
+
+        // Don't do this if just checking for upgrade messages
+        if (!$checkForMessage) {
+            $_DB->setDisplayError(true);
+        }
 
         // Because the upgrade sql syntax can vary from dbms-to-dbms we are
         // leaving that up to each Geeklog database driver
@@ -2840,10 +2905,17 @@ HTML;
                     // there were no database changes in 2.1.0
                 case '2.1.1':
                     require_once $_CONF['path'] . 'sql/updates/' . $_DB_dbms . '_2.1.1_to_2.1.2.php';
-                    $this->updateDB($_SQL, $progress);
-                    update_addLanguage();
-                    update_addRouting();
-                    update_ConfValuesFor212();
+                    if ($checkForMessage) {
+                        $retval = upgrade_message211();
+                        if (is_array($retval)) {
+                            $this->upgradeMessages = array_merge($this->upgradeMessages, $retval);
+                        }
+                    } else {
+                        $this->updateDB($_SQL, $progress);
+                        update_addLanguage();
+                        update_addRouting();
+                        update_ConfValuesFor212();
+                    }
                     $currentGlVersion = '2.1.2';
                     $_SQL = array();
                     break;
@@ -2854,11 +2926,14 @@ HTML;
             }
         }
 
-        $this->setVersion($this->env['siteconfig_path']);
+        // Don't do this if just checking for upgrade messages
+        if (!$checkForMessage) {
+            $this->setVersion($this->env['siteconfig_path']);
 
-        // delete the security check flag on every update to force the user
-        // to run admin/sectest.php again
-        DB_delete($_TABLES['vars'], 'name', 'security_check');
+            // delete the security check flag on every update to force the user
+            // to run admin/sectest.php again
+            DB_delete($_TABLES['vars'], 'name', 'security_check');
+        }
 
         return true;
     }
@@ -2943,7 +3018,7 @@ HTML;
             // if we had to fix the site's URL, chances are that cookie domain
             // and path are also wrong and the user won't be able to log in
             $config->set('cookiedomain', '');
-            $config->set('cookie_path', INST_guessCookiePath($site_url));
+            $config->set('cookie_path', $this->guessCookiePath($site_url));
         }
 
         if (!empty($site_admin_url) &&
@@ -3031,7 +3106,7 @@ HTML;
      */
     private function checkPost150Upgrade($dbConfigFilePath, $siteConfigFilePath)
     {
-        global $_CONF, $_TABLES, $_DB, $_DB_dbms, $_DB_host, $_DB_user, $_DB_pass, $_DB_name;
+        global $_CONF, $_TABLES, $_DB, $_DB_dbms, $_DB_host, $_DB_user, $_DB_pass, $_DB_name, $_DB_table_prefix;
 
         require_once $dbConfigFilePath;
         require_once $siteConfigFilePath;
@@ -3188,18 +3263,20 @@ HTML;
      * @param    string $backupPath path to the "backups" directory
      * @param    string $backupFile backup file name
      * @param    string $display    reference to HTML string (for error msg)
-     * @return   mixed                  file name of unpacked file or false: error
+     * @return   mixed              file name of unpacked file or false: error
      */
     private function unpackFile($backupPath, $backupFile, &$display)
     {
         global $_CONF, $LANG_MIGRATE;
 
-        if (!preg_match('/\.(zip|tar\.gz|tgz)$/i', $backupFile)) {
+        if (!preg_match('/\.(zip|tar\.gz|tgz|gz)$/i', $backupFile)) {
             // not packed
             return $backupFile;
         }
 
-        require_once $_CONF['path'] . 'systems/classes/Autoload.php';
+        $gl_path = str_replace(self::DB_CONFIG_FILE, '', $this->env['dbconfig_path']);
+
+        require_once $gl_path . 'system/classes/Autoload.php';
         Geeklog\Autoload::initialize();
         $archive = new Unpacker($backupPath . $backupFile);
 
@@ -3236,7 +3313,7 @@ HTML;
             $unpacked_file = substr($file['filename'], strlen($dirName) + 1);
         }
 
-        $success = $archive->unpack($backupPath, array($file['filename']));
+        $success = $archive->unpack($backupPath, '|' . preg_quote($file['filename'], '|') . '|');
 
         if (!$success || !file_exists($backupPath . $unpacked_file)) {
             // error unpacking file
@@ -3474,7 +3551,7 @@ HTML;
         $backup_dir = $gl_path . 'backups/';
         $backupFiles = array();
 
-        foreach (array('*.sql', '*.tar.gz', '*.tgz', '*.zip') as $pattern) {
+        foreach (array('*.sql', '*.gz', '*.tar.gz', '*.tgz', '*.zip') as $pattern) {
             $files = glob($backup_dir . $pattern);
 
             if (is_array($files)) {
@@ -3895,7 +3972,12 @@ HTML;
             $upgrade_error = true;
         } elseif ($version != self::GL_VERSION) {
             $use_innodb = false;
-            $db_engine = DB_getItem($_TABLES['vars'], 'value', "name = 'database_engine'");
+
+            if (DB_checkTableExists('vars')) {
+                $db_engine = DB_getItem($_TABLES['vars'], 'value', "name = 'database_engine'");
+            } else {
+                $db_engine = '';
+            }
 
             if ($db_engine === 'InnoDB') {
                 // we've migrated, probably to a different server
@@ -3955,38 +4037,36 @@ HTML;
         // save a copy of the old config
         $_OLD_CONF = $config->get_config('Core');
 
-        $config->set('site_url', urldecode($_REQUEST['site_url']));
-        $_CONF['site_url'] = urldecode($_REQUEST['site_url']);
-        $config->set('site_admin_url', urldecode($_REQUEST['site_admin_url']));
-        $_CONF['site_admin_url'] = urldecode($_REQUEST['site_admin_url']);
-        $config->set('path_html', $html_path);
+        $_CONF['site_url'] = urldecode(urldecode(Geeklog\Input::get('site_url', Geeklog\Input::post('site_url', ''))));
+        $config->set('site_url', $_CONF['site_url']);
+        $_CONF['site_admin_url'] = urldecode(Geeklog\Input::get('site_admin_url', Geeklog\Input::post('site_admin_url', '')));
+        $config->set('site_admin_url', $_CONF['site_admin_url']);
         $_CONF['path_html'] = $html_path;
-        $config->set('path_log', $gl_path . 'logs/');
+        $config->set('path_html', $html_path);
         $_CONF['path_log'] = $gl_path . 'logs/';
-        $config->set('path_language', $gl_path . 'language/');
+        $config->set('path_log', $_CONF['path_log']);
         $_CONF['path_language'] = $gl_path . 'language/';
-        $config->set('backup_path', $backup_dir);
+        $config->set('path_language', $_CONF['path_language']);
         $_CONF['backup_path'] = $backup_dir;
-        $config->set('path_data', $gl_path . 'data/');
+        $config->set('backup_path', $_CONF['backup_path']);
         $_CONF['path_data'] = $gl_path . 'data/';
-        $config->set('path_images', $html_path . 'images/');
+        $config->set('path_data', $_CONF['path_data']);
         $_CONF['path_images'] = $html_path . 'images/';
-        $config->set('path_themes', $html_path . 'layout/');
+        $config->set('path_images', $_CONF['path_images']);
         $_CONF['path_themes'] = $html_path . 'layout/';
-        $config->set('path_editors', $html_path . 'editors/');
+        $config->set('path_themes', $_CONF['path_themes']);
         $_CONF['path_editors'] = $html_path . 'editors/';
-        $config->set('rdf_file', $html_path . 'backend/geeklog.rss');
+        $config->set('path_editors', $_CONF['path_editors']);
         $_CONF['rdf_file'] = $html_path . 'backend/geeklog.rss';
-        $config->set('path_pear', $_CONF['path_system'] . 'pear/');
-        $_CONF['path_pear'] = $_CONF['path_system'] . 'pear/';
+        $config->set('rdf_file', $html_path . $_CONF['rdf_file']);
 
         // reset cookie domain and path as wrong values may prevent login
-        $config->set('cookiedomain', '');
         $_CONF['cookiedomain'] = '';
-        $config->set('cookie_path', $this->guessCookiePath($_CONF['site_url']));
+        $config->set('cookiedomain', $_CONF['cookiedomain']);
         $_CONF['cookie_path'] = $this->guessCookiePath($_CONF['site_url']);
+        $config->set('cookie_path', $_CONF['cookie_path']);
 
-        if (substr($_CONF['site_url'], 0, 6) == 'https:') {
+        if (substr($_CONF['site_url'], 0, 6) === 'https:') {
             $config->set('cookiesecure', true);
             $_CONF['cookiesecure'] = 1;
         } else {
@@ -4008,7 +4088,7 @@ HTML;
         }
 
         // set noreply_mail when updating from an old version
-        if (empty($_CONF['noreply_mail']) && (!empty($_CONF['site_mail']))) {
+        if (empty($_CONF['noreply_mail']) && !empty($_CONF['site_mail'])) {
             $_CONF['noreply_mail'] = $_CONF['site_mail'];
             $config->set('noreply_mail', $_CONF['noreply_mail']);
         }
@@ -4190,7 +4270,7 @@ HTML;
      */
     private function installEngine($installType, $installStep)
     {
-        global $_CONF, $_TABLES, $_DB, $_DB_dbms, $_DB_host, $_DB_name, $_DB_user, $_DB_pass, $_DB_table_prefix;
+        global $_CONF, $_TABLES, $_DB, $_DB_dbms, $_DB_host, $_DB_name, $_DB_user, $_DB_pass, $_DB_table_prefix, $_DEVICE, $_URL;
 
         $retval = '';
 
@@ -4202,7 +4282,7 @@ HTML;
                     break;
                 }
 
-                require_once $this->env['dbconfig_path']; // Get the current DB info
+                include $this->env['dbconfig_path']; // Get the current DB info
 
                 if ($installType === 'upgrade') {
                     $v = $this->checkPost150Upgrade($this->env['dbconfig_path'], $this->env['siteconfig_path']);
@@ -4423,7 +4503,7 @@ HTML;
                         }
                     }
 
-                    require_once $this->env['dbconfig_path'];
+                    require $this->env['dbconfig_path'];
                     require_once $this->env['siteconfig_path'];
                     require_once $_CONF['path_system'] . 'lib-database.php';
 
@@ -4431,7 +4511,7 @@ HTML;
                         'mode'            => $installType,
                         'step'            => 3,
                         'dbconfig_path'   => $this->env['dbconfig_path'],
-                        'install_plugins' => $installPlugins,
+                        'install_plugins' => ($installPlugins ? 'true' : 'false'),
                         'language'        => $this->env['language'],
                         'site_name'       => $site_name,
                         'site_slogan'     => $site_slogan,
@@ -4439,6 +4519,7 @@ HTML;
                         'site_admin_url'  => $site_admin_url,
                         'site_mail'       => $site_mail,
                         'noreply_mail'    => $noreply_mail,
+                        //'upgrade_check'   => $this->post('upgrade_check', 'confirmed'),
                     );
 
                     if ($utf8) {
@@ -4487,13 +4568,13 @@ HTML;
 
                                 // If we were unable to determine the current GL
                                 // version is then ask the user what it is
-
                                 $this->env['old_versions'] = array();
                                 $old_versions = array(
                                     '1.2.5-1', '1.3', '1.3.1', '1.3.2', '1.3.2-1', '1.3.3', '1.3.4',
                                     '1.3.5', '1.3.6', '1.3.7', '1.3.8', '1.3.9', '1.3.10', '1.3.11',
                                     '1.4.0', '1.4.1', '1.5.0', '1.5.1', '1.5.2', '1.6.0', '1.6.1',
-                                    '1.7.0', '1.7.1', '1.7.2',
+                                    '1.7.0', '1.7.1', '1.7.2', '1.8.0', '1.8.1', '1.8.2', '2.0.0',
+                                    '2.1.0', '2.1.1',
                                 );
                                 $tempCounter = 0;
 
@@ -4523,7 +4604,7 @@ HTML;
                 }
 
                 $gl_path = str_replace(self::DB_CONFIG_FILE, '', $this->env['dbconfig_path']);
-                $installPlugins = ($this->request('install_plugins') !== null);
+                $installPlugins = ($this->request('install_plugins') === 'true');
                 $nextLink = $installPlugins
                     ? 'install-plugins.php?language=' . $this->env['language']
                     : 'success.php?type=' . $installType . '&language=' . $this->env['language'];
@@ -4612,7 +4693,6 @@ HTML;
                                 $config->set('path_themes', $this->env['html_path'] . 'layout/');
                                 $config->set('path_editors', $this->env['html_path'] . 'editors/');
                                 $config->set('rdf_file', $this->env['html_path'] . 'backend/geeklog.rss');
-                                $config->set('path_pear', $_CONF['path_system'] . 'pear/');
                                 $config->set('cookie_path', $this->guessCookiePath(urldecode($site_url)));
                                 $config->set_default('default_photo', urldecode($site_url) . '/default.jpg');
 
@@ -4634,9 +4714,7 @@ HTML;
                                      * things and rely on a few global declarations
                                      * (see beginning of function).
                                      */
-
-                                    // Hack: not needed here - avoid notice
-                                    require_once dirname(__FILE__) . '/../../../lib-common.php';
+                                    require str_replace('siteconfig.php', 'lib-common.php', $this->env['siteconfig_path']);
                                     $this->defaultPluginInstall();
                                 }
 
@@ -4659,6 +4737,14 @@ HTML;
                         require_once $this->env['dbconfig_path'];
                         require_once $this->env['siteconfig_path'];
                         require_once $_CONF['path_system'] . 'lib-database.php';
+
+                        // Check for any upgrade info and/or warning messages for specific upgrade path. Skip if continued has been clicked already
+                        if ($this->post('upgrade_check') !== 'confirmed') {
+                            $retval = $this->checkUpgradeMessage($version);
+                            if (!empty($retval)) {
+                                return $retval;
+                            }
+                        }
 
                         // If this is a MySQL database check to see if it was
                         // installed with InnoDB support
@@ -4735,7 +4821,7 @@ HTML;
                 }
 
                 $this->upgradePlugins();
-                $installPlugins = ($this->get('install_plugins', null) !== null);
+                $installPlugins = ($this->get('install_plugins') === 'true');
 
                 if (!$installPlugins) {
                     // if we don't do the manual selection, install all new plugins now
@@ -4809,6 +4895,10 @@ HTML;
             case 'install': // Deliberate fall-through, no "break"
             case 'upgrade':
             case 'migrate':
+                if ($this->env['mode'] == 'migrate') {
+                    // Need conf paths etc for migration
+                    require_once $this->env['siteconfig_path'];
+                }
                 if (($this->env['step'] == 4) && ($this->env['mode'] !== 'migrate')) {
                     // for the plugin install and upgrade,
                     // we need lib-common.php in the global(!) namespace

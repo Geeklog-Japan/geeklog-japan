@@ -159,7 +159,8 @@ $LANG_INSTALL = array(
     107 => 'F&uuml;r den produktiven Einsatz wird ein Datenbank-Passwort ben&ouml;tigt!',
     108 => 'Keine Datenbank-Treiber gefunden!',
     109 => 'Emergency Rescue Tool',
-    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:'
+    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:',
+    111 => 'Geeklog Version'
 );
 
 // +---------------------------------------------------------------------------+
@@ -427,4 +428,3 @@ $LANG_LABEL = array(
     'plugin_upload'  => $LANG_PLUGINS[10]
 );
 
-?>

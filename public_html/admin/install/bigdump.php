@@ -154,7 +154,7 @@ if (!$error && !TESTMODE) {
 
 // Single file mode
 if (!$error && !isset($_REQUEST["fn"]) && $filename != "") {
-    echo '<p><a href="' . $_SERVER['PHP_SELF'] . '?start=1&amp;fn=' . urlencode($filename) . '&amp;foffset=0&amp;totalqueries=0\">' . $LANG_BIGDUMP[0] . '</a>' . $LANG_BIGDUMP[1] . $filename . $LANG_BIGDUMP[2] . $db_name . $LANG_BIGDUMP[3] . $db_server . PHP_EOL;
+    echo '<p><a href="' . $_SERVER['PHP_SELF'] . '?start=1&fn=' . urlencode($filename) . '&foffset=0&totalqueries=0\">' . $LANG_BIGDUMP[0] . '</a>' . $LANG_BIGDUMP[1] . $filename . $LANG_BIGDUMP[2] . $db_name . $LANG_BIGDUMP[3] . $db_server . PHP_EOL;
 }
 
 // Open the file
@@ -407,9 +407,9 @@ if (!$error && isset($_REQUEST["start"]) && isset($_REQUEST["foffset"]) && preg_
                 /*** Go back to Geeklog installer ***/
                 echo("<script language=\"JavaScript\" type=\"text/javascript\">window.setTimeout('location.href=\""
                     . 'index.php?mode=migrate&step=4'
-                    . '&language=' . $installer->getLanguage()
-                    . '&site_url=' . $_REQUEST['site_url']
-                    . '&site_admin_url=' . $_REQUEST['site_admin_url'] . "\";',3000);</script>\n");
+                    . '&language=' . urlencode($installer->getLanguage())
+                    . '&site_url=' . urlencode($_REQUEST['site_url'])
+                    . '&site_admin_url=' . urlencode($_REQUEST['site_admin_url']) . "\";',3000);</script>\n");
             } else {
                 if ($delayPerSession != 0) {
                     echo '<p><b>' . $LANG_BIGDUMP[24] . $delayPerSession . $LANG_BIGDUMP[25] . PHP_EOL;
@@ -435,11 +435,6 @@ if ($error) {
     $error_gobackUrl .= '&site_url=' . urlencode($site_url) . '&site_admin_url=' . urlencode($site_admin_url);
     echo '<p><a href="' . $error_gobackUrl . '">' . $LANG_BIGDUMP[30] . '</a> '
         . $LANG_BIGDUMP[31] . '</p>' . PHP_EOL;
-}
-
-if ($dbConnection) {
-    Geeklog\Db::disconnect();
-    $dbConnection = null;
 }
 
 if ($file && !$gzipMode) {

@@ -154,7 +154,8 @@ $LANG_INSTALL = array(
     107 => 'נחוצה סיסמת מאגר מידע לאתרים שבאוויר.',
     108 => 'לא נבחרו מנועי מאגר מידע!',
     109 => 'כלי סיוע חירום',
-    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:'
+    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:',
+    111 => 'Geeklog Version'
 );
 
 // +---------------------------------------------------------------------------+
@@ -422,4 +423,3 @@ $LANG_LABEL = array(
     'plugin_upload'  => $LANG_PLUGINS[10]
 );
 
-?>
