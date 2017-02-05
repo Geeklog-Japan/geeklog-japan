@@ -52,7 +52,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
 // lib-common.php and see how $_COM_VERBOSE was used throughout the code
 $_CST_VERBOSE = false;
 
-/**
+/*
 * Sample PHP Block function
 *
 * this is a sample function used by a PHP block.  This will show the rights that
@@ -112,7 +112,7 @@ function CUSTOM_loginErrorHandler($msg='') {
 }
 
 
-/**
+/*
 * Include any code in this function to add custom template variables.
 *
 * Called from within Geeklog for:
