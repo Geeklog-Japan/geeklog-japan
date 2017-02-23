@@ -1,0 +1,18 @@
+{# begin {templatelocation} #}
+
+</form>
+
+{topic_review}
+
+<!-- BEGIN topic_review -->
+<div class="uk-grid uk-margin-large-top">
+	<div class="uk-width-1-1">
+		<hr{xhtml}>
+		<iframe class="uk-align-center" src="{site_url}/forum/viewtopic.php?mode=preview&amp;showtopic={topic_id}&amp;onlytopic=1&amp;lastpost=true" height="300" width="98%"></iframe>
+		<hr{xhtml}>
+	</div>
+</div>
+
+<!-- END topic_review -->
+
+{# end {templatelocation} #}

@@ -35,7 +35,7 @@
 require_once '../lib-common.php'; // Path to your lib-common.php
 
 if (!in_array('forum', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 
@@ -113,13 +113,15 @@ $A['comment'] = gf_FormatForPrint( $A['comment'], $A['postmode'] );
 $A['comment'] = str_replace('<br />', '<br>', $A['comment'] );
 
 $date = strftime($CONF_FORUM['default_Datetime_format'], $A['date']);
+$title = $_CONF['site_name'] . ' - ' . sprintf($LANG_GF02['msg147'], $A['id']);
+
 $display .= "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
 <html>
 <head>
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">
     <meta http-equiv=\"Content-Style-Type\" content=\"text/css\">
     <meta name=\"robots\" content=\"NOINDEX\">
-    <title>{$_CONF['site_name']} - {$LANG_GF02['msg147']} [{$A['id']}]</title>
+    <title>{$title}</title>
     <style type=\"text/css\">
     <!--
     body { font-size:small; font-family: sans, sans-serif, freesans, verdana, arial; }

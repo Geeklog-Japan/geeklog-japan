@@ -41,6 +41,7 @@ $ip    = isset($_REQUEST['ip'])   ? COM_applyFilter($_REQUEST['ip'])    : '';
 $msg   = isset($_GET['msg'])      ? COM_applyFilter($_GET['msg'], true) : '';
 $op    = isset($_REQUEST['op'])   ? COM_applyFilter($_REQUEST['op'])    : '';
 $sure  = isset($_REQUEST['sure']) ? COM_applyFilter($_REQUEST['sure'])  : '';
+$submit   = isset($_REQUEST['submit'])   ? COM_applyFilter($_REQUEST['submit'])     : '';
 
 // Initialise output variable
 $display = '';
@@ -53,6 +54,8 @@ if ($msg == 1) {
     $display .= COM_showMessageText($LANG_GF96['ipbanned']);
 } else if ($msg == 2) {
     $display .= COM_showMessageText($LANG_GF96['ipunbanned']);
+} else if ($msg == 3) {
+    $display .= COM_showMessageText(sprintf($LANG_GF96['ipnotvalid'], $ip));
 }
 
 $display .= COM_startBlock($LANG_GF96['gfipman']);
@@ -60,24 +63,31 @@ $display .= COM_startBlock($LANG_GF96['gfipman']);
 $navbar->set_selected($LANG_GF06['7']);
 $display .= $navbar->generate();
 
-if ($op == 'banip' && $ip != '') {
+if ($op == 'banip' && $ip != '' && $submit != $LANG_GF01['CANCEL']) {
     if ($sure == 'yes' && SEC_checkToken()) {
         DB_query("INSERT INTO {$_TABLES['forum_banned_ip']} (host_ip) VALUES ('$ip')");
         $display = COM_refresh($_CONF['site_admin_url'] .'/plugins/forum/ips.php?msg=1');
         COM_output($display);
         exit;
     } else {
-        $ips_unban = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
-        $ips_unban->set_file(array ('ips_unban'=>'ips_unban.thtml'));
-        $ips_unban->set_var('phpself', $_CONF['site_admin_url'] .'/plugins/forum/ips.php');
-        $ips_unban->set_var('ip', $ip);
-        $ips_unban->set_var('msg1', $LANG_GF96['banip']);
-        $ips_unban->set_var('msg2', sprintf($LANG_GF96['banipmsg'], $ip));
-        $ips_unban->set_var('ban', $LANG_GF96['ban']);
-        $ips_unban->set_var('gltoken_name', CSRF_TOKEN);
-        $ips_unban->set_var('gltoken', SEC_createToken());
-        $ips_unban->parse('output', 'ips_unban');
-        $display .= $ips_unban->finish($ips_unban->get_var('output'));
+    	if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
+			$ips_unban = COM_newTemplate(CTL_plugin_templatePath('forum', 'admin'));
+			$ips_unban->set_file(array ('ips_ban_question'=>'ips_ban_question.thtml'));
+			$ips_unban->set_var('phpself', $_CONF['site_admin_url'] .'/plugins/forum/ips.php');
+			$ips_unban->set_var('ip', $ip);
+			$ips_unban->set_var('alert_title', $LANG_GF02['adminconfirmation']);
+			$ips_unban->set_var('alert_message', sprintf($LANG_GF96['banipmsg'], $ip));
+			$ips_unban->set_var('ban', $LANG_GF96['ban']);
+			$ips_unban->set_var ('LANG_CANCEL', $LANG_GF01['CANCEL']);
+			$ips_unban->set_var('gltoken_name', CSRF_TOKEN);
+			$ips_unban->set_var('gltoken', SEC_createToken());
+			$ips_unban->parse('output', 'ips_ban_question');
+			$display .= $ips_unban->finish($ips_unban->get_var('output'));
+		} else {
+			$display = COM_refresh("{$_CONF['site_admin_url']}/plugins/forum/ips.php?msg=3&amp;ip=$ip");
+			COM_output($display);
+			exit;			
+		}
     }
 } else if ($op == 'unban' && $ip != '' && SEC_checkToken()) {
     // Remove the entry from the database
@@ -91,11 +101,18 @@ if ($op == 'banip' && $ip != '') {
     // Show the list of banned IPs and quit
     $bannedsql = DB_query("SELECT * FROM {$_TABLES['forum_banned_ip']} ORDER BY host_ip DESC");
     $bannum = DB_numRows($bannedsql);
-    $p = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
-    $p->set_file(array ('page' => 'banip_mgmt.thtml', 'records' => 'ip_records.thtml'));
+    $p = COM_newTemplate(CTL_plugin_templatePath('forum', 'admin'));
+    $p->set_file(array ('page' => 'ips.thtml'));
+    
+    $p->set_block('page', 'report_record');
+    $p->set_block('page', 'no_records_message');
+    
     if ($bannum == 0) {
         $p->set_var('alertmessage', $LANG_GF96['noips']);
         $p->set_var('showalert','');
+        
+        $p->set_var('records_message', $LANG_GF96['noips']);
+        $p->parse('no_records_message', 'no_records_message');
     } else {
         $p->set_var('showalert','none');
     }
@@ -104,25 +121,25 @@ if ($op == 'banip' && $ip != '') {
     $p->set_var('LANG_IP',$LANG_GF96['ipbanned']);
     $p->set_var('lang_ban', $LANG_GF96['ban']);
     $p->set_var('lang_ip2', $LANG_GF96['ip']);
+    $p->set_var('lang_ipaddress', $LANG_GF96['ipaddress']);
     $p->set_var('legend', $LANG_GF96['enterip']);
     $p->set_var('msg', $LANG_GF96['banipmsg']);
     $p->set_var('LANG_Actions', $LANG_GF01['ACTIONS']);
+    $p->set_var('gltoken_name', CSRF_TOKEN);
+    $p->set_var('gltoken', SEC_createToken());    
     $i = 1;
     while($A = DB_fetchArray($bannedsql)) {
         $p->set_var('ip', $A['host_ip']);
         $p->set_var('unban', $LANG_GF96['unban']);
         $p->set_var('csscode', $i);
-        $p->parse('ip_records', 'records',true);
+        $p->parse('report_record', 'report_record',true);
         $i = ($i == 1 ) ? 2 : 1;
     }
-    $p->set_var('gltoken_name', CSRF_TOKEN);
-    $p->set_var('gltoken', SEC_createToken());
     $p->parse('output', 'page');
     $display .= $p->finish($p->get_var('output'));
 }
 
 $display .= COM_endBlock();
-$display .= adminfooter();
 $display = COM_createHTMLDocument($display);
 
 // Show output

@@ -87,27 +87,14 @@
 
       <dt><label for="profile-pgpkey">{lang_pgpkey}{lang_pgpkey_text}</label></dt>
       <dd><textarea cols="45" rows="6" name="pgpkey" id="profile-pgpkey">{pgpkey_value}</textarea></dd>
-      
+
 <!-- Forum ****************************************** -->
-<dt><label for="forum_location">{lang_aim}:</label></dt>                
-<dd><input type="text" id="forum_aim" name="forum_aim" size="55" maxlength="128" value="{forum_aim}"{xhtml}></dd>
+      <dt><label for="forum_interests">{lang_interests}</label></dt>
+      <dd><input type="text" size="60" maxlength="255" value="{forum_interests}" name="forum_interests" id="forum_interests" class="text"{xhtml}></dd>
 
-<dt><label for="forum_location">{lang_icq}:</label></dt>                
-<dd><input type="text" id="forum_icq" name="forum_icq" size="55" maxlength="128" value="{forum_icq}"{xhtml}></dd>
-
-<dt><label for="forum_location">{lang_yim}:</label></dt>                
-<dd><input type="text" id="forum_yim" name="forum_yim" size="55" maxlength="128" value="{forum_yim}"{xhtml}></dd>
-
-<dt><label for="forum_location">{lang_msnm}:</label></dt>                
-<dd><input type="text" id="forum_msnm" name="forum_msnm" size="55" maxlength="128" value="{forum_msnm}"{xhtml}></dd>
-
-<dt><label for="forum_location">{lang_interests}:</label></dt>                
-<dd><input type="text" id="forum_interests" name="forum_interests" size="55" maxlength="128" value="{forum_interests}"{xhtml}></dd>
-
-<dt><label for="forum_location">{lang_occupation}:</label></dt>                
-<dd><input type="text" id="forum_occupation" name="forum_occupation" size="55" maxlength="128" value="{forum_occupation}"{xhtml}></dd>               
-<!-- ****************************************** -->
-
+      <dt><label for="profile-homepage">{lang_occupation}</label></dt>
+      <dd><input type="text" size="60" maxlength="255" value="{forum_occupation}" name="forum_occupation" id="forum_occupation" class="text"{xhtml}></dd>
+<!-- ****************************************** -->      
     </dl>
   </fieldset>
 </div>

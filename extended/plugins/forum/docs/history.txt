@@ -1,5 +1,26 @@
 Geeklog Forum Plugin History/Changes:
 
+November 2, 2015 (2.9.1)
+------------
+
+- If pages for forums or topics do not exist a proper 404 by Geeklog (uses COM_handle404) is displayed [Tom]
+- Integrated support for the reCAPTCHA 1.0 plugin [Tom]
+- Added nofollow and target to website links of user on memberlist and website button of forum post [Tom]
+- Added nofollow to bbcode url links to combat forum link spam [Tom]
+- Forum now supports the use of different templates depending on what Geeklog theme is set [Tom]
+- Reorganized how templates are handled. New denim template based on UIkit Forum now requires Geeklog 2.1.1 [Tom]
+- Reduced number of templates required. Removed html embedded in code [Tom]
+- Added caching for smiles css file [Tom]
+- Allow Geeklog user default photos to be displayed by the users post [Tom]
+- Added rich snippets (schema) to forum breadcrumbs (topics and topic listings) [Tom]
+- Fixed postmode issues where Admin could not set postmode for posts that were originally html but html is now not allowed on forum [Tom]
+- When editing a post Root automatically has all moderator privileges [Tom]
+- Fixed small sticky post bug and now allow a topic to be BOTH sticky and locked [Tom]
+- Added seperate Category forum page. Updated forum breadcrumbs to point back to category page [Tom]
+- Removed fromblock url variable from Latest Posts Block since it is not used anymore. Removed unused parts from code as well [Tom]
+- Fixed a bug where language files conflict with polls plugin language files [Dengen]
+- Updated Japanese language file [Dengen]
+
 April 19, 2013 (2.9.0)
 ------------
 

@@ -1,0 +1,71 @@
+
+<!-- start mod_add.thtml -->
+<script type="text/javascript">
+    <!-- Begin
+    function toggleModeratorMode(mode) { 
+        if (mode == 'user') {
+            document.getElementById('lblusers').style.display="";
+            document.getElementById('lblgroup').style.display="none";
+            document.getElementById('selusers').style.display="";
+            document.getElementById('selgroup').style.display="none";
+        } else {
+            document.getElementById('lblusers').style.display="none";
+            document.getElementById('lblgroup').style.display="";
+            document.getElementById('selusers').style.display="none";
+            document.getElementById('selgroup').style.display="";
+        }
+    } 
+    //  End -->
+</script>
+
+<form name="modform" action="{action_url}" method="post">
+    <div>
+        <input type="hidden" name="recid" value=""{xhtml}>
+        <input type="hidden" name="op" value="addrecord"{xhtml}>
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="plugin">
+        <tr>
+            <td colspan="4" class="pluginCellTitle" style="padding:10px 5px 10px 10px;">{LANG_ADDMessage}</td>
+        </tr>
+        <tr style="text-align:left; vertical-align:top;">
+            <td class="pluginCellSubTitle" style="padding:10px 5px 5px 10px;">{LANG_filtertitle}</td>
+            <td class="pluginCellSubTitle" style="padding:10px 5px 5px 10px;">{LANG_forum}</td>
+            <td id="lblusers" class="pluginCellSubTitle" style="padding:10px 5px 5px 10px;display:;">{LANG_user}</td>
+            <td id="lblgroup" class="pluginCellSubTitle" style="padding:10px 5px 5px 10px;display:none;">{LANG_group}</td>
+            <td class="pluginCellSubTitle" style="padding:10px 5px 5px 5px">{LANG_functions}</td>
+        </tr>
+        <tr style="text-align:left; vertical-align:top;">
+            <td class="pluginCellText pluginCellFill"style="width:25%; padding:5px 5px 5px 20px;">
+                <input type="radio" name="modtype" id="modtype-user" value="user" checked="checked" onclick="toggleModeratorMode('user');"{xhtml}><label for="modtype-user" accesskey="u">{LANG_user}</label><br{xhtml}>
+                <input type="radio" name="modtype" id="modtype-group" value="group" onclick="toggleModeratorMode('group');"{xhtml}><label for="modtype-group" accesskey="g">{LANG_group}</label></td>
+            <td class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px;"><select name="sel_forum[]" style="width:200px;" size="6" multiple="multiple">{sel_forums}</select></td>
+            <td id="selusers" class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px; display:;"><select name="sel_user[]" style="width:100px;" size="6" multiple="multiple">{sel_users}</select></td>
+            <td id="selgroup" class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px; display:none;"><select name="sel_group" style="width:100px;" >{sel_groups}</select></td>
+
+            <td class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td><input type="checkbox" name="chk_delete" id="chk_delete" value="1"{xhtml}></td><td><label for="chk_delete">{LANG_DELETE}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="chk_ban" id="chk_ban" value="1"{xhtml}></td><td><label for="chk_ban">{LANG_BAN}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="chk_edit" id="chk_edit" value="1"{xhtml}></td><td><label for="chk_edit">{LANG_EDIT}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="chk_move" id="chk_move" value="1"{xhtml}></td><td><label for="chk_move">{LANG_MOVE}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="chk_stick" id="chk_stick" value="1"{xhtml}></td><td><label for="chk_stick">{LANG_STICK}</label></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" class="pluginCellSubTitle" style="padding:5px;text-align:center;vertical-align:middle;"><input name="submit" type="submit" value="{LANG_addmod}" style="padding:3px;"{xhtml}></td>
+        </tr>
+    </table>
+</form>
+<!-- end mod_add.thtml -->

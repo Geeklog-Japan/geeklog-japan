@@ -303,7 +303,7 @@ $LANG_GF02 = array(
     'msg142' => 'Bevakning sparad.',
     'msg144' => 'Återgå till ämne',
     'msg146' => 'Raderat',
-    'msg147' => 'Forum [utskriftsvänlig version av ämne',
+    'msg147' => 'Forum [utskriftsvänlig version av ämne %s]',
     'msg148' => 'Tryck <a href="javascript:history.back()">HÄR</a> för att återvända',
     'msg155' => 'Inga inlägg.',
     'msg156' => 'Totalt antal foruminlägg',
@@ -546,7 +546,7 @@ $LANG_GF96 = array(
 );
 
 
-$LANG25 = array(
+$LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
     'smile' => 'Smile',
     'frown' => 'Frown',
@@ -578,8 +578,8 @@ $PLG_forum_MESSAGE2 = 'Forum Plugin upgrade: We are unable to update this versio
 $PLG_forum_MESSAGE5 = 'Forum Plugin Upgrade failed - check error.log';
 
 // Messages for the plugin upgrade
-$PLG_polls_MESSAGE3001 = '';
-$PLG_polls_MESSAGE3002 = $LANG32[9];
+$PLG_forum_MESSAGE3001 = '';
+$PLG_forum_MESSAGE3002 = $LANG32[9];
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['forum'] = array(

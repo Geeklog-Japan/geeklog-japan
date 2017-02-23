@@ -1,0 +1,21 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form" action="{phpself}" method="post">
+	<div class="uk-alert uk-alert-warning">
+		<input type="hidden" name="op" value="banip"{xhtml}>
+		<input type="hidden" name="sure" value="yes"{xhtml}>
+		<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		<input type="hidden" name="ip" value="{ip}"{xhtml}>
+		
+		<h3 class="uk-panel-title">{alert_title}</h3>
+		<p>{alert_message}</p>
+		<div class="uk-grid">
+			<div class="uk-width-1-1 uk-text-center">
+				<button class="uk-button" type="submit" value="{ban}">{ban}</button>
+                <button class="uk-button" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+{# end {templatelocation} #}

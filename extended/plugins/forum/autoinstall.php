@@ -53,8 +53,8 @@ function plugin_autoinstall_forum($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '2.9.0',
-        'pi_gl_version'   => '2.0.0',
+        'pi_version'      => '2.9.2',
+        'pi_gl_version'   => '2.1.2',
         'pi_homepage'     => 'http://code.google.com/p/geeklog/'
     );
 
@@ -204,6 +204,10 @@ function plugin_compatible_with_this_version_forum($pi_name)
     }
     
     if (!function_exists('TOPIC_getList')) {
+        return false;
+    }    
+
+	if (!function_exists('CTL_plugin_templatePath')) {
         return false;
     }    
 

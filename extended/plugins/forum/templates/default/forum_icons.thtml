@@ -1,0 +1,94 @@
+{# begin {templatelocation} #}
+
+<!-- BEGIN new_icon -->
+<img src="{site_url}/forum/image_set/status/viewnew.png" alt="{$LANG_GF02[msg112]}" title="{$LANG_GF02[msg112]}" {xhtml}>
+<!-- END new_icon -->
+
+<!-- BEGIN quiet_icon -->
+<img src="{site_url}/forum/image_set/status/quietforum.png" alt="{$LANG_GF02[msg194]}" title="{$LANG_GF02[msg194]}" {xhtml}>
+<!-- END quiet_icon -->
+
+<!-- BEGIN active_icon -->
+<img src="{site_url}/forum/image_set/status/busyforum.png" alt="{$LANG_GF02[msg111]}" title="($LANG_GF02[msg111])" {xhtml}>
+<!-- END active_icon -->
+
+<!-- BEGIN normal_icon -->
+<img src="{site_url}/forum/image_set/status/noposts.png" alt="{$LANG_GF02[msg59]}" title="{$LANG_GF02[msg59]}" {xhtml}>
+<!-- END normal_icon -->
+
+<!-- BEGIN normalnew_icon -->
+<img src="{site_url}/forum/image_set/status/newposts.png" alt="{$LANG_GF02[msg60]}" title="{$LANG_GF02[msg60]}" {xhtml}>
+<!-- END normalnew_icon -->
+
+<!-- BEGIN sticky_icon -->
+<img src="{site_url}/forum/image_set/status/sticky.png" alt="{$LANG_GF02[msg61]}" title="{$LANG_GF02[msg61]}" {xhtml}>
+<!-- END sticky_icon -->
+
+<!-- BEGIN stickynew_icon -->
+<img src="{site_url}/forum/image_set/status/sticky_new.png" alt="{$LANG_GF02[msg115]}" title="{$LANG_GF02[msg115]}" {xhtml}>
+<!-- END stickynew_icon -->
+
+<!-- BEGIN locked_icon -->
+<img src="{site_url}/forum/image_set/status/locked.png" alt="{$LANG_GF02[msg114]}" title="{$LANG_GF02[msg114]}" {xhtml}>
+<!-- END locked_icon -->
+
+<!-- BEGIN lockednew_icon -->
+<img src="{site_url}/forum/image_set/status/locked_new.png" alt="{$LANG_GF02[msg116]}" title="{$LANG_GF02[msg116]}" {xhtml}>
+<!-- END lockednew_icon -->
+
+<!-- BEGIN status_yes -->
+<img style="padding: 0.2em; vertical-align: middle;" alt="" src="{site_url}/forum/image_set/status_yes.png" {xhtml}>
+<!-- END status_yes -->
+
+<!-- BEGIN status_no -->
+<img style="padding: 0.2em; vertical-align: middle;" alt="" src="{site_url}/forum/image_set/status_no.png" {xhtml}>
+<!-- END status_no -->
+
+<!-- BEGIN sort_desc -->
+<img alt="" src="{site_url}/forum/image_set/sort_desc.gif" style="border:none;" {xhtml}>
+<!-- END sort_desc -->
+
+<!-- BEGIN sort_desc_on -->
+<img alt="" src="{site_url}/forum/image_set/sort_desc_on.gif" style="border:none;" {xhtml}>
+<!-- END sort_desc_on -->
+
+<!-- BEGIN sort_asc -->
+<img alt="" src="{site_url}/forum/image_set/sort_asc.gif" style="border:none;" {xhtml}>
+<!-- END sort_asc -->
+
+<!-- BEGIN sort_asc_on -->
+<img alt="" src="{site_url}/forum/image_set/sort_asc_on.gif" style="border:none;" {xhtml}>
+<!-- END sort_asc_on -->
+
+<!-- BEGIN topiclocked_icon -->
+<img src="{site_url}/forum/image_set/padlock.png" alt="{$LANG_GF02[msg114]}" title="{$LANG_GF02[msg114]}" {xhtml}>
+<!-- END topiclocked_icon -->
+
+<!-- BEGIN mood_icon -->
+<img style="vertical-align:middle;" src="{moodicon}" title="{moodicontitle}" alt="{moodtitle}"{xhtml}><br{xhtml}>
+<!-- END mood_icon -->
+
+<!-- BEGIN memberbadge_icon -->
+<img alt="{memberbadgetitle}" title="{memberbadgetitle}" src="{imgset}/badges/{buttonimg}"{xhtml}><br{xhtml}>
+<!-- END memberbadge_icon -->
+
+<!-- BEGIN user_icon -->
+<img alt="" src="{site_url}/forum/image_set/smallcamera.png"{xhtml}> 
+<!-- END user_icon -->
+
+{# User Forum Rank #}
+<!-- BEGIN rankon_icon -->
+	<img src="{rankonicon}" title="{ranktitle}" alt=""{xhtml}>
+<!-- END rankon_icon -->
+
+<!-- BEGIN rankoff_icon -->
+	<img src="{rankofficon}" title="{ranktitle}" alt=""{xhtml}>
+<!-- END rankoff_icon -->
+
+<!-- BEGIN rankmod_icon -->
+	<img src="{rankmodicon}" title="{ranktitle}" alt=""{xhtml}>
+<!-- END rankmod_icon -->
+
+<!-- BEGIN rankadmin_icon -->
+	<img src="{rankadminicon}" title="{ranktitle}" alt=""{xhtml}>
+<!-- END rankadmin_icon -->

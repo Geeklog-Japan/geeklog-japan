@@ -1,0 +1,32 @@
+{# begin {templatelocation} #}
+
+<table class="pluginBG" style="border: 1px solid #CCC; margin-bottom:10px; width:100%; padding:0; border-spacing:0; border-collapse: collapse;">
+    <tr style="vertical-align:middle;">
+        <td class="pluginTitle alignleft" style="padding:4px; width:40%;"><b>{LANG_FORUM}</b></td>
+        <td class="pluginTitle alignleft" style="padding:4px; width:40%;"><b>{LANG_TOPIC}</b></td>
+        <td class="pluginTitle aligncenter" style="padding:4px; width:20%;"><b>{LANG_LASTPOST}</b></td>
+    </tr>
+        {block_record}
+</table>
+
+<!-- BEGIN block_record -->
+    <tr class="pluginRow{cssid}" onmouseover="className='pluginRollOver';" onmouseout="className='pluginRow{cssid} pluginLinks';">        
+        <td class="pluginLinks" onclick="window.location.href='{site_url}/forum/index.php?forum={forum_id}'" onmouseover="this.style.cursor='pointer';" style="padding-left:6px; height:20px; width:25%" title="{LANG_forumjump}">{forum_name}</td>
+        <td class="pluginLinks" onclick="window.location.href='{site_url}/forum/viewtopic.php?showtopic={topic_id}'" onmouseover="this.style.cursor='pointer';"  style="width:65%">
+        	{!!if ($this->get_var('gl-tooltip') == '1') !!} 
+        		{tooltip_topic_subject}
+            {!else}
+            	<a class="tooltip" style="text-decoration:none;" href="{site_url}/forum/viewtopic.php?showtopic={topic_id}">{topic_subject}<span style="left:50px;">{topicinfo}</span></a>
+			{!endif}
+        </td>
+        <td class="pluginLinks" onclick="window.location.href='{site_url}/forum/viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}'" onmouseover="this.style.cursor='pointer';" style="padding-right:6px; white-space:nowrap;">
+            {!!if ($this->get_var('gl-tooltip') == '1') !!}
+            	{tooltip_date}
+            {!else}
+            	<a class="tooltip" style="text-decoration:none;" href="{site_url}/forum/viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}" rel="nofollow">{date}<span style="left:-270px;">{lastpostinfo}</span></a>            	
+            {!endif}
+        </td>
+    </tr>
+<!-- END block_record -->
+
+{# end {templatelocation} #}

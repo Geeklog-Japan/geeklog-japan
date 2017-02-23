@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+<hr{xhtml}>
+
+<div class="uk-grid">
+	<div class="uk-width-1-1">
+		<dl class="uk-description-list-horizontal">
+			<dt>{LANG_msg07}</dt>
+			<dd>{onlineusers}</dd>
+		</dl>
+	</div>
+</div>
+
+{# end {templatelocation} #}

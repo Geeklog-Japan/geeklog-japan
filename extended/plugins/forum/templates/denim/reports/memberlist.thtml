@@ -1,0 +1,65 @@
+{# begin {templatelocation} #}
+
+{navmenu}
+
+<div class="uk-grid">
+	<div class="uk-width-1-2">
+		{LANG_TITLE}
+	</div>
+	<div class="uk-width-1-2 uk-text-right">
+		<form class="uk-form" method="post" action="{site_url}/forum/memberlist.php">
+			<div class="uk-form-controls">
+				<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}>&nbsp;{LANG_ACTIVITY}
+			</div>
+		</form>
+	</div>
+</div>
+
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+	<thead>
+		<tr>
+			<th class="uk-width-1-10 uk-text-center">
+				{LANG_Heading1}<br{xhtml}>
+				<a href="{phpself}?order=0&amp;sort=1{sort_url_extra}">{img_asc1}</a>&nbsp;
+				<a href="{phpself}?order=1&amp;sort=1{sort_url_extra}">{img_desc1}</a>			
+			</th>
+			<th class="uk-width-2-10 uk-text-center">				
+				{LANG_Heading2}<br{xhtml}>
+				<a href="{phpself}?order=0&amp;sort=2{sort_url_extra}">{img_asc2}</a>&nbsp;
+				<a href="{phpself}?order=1&amp;sort=2{sort_url_extra}">{img_desc2}</a>			
+			</th>
+			<th class="uk-width-2-10 uk-text-center">
+				{LANG_Heading3}<br{xhtml}>
+				<a href="{phpself}?order=0&amp;sort=3{sort_url_extra}">{img_asc3}</a>&nbsp;
+				<a href="{phpself}?order=1&amp;sort=3{sort_url_extra}">{img_desc3}</a>			
+			</th>
+			<th class="uk-width-1-10 uk-text-center">			
+				{LANG_Heading4}<br{xhtml}>
+				<a href="{phpself}?order=0&amp;sort=4{sort_url_extra}">{img_asc4}</a>&nbsp;
+				<a href="{phpself}?order=1&amp;sort=4{sort_url_extra}">{img_desc4}</a>			
+			</th>
+			<th class="uk-width-4-10">
+				&nbsp;
+          	</th>
+		</tr>
+	</thead>
+	<tbody>                                
+		{report_record}
+	</tbody>
+</table>
+
+{no_records_message}
+
+{pagenavigation}
+			
+<!-- BEGIN report_record -->
+<tr>
+    <td class="uk-text-center">{member_uid}</td>
+    <td><a href="{site_url}/users.php?mode=profile&amp;uid={member_uid}">{member_name}</a></td>
+    <td class="uk-text-center">{member_regdate}</td>
+    <td class="uk-text-center">{member_numposts}</td>
+    <td>{pm_link}{email_link}{website_link}{lastposts_link}</td>
+</tr>
+<!-- END report_record -->
+
+{# end {templatelocation} #}

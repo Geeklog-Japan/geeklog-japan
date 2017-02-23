@@ -48,7 +48,7 @@ $LANG_GF00 = array(
     'statslabel' => 'Antall innlegg i forumet',
     'statsheading1' => 'Forum Topp Ti Viste Emner',
     'statsheading2' => 'Forum Topp TI Besvarte Emner',
-    'statsheading3' => 'Ingen emner 奪 vise',
+    'statsheading3' => 'Ingen emner å vise',
     'useradminmenu' => 'Forum Innstillinger',
     'access_denied' => 'Adgang nektet',
     'autotag_desc_forum' => '[forum: id alternate title] - Displays a link to a forum topic using the text \'here\' as the title. An alternate title may be specified but is not required.'
@@ -97,20 +97,20 @@ $LANG_GF01 = array(
     'ADMIN' => 'Admin',
     'AUTHOR' => 'Author',
     'NOMOOD' => 'No Mood',
-    'REQUIRED' => '[P奪krevd]',
+    'REQUIRED' => '[Påkrevd]',
     'OPTIONAL' => '[Valgfritt]',
     'SUBMIT' => 'Send inn',
-    'PREVIEW' => 'Forh奪ndsvis',
+    'PREVIEW' => 'Forhåndsvis',
     'REMOVE' => 'Fjern',
     'EDIT' => 'Endre',
     'DELETE' => 'Slett',
     'MERGE' => 'Merge',
     'OPTIONS' => 'Valg:',
     'MISSINGSUBJECT' => 'Overskrift tom',
-    'MIGRATE_NOW' => 'Migrer n奪',
+    'MIGRATE_NOW' => 'Migrer nå',
     'FILTERLIST' => 'Filtrer Liste',
     'SELECTFORUM' => 'Velg Forum',
-    'DELETEAFTER' => 'Slett etterp奪',
+    'DELETEAFTER' => 'Slett etterpå',
     'TITLE' => 'Tittel',
     'COMMENTS' => 'Kommentarer',
     'SUBMISSIONS' => 'Submissions',
@@ -303,7 +303,7 @@ $LANG_GF02 = array(
     'msg142' => 'Varlsing lagret.',
     'msg144' => 'Returner til emne',
     'msg146' => 'Varlsing slettet',
-    'msg147' => 'Forum [utskriftsvennlig versjon av emnet',
+    'msg147' => 'Forum [utskriftsvennlig versjon av emnet %s]',
     'msg148' => 'Klikk <a href="javascript:history.back()">HER</a> for å returnere',
     'msg155' => 'Ingen brukerinnlegg.',
     'msg156' => 'Totalt antall foruminnlegg',
@@ -546,7 +546,7 @@ $LANG_GF96 = array(
 );
 
 
-$LANG25 = array(
+$LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
     'smile' => 'Smile',
     'frown' => 'Frown',
@@ -578,8 +578,8 @@ $PLG_forum_MESSAGE2 = 'Forum Plugin upgrade: We are unable to update this versio
 $PLG_forum_MESSAGE5 = 'Forum Plugin Upgrade failed - check error.log';
 
 // Messages for the plugin upgrade
-$PLG_polls_MESSAGE3001 = '';
-$PLG_polls_MESSAGE3002 = $LANG32[9];
+$PLG_forum_MESSAGE3001 = '';
+$PLG_forum_MESSAGE3002 = $LANG32[9];
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['forum'] = array(

@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+<form action="{phpself}" method="post">
+<div>
+    <input type="hidden" name="op" value="banip"{xhtml}>
+    <input type="hidden" name="sure" value="yes"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <input type="hidden" name="ip" value="{ip}"{xhtml}>
+    {alert_title}
+<br{xhtml}>
+    {alert_message}
+    <br{xhtml}><br{xhtml}>
+<center><input type="submit" value="{ban}"{xhtml}></center>
+</div>
+</form>
+
+{# end {templatelocation} #}

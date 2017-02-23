@@ -1,0 +1,41 @@
+{# begin {templatelocation} #}
+
+{navmenu}
+<form method="post" action="{site_url}/forum/memberlist.php" style="margin:0px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="3" class="pluginHeader" style="padding:5px;width:95%;">{LANG_TITLE}</td>
+        <td colspan="5" class="pluginHeader" style="padding:5px;text-align:right; white-space:nowrap;">{LANG_ACTIVITY}&nbsp;<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}></td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:10px;">    
+    <tr>
+        <td class="pluginCellText pluginCellTitle aligncenter" style="padding:5px; width:40%; white-space:nowrap;"><a href="{phpself}?order=1&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading1}</a></td>
+        <td class="pluginCellText pluginCellTitle" style="padding:5px; white-space:nowrap;"><a href="{phpself}?order=2&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading2}</a></td>
+        <td class="pluginCellText pluginCellTitle aligncenter" style="padding:5px; width:120%; white-space:nowrap;"><a href="{phpself}?order=3&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading3}</a></td>
+        <td class="pluginCellText pluginCellTitle aligncenter" style="padding:5px; width:40%; white-space:nowrap;"><a href="{phpself}?order=4&amp;prevorder={prevorder}&amp;direction={direction}&amp;page={page}&amp;chkactivity={chkactivity}">{LANG_Heading4}</a></td>
+        <td class="pluginCellTitle" colspan="4" style="padding:5px 0px 5px 5px; white-space:nowrap; width:120%;">&nbsp;</td>
+    </tr>
+        {report_record}
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+            <td class="aligncenter">{pagenavigation}</td>
+    </tr>
+</table>
+</form>
+
+<!-- BEGIN report_record -->
+<tr class="pluginRow{csscode}">
+    <td class="aligncenter">{member_uid}</td>
+    <td>&nbsp;<a href="{site_url}/users.php?mode=profile&amp;uid={member_uid}">{member_name}</a></td>
+    <td class="aligncenter">{member_regdate}</td>
+    <td class="aligncenter">{member_numposts}</td>
+    <td style="white-space:nowrap;">{pm_link}</td>
+    <td style="white-space:nowrap;">{email_link}</td>
+    <td style="white-space:nowrap;">{website_link}</td>
+    <td style="white-space:nowrap;">{lastposts_link}</td>
+</tr>
+<!-- END report_record -->
+
+{# end {templatelocation} #}

@@ -13,7 +13,7 @@
     {email_option}
 
     <dt>{lang_homepage}</dt>
-    <dd><a href="{user_homepage}">{user_homepage}</a></dd>
+    <dd><a href="{user_homepage}" target="_blank" rel="nofollow">{user_homepage}</a></dd>
 
     <dt>{lang_location}</dt>
     <dd>{user_location}</dd>
@@ -23,27 +23,13 @@
 
     <dt>{lang_pgpkey}</dt>
     <dd>{user_pgp}</dd>
-    
 <!-- Forum ****************************************** -->
-    <dt>{lang_aim}:</dt>
-    <dd>{forum_aim}</dd>
-    
-    <dt>{lang_icq}:</dt>
-    <dd>{forum_icq}</dd>
-
-    <dt>{lang_yim}:</dt>
-    <dd>{forum_yim}</dd>
-
-    <dt>{lang_msnm}:</dt>
-    <dd>{forum_msnm}</dd>
-
-    <dt>{lang_interests}:</dt>
+    <dt>{lang_interests}</dt>
     <dd>{forum_interests}</dd>
 
-    <dt>{lang_occupation}:</dt>
-    <dd>{forum_occupation}</dd>   
-<!-- ****************************************** --> 
-
+    <dt>{lang_occupation}</dt>
+    <dd>{forum_occupation}</dd>
+<!-- ****************************************** -->            
   </dl>
 {end_block}
 
@@ -57,7 +43,7 @@
 
 <!-- Forum ****************************************** --> 
 {forum_start_block_last10posts}    
-    {forum_post_row}
+  {forum_post_row}
 {end_block}
 <!-- ****************************************** -->
 
@@ -68,8 +54,8 @@
 
     <dt>{lang_number_comments}</dt>
     <dd>{number_comments}</dd>
-    
-<!-- Forum ****************************************** --> 
+
+<!-- Forum ****************************************** -->    
     <dt>{forum_lang_number_posts}</dt>
     <dd>{forum_number_posts}</dd>
 <!-- ****************************************** -->    

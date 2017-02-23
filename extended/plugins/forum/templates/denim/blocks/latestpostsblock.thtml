@@ -1,0 +1,34 @@
+{# begin {templatelocation} #}
+
+<div>
+	{LANG_ORDERBY}&nbsp;
+	<a href="{phpself}?mode=forumblock&amp;order=new">{LANG_NEW}</a>&nbsp;&nbsp;&nbsp;
+	<a href="{phpself}?mode=forumblock&amp;order=views">{LANG_VIEWS}</a> &nbsp;&nbsp;&nbsp;
+	<a href="{phpself}?mode=forumblock&amp;order=posts">{LANG_POSTS}</a>
+</div>
+
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-margin-small-top">
+	<thead>
+		<tr>
+			<th class="uk-width-1-1">
+				{view_modemsg}			
+          	</th>
+		</tr>
+	</thead>
+	<tbody>                                
+		{block_record}
+	</tbody>
+</table>
+	
+			
+<!-- BEGIN block_record -->
+<tr>
+	<td>
+		<i class="uk-icon-file-text-o"></i> <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}" title="{fullsubject}" class="uk-text-bold">{topic_subject}</a><br{xhtml}>
+		&nbsp;<small><b>{LANG_BY}</b>&nbsp;{user_name}</small><br{xhtml}>&nbsp;<small><b>{LANG_ON}</b>{date}&nbsp;</small><br{xhtml}>
+		&nbsp;<small><b>{LANG_VIEWS}</b>&nbsp;{views}&nbsp;<b>{LANG_REPLIES}</b>&nbsp;{replies}</small><br{xhtml}>
+	</td>
+</tr>
+<!-- END block_record -->			
+
+{# end {templatelocation} #}

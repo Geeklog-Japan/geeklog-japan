@@ -1,0 +1,108 @@
+{# begin {templatelocation} #}
+
+<script type="text/javascript">
+    <!-- Begin
+    var allChecked;
+    function checkAll(field)
+    {
+    allChecked=true;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = true ;
+    }
+
+    function uncheckAll(field)
+    {
+    allChecked=false;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = false ;
+    }
+    //  End -->
+</script>
+
+{navmenu}
+
+<div class="uk-grid">
+  	<div class="uk-width-7-10">
+		<form class="uk-form" action="{phpself}" method="post">
+			<div class="uk-form-controls">
+				<select name="filter" onchange="this.form.submit();">{filter_options}</select>
+			</div>
+		</form>
+	</div>
+	<div class="uk-width-3-10 uk-text-right">
+		{select_forum}
+	</div>
+</div>
+
+<div class="uk-overflow-container uk-margin">
+	<form class="uk-form" action="{phpself}" method="post" name="report_table">
+		<div class="uk-form-controls">
+			<input type="hidden" name="op" value=""{xhtml}>
+			<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-text-nowrap">
+				<thead>
+					<tr>
+						<th class="uk-width-1-10 uk-text-center">
+							<input type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
+						</th>
+						<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-3-10">{LANG_Heading2}</th>
+						<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-3-10">{LANG_Heading3}</th>
+						<th class="uk-width-1-10">{LANG_Heading4}</th>
+						<th class="uk-width-1-10">{LANG_Heading5}</th>
+						<th class="uk-width-1-10 uk-visible-large uk-text-center">{LANG_Heading6}</th>
+						<th class="uk-width-1-10 uk-visible-large uk-text-center">{LANG_Heading7}</th>
+						<th class="uk-width-1-10">{LANG_Heading8}</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td class="uk-text-center">{trash_link}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					<tr>
+				</tfoot>				
+				<tbody>                      
+					{notification_record}
+					{no_records_message}
+				</tbody>
+			</table>
+		</div>
+	</form>	
+
+</div>
+
+{pagenavigation}
+
+{links}
+
+<!-- BEGIN notification_record -->
+<tr>
+	<td class="uk-text-center">
+		<input type="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}>
+	</td>
+	<td>{forum}</td>
+	<td>{is_forum}&nbsp;{topic_link}</td>
+	<td>{date_added}</td>
+	<td><a href="{site_url}/users.php?mode=profile&amp;uid={uid}">{topicauthor}</a></td>
+	<td class="uk-visible-large uk-text-center">{views}</td>
+	<td class="uk-visible-large uk-text-center">{replies}</td>
+	<td><a class="uk-button uk-button-small" href="notify.php?submit=delete&amp;id={notify_id}&amp;filter={notifytype}">{LANG_REMOVE}</a></td>
+</tr>
+<!-- END notification_record -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td></td>
+	<td colspan="7">{message}</td>
+</tr>
+<!-- END no_records_message -->
+
+<!-- BEGIN links -->
+{return_link}
+<!-- END links -->
+
+{# end {templatelocation} #}

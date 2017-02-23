@@ -303,7 +303,7 @@ $LANG_GF02 = array(
     'msg142' => '메일통지 설정모드로 변경 하였습니다.',
     'msg144' => '토픽으로',
     'msg146' => '메일통지 설정모드는 해제 되었습니다',
-    'msg147' => '게시판 인쇄',
+    'msg147' => '게시판 인쇄 %s',
     'msg148' => '<a href="javascript:history.back()"> 돌아가기</a>',
     'msg155' => '덧글 없슴',
     'msg156' => '덧글 수',
@@ -546,7 +546,7 @@ $LANG_GF96 = array(
 );
 
 
-$LANG25 = array(
+$LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
     'smile' => 'Smile',
     'frown' => 'Frown',
@@ -578,8 +578,8 @@ $PLG_forum_MESSAGE2 = 'Forum Plugin upgrade: We are unable to update this versio
 $PLG_forum_MESSAGE5 = 'Forum Plugin Upgrade failed - check error.log';
 
 // Messages for the plugin upgrade
-$PLG_polls_MESSAGE3001 = '';
-$PLG_polls_MESSAGE3002 = $LANG32[9];
+$PLG_forum_MESSAGE3001 = '';
+$PLG_forum_MESSAGE3002 = $LANG32[9];
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['forum'] = array(

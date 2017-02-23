@@ -117,10 +117,11 @@ $_SQL[] = "CREATE TABLE {$_TABLES['forum_moderators']} (
 // Table structure for table `forum_userprefs`
 $_SQL[] = "CREATE TABLE {$_TABLES['forum_userprefs']} (
   uid mediumint(8) NOT NULL default '0',
-  topicsperpage int(3) NOT NULL default '5',
-  postsperpage int(3) NOT NULL default '5',
+  topicsperpage int(3) NOT NULL default '10',
+  postsperpage int(3) NOT NULL default '10',
+  newperpage int(3) NOT NULL default '20',
+  popularperpage int(3) NOT NULL default '20',
   popularlimit int(3) NOT NULL default '10',
-  messagesperpage int(3) NOT NULL default '20',
   searchlines int(3) NOT NULL default '20',
   viewanonposts tinyint(1) NOT NULL default '1',
   enablenotify tinyint(1) NOT NULL default '1',

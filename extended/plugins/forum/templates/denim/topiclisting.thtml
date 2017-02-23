@@ -1,0 +1,90 @@
+{# begin {templatelocation} #}
+
+<ul class="uk-breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+	<li><i class="uk-icon-folder-o"></i></li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="{site_url}/forum/index.php">
+			<span itemprop="name">{forum_home}</span>
+		</a>
+	</li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="{site_url}/forum/index.php?category={category_id}">
+			<span itemprop="name">{cat_name}</span>
+		</a>
+		<meta itemprop="position" content="2" />
+	</li>
+	<li class="uk-active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="{site_url}/forum/index.php?forum={forum_id}">
+			<span itemprop="name">{forum_name}</span>
+		</a>
+		<meta itemprop="position" content="3" />
+	</li>
+</ul>
+
+<div class="uk-grid uk-grid-small">
+	<div class="uk-width-1-1 uk-text-right">
+		{forummenu_link}
+		{newtopic_link}
+	</div>
+</div>
+
+{# Buttons instead of Menu - Remove comments to enable (plus remove forummenu_link template variable) and change related links in forum_links.html #}
+{# 
+<div class="uk-grid uk-grid-small">
+	<div class="uk-width-1-1 uk-text-right">
+		{subscribeforum_link}
+	</div>
+</div>
+ #}
+
+{pagenavigation}
+
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+	<thead>
+		<tr>
+			<th class="uk-width-large-6-10 uk-width-medium-7-10 uk-width-7-10 uk-text-center">{LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></th>
+			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">{LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></th>
+			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">{LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></th>
+          	<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-3-10 uk-text-center">{LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></th>
+		</tr>
+	</thead>
+	<tbody>                                
+		{topic_record}
+		{no_records_message}
+	</tbody>
+</table>
+
+{pagenavigation}
+
+<div class="uk-grid uk-grid-small">
+	<div class="uk-width-1-1 uk-text-right">
+		{newtopic_link}
+	</div>
+</div>
+
+<!-- BEGIN topic_record -->
+<tr>
+    <td>
+    	{folderimg} {moved}<a href="viewtopic.php?showtopic={topic_id}" data-uk-tooltip title="{topicinfo}">{subject}</a>
+    	<br{xhtml}>{gotomsg}&nbsp;{displaypageslink}
+    </td>
+    <td class="uk-text-center uk-visible-large">
+    	{views}
+	</td>
+    <td class="uk-text-center uk-visible-large">
+    	{replies}
+	</td>
+    <td>
+    	{LANG_BY}{lastposter}<br{xhtml}>
+    	{lastdate}
+    </td>
+</tr>
+<!-- END topic_record -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td colspan="4">{records_message}</td>
+</tr>
+<!-- END no_records_message -->
+
+{# end {templatelocation} #}

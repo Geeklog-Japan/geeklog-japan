@@ -1,0 +1,40 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form uk-form-horizontal" name="formcatedit" action="{PHP_SELF}" method="post">
+	<input type="hidden" name="type" value="category"{xhtml}>
+	<input type="hidden" name="id" value="{id}"{xhtml}>
+	<input type="hidden" name="mode" value="{mode}"{xhtml}>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	
+	<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin">
+		<fieldset>
+			<legend>{title}</legend>	
+			<div class="uk-form-row">
+				<label class="uk-form-label" for="form-category-name">{LANG_NAME}</label>
+				<div class="uk-form-controls">
+					<input type="text" name="name" id="form-category-name" value="{catname}" class="uk-width-1-1" maxlength="255"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-form-row">				
+				<label class="uk-form-label" for="form-category-order">{LANG_ORDER}</label>
+				<div class="uk-form-controls">
+					<input type="text" name="catorder" id="form-category-order" value="{catorder}" size="2" maxlength="2"{xhtml}>
+				</div>			
+			</div>
+			<div class="uk-form-row">				
+				<label class="uk-form-label" for="form-category-dscp">{LANG_DESCRIPTION}</label>
+				<div class="uk-form-controls">
+					<textarea name="dscp" id="form-category-dscp" rows="5" style="width:100%" class="post">{catdscp}</textarea>
+				</div>				
+			</div>
+			<div class="uk-grid uk-margin-top">
+				<div class="uk-width-1-1 uk-text-right">
+					<button class="uk-button uk-button-primary" type="submit" name="submit" value="{LANG_SAVE}">{LANG_SAVE}</button>
+					<button class="uk-button uk-button-primary" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>		
+				</div>
+			</div>			
+		</fieldset>
+	</div>
+</form>			
+
+{# end {templatelocation} #}

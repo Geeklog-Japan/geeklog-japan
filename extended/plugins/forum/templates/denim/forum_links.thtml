@@ -1,0 +1,128 @@
+{# begin {templatelocation} - List of links/buttons used by the forum #}
+
+{# Buttons instead of Menu - Change required links below by removing '<li>', '</li>' tags and adding 'class="uk-button"' to '<a>' tag and change related code in categorylisting.html, topiclisting.html, topic_navbar.html #}
+
+{# Category Listing Buttons #}
+
+<!-- BEGIN newpost_link -->
+<li><a href="{newpostslink}">{LANG_newposts}</a></li>
+<!-- END newpost_link -->
+
+<!-- BEGIN markread_link -->
+<li><a href="{markreadlink}" onclick="return confirm('{$LANG_GF02[msg302]}');">{LANG_markread}</a></li>
+<!-- END markread_link -->
+
+{# Forum Topic Listing Buttons #}
+
+<!-- BEGIN newtopic_link -->
+<a class="uk-button uk-button-primary uk-text-nowrap" href="{newtopiclink}"><i class="uk-icon-file-o"></i>&nbsp;{newtopiclinktext}</a>
+<!-- END newtopic_link -->
+
+<!-- BEGIN subscribeforum_link -->
+<li><a href="{subscribelink}">{subscribelinktext}</a></li>
+<!-- END subscribeforum_link -->
+
+{# Topic Listing Buttons #}
+
+<!-- BEGIN replytopic_link -->
+<a class="uk-button uk-button-primary uk-text-nowrap" href="{replytopiclink}"><i class="uk-icon-mail-reply"></i>&nbsp;{replytopiclinktext}</a>
+<!-- END replytopic_link -->
+
+<!-- BEGIN print_link -->
+<li><a href="{printlink}"><i class="uk-icon-print"></i>&nbsp;{printlinktext}</a></li>
+<li class="uk-nav-divider"></li>
+<!-- END print_link -->
+
+<!-- BEGIN subscribetopic_link -->
+<li><a href="{notifylink}">{notifylinktext}</a></li>
+<li class="uk-nav-divider"></li>
+<!-- END subscribetopic_link -->
+
+<!-- BEGIN prevtopic_link -->
+<li><a href="{prevlink}"><i class="uk-icon-arrow-left"></i>&nbsp;{LANG_prevlink}</a></li>  
+<!-- END prevtopic_link -->
+
+<!-- BEGIN nexttopic_link -->
+<li><a href="{nextlink}"><i class="uk-icon-arrow-right"></i>&nbsp;{LANG_nextlink}</a></li>
+<!-- END nexttopic_link -->
+
+<!-- BEGIN website_link -->
+<a href="{websitelink}" target="_blank" rel="nofollow"><i class="uk-icon-home"></i></a>
+<!-- END website_link -->
+
+<!-- BEGIN pm_link -->
+<a class="uk-icon-button uk-external-link-square" href="{pmlink}"></a>
+<!-- END pm_link -->
+
+<!-- BEGIN profile_link -->
+<a href="{profilelink}"><i class="uk-icon-user"></i></a>
+<!-- END profile_link -->
+
+<!-- BEGIN email_link -->
+<a href="{emaillink}"><i class="uk-icon-envelope"></i></a>
+<!-- END email_link -->
+
+<!-- BEGIN quotetopic_link -->
+<a class="uk-button uk-button-primary" href="{quotelink}"><i class="uk-icon-quote-left"></i>&nbsp;{quotelinktext}</a>
+<!-- END quotetopic_link -->
+
+<!-- BEGIN edittopic_link -->
+<a class="uk-button" href="{editlink}"><i class="uk-icon-edit"></i>&nbsp;{editlinktext}</a>
+<!-- END edittopic_link -->
+
+(# Report Links #}
+
+<!-- BEGIN return_link -->
+<a class="uk-button" href="{returnlink}">{LANG_return}</a>
+<!-- END return_link -->
+
+<!-- BEGIN returnmarkread_link -->
+<a class="uk-button" href="{returnmarkreadlink}" onclick="return confirm('{$LANG_GF02[msg302]}');">{LANG_returnmarkread}</a>
+<!-- END returnmarkread_link -->
+
+<!-- BEGIN trash_link -->
+<a class="uk-button uk-button-mini" title="{LANG_deleteall}" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.report_table.op.value="delchecked"; document.report_table.submit();}'><i class="uk-icon-trash"></i></a>
+<!-- END trash_link -->
+
+<!-- BEGIN memberoption_link -->
+<a class="uk-button uk-button-mini" href="{memberoptionlink}"{memberoptionlink_settings}>{memberoptiontext}</a>
+<!-- END memberoption_link -->
+
+(# Menu Links #}
+
+<!-- BEGIN topicmenu_link -->
+<div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
+	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<div style="" class="uk-dropdown">
+		<ul class="uk-nav uk-nav-dropdown">
+			{subscribetopic_link}
+			{print_link}
+			{prevtopic_link}
+			{nexttopic_link}
+		</ul>
+	</div>
+</div>
+<!-- END topicmenu_link -->
+
+<!-- BEGIN forummenu_link -->
+<div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
+	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<div style="" class="uk-dropdown">
+		<ul class="uk-nav uk-nav-dropdown">
+			{subscribeforum_link}
+		</ul>
+	</div>
+</div>
+<!-- END forummenu_link -->
+
+<!-- BEGIN categorymenu_link -->
+<div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
+	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<div style="" class="uk-dropdown">
+		<ul class="uk-nav uk-nav-dropdown">
+		  {newposts_link}
+		  {markread_link}
+		</ul>
+	</div>
+</div>
+<!-- END categorymenu_link -->

@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+	</div>
+</form>
+
+{topic_review}
+
+<!-- BEGIN topic_review -->
+
+<iframe src="{site_url}/forum/viewtopic.php?mode=preview&amp;showtopic={topic_id}&amp;onlytopic=1&amp;lastpost=true" height="300" width="100%"></iframe>
+
+<!-- END topic_review -->
+
+{# end {templatelocation} #}

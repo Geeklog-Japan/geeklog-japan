@@ -49,9 +49,9 @@ if (!in_array('forum', $_PLUGINS)) {
 require_once '../../auth.inc.php';
 
 if (!SEC_hasRights('forum.edit')) {
-    $display = COM_showMessageText($MESSAGE[29], $MESSAGE[30]) . adminfooter();
+    $display = COM_showMessageText($MESSAGE[29], $MESSAGE[30]);
     $display = COM_createHTMLDocument($display, array('pagetitle' => $MESSAGE[30]));
-    COM_accessLog("User {$_USER['username']} tried to illegally access the links administration screen.");
+    COM_accessLog("User {$_USER['username']} tried to illegally access the forum administration.");
     COM_output($display);
     exit;
 }
@@ -61,24 +61,19 @@ gf_updateSystem();
 require_once $_CONF['path_system'] . 'classes/navbar.class.php';
 $navbar = new navbar;
 $navbar->add_menuitem($LANG_GF06['1'], $_CONF['site_admin_url'] .'/plugins/forum/index.php');
+$navbar->set_onclick($LANG_GF06['1'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/index.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 $navbar->add_menuitem($LANG_GF06['3'], $_CONF['site_admin_url'] .'/plugins/forum/boards.php');
+$navbar->set_onclick($LANG_GF06['3'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/boards.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 $navbar->add_menuitem($LANG_GF06['4'], $_CONF['site_admin_url'] .'/plugins/forum/mods.php');
+$navbar->set_onclick($LANG_GF06['4'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/mods.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 $navbar->add_menuitem($LANG_GF06['5'], $_CONF['site_admin_url'] .'/plugins/forum/migrate.php');
+$navbar->set_onclick($LANG_GF06['5'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/migrate.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 $navbar->add_menuitem($LANG_GF06['6'], $_CONF['site_admin_url'] .'/plugins/forum/messages.php');
+$navbar->set_onclick($LANG_GF06['6'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/messages.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 $navbar->add_menuitem($LANG_GF06['7'], $_CONF['site_admin_url'] .'/plugins/forum/ips.php');
+$navbar->set_onclick($LANG_GF06['7'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/ips.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 $navbar->add_menuitem($LANG_GF06['2'], $_CONF['site_admin_url'] .'/plugins/forum/settings.php');
-
-// Site admin can add common footer code here
-function adminfooter() {
-    global $_CONF, $LANG_GF01, $CONF_FORUM;
-    
-    $footertemplate = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
-    $footertemplate->set_file (array ('footertemplate'=>'footer.thtml'));
-    $footertemplate->set_var ('forumname', $LANG_GF01['forumname']);
-    $footertemplate->parse ('output', 'footertemplate');
-    return $footertemplate->finish ($footertemplate->get_var('output'));
-}
-
+$navbar->set_onclick($LANG_GF06['2'], 'location.href="' . "{$_CONF['site_admin_url']}/plugins/forum/settings.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 
 function gf_resyncforum($id) {
     global $_CONF,$_TABLES;

@@ -58,7 +58,7 @@ $CONF_FORUM['autoimagetype'] = true;
 $CONF_FORUM['image_type_override'] = 'gif'; 
 
 // Default date/time format to use if Forum setting for allow user-dateformat is disabled
-$CONF_FORUM['default_Datetime_format'] = $_CONF['shortdate']."<!-- ".$_CONF['timeonly']." -->" ;
+$CONF_FORUM['default_Datetime_format'] = $_CONF['shortdate']." ".$_CONF['timeonly'] ;
 
 // Date format that is shown at the top of of the topic post used if Forum setting for allow user-dateformat is disabled
 $CONF_FORUM['default_Topic_Datetime_format'] = $_CONF['shortdate']." ".$_CONF['timeonly'] ;
@@ -67,23 +67,31 @@ $CONF_FORUM['default_Topic_Datetime_format'] = $_CONF['shortdate']." ".$_CONF['t
 $CONF_FORUM['contentinfo_numchars'] = 256;
 
 /* Width of pop-up info window that is displayed when hovering over topic posts. */
-$CONF_FORUM['linkinfo_width'] = 40;
+$CONF_FORUM['linkinfo_width'] = 30;
 
 /* Format style for quotes */
 $CONF_FORUM['quoteformat'] = "[QUOTE][u]Quote by: %s[/u][p]%s[/p][/QUOTE]";
 
-$CONF_FORUM['show_popular_perpage'] = '20'; // @TODO: Need to make this an online admin setting
+// 0 shows all posts of user
+$CONF_FORUM['show_last_post_count'] = 10; 
 
-$CONF_FORUM['show_last_post_count'] = '20'; // @TODO: Number of posts to show in the member last post page 
+// How many posts or views does a topic need to show on popular topics page. 0 shows all topics
+$CONF_FORUM['popular_limit'] = '0';
 
-// How many messages to show on the Most Popular page
-$CONF_FORUM['popular_limit'] = '20';
+// How many messages to show on the Most Popular page. 0 shows all topics
+$CONF_FORUM['show_popular_perpage'] = '20';
 
 // How many lines to show on one page in the search results
-$CONF_FORUM['show_search_perpage'] = 15;
+$CONF_FORUM['show_search_perpage'] = 20;
+
+// How many lines to show on one page in the search results
+$CONF_FORUM['show_newposts_perpage'] = 20;
 
 // How many users to show on one page in the memberlist results
-$CONF_FORUM['show_members_perpage'] = 100;
+$CONF_FORUM['show_members_perpage'] = 20;
+
+// Show the members list page to anonymous users
+$CONF_FORUM['show_memberslist_anonymous'] = false;
 
 // View Anonymous Posts - registed users can set this false
 $CONF_FORUM['show_anonymous_posts'] = 1;
@@ -97,11 +105,18 @@ $CONF_FORUM['sort_order_asc'] = true;
 // Mapping of Group Names to badges that can optionally be displayed in Forum Post under user avatar
 // Place images in the directory /forum/forum/image_set/badges
 // Note Root needs a unique mapping since if you are in the Root group, then you are in all groups
+// $CONF_FORUM['grouptags'] and $CONF_FORUM['groupnames'] needs to have the same element ids
 $CONF_FORUM['grouptags'] = array(
-    'Root'            => '<span class="uk-badge">SITE Admin</span>', // siteadmin_badge.png
-    'Logged-in Users' => '<span class="uk-badge">Forum User</span>', // forum_user.png
-    'Group A'         => '<span class="uk-badge">Group A</span>', // badge1.png
-    'Group B'         => '<span class="uk-badge">Group B</span>' // badge2.png
+    'Root'            => 'siteadmin_badge.png',
+    'Logged-in Users' => 'forum_user.png',
+    'Group A'         => 'badge1.png',
+    'Group B'         => 'badge2.png'
+);
+$CONF_FORUM['groupnames'] = array(
+    'Root'            => 'Site Admin',
+    'Logged-in Users' => 'Forum User',
+    'Group A'         => 'Group A',
+    'Group B'         => 'Group B'
 );
 
 // Should glMenu be used for this menublock

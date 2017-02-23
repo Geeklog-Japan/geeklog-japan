@@ -1,0 +1,19 @@
+{# begin {templatelocation} #}
+
+<div class="uk-width-3-10">
+	<ul class="uk-list uk-list-space">
+		<li>{normal_icon} {normal_msg}</li>
+		<li>{sticky_icon} {sticky_msg}</li>
+		<li>{locked_icon} {locked_msg}</li>
+	</ul>
+</div>
+
+<div class="uk-width-3-10">
+	<ul class="uk-list uk-list-space">
+		<li>{normalnew_icon} {normalnew_msg}</li>
+		<li>{stickynew_icon} {stickynew_msg}</li>
+		<li>{lockednew_icon} {lockednew_msg}</li>
+	</ul>
+</div>
+
+{# end {templatelocation} #}

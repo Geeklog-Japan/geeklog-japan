@@ -1,0 +1,105 @@
+{# begin {templatelocation} #}
+
+<div class="uk-grid">
+	<div class="uk-width-1-1 uk-text-right">		
+		<a class="uk-button uk-button-primary" href="{phpself}?mode=add&amp;type=category">{addcat}</a>
+	</div>
+</div>
+
+{category_record}
+
+<!-- BEGIN category_record -->
+<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin uk-form">
+	<div class="uk-grid">
+		<div class="uk-width-1-1 uk-text-right">		
+			<b>{LANG_order}:</b> {catorder}		
+		</div>
+	</div>
+	
+	<fieldset>
+		<legend>{LANG_category}: {catname}</legend>
+		
+		<div class="uk-grid">
+			<div class="uk-width-3-5">
+				{catdesc}&nbsp; {# Need space incase description is blank #}
+			</div>
+			<div class="uk-width-2-5 uk-text-right">
+			 	<form class="uk-form" action="{phpself}" method="post">
+					<input type="hidden" name="type" value="category"{xhtml}>
+					<input type="hidden" name="forumname" value="{forumname}"{xhtml}>
+					<input type="hidden" name="id" value="{catid}"{xhtml}>
+					<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+			 	
+					<button class="uk-button uk-button-small" type="submit" name="mode" value="{edit}">{edit}</button>
+					<button class="uk-button uk-button-small" type="submit" name="mode" value="{delete}">{delete}</button>
+					<button class="uk-button uk-button-small" type="submit" name="mode" value="{resync_cat}" style="display:{hide_options};">{resync}</button>
+				</form>
+			</div>
+		</div>
+		
+		<div class="uk-grid">
+			<div class="uk-width-1-1 uk-text-right">		
+				<a class="uk-button uk-button-primary" href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>
+			</div>
+		</div>
+		
+		<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+			<thead>
+				<tr>
+					<th class="uk-width-5-10">{LANG_forum}</th>
+					<th class="uk-width-1-10 uk-text-center">{LANG_posts}</th>
+					<th class="uk-width-2-10 uk-text-center">{LANG_order}</th>
+					<th class="uk-width-2-10 uk-text-center">{LANG_action}</th>
+				</tr>
+			</thead>
+			<tbody>                                
+				{forum_record}
+				{no_records_message}
+			</tbody>
+		</table>		
+	</fieldset>
+</div>
+<!-- END category_record -->
+
+<!-- BEGIN forum_record -->
+<tr>
+	<td>
+		<a href="messages.php?forum={forumid}&amp;forumname={forumname}">{forumname}</a><br{xhtml}>
+		{forumdscp}
+	</td>
+	<td class="uk-text-center">{messagecount}</td>
+	<td class="uk-text-center">
+		<form class="uk-form" action="{phpself}" method="post">
+			<input type="hidden" name="type" value="forum"{xhtml}>
+			<input type="hidden" name="mode" value="{edit}"{xhtml}>
+			<input type="hidden" name="what" value="order"{xhtml}>
+			<input type="hidden" name="id" value="{forumid}"{xhtml}>
+			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+			
+			<input type="text" size="2" maxlength="2" name="order" value="{forumorder}"{xhtml}>&nbsp;
+			<button class="uk-button uk-button-small" type="submit" name="submit" value="{submit}">{submit}</button>
+		</form>
+	</td>
+	<td>
+		<form class="uk-form" action="{phpself}" method="post">
+			<input type="hidden" name="type" value="forum"{xhtml}>
+			<input type="hidden" name="forumname" value="{forumname}"{xhtml}>
+			<input type="hidden" name="id" value="{forumid}"{xhtml}>
+			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		
+			<button class="uk-button uk-button-small" type="submit" name="mode" value="{delete}">{delete}</button>
+			<button class="uk-button uk-button-small" type="submit" name="mode" value="{edit}">{edit}</button><br{xhtml}>
+			<button class="uk-button uk-button-small uk-margin-small-top" type="submit" name="mode" value="{merge}">{merge}</button>
+			<button class="uk-button uk-button-small uk-margin-small-top" type="submit" name="mode" value="{resync}">{resync}</button>
+		</form>
+	</td>
+</tr>
+<!-- END forum_record -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td colspan="4">{records_message}</td>
+</tr>
+<!-- END no_records_message -->
+
+{# end {templatelocation} #}

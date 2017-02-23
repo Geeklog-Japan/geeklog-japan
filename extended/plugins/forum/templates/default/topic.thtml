@@ -1,0 +1,127 @@
+{# begin {templatelocation} #}
+
+<tr class="pluginRow{csscode}">
+        <td style="padding-left:6px; padding-right:6px; height:30px;">
+        	{user_name}
+        	<a name="#{topic_post_id}"></a> {# topic post link jump point #}
+		</td>
+        <td style="padding-left:6px; padding-right:6px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                                <td style="width:8px; white-space:nowrap;" class="aligncenter">
+                                    <img alt="" style="vertical-align: middle;" src="{imgset}/icon_minipost.gif"{xhtml}>
+                                    &nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{topiclocked_icon}
+                                </td>
+                                <td class="alignright">
+                                    <div style="vertical-align:top; padding-top:2px;" class="alignright">
+                                        {mod_functions}
+                                    </div>
+                                </td>
+                        </tr>
+                </table>
+        </td>
+</tr>
+<tr class="pluginRow{csscode}">
+    <td style="vertical-align:top; padding:6px; white-space:nowrap;">
+    	{user_information}
+        <div style="background:transparent; width:110px; height:1px;"></div>       
+    </td>
+    <td style="vertical-align:top; padding:6px; width:100%;" class="pluginRow{csscode}">
+            <div style="{comment_minheight};">
+                {topic_comment}
+            </div>
+            <div style="clear:both;"></div>
+            {user_signature}
+    </td>
+</tr>
+<tr class="pluginRow{csscode}" style="display:{preview_mode};">
+    <td style="height:30px;">&nbsp;</td>
+    <td style="padding-left:6px; padding-right:6px;"> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="white-space:nowrap;">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            {profile_link}
+                            {email_link}
+                            {website_link}
+                            {pm_link}
+                        </tr>
+                    </table>
+                </td>
+                <td class="alignright" style="float:right; white-space:nowrap;">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            {edittopic_link}
+                            {quotetopic_link}
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+        <td colspan="2" class="pluginSolidOutline"><div style="background:transparent; width:1px; height:10px;"></div></td>
+</tr>
+
+<!-- BEGIN block_user_name -->
+{userlink}
+<!-- END block_user_name -->
+
+<!-- BEGIN block_user_information -->
+        <div>
+                    {user_level}<br{xhtml}>
+                    {user_levelname}
+        </div>
+        <div>
+                    {mood_icon}
+                    <div style="padding-top:3px;">{avatar}</div>
+                    {member_badge}
+                    <br{xhtml}>
+                    {regdate}
+                    {numposts}<br{xhtml}>
+                    {location}
+                    {ip_address}
+        </div>
+<!-- END block_user_information -->
+
+<!-- BEGIN block_anon_user_name -->
+{$LANG_GF01[ANON]} {userlink}
+<!-- END block_anon_user_name -->
+
+<!-- BEGIN block_anon_user_information -->
+        <div>
+                    {mood_icon}
+        </div>
+<!-- END block_anon_user_information -->
+
+<!-- BEGIN location -->
+{$LANG_GF04[label_location]}:{user_location}<br{xhtml}>
+<!-- END location -->
+
+<!-- BEGIN ip_address -->
+{ip}       
+<!-- END ip_address -->
+
+<!-- BEGIN anon_ip_address -->
+{ip}       
+<!-- END anon_ip_address -->
+
+<!-- BEGIN mod_functions -->
+<form action="{site_url}/forum/moderation.php" method="post">
+<div>
+	{mod_functions}
+</div>
+</form>        
+<!-- END mod_functions -->
+
+<!-- BEGIN user_signature -->
+<div style="height:45px; padding-top:10px;">
+	<hr class=""size="1" style="width: 95%; color:black; text-align:left; margin-left:0; margin-bottom:0.5em; padding:0;" noshade{xhtml}>
+	<b>{sig}</b><br{xhtml}>
+	{remote_ip}
+</div>		
+<!-- END user_signature -->
+
+{# end {templatelocation} #}

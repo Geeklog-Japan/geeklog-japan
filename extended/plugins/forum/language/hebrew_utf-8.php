@@ -303,7 +303,7 @@ $LANG_GF02 = array(
     'msg142' => 'בקשת ההרשמה נשמרה.',
     'msg144' => 'Return to topic',
     'msg146' => 'ההתראה נמחקה',
-    'msg147' => 'פורום [גירסה מודפסת של נושא',
+    'msg147' => 'פורום [גירסה מודפסת של נושא %s',
     'msg148' => 'ליחצו <a href="javascript:history.back()">כאן</a> כדי לחזור',
     'msg155' => 'No user posts.',
     'msg156' => 'Total number of forum posts',
@@ -546,7 +546,7 @@ $LANG_GF96 = array(
 );
 
 
-$LANG25 = array(
+$LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
     'smile' => 'Smile',
     'frown' => 'Frown',
@@ -578,8 +578,8 @@ $PLG_forum_MESSAGE2 = 'Forum Plugin upgrade: We are unable to update this versio
 $PLG_forum_MESSAGE5 = 'התקנה ה-forum plugin נכשלה - בידקו את ה-error.log';
 
 // Messages for the plugin upgrade
-$PLG_polls_MESSAGE3001 = '';
-$PLG_polls_MESSAGE3002 = $LANG32[9];
+$PLG_forum_MESSAGE3001 = '';
+$PLG_forum_MESSAGE3002 = $LANG32[9];
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['forum'] = array(

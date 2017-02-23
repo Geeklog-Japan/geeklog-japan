@@ -36,7 +36,7 @@
 require_once '../lib-common.php'; // Path to your lib-common.php
 
 if (!in_array('forum', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 
@@ -53,42 +53,59 @@ $show        = isset($_GET['show'])            ? COM_applyFilter($_GET['show'],t
 $showuser    = isset($_GET['showuser'])        ? COM_applyFilter($_GET['showuser'],true)        : '';
 $sort        = isset($_GET['sort'])            ? COM_applyFilter($_GET['sort'],true)            : '';
 
-//Check is anonymous users can access
+//Check is anonymous users can access forum
 forum_chkUsercanAccess();
+
+// Check if anonymouse users can access
+if (!$CONF_FORUM['show_memberslist_anonymous'] && COM_isAnonUser()) {
+	forum_chkUsercanAccess(true);
+}
 
 $display = '';
 
 // Debug Code to show variables
 $display .= gf_showVariables();
 
-if ($op == "last10posts") {
+if ($op == "lastposts") {
 
-    $report = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout');
+    $report = COM_newTemplate(CTL_plugin_templatePath('forum'));
     $report->set_file (array (
                     'report'         => 'reports/report_results.thtml',
-                    'records'        => 'reports/report_record.thtml',
-                    'outline_header' => 'forum_outline_header.thtml',
-                    'outline_footer' => 'forum_outline_footer.thtml',
-                    'return1'        => 'links/return.thtml',
-                    'return2'        => 'links/return.thtml'));
+                    'forum_links'    => 'forum_links.thtml'));  
+    
+    $report->set_block('report', 'report_record');
+    $report->set_block('report', 'no_records_message');
+    $report->set_block('report', 'links');
+    $report->set_block('report', 'title');
+	$report->set_block('forum_links', 'return_link');
 
     $report->set_var ('imgset', $CONF_FORUM['imgset']);
     $report->set_var ('layout_url', $CONF_FORUM['layout_url']);
-    $report->set_var ('phpself', $_CONF['site_url'] .'/forum/memberlist.php?op=last10posts&amp;showuser='.$showuser);
+    $report->set_var ('phpself', $_CONF['site_url'] .'/forum/memberlist.php?op=lastposts&amp;showuser='.$showuser);
     $report->set_var ('startblock', COM_startBlock($LANG_GF02['msg86'] . DB_getItem($_TABLES['users'],"username", "uid=$showuser")) );
     $report->set_var ('endblock', COM_endBlock());
+    
+    
+    if ($CONF_FORUM['show_last_post_count'] > 0) {
+		$title = sprintf($LANG_GF02['msg158'], $CONF_FORUM['show_last_post_count'], $_USER['username']);
+    	$limit = "LIMIT {$CONF_FORUM['show_last_post_count']}";
+	} else {
+		$title = sprintf($LANG_GF02['msg158'], '', $_USER['username']);
+		$limit = "";
+	}    
+	$report->set_var('report_title', $title);
+	$report->parse('title', 'title');
+
 
     $report->set_var ('LANG_TITLE', $LANG_GF02['msg86'] . DB_getItem($_TABLES['users'],"username", "uid=$showuser"));
     $report->set_var ('spacerwidth', '50%');
-    $report->set_var ('returnlink', "href=\"{$_CONF['site_url']}/forum/memberslist.php\"");
+    $report->set_var ('returnlink', "{$_CONF['site_url']}/forum/memberlist.php");
     $report->set_var ('LANG_return', $LANG_GF02['msg169']);
-    $report->parse ('link1','return1');
-    $report->set_var ('returnlink', "href=\"{$_CONF['site_url']}/forum/index.php\"");
+    $report->parse ('link1','return_link');
+    $report->set_var ('returnlink', "{$_CONF['site_url']}/forum/index.php");
     $report->set_var ('LANG_return', $LANG_GF02['msg175']);
-    $report->parse ('link2','return2');
-    $report->parse ('header_outline','outline_header');
-    $report->parse ('footer_outline','outline_footer');
-
+    $report->parse ('link2','return_link');
+    $report->parse ('links','links');
     $report->set_var ('LANG_Heading1', $LANG_GF01['SUBJECT']);
     $report->set_var ('LANG_Heading2', $LANG_GF01['REPLIES']);
     $report->set_var ('LANG_Heading3', $LANG_GF01['VIEWS']);
@@ -99,17 +116,17 @@ if ($op == "last10posts") {
         $report->set_var('navmenu','');
     }
 
-    $groups = array ();
-    $usergroups = SEC_getUserGroups();
-    foreach ($usergroups as $group) {
-        $groups[] = $group;
-    }
-    $grouplist = implode(',',$groups);
+    //$groups = array ();
+    //$usergroups = SEC_getUserGroups();
+    //foreach ($usergroups as $group) {
+    //    $groups[] = $group;
+    //}
+    $grouplist = implode(',',$_GROUPS);
 
     $sql = "SELECT a.date,a.subject,a.comment,a.replies,a.views,a.id,a.forum FROM {$_TABLES['forum_topic']} a ";
     $sql .= "LEFT JOIN {$_TABLES['forum_forums']} b ON a.forum=b.forum_id ";
     $sql .= "WHERE (a.uid = $showuser) AND b.grp_id IN ($grouplist) ";
-    $sql .= "ORDER BY a.date DESC LIMIT {$CONF_FORUM['show_last_post_count']}";
+    $sql .= "ORDER BY a.date DESC $limit";
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
     if ($nrows > 0) {
@@ -123,12 +140,10 @@ if ($op == "last10posts") {
             $report->set_var('post_replies', $P['replies']);
             $report->set_var('post_views', $P['views']);
             $report->set_var('csscode', $i%2+1);
-            $report->parse ('report_records', 'records',true);
+            $report->parse ('report_record', 'report_record',true);
         }
     }
-    $link = "<p><a href=\"{$_CONF['site_url']}/forum/memberlist.php?order=$order&amp;prevorder=$prevorder";
-    $link .= "&amp;direction=$direction&amp;page=$page\">{$LANG_GF02['msg169']}</a></p>";
-    $report->set_var ('bottomlink', $link);
+    
     $report->parse ('output', 'report');
     $display .= $report->finish($report->get_var('output'));
     $display = gf_createHTMLDocument($display);
@@ -136,14 +151,19 @@ if ($op == "last10posts") {
     exit();
 
 } else {
-
-    $report = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout');
+    $report = COM_newTemplate(CTL_plugin_templatePath('forum'));
     $report->set_file (array (
                     'report'         => 'reports/memberlist.thtml',
-                    'records'        => 'reports/memberlist_line.thtml',
-                    'link'           => 'reports/memberlist_link.thtml',
-                    'outline_header' => 'forum_outline_header.thtml',
-                    'outline_footer' => 'forum_outline_footer.thtml'));
+    				'forum_icons'    => 'forum_icons.thtml', 
+    				'forum_links'    => 'forum_links.thtml'));
+    
+    $report->set_block('report', 'report_record');
+    $report->set_block('forum_links', 'memberoption_link');
+    
+    $blocks = array('sort_desc', 'sort_desc_on', 'sort_asc', 'sort_asc_on');
+    foreach ($blocks as $block) {
+        $report->set_block('forum_icons', $block);
+    }    
 
     // Check if the number of records was specified to show
     if (empty($show) AND $CONF_FORUM['show_members_perpage'] > 0) {
@@ -156,37 +176,42 @@ if ($op == "last10posts") {
         $page = 1;
     }
 
-    if ($prevorder != $order) {
-        $direction = 'desc';
-    }
-
-    switch($order) {
+    $report->parse ('img_asc1', 'sort_asc');
+    $report->parse ('img_asc2', 'sort_asc');
+    $report->parse ('img_asc3', 'sort_asc');
+    $report->parse ('img_asc4', 'sort_asc');
+    $report->parse ('img_desc1', 'sort_desc');
+    $report->parse ('img_desc2', 'sort_desc');
+    $report->parse ('img_desc3', 'sort_desc');
+    $report->parse ('img_desc4', 'sort_desc');
+    
+    switch($sort) {
         case 1:
-            $orderby = 'uid';
+        	$orderby = 'uid';
             break;
         case 2:
-            $orderby = 'username';
+        	$orderby = 'username';
             break;
         case 3:
-            $orderby = 'regdate';
+        	$orderby = 'regdate';
             break;
         case 4:
-            $orderby = 'posts';
-            break;
+        	$orderby = 'posts';
+            break;            
         default:
-            $orderby = 'uid';
-            $order = 1;
+        	$sort = 1;
+        	$order = 0;
+        	$orderby = 'uid';
             break;
     }
-
-    if ($direction == "asc") {
-        $prevdirection = 'asc';
-        $direction = 'desc';
-    } else {
-        $prevdirection = 'desc';
-        $direction = 'asc';
-    }
-
+	if ($order == 0) {
+		$sortOrder = "$orderby ASC";
+		$report->parse ("img_asc$sort", 'sort_asc_on');
+	} else {
+		$sortOrder = "$orderby DESC";
+		$report->parse ("img_desc$sort", 'sort_desc_on');
+	}     
+    
     if ($chkactivity) {
         $memberlistsql = DB_query("SELECT user.uid FROM {$_TABLES['users']} user, {$_TABLES['forum_topic']} topic WHERE user.uid <> 1 AND user.uid=topic.uid GROUP BY uid");
     } else {
@@ -196,21 +221,34 @@ if ($op == "last10posts") {
     $membercount = DB_numRows($memberlistsql);
     $numpages = ceil($membercount / $show);
     $offset = ($page - 1) * $show;
-    $base_url = "{$_CONF['site_url']}/forum/memberlist.php?&amp;show={$show}&amp;order={$order}&amp;prevorder={$prevorder}";
-    $base_url .= "&amp;direction={$prevdirection}&amp;chkactivity=$chkactivity";
-
+    $base_url = "{$_CONF['site_url']}/forum/memberlist.php?show={$show}&amp;order={$order}&amp;sort=$sort";
+    $base_url .= "&amp;chkactivity=$chkactivity";
+    /*
     if ($chkactivity) {
         $sql = "SELECT user.uid,user.uid,user.username,user.regdate,user.email,user.homepage, COUNT(*) AS posts, userprefs.emailfromuser ";
         $sql .= " FROM {$_TABLES['users']} user, {$_TABLES['userprefs']} userprefs, {$_TABLES['forum_topic']} topic WHERE";
         $sql .= " user.uid <> 1 AND user.uid=topic.uid AND user.uid=userprefs.uid ";
-        $sql .= "GROUP BY uid ORDER BY $orderby $direction LIMIT $offset,$show ";
+        $sql .= "GROUP BY uid"; // ORDER BY $orderby $direction LIMIT $offset,$show ";
     } else {
         // Option to order by posts - only valid if option for 'forum activity' checked
         $orderby = ($orderby == 'posts') ? 'username' : $orderby;
         $sql = "SELECT user.uid,user.uid,user.username,user.regdate,user.email,user.homepage, userprefs.emailfromuser ";
         $sql .= " FROM {$_TABLES['users']} user, {$_TABLES['userprefs']} userprefs WHERE user.uid > 1 ";
-        $sql .= "AND user.uid=userprefs.uid ORDER BY $orderby $direction LIMIT $offset,$show ";
+        $sql .= "AND user.uid=userprefs.uid";
     }
+    */
+    $sql = "SELECT u.uid, u.uid, u.username, u.regdate, u.email, u.homepage, COUNT(*) AS posts, up.emailfromuser ";
+    if ($chkactivity) {
+        $sql .= "FROM {$_TABLES['users']} u, {$_TABLES['userprefs']} up, {$_TABLES['forum_topic']} ft 
+        		WHERE u.uid <> 1 AND u.uid = ft.uid AND u.uid=up.uid ";
+    } else {
+        $sql .= "FROM {$_TABLES['users']} u  
+        		LEFT JOIN {$_TABLES['forum_topic']} ft ON u.uid = ft.uid, 
+        		{$_TABLES['userprefs']} up
+        		WHERE u.uid > 1 AND u.uid = up.uid ";
+    }    
+    $sql .= "GROUP BY u.uid 
+    		ORDER BY $sortOrder LIMIT $offset, $show";
 
     $query = DB_query($sql);
 
@@ -222,7 +260,8 @@ if ($op == "last10posts") {
     $report->set_var ('spacerwidth', '70%');
     $report->set_var ('chk_activity',($chkactivity == 1) ? 'CHECKED' : '');
     $report->set_var ('chkactivity', $chkactivity);
-    $report->set_var ('phpself', $_CONF['site_url'] .'/forum/memberlist.php');
+    $report->set_var ('sort_url_extra', "&amp;chkactivity=$chkactivity");
+    $report->set_var ('phpself', "{$_CONF['site_url']}/forum/memberlist.php");
     $report->set_var ('prevorder', $order);
     $report->set_var ('direction', $direction);
     $report->set_var ('page', $page);
@@ -230,8 +269,6 @@ if ($op == "last10posts") {
     $report->set_var ('LANG_Heading2', $LANG_GF01['USER']);
     $report->set_var ('LANG_Heading3', $LANG_GF01['REGISTERED']);
     $report->set_var ('LANG_Heading4',$LANG_GF01['POSTS']);
-    $report->parse ('header_outline','outline_header');
-    $report->parse ('footer_outline','outline_footer');
     $report->set_var ('LANG_lastposts',sprintf($LANG_GF02['msg86'],$CONF_FORUM['show_last_post_count']));
     $report->set_var ('LANG_website',$LANG_GF01['WebsiteLink']);
     $report->set_var ('LANG_ACTIVITY',$LANG_GF02['msg88b']);
@@ -245,29 +282,29 @@ if ($op == "last10posts") {
     while ($siteMembers = DB_fetchArray($query)) {
         $siteMembers['posts'] = DB_count($_TABLES['forum_topic'],'uid',$siteMembers['uid']);
         if ($siteMembers['posts'] > 0) {
-            $reportlinkURL = $_CONF['site_url'] .'/forum/memberlist.php?op=last10posts&amp;showuser='.$siteMembers['uid'];
+            $reportlinkURL = $_CONF['site_url'] .'/forum/memberlist.php?op=lastposts&amp;showuser='.$siteMembers['uid'];
             $reportlinkURL .= '&amp;prevorder='.$order.'&amp;direction='.$direction.'&amp;page='.$page;
-            $report->set_var ('link_url', $reportlinkURL);
-            $report->set_var ('link_text', $LANG_GF09['lastpost']);
-            $report->parse('lastposts_link','link');
+            $report->set_var ('memberoptionlink', $reportlinkURL);
+            $report->set_var ('memberoptiontext', $LANG_GF09['lastpost']);
+            $report->parse('lastposts_link','memberoption_link');
         } else {
             $report->set_var ('lastposts_link', '');
         }
 
         if ($siteMembers['emailfromuser'] == '1') {
             $emaillinkURL = "{$_CONF['site_url']}/profiles.php?uid={$siteMembers['uid']}";
-            $report->set_var ('link_url', $emaillinkURL);
-            $report->set_var ('link_text', $LANG_GF09['email']);
-            $report->parse('email_link','link');
+            $report->set_var ('memberoptionlink', $emaillinkURL);
+            $report->set_var ('memberoptiontext', $LANG_GF09['email']);
+            $report->parse('email_link','memberoption_link');
         } else {
             $report->set_var ('email_link', '');
         }
         if ($CONF_FORUM['use_pm_plugin']) {
             $pmplugin_link = forumPLG_getPMlink($siteMembers['username']);
             if ($pmplugin_link != '') {
-                $report->set_var ('link_url', $pmplugin_link);
-                $report->set_var ('link_text', $LANG_GF09['pm']);
-                $report->parse('pm_link','link');
+                $report->set_var ('memberoptionlink', $pmplugin_link);
+                $report->set_var ('memberoptiontext', $LANG_GF09['pm']);
+                $report->parse('pm_link','memberoption_link');
             } else {
                 $report->set_var ('pm_link', '');
             }
@@ -279,9 +316,10 @@ if ($op == "last10posts") {
             if (strtolower(substr($homepage, 0, 4)) != 'http') {
                 $homepage = 'http://' .$homepage;
             }
-            $report->set_var ('link_url', $homepage);
-            $report->set_var ('link_text', $LANG_GF09['home']);
-            $report->parse('website_link','link');
+            $report->set_var ('memberoptionlink', $homepage);
+            $report->set_var ('memberoptiontext', $LANG_GF09['home']);
+            $report->set_var ('memberoptionlink_settings', ' target="_blank" rel="nofollow"');
+            $report->parse('website_link','memberoption_link');
         } else {
             $report->set_var ('website_link', '');
         }
@@ -294,7 +332,7 @@ if ($op == "last10posts") {
         $report->set_var ('member_numposts', $siteMembers['posts']);
         $report->set_var ('member_uid', $siteMembers['uid']);
 
-        $report->parse ('report_records', 'records',true);
+        $report->parse ('report_record', 'report_record',true);
         if ($csscode == 2) {
             $csscode = 1;
         } else {

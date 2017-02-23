@@ -90,7 +90,7 @@ if ($totalviews['TOTAL'] != 0) {
 }
 
 
-$indextemplate = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
+$indextemplate = COM_newTemplate(CTL_plugin_templatePath('forum', 'admin'));
 $indextemplate->set_file (array ('indextemplate'=>'index.thtml'));
 
 $indextemplate->set_var('statsmsg', $LANG_GF91['statsmsg']);
@@ -119,7 +119,6 @@ $indextemplate->set_var('avgtviews', $avgtviews);
 $indextemplate->parse ('output', 'indextemplate');
 $display .= $indextemplate->finish ($indextemplate->get_var('output'));
 $display .= COM_endBlock();
-$display .= adminfooter();
 $display = COM_createHTMLDocument($display);
 
 COM_output($display);

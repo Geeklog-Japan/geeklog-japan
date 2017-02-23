@@ -1,0 +1,36 @@
+{# begin {templatelocation} #}
+
+<div style="padding:10px 0 5px 0px;">
+	<form action="{site_url}/forum/moderation.php" method="post">
+		<input type="hidden" name="moveid" value="{fortopicid}"{xhtml}>
+		<input type="hidden" name="confirm_move" value="1"{xhtml}>
+		<input type="hidden" name="forum" value="{forum}"{xhtml}>
+		<div>
+			{$LANG_GF03[selectforum]}&nbsp;
+			<select name="movetoforum" style="width:120px;">
+				{forumoptions}
+		   </select>
+		</div>
+		<div style="padding:10px 0 5px 0px;">
+			{$LANG_GF02[msg186]}:&nbsp;
+			<input type="text" size="60" name="movetitle" value="{topictitle}" maxlength="255"{xhtml}>
+
+			{split_topic}             
+		</div>
+		<div style="padding:20px 0 5px 20px;">
+			<input type="submit" name="submit" value="{$LANG_GF03[movetopic]}"{xhtml}>&nbsp;&nbsp;
+			<input type="submit" name="submit" value="{$LANG_GF01[CANCEL]}"{xhtml}>
+		</div>
+    </form>
+</div>
+
+<!-- BEGIN split_topic -->
+<div style="padding-top:10px;">
+	{$LANG_GF03[splitheading]}<br{xhtml}>
+	<input type="radio" name="splittype" value="remaining" checked="checked"{xhtml}>{$LANG_GF03[splitopt1]}<br{xhtml}>
+	<input type="radio" name="splittype" value="single"{xhtml}>{$LANG_GF03[splitopt2]}
+</div>
+<!-- END split_topic -->
+
+
+{# end {templatelocation} #}

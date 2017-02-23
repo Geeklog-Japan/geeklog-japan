@@ -1,0 +1,47 @@
+{# begin {templatelocation} #}
+
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+	<thead>
+		<tr>
+			<th class="uk-width-7-10">{statsmsg}</th>
+			<th class="uk-width-3-10"></th>
+		</tr>
+	</thead>
+	<tbody>                                
+		<tr><td>{totalcatsmsg}</td><td class="uk-text-center">{totalcats}</td></tr>
+		<tr><td>{totalforumsmsg}</td><td class="uk-text-center">{totalforums}</td></tr>
+		<tr><td>{totaltopicsmsg}</td><td class="uk-text-center">{totaltopics}</td></tr>
+		<tr><td>{totalpostsmsg}</td><td class="uk-text-center">{totalposts}</td></tr>
+		<tr><td>{totalviewsmsg}</td><td class="uk-text-center">{totalviews}</td></tr>
+	</tbody>
+</table>	
+
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+	<thead>
+		<tr>
+			<th class="uk-width-7-10">{avgpmsg}</th>
+			<th class="uk-width-3-10"></th>
+		</tr>
+	</thead>
+	<tbody>                                
+		<tr><td>{category}</td><td class="uk-text-center">{avgcposts}</td></tr>
+		<tr><td>{forum}</td><td class="uk-text-center">{avgfposts}</td></tr>
+		<tr><td>{topic}</td><td class="uk-text-center">{avgfposts}</td></tr>
+	</tbody>
+</table>	
+
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+	<thead>
+		<tr>
+			<th class="uk-width-7-10">{avgvmsg}</th>
+			<th class="uk-width-3-10"></th>
+		</tr>
+	</thead>
+	<tbody>                                
+		<tr><td>{category}</td><td class="uk-text-center">{avgcviews}</td></tr>
+		<tr><td>{forum}</td><td class="uk-text-center">{avgfviews}</td></tr>
+		<tr><td>{topic}</td><td class="uk-text-center">{avgtviews}</td></tr>
+	</tbody>
+</table>	
+
+{# end {templatelocation} #}

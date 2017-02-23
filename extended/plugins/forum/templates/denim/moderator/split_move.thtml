@@ -1,0 +1,38 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form uk-form-horizontal" action="{site_url}/forum/moderation.php" method="post">
+	<input type="hidden" name="moveid" value="{fortopicid}"{xhtml}>
+	<input type="hidden" name="confirm_move" value="1"{xhtml}>
+	<input type="hidden" name="forum" value="{forum}"{xhtml}>
+	<div class="uk-form-row">
+		<label class="uk-form-label" for="form-movetoforum">{$LANG_GF03[selectforum]}:</label>
+		<select id="form-movetoforum" name="movetoforum">
+			{forumoptions}
+	   </select>
+	</div>
+	<div class="uk-form-row">
+		<label class="uk-form-label" for="form-movetitle">{$LANG_GF02[msg186]}:</label>
+		<input id="name="form-movetitle" type="text" name="movetitle" value="{topictitle}" class="uk-form-width-large" maxlength="255"{xhtml}>
+	</div>
+	
+	{split_topic}
+	
+	<div class="uk-text-center uk-margin-top">
+		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF03[movetopic]}">{$LANG_GF03[movetopic]}</button>
+		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF01[CANCEL]}">{$LANG_GF01[CANCEL]}</button>			
+	</div>
+</form>
+
+<!-- BEGIN split_topic -->
+<div class="uk-form-row">
+	<label class="uk-form-label">{$LANG_GF03[splitheading]}</label>
+	<label class="uk-form-label" for="form-splittype-remaining"><input id="form-splittype-remaining" type="radio" name="splittype" value="remaining" checked="checked"{xhtml}> {$LANG_GF03[splitopt1]}</label>
+</div>
+<div class="uk-form-row">
+	<label class="uk-form-label"></label>
+	<label class="uk-form-label" for="form-splittype-single"><input id="form-splittype-single" type="radio" name="splittype" value="single"{xhtml}> {$LANG_GF03[splitopt2]}</label>
+</div>
+
+<!-- END split_topic -->
+
+{# end {templatelocation} #}

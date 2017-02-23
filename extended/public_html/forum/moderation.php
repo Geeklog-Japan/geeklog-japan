@@ -36,7 +36,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('forum', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 
@@ -92,6 +92,7 @@ if (forum_modPermission($forum,$_USER['uid'])) {
             if ($top == 'yes') {
                 DB_query("DELETE FROM {$_TABLES['forum_topic']} WHERE (id='$msgid')");
                 PLG_itemDeleted($msgid, 'forum');
+                COM_rdfUpToDateCheck('forum'); // forum rss feeds update
                 DB_query("DELETE FROM {$_TABLES['forum_topic']} WHERE (pid='$msgid')");
 
                 DB_query("DELETE FROM {$_TABLES['forum_watch']} WHERE (id='$msgid')");
@@ -108,6 +109,7 @@ if (forum_modPermission($forum,$_USER['uid'])) {
                 DB_query("UPDATE {$_TABLES['forum_topic']} SET replies=replies-1 WHERE id=$topicparent");
                 DB_query("DELETE FROM {$_TABLES['forum_topic']} WHERE (id='$msgid')");
                 PLG_itemDeleted($msgid, 'forum');
+                COM_rdfUpToDateCheck('forum'); // forum rss feeds update
                 DB_query("UPDATE {$_TABLES['forum_forums']} SET post_count=post_count-1 WHERE forum_id=$forum");
                 // Get the post id for the last post in this topic
                 $query = DB_query("SELECT MAX(id) FROM {$_TABLES['forum_topic']} WHERE forum=$forum");
@@ -186,7 +188,6 @@ if (forum_modPermission($forum,$_USER['uid'])) {
                     // Update the Forum and topic indexes
                     gf_updateLastPost($forum,$curpostpid);
                     gf_updateLastPost($newforumid,$moveid);
-
                 } else {
                     $movesql = DB_query("SELECT id,date FROM {$_TABLES['forum_topic']} WHERE pid='$curpostpid' AND id >= '$moveid'");
                     $numreplies = DB_numRows($movesql);
@@ -218,6 +219,7 @@ if (forum_modPermission($forum,$_USER['uid'])) {
                     DB_query("UPDATE {$_TABLES['forum_forums']} SET topic_count=topic_count+1, post_count=post_count+$numreplies WHERE forum_id=$newforumid");
                     DB_query("UPDATE {$_TABLES['forum_forums']} SET topic_count=topic_count-1, post_count=post_count-$numreplies WHERE forum_id=$forum");
                 }
+                
                 $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=7&amp;showtopic=$moveid");
 
             } else {  // Move complete topic
@@ -242,8 +244,12 @@ if (forum_modPermission($forum,$_USER['uid'])) {
 
                 // Remove any lastviewed records in the log so that the new updated topic indicator will appear
                 DB_query("DELETE FROM {$_TABLES['forum_log']} WHERE topic='$moveid'");
+                
                 $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=8&amp;showtopic=$moveid");
             }
+            
+            COM_rdfUpToDateCheck('forum'); // forum rss feeds update
+            
             echo $display;
             exit();
 
@@ -259,20 +265,18 @@ if (forum_modPermission($forum,$_USER['uid'])) {
         }
         $subject = DB_getItem($_TABLES['forum_topic'],"subject","id='$msgpid'");
         $alertmessage .= sprintf($LANG_GF02['msg64'],$fortopicid,$subject);
-
-        $promptform  = '<p><form action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
-        $promptform .= '<div>';
-        $promptform .= '<input type="hidden" name="modconfirmdelete" value="1"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="msgid" value="' .$fortopicid. '"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="forum" value="' .$forum. '"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="msgpid" value="' .$msgpid. '"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="top" value="' .$top. '"' . XHTML . '>';
-        $promptform .= '<div style="text-align: center;"><input type="submit" name="submit" value="' .$LANG_GF01['CONFIRM']. '"' . XHTML . '>&nbsp;&nbsp;';
-        $promptform .= '<input type="submit" name="submit" value="' .$LANG_GF01['CANCEL']. '"' . XHTML . '>';
-        $promptform .= '</div></div>';
-        $promptform .= '</form></p>';
-        $display .= alertMessage($alertmessage,$LANG_GF02['msg182'],$promptform);
-
+        
+		$page = COM_newTemplate(CTL_plugin_templatePath('forum', 'moderator'));
+		$page->set_file(array('page'=>'delete.thtml'));
+		
+		$page->set_var('fortopicid', $fortopicid);
+		$page->set_var('forum', $forum);
+		$page->set_var('msgpid', $msgpid);
+		$page->set_var('top', $top);
+		$page->parse('output', 'page');
+		$promptform = $page->finish($page->get_var('output'));         
+        
+        $display .= alertMessage($alertmessage, $LANG_GF02['msg182'], $promptform);
     } elseif ($modfunction == 'editpost' AND forum_modPermission($forum,$_USER['uid'],'mod_edit') AND $fortopicid != 0) {
         echo COM_refresh("createtopic.php?method=edit&amp;id=$fortopicid&amp;page=$page");
         exit();
@@ -280,7 +284,6 @@ if (forum_modPermission($forum,$_USER['uid'])) {
         echo COM_refresh("createtopic.php?method=postreply&amp;id=$fortopicid");
         exit();
     } elseif ($modfunction == 'movetopic' AND forum_modPermission($forum,$_USER['uid'],'mod_move') AND $fortopicid != 0) {
-
         $SECgroups = SEC_getUserGroups();  // Returns an Associative Array - need to parse out the group id's
         $modgroups = '';
         foreach ($SECgroups as $key) {
@@ -298,78 +301,94 @@ if (forum_modPermission($forum,$_USER['uid'])) {
         if (DB_numRows($query) == 0) {
             $display .= alertMessage($LANG_GF02['msg181'],$LANG_GF01['WARNING']);
         } else {
+			$page = COM_newTemplate(CTL_plugin_templatePath('forum', 'moderator'));
+			$page->set_file(array('page'=>'split_move.thtml'));
+			
+			$page->set_block('page', 'split_topic');
+        	
             $topictitle = DB_getItem($_TABLES['forum_topic'],"subject","id='$fortopicid'");
-            $promptform  = '<div style="padding:10px 0 5px 0px;">';
-            $promptform .= '<form action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
-            $promptform .= '<div><input type="hidden" name="moveid" value="' .$fortopicid. '"' . XHTML . '>';
-            $promptform .= '<input type="hidden" name="confirm_move" value="1"' . XHTML . '>';
-            $promptform .= '<input type="hidden" name="forum" value="' .$forum. '"' . XHTML . '>';
-            $promptform .= $LANG_GF03['selectforum'];
-            $promptform .= '&nbsp;<select name="movetoforum" style="width:120px;">';
+            $page->set_var('fortopicid', $fortopicid);
+            $page->set_var('forum', $forum);
+            $page->set_var('topictitle', $topictitle);
+            
             while($showforums = DB_fetchArray($query)){
                 $promptform  .= "<option>$showforums[forum_name]";
             }
-            $promptform .= '</select>';
-            $promptform .= '</div><div style="padding:10px 0 5px 0px;">'.$LANG_GF02['msg186'].':&nbsp;';
-            $promptform .= '<input type="text" size="60" name="movetitle" value="' .$topictitle. '"' . XHTML . '>';
-
+            $page->set_var('forumoptions', $promptform);
 
             /* Check and see request to move complete topic or split the topic */
             if (DB_getItem($_TABLES['forum_topic'],"pid","id='$fortopicid'") == 0) {
-                $promptform .= '</div><div style="padding:20px 0 5px 20px;">';
-                $promptform .= '<input type="submit" name="submit" value="' .$LANG_GF03['movetopic']. '"' . XHTML . '>';
-                $promptform .= '&nbsp;&nbsp;<input type="submit" name="submit" value="' .$LANG_GF01['CANCEL']. '"' . XHTML . '></div>';
-                $promptform .= '</form></div>';
+                $page->parse('split_topic', '');
+                
+				$page->parse('output', 'page');
+				$promptform = $page->finish($page->get_var('output'));                
+                
                 $alertmessage = sprintf($LANG_GF03['movetopicmsg'],$topictitle);
-                $display .= alertMessage($alertmessage,$LANG_GF02['msg182'],$promptform);
+                $display .= alertMessage($alertmessage, $LANG_GF02['msg182'], $promptform);
             } else {
                 $poster   = DB_getItem($_TABLES['forum_topic'],"name","id='$fortopicid'");
                 $postdate = COM_getUserDateTimeFormat(DB_getItem($_TABLES['forum_topic'],"date","id='$fortopicid'"));
-                $promptform .= '<div style="padding-top:10px;">'.$LANG_GF03['splitheading'] .'<br' . XHTML . '>';
-                $promptform .= '<input type="radio" name="splittype" value="remaining" checked="checked"' . XHTML . '>'.$LANG_GF03['splitopt1'] .'<br' . XHTML . '>';
-                $promptform .= '<input type="radio" name="splittype" value="single"' . XHTML . '>'.$LANG_GF03['splitopt2'] .'</div>';
-                $promptform .= '</div><div style="padding:20px 0 5px 20px;">';
-                $promptform .= '<input type="submit" name="submit" value="' .$LANG_GF03['movetopic']. '"' . XHTML . '>';
-                $promptform .= '&nbsp;&nbsp;<input type="submit" name="submit" value="' .$LANG_GF01['CANCEL']. '"' . XHTML . '></div>';
-                $promptform .= '</form></div>';
+                $page->parse('split_topic', 'split_topic');
+				$page->parse('output', 'page');
+				$promptform = $page->finish($page->get_var('output')); 
+                
                 $alertmessage = sprintf($LANG_GF03['splittopicmsg'],$topictitle,$poster,$postdate[0]);
                 $display .= alertMessage($alertmessage,$LANG_GF02['msg182'],$promptform);
             }
         }
 
-
-    } elseif ($modfunction == 'banip' AND forum_modPermission($forum,$_USER['uid'],'mod_ban') AND $fortopicid != 0) {
-
+	} elseif ($modfunction == 'banip' AND forum_modPermission($forum,$_USER['uid'],'mod_ban') AND $fortopicid != 0 AND (function_exists('BAN_for_plugins_check_access') AND BAN_for_plugins_check_access())) {
         $iptobansql = DB_query("SELECT ip FROM {$_TABLES['forum_topic']} WHERE id='$fortopicid'");
         $forumpostipnum = DB_fetchArray($iptobansql);
         if ($forumpostipnum['ip'] == '') {
             $display .= alertMessage($LANG_GF02['msg174']);
             exit;
         }
-        $alertmessage =  '<p>' .$LANG_GF02['msg68'] . '</p><p>';
+        
+        $ip_address = $forumpostipnum['ip'];
+        
+        if (BAN_for_plugins_ban_found($ip_address)) {
+			BAN_for_plugins_ban_ip($ip_address, 'forum', false);
+			$display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=11&amp;showtopic=$msgpid");
+		} else {
+			BAN_for_plugins_ban_ip($ip_address, 'forum');
+			$display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=10&amp;showtopic=$msgpid");
+		}
+		COM_output($display);
+		exit;
+    } elseif ($modfunction == 'banippost' AND forum_modPermission($forum,$_USER['uid'],'mod_ban') AND $fortopicid != 0) {
+        $iptobansql = DB_query("SELECT ip FROM {$_TABLES['forum_topic']} WHERE id='$fortopicid'");
+        $forumpostipnum = DB_fetchArray($iptobansql);
+        if ($forumpostipnum['ip'] == '') {
+            $display .= alertMessage($LANG_GF02['msg174']);
+            exit;
+        }
+        $alertmessage =  $LANG_GF02['msg68'];
         $ip_address = $forumpostipnum['ip'];
         if (!empty($_CONF['ip_lookup'])) {
             $iplookup = str_replace('*', $ip_address, $_CONF['ip_lookup']);
             $ip_address = COM_createLink($ip_address, $iplookup);
         }
-        $alertmessage .= sprintf($LANG_GF02['msg69'], $ip_address) . '</p>';
-
-        $promptform  = '<p><form action="' .$_CONF['site_url'] . '/forum/moderation.php" method="post">';
-        $promptform .= '<div style="text-align: center;"><input type="hidden" name="hostip" value="' .$forumpostipnum['ip']. '"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="confirmbanip" value="1"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="forum" value="' .$forum. '"' . XHTML . '>';
-        $promptform .= '<input type="hidden" name="fortopicid" value="' .$fortopicid. '"' . XHTML . '>';
-        $promptform .= '<input type="submit" name="submit" value="' .$LANG_GF01['CONFIRM']. '"' . XHTML . '>';
-        $promptform .= '&nbsp;&nbsp;<input type="submit" name="submit" value="' .$LANG_GF01['CANCEL']. '"' . XHTML . '>';
-        $promptform .= '<div></form></p>';
-        $display .= alertMessage($alertmessage,$LANG_GF02['msg182'],$promptform);
+        $alertmessage .= sprintf($LANG_GF02['msg69'], $ip_address);
+        
+		$page = COM_newTemplate(CTL_plugin_templatePath('forum', 'moderator'));
+		$page->set_file(array('page'=>'ban.thtml'));
+		
+		$page->set_var('hostip', $forumpostipnum['ip']);
+		$page->set_var('forum', $forum);
+		$page->set_var('fortopicid', $fortopicid);
+ 
+		$page->parse('output', 'page');
+		$promptform = $page->finish($page->get_var('output'));     
+ 
+        $display .= alertMessage($alertmessage, $LANG_GF02['msg182'], $promptform);
 
     } else {
-        $display .= alertMessage($LANG_GF02['msg71'],$LANG_GF01['WARNING']);
+        $display .= alertMessage($LANG_GF02['msg71'], $LANG_GF01['WARNING']);
     }
 
 } else {
-    $display .= alertMessage($LANG_GF02['msg72'],$LANG_GF01['ACCESSERROR']);
+    $display .= alertMessage($LANG_GF02['msg72'], $LANG_GF01['ACCESSERROR']);
 }
 
 $display = gf_createHTMLDocument($display);

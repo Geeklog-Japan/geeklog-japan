@@ -196,4 +196,26 @@ function upgrade_280() {
     COM_errorLog("Success - Completed Forum plugin version 2.9.0 update",1);
     return 0;
 }
+
+function upgrade_290() {
+    global $_CONF, $_TABLES;
+
+    require_once $_CONF['path'] . 'plugins/forum/install_defaults.php';
+    forum_update_ConfValues_2_9_0();
+    
+    // Fix postmode column with "{postmode}"
+    DB_query("UPDATE {$_TABLES['forum_topic']} SET postmode = 'text' WHERE postmode = '{postmode}'");
+    
+    // Convert all HTML postmodes to html
+    DB_query("UPDATE {$_TABLES['forum_topic']} SET postmode = 'html' WHERE postmode = 'HTML'");
+
+    // Fix up User Preference Table
+    DB_query("ALTER TABLE {$_TABLES['forum_userprefs']} ADD `newperpage` INT NOT NULL DEFAULT '20' AFTER `postsperpage` , ADD `popularperpage` INT NOT NULL DEFAULT '20' AFTER `newperpage`");     
+    DB_query("ALTER TABLE {$_TABLES['forum_userprefs']} DROP `messagesperpage`");
+    DB_query("ALTER TABLE {$_TABLES['forum_userprefs']} CHANGE `topicsperpage` `topicsperpage` INT( 3 ) NOT NULL DEFAULT '10', CHANGE `postsperpage` `postsperpage` INT( 3 ) NOT NULL DEFAULT '10'");  
+    
+
+    COM_errorLog("Success - Completed Forum plugin version 2.9.1 update",1);
+    return 0;
+}
 ?>

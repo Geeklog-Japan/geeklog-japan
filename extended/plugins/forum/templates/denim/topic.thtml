@@ -1,0 +1,106 @@
+{# begin {templatelocation} #}
+
+<hr{xhtml}>
+<div class="uk-grid">
+	<div class="uk-width-6-10">
+		<i class="uk-icon-comment-o"></i>&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{topiclocked_icon}
+		<a id="#{topic_post_id}"></a> {# topic post link jump point #}
+	</div>
+	<div class="uk-width-4-10 uk-text-right">
+		{mod_functions}
+	</div>
+</div>
+
+<div class="uk-grid uk-margin-small-top">
+	<div class="uk-width-large-1-6">
+		{user_information}
+	</div>
+	<div class="uk-width-large-5-6">
+		{# <div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break uk-margin topic-panel gl-forum-post-link" style="{comment_minheight};"> #}
+		<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break uk-margin gl-forum-post-link">
+			{topic_comment}
+			{user_signature}
+		</div>
+		<div class="uk-text-right">
+			{edittopic_link}
+			{quotetopic_link}
+		</div>		
+	</div>
+</div>
+
+<!-- BEGIN block_user_name -->
+<h4 class="uk-margin-bottom-remove">{userlink}</h4>
+<!-- END block_user_name -->
+
+<!-- BEGIN block_user_information -->
+		<div class="uk-float-left uk-text-center uk-margin-small-bottom">
+			<div class="uk-thumbnail uk-overlay-toggle uk-border-square uk-margin-small-right">
+				<div class="uk-overlay">
+					<div class="uk-align-center forum-userphoto">{avatar}</div>
+					<div class="uk-overlay-area uk-border-square">
+						<div class="uk-overlay-area-content">
+							{mood_icon}
+							{profile_link}
+							{email_link}
+							{website_link}
+							{pm_link}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="uk-float-left uk-text-center">
+			{user_name}
+			{member_badge}
+			<div class="uk-text-muted uk-text-small">
+				{user_level}<br{xhtml}>
+				{user_levelname}<br{xhtml}>
+				{regdate}
+				{numposts}<br{xhtml}>
+				{location}
+				{ip_address}
+			</div>
+		</div>		
+<!-- END block_user_information -->
+
+<!-- BEGIN block_anon_user_name -->
+<div class="uk-float-left uk-text-center">
+	<h4 class="uk-margin-bottom-remove">{$LANG_GF01[ANON]} {userlink}</h4>
+</div>	
+<!-- END block_anon_user_name -->
+
+<!-- BEGIN block_anon_user_information -->
+        <div class="uk-grid">
+        	<div class="uk-width-1-1 uk-text-center">
+				{mood_icon}
+			</div>
+        </div>
+        
+		{user_name}
+		{ip_address}
+<!-- END block_anon_user_information -->
+
+<!-- BEGIN location -->
+{$LANG_GF04[label_location]}:{user_location}<br{xhtml}>
+<!-- END location -->
+
+<!-- BEGIN ip_address -->
+{ip}       
+<!-- END ip_address -->
+
+<!-- BEGIN anon_ip_address -->
+<div class="uk-text-muted uk-text-small uk-text-center uk-margin">{ip}</div>       
+<!-- END anon_ip_address -->
+
+<!-- BEGIN mod_functions -->
+<form class="uk-form" action="{site_url}/forum/moderation.php" method="post">
+	{mod_functions}
+</form>        
+<!-- END mod_functions -->
+
+<!-- BEGIN user_signature -->
+<hr class="uk-margin-large-top"{xhtml}>
+<b>{sig}</b>
+<!-- END user_signature -->
+
+{# end {templatelocation} #}

@@ -1,0 +1,63 @@
+{# begin {templatelocation} #}
+
+{startblock}
+{navbar}
+<form id="banform" name="frm_messages" action="{phpself}" method="post" style="margin:0px;">
+<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-top:25px;">
+    <tr>
+        <td class="pluginCellTitle" style="width:90% white-space:nowrap;">{LANG_IP}</td>
+        <td class="pluginCellTitle" style="width:10%; padding-right:5px; white-space:nowrap;">{LANG_Actions}</td>
+    </tr>
+    <tr style="display:{showalert};">
+        <td colspan="6" class="pluginAlert">{alertmessage}</td>
+    </tr>
+{report_record}
+</table>
+
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="margin-top:10px;">
+    <tr>
+        <td class="aligncenter">{pagenav}</td>
+    </tr>
+</table>
+
+<div class="clearfix">
+    <fieldset style="float: left; padding: 10px; margin: 10px;">
+    <!-- A form for baning IP addresses -->
+        <legend>{legend}</legend>
+        <label for="ipaddress">{lang_ip2}:</label>
+        <input type="hidden" name="op" value="banip"{xhtml}>
+        <input id="ipaddress" type="text" name="ip" value=""{xhtml}>
+        <input type="submit" value="{lang_ban}"{xhtml}>
+    </fieldset>
+    <script type="text/javascript">
+        /* This code will validate the 'Ban IP address' form and, if confirmed,
+           will submit the request without further confirmation */
+        document.getElementById('banform').onsubmit = function() {
+            var ip = document.getElementById('ipaddress').value;
+            if (ip.length == 0) {
+                alert('{lang_noip}');
+                return false;
+            }
+            var msg = '{msg}'.replace('%s', "'" + ip + "'");
+            if (confirm(msg)) {
+                location.href = '{phpself}?op=banip&amp;ip=' + ip + '&amp;sure=yes&amp;{gltoken_name}={gltoken}';
+            }
+            return false;
+        };
+    </script>
+</div>
+</form>
+{endblock}
+
+<!-- BEGIN report_record -->
+<tr class="pluginRow{csscode}">
+	<td style="padding:5px;">{ip}</td>
+	<td style="padding:5px; white-space:nowrap;">[&nbsp;<a href="{phpself}?op=unban&amp;ip={ip}&amp;{gltoken_name}={gltoken}">{unban}</a>&nbsp;]</td>
+</tr>
+<!-- END report_record -->
+
+<!-- BEGIN no_records_message -->
+<p>{records_message}</p>
+<!-- END no_records_message -->
+
+{# end {templatelocation} #}

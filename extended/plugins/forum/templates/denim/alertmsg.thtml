@@ -1,0 +1,9 @@
+{# begin {templatelocation} #}
+
+<div class="uk-alert uk-alert-warning">
+	<h3 class="uk-panel-title">{alert_title}</h3>
+	<p>{alert_message}</p>
+	<p>{prompt}</p>
+</div>
+
+{# end {templatelocation} #}

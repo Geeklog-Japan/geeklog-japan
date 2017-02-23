@@ -1,0 +1,79 @@
+{# begin {templatelocation} #}
+
+<div class="uk-grid uk-margin-small-top">
+  	<div class="uk-width-1-2">
+		<div itemscope itemtype="http://schema.org/BreadcrumbList">
+			<ul class="uk-breadcrumb">
+				<li><i class="uk-icon-folder-o"></i></li>
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<a itemprop="item" href="{site_url}/forum/index.php">
+						<span itemprop="name">{forum_home}</span>
+					</a>
+					<meta itemprop="position" content="1" />
+				</li>
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<a itemprop="item" href="{site_url}/forum/index.php?category={category_id}">
+						<span itemprop="name">{cat_name}</span>
+					</a>
+					<meta itemprop="position" content="2" />
+				</li>
+			</ul>
+		</div>			
+    </div>
+  	<div class="uk-width-1-2">
+	    <div class="uk-text-right">
+			{categorymenu_link}
+			{# Buttons instead of Menu - Remove comments to enable (plus remove categorymenu_link template variable) and change related links in forum_links.html #}
+			{# 
+			{newposts_link}
+			{markread_link}
+		 #}
+		 </div>
+    </div>
+</div>
+
+<table class="uk-table uk-table-hover">
+	<thead>
+		<tr>
+			<th class="uk-width-large-6-10 uk-width-medium-7-10 uk-width-6-10">
+				{cat_desc}
+			</th>
+			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">
+				{LANGGF01_TOPICS}
+			</th>
+			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">
+				{LANGGF01_POSTS}
+			</th>
+			<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-4-10 uk-text-center">
+				{LANGGF01_LASTPOST}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		{forum_record}
+	</tbody>
+</table>
+
+<!-- BEGIN forum_record -->
+<tr>
+	<td>
+		{folderimg} <a class="pluginLinks" href="index.php?forum={forum_id}">{forum_name}</a>
+		{!if forum_desc}
+		<blockquote>{forum_desc}</blockquote>
+		{!endif}
+	</td>
+	<td class="uk-text-center uk-visible-large">
+		{topics}
+	</td>
+	<td class="uk-text-center uk-visible-large">
+		{posts}
+	</td>
+	<td>
+		<a href="viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}">{lastpostmsgTopic}</a><br{xhtml}>
+		{lastpostmsgDate}<br{xhtml}>
+		{lastpostmsgBy} {moderator}
+	</td>
+</tr>
+<!-- END forum_record -->
+
+{# end {templatelocation} #}

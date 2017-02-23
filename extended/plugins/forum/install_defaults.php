@@ -59,7 +59,7 @@ $_FORUM_DEFAULT = array(
     'usermenu'              => 'blockmenu',  // Added
     'use_themes_template'   => '0',          // Added
     // ----------------------------------
-    'show_subject_length'   => '20',
+    'show_subject_length'   => '75',
     'min_username_length'   => '2',
     'min_subject_length'    => '2',
     'min_comment_length'    => '5',
@@ -428,6 +428,19 @@ function forum_update_ConfValues_2_8_0()
     $c->add('menublock_order',       $_FORUM_DEFAULT['menublock_order'],       'text',     0, 7, 0,    $o++, true, $n, $t);
 
     return true;
+}
+
+function forum_update_ConfValues_2_9_0()
+{
+	global $_CONF;
+	
+    require_once $_CONF['path_system'] . 'classes/config.class.php';
+	
+    // Remove use_themes_template override
+	$c = config::get_instance();
+	$c->del('use_themes_template', 'forum');
+    
+	return true;	
 }
 
 ?>

@@ -37,7 +37,7 @@ include_once 'gf_functions.php';
 require_once $CONF_FORUM['path_include'] . 'gf_format.php';
 
 $id         = isset($_REQUEST['id'])         ? COM_applyFilter($_REQUEST['id'],true)         : '';
-$op         = isset($_REQUEST['op'])         ? COM_applyFilter($_REQUEST['op'])              : '';
+$op         = isset($_REQUEST['op'])  		 ? COM_applyFilter($_REQUEST['op'])       		 : '';
 $show       = isset($_REQUEST['show'])       ? COM_applyFilter($_REQUEST['show'], true)      : '';
 $page       = isset($_REQUEST['page'])       ? COM_applyFilter($_REQUEST['page'],true)       : '';
 $forum      = isset($_REQUEST['forum'])      ? COM_applyFilter($_REQUEST['forum'],true)      : '';
@@ -55,14 +55,14 @@ function selectHTML_forum($selected='') {
             $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='{$B['grp_id']}'");
             if (SEC_inGroup($groupname)) {
                 if ($firstforum) {
-                    $selectHTML .= '<option value="-1">-------------------';
-                    $selectHTML .= '<option value="-1">' .$A['cat_name']. '';
+                    $selectHTML .= '<option value="-1">-------------------</option>';
+                    $selectHTML .= '<option value="-1">' .$A['cat_name']. '</option>';
                  }
                 $firstforum = false;
                 if ($B['forum_id'] == $selected) {
-                    $selectHTML .= LB .'<option value="' .$B['forum_id']. '" selected="selected">&nbsp;&#187;&nbsp;&nbsp;' .$B['forum_name']. '';
+                    $selectHTML .= LB .'<option value="' .$B['forum_id']. '" selected="selected">&nbsp;&#187;&nbsp;&nbsp;' .$B['forum_name']. '</option>';
                 } else {
-                    $selectHTML .= LB .'<option value="' .$B['forum_id']. '">&nbsp;&#187;&nbsp;&nbsp;' .$B['forum_name']. '';
+                    $selectHTML .= LB .'<option value="' .$B['forum_id']. '">&nbsp;&#187;&nbsp;&nbsp;' .$B['forum_name']. '</option>';
                 }
             }
         }
@@ -74,12 +74,12 @@ function selectHTML_members($selected='') {
     global $_CONF,$_TABLES,$LANG_GF02;
     $selectHTML = '';
     $sql  = "SELECT  user.uid,user.username FROM {$_TABLES['users']} user, {$_TABLES['forum_topic']} topic ";
-    $sql .= "WHERE user.uid <> 1 AND user.uid=topic.uid GROUP BY uid ORDER BY user.username";
+    $sql .= "WHERE user.uid=topic.uid GROUP BY uid ORDER BY user.username";
     $memberlistsql = DB_query($sql);
-    if ($selected == 1) {
-        $selectHTML .= LB .'<option value="1" selected="selected">' .$LANG_GF02['msg177']. '</option>';
+    if ($selected == -1) {
+        $selectHTML .= LB .'<option value="-1" selected="selected">' .$LANG_GF02['msg177']. '</option>';
     } else {
-        $selectHTML .= LB .'<option value="1">' .$LANG_GF02['msg177']. '</option>';
+        $selectHTML .= LB .'<option value="-1">' .$LANG_GF02['msg177']. '</option>';
     }
     while($A = DB_fetchArray($memberlistsql)) {
         if ($A['uid'] == $selected) {
@@ -94,18 +94,20 @@ function selectHTML_members($selected='') {
 
 /* Check to see if user has checked multiple records to delete */
 if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') === 0 AND $op == 'delchecked' AND SEC_checkToken()) {
-    $chkrecid = array();
-    if (isset($_POST['chkrecid'])) {
-        $chkrecid = $_POST['chkrecid'];
+    $chk_record_delete = array();
+    if (isset($_POST['chk_record_delete'])) {
+        $chk_record_delete = $_POST['chk_record_delete'];
     }
-    foreach ($chkrecid as $id) {
+    foreach ($chk_record_delete as $id) {
         $id = COM_applyFilter($id,true);
         DB_query("DELETE FROM {$_TABLES['forum_topic']} WHERE id='$id'");
         PLG_itemDeleted($id, 'forum');
     }
+    COM_rdfUpToDateCheck('forum'); // forum rss feeds update
 } elseif ($op == 'delrecord' AND SEC_checkToken()) {
     DB_query("DELETE FROM {$_TABLES['forum_topic']} WHERE id='$id'");
     PLG_itemDeleted($id, 'forum');
+    COM_rdfUpToDateCheck('forum'); // forum rss feeds update
 }
 
 // Page Navigation Logic
@@ -125,7 +127,7 @@ if ($forum > 0) {
     $whereSQL = " WHERE forum='$forum'";
     $forumname = stripslashes(DB_getItem($_TABLES['forum_forums'],'forum_name',"forum_id='$forum'"));
 }
-if ($member > 1) {
+if ($member > 0) {
     if ($whereSQL == '') {
         $whereSQL = ' WHERE ';
     } else {
@@ -143,17 +145,25 @@ if ($parentonly == 1) {
 }
 $sql = "SELECT * FROM {$_TABLES['forum_topic']} $whereSQL ORDER BY id DESC";
 $result = DB_query($sql);
-$num_messages = DB_numRows($result);
+$nrows = DB_numRows($result);
 
 $display = '';
-$report = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
-$report->set_file(array ('messages'=>'messages.thtml', 'records' => 'message_line.thtml'));
+$report = COM_newTemplate(CTL_plugin_templatePath('forum'));
+$report->set_file(array ('messages'=>'admin/messages.thtml', 
+        				'forum_links'   => 'forum_links.thtml')); 
+
+$report->set_block('messages', 'report_record');
+$report->set_block('messages', 'no_records_message');
+$report->set_block('forum_links', 'trash_link');
+
 $report->set_var('phpself', $_CONF['site_admin_url'] .'/plugins/forum/messages.php');
 $report->set_var('imgset', $CONF_FORUM['imgset']);
 $report->set_var('LANG_deleteall', $LANG_GF01['DELETEALL']);
 $report->set_var('LANG_DELCONFIRM', $LANG_GF01['DELCONFIRM']);
 $report->set_var('LANG_DELALLCONFIRM', $LANG_GF01['DELALLCONFIRM']);
-$report->set_var('LANG_select1', $LANG_GF02['msg106']);
+$report->set_var('LANG_selectforum', $LANG_GF02['msg106']);
+$report->set_var('LANG_select1', $LANG_GF93['allforums']);
+$report->set_var('LANG_selectmember', $LANG_GF02['msg107']);
 $report->set_var('LANG_select2', $LANG_GF02['msg176']);
 $report->set_var('LANG_Parent',  $LANG_GF02['msg178']);
 $report->set_var('LANG_Author',  $LANG_GF01['AUTHOR']);
@@ -163,6 +173,9 @@ $report->set_var('LANG_Replies', $LANG_GF01['REPLIES']);
 $report->set_var('LANG_Actions', $LANG_GF01['ACTIONS']);
 $report->set_var('LANG_Moderate', $LANG_GF95['moderate']);
 $report->set_var('LANG_Delete', $LANG_GF01['DELETE']);
+$report->set_var('LANG_all', $LANG_GF01['ALL']);
+
+$report->parse ('trash_link','trash_link');
 
 $report->set_var('select_forum',selectHTML_forum($forum));
 $report->set_var('select_member',selectHTML_members($member));
@@ -174,25 +187,17 @@ if ($parentonly == 1) {
     $report->set_var('chk_parentonly', 'checked="checked"');
 }
 
-if ($num_messages == 0) {
-    $report->set_var('startblock', COM_startBlock($LANG_GF95['header1']));
-    $report->set_var('showalert','');
-    $report->set_var('alertmessage', $LANG_GF95['nomess']);
-    $report->set_var('endblock', COM_endBlock());
-
+if ($forumname == '') {
+	$report->set_var('startblock', COM_startBlock($LANG_GF95['header1']));
 } else {
-    if ($forumname == '') {
-        $report->set_var('startblock', COM_startBlock($LANG_GF95['header1']));
-    } else {
-        $report->set_var('startblock', COM_startBlock(sprintf($LANG_GF95['header2'],$forumname)));
-    }
-    $report->set_var('showalert','none');
-    $report->set_var('alertmessage', '');
-    $report->set_var('endblock', COM_endBlock());
-    $numpages = ceil($num_messages / $show);
+	$report->set_var('startblock', COM_startBlock(sprintf($LANG_GF95['header2'], $forumname)));
+}
+
+if ($nrows > 0) {
+    $numpages = ceil($nrows / $show);
     $offset = ($page - 1) * $show;
     $base_url = $_CONF['site_admin_url'] . '/plugins/forum/messages.php?forum='.$forum;
-    $report->set_var('pagenav', COM_printPageNavigation($base_url,$page, $numpages));
+    $report->set_var('pagenavigation', COM_printPageNavigation($base_url,$page, $numpages));
 
     $query = DB_query("SELECT * FROM {$_TABLES['forum_topic']} $whereSQL ORDER BY id DESC LIMIT $offset, $show");
     $csscode = 1;
@@ -216,17 +221,23 @@ if ($num_messages == 0) {
         $report->set_var('views', $A['views']);
         $report->set_var('replies', $A['replies']);
         $report->set_var('uid', $A['uid']);
-        $report->parse('message_records', 'records',true);
+        $report->parse('report_record', 'report_record',true);
         if ($csscode == 2) {
             $csscode = 1;
         } else {
             $csscode++;
         }
     }
-}
+} else {
+	$report->set_var ('records_message', $LANG_GF95['nomess']);
+	$report->parse ('no_records_message', 'no_records_message');
+}  
 
 $report->set_var('gltoken_name', CSRF_TOKEN);
 $report->set_var('gltoken', SEC_createToken());
+
+$report->set_var('endblock', COM_endBlock());
+
 $report->parse('output', 'messages');
 $display .= $report->finish($report->get_var('output'));
 $display = COM_createHTMLDocument($display);

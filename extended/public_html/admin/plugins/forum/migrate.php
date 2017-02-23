@@ -45,10 +45,10 @@ $curtopic = isset($_POST['seltopic'])       ? COM_applyFilter($_POST['seltopic']
 $dpm      = isset($_POST['delPostMigrate']) ? COM_applyFilter($_POST['delPostMigrate'],true) : '';
 
 if ($migrate == $LANG_GF01['MIGRATE_NOW'] && $selforum != "select"
-        && !empty($_POST['cb_chkentry']) && SEC_checkToken()) {
+        && !empty($_POST['chk_record_delete']) && SEC_checkToken()) {
     $num_stories = 0;
     $num_posts = 0;
-    foreach ($_POST['cb_chkentry'] as $sid) {
+    foreach ($_POST['chk_record_delete'] as $sid) {
         if ($curtopic == 'submissions') {
             $sql = "SELECT sid,date,uid,title,introtext "
                  . "FROM {$_TABLES['storysubmission']} WHERE sid='$sid'";
@@ -75,6 +75,9 @@ if ($migrate == $LANG_GF01['MIGRATE_NOW'] && $selforum != "select"
         }
     }
     gf_resyncforum($selforum);
+    
+    COM_rdfUpToDateCheck('forum'); // forum rss feeds update
+    
     echo COM_refresh($_CONF['site_admin_url']
                      . "/plugins/forum/migrate.php?num_stories="
                      . $num_stories . "&num_posts=" . $num_posts);
@@ -219,10 +222,14 @@ $display = '';
 // Debug Code to show variables
 $display .= gf_showVariables();
 
-// Check if the number of records was specified to show
-if (empty($show)) {
-    $show = 20;
+
+// Check if the number of records was specified to show - part of page navigation.
+if ($show == 0 AND $CONF_FORUM['show_messages_perpage'] > 0) {
+	$show = $CONF_FORUM['show_messages_perpage'];
+} elseif ($show == 0) {
+	$show = 20;
 }
+
 // Check if this is the first page.
 if (empty($page)) {
     $page = 1;
@@ -233,13 +240,17 @@ $display .= COM_startBlock($LANG_GF02['msg193']);
 $navbar->set_selected($LANG_GF06['5']);
 $display .= $navbar->generate();
 
-$p = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
-$p->set_file(array('page'=>'migratestories.thtml',
-                   'records' => 'migrate_records.thtml'));
+$p = COM_newTemplate(CTL_plugin_templatePath('forum', 'admin'));
+$p->set_file(array('page'=>'migrate.thtml'));
+
+$p->set_block('page', 'report_record');
+$p->set_block('page', 'message');
+$p->set_block('page', 'no_records_message');
 
 if (!empty($_GET['num_stories']) && !empty($_GET['num_posts'])) {
     $p->set_var('status_message',
         sprintf($LANG_GF02['msg192'], $_GET['num_stories'], $_GET['num_posts']));
+    $p->parse('message','message');
 } else {
     $p->set_var('show_message', 'none');
 }
@@ -261,15 +272,17 @@ if (!empty($curtopic) && $curtopic != 'all') {
 }
 $sql_part1 = "FROM $table_name AS s, {$_TABLES['topic_assignments']} AS ta "
            . "WHERE ta.id=s.sid AND ta.type='article' ";
+           
+$sql_part3 = "GROUP BY s.sid ";           
 
-$countsql = DB_query("SELECT COUNT(*) " . $sql_part1 . $sql_part2);
-list($maxrows) = DB_fetchArray($countsql);
-$numpages = ceil($maxrows / $show);
+$result = DB_query("SELECT s.sid " . $sql_part1 . $sql_part2 . $sql_part3);
+$nrows = DB_numRows($result);
+$numpages = ceil($nrows / $show);
 $offset = ($page - 1) * $show;
 
-$sql_part3 = "ORDER BY s.sid DESC LIMIT $offset, $show";
+$sql_part4 = "ORDER BY s.sid DESC LIMIT $offset, $show";
 
-$result = DB_query($sql_part0 . $sql_part1 . $sql_part2 . $sql_part3);
+$result = DB_query($sql_part0 . $sql_part1 . $sql_part2 . $sql_part3 . $sql_part4);
 $nrows = DB_numRows($result);
 
 $p->set_var('action_url', $_CONF['site_admin_url'] . '/plugins/forum/migrate.php');
@@ -280,6 +293,7 @@ $p->set_var('LANG_migrate', $LANG_GF01['MIGRATE_NOW']);
 $p->set_var('LANG_filterlist', $LANG_GF01['FILTERLIST']);
 $p->set_var('LANG_selectforum', $LANG_GF01['SELECTFORUM']);
 $p->set_var('LANG_deleteafter', $LANG_GF01['DELETEAFTER']);
+$p->set_var('LANG_migratearticles', $LANG_GF01['MIGRATEARTICLES']);
 $p->set_var('LANG_all', $LANG_GF01['ALL']);
 $p->set_var('LANG_topic', $LANG_GF01['TOPIC']);
 $p->set_var('LANG_title', $LANG_GF01['TITLE']);
@@ -307,12 +321,17 @@ if ($nrows > 0) {
         $p->set_var('date', $date);
         $p->set_var('num_comments', $comments);
         $p->set_var('cssid', ($i%2)+1);
-        $p->parse('story_record', 'records', true);
+        $p->parse('report_record', 'report_record', true);
     }
-    $p->set_var('page_navigation', COM_printPageNavigation($base_url, $page, $numpages));
-}
+    $p->set_var('pagenavigation', COM_printPageNavigation($base_url, $page, $numpages));
+} else {
+	$p->set_var ('message', $LANG_GF01['no_articles_found']);
+	$p->parse ('no_records_message', 'no_records_message');
+}    
+
 $p->set_var('gltoken_name', CSRF_TOKEN);
 $p->set_var('gltoken', SEC_createToken());
+
 $p->parse('output', 'page');
 $display .= $p->finish($p->get_var('output'));
 $display .= COM_endBlock();

@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+<hr{xhtml}>
+
+{pagenavigation}
+
+<div class="uk-text-right">
+{# {page_generated_time} #} {newtopic_link}{replytopic_link}
+</div>
+
+{# end {templatelocation} #}

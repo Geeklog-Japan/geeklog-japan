@@ -1,0 +1,55 @@
+{# begin {templatelocation} #}
+
+{startblock}
+{navbar}
+<form class="uk-form uk-form-horizontal" id="banform" name="frm_messages" action="{phpself}" method="post">
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+
+	<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin">
+		<fieldset>
+			<legend>{legend}</legend>
+			<div class="uk-form-row">
+				<label class="uk-form-label" for="ipaddress">{lang_ipaddress}:</label>
+				<div class="uk-form-controls">
+					<input type="hidden" name="op" value="banip"{xhtml}>
+					<input id="ipaddress" type="text" name="ip" value=""{xhtml}>
+					<button class="uk-button uk-button-primary" type="submit" value="{lang_ban}">{lang_ban}</button>					
+				</div>
+			</div>
+		</fieldset>	
+	</div>
+
+	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+		<thead>
+			<tr>
+				<th class="uk-width-9-10">				
+					{LANG_IP}
+				</th>
+				<th class="uk-width-1-10">				
+					{LANG_Actions}
+				</th>
+			</tr>
+		</thead>
+		<tbody>                                
+			{report_record}
+		</tbody>
+	</table>
+</form>
+{no_records_message}
+{# {pagenavigation} - Not Done Yet #}
+
+{endblock}
+
+<!-- BEGIN report_record -->
+<tr>
+	<td>{ip}</td>
+	<td><a class="uk-button uk-button-small" href="{phpself}?op=unban&amp;ip={ip}&amp;{gltoken_name}={gltoken}">{unban}</a></td>
+</tr>
+<!-- END report_record -->
+
+<!-- BEGIN no_records_message -->
+<p>{records_message}</p>
+<!-- END no_records_message -->
+
+
+{# end {templatelocation} #}

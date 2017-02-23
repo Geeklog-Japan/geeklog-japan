@@ -1,0 +1,126 @@
+{# begin {templatelocation} #}
+
+{# Category Listing Buttons #}
+
+<!-- BEGIN newpost_link -->
+<td class="pluginButton" style="white-space:nowrap;">[&nbsp;<a href="{newpostslink}">{LANG_newposts}</a>&nbsp;]</td>
+<!-- END newpost_link -->
+
+<!-- BEGIN markread_link -->
+<td class="pluginButton" style="white-space:nowrap;">[&nbsp;<a href="{markreadlink}" onclick="return confirm('{$LANG_GF02[msg302]}');">{LANG_markread}</a>&nbsp;]</td>
+<!-- END markread_link -->
+
+{# Forum Topic Listing Buttons #}
+
+<!-- BEGIN newtopic_link -->
+  <a class="postbutton" href="{newtopiclink}">
+    <img alt="" src="{newtopiclinkimg}"{xhtml}>
+    {newtopiclinktext}
+  </a>
+<!-- END newtopic_link -->
+
+<!-- BEGIN subscribeforum_link -->
+<form action="{subscribelink}" method="post" style="margin:0"><div>
+    <span>{LANG_subscribe_state}&nbsp;</span>
+    <input type="submit" name="subscribelink" value="{LANG_subscribe}"{xhtml}>
+</div></form>
+<!--   Alternative layout to use Images -->
+<!--  
+<div style="margin: 0; float: right;">
+    <a class="profilebutton" href="{subscribelink}">{subscribelinktext}</a>  
+</div>
+-->
+<!-- END subscribeforum_link -->
+
+{# Topic Listing Buttons #}
+
+<!-- BEGIN replytopic_link -->
+<!-- {LANG_reply} -->
+  <a class="postbutton" href="{replytopiclink}">
+    <img alt="" src="{replytopiclinkimg}"{xhtml}>
+    {replytopiclinktext}
+  </a>
+<!-- END replytopic_link -->
+
+<!-- BEGIN print_link -->
+<form action="{printlink}" method="post" style="margin:0;"><div>
+    <input type="submit" name="btnsubmit" value="{LANG_print}"{xhtml}>
+</div></form>
+<!--   Alternative layout -->
+<!--
+<div style="margin: 0; float: right;">
+    <a class="profilebutton" href="{printlink}">{printlinktext}</a>  
+</div>
+-->  
+<!-- END print_link -->
+
+<!-- BEGIN subscribetopic_link -->
+<form action="{notifylink}" method="post" style="margin:0;"><div>
+    <span>{LANG_notify_state}&nbsp;</span>
+    <input type="submit" name="btnsubmit" value="{LANG_notify}"{xhtml}>
+</div></form>
+<!-- Alternative layout -->
+<!--
+<div style="margin: 0; float: right;">
+    <a class="profilebutton" href="{notifylink}">{notifylinktext}</a>
+</div>
+-->
+<!-- END subscribetopic_link -->
+
+<!-- BEGIN prevtopic_link -->
+<!-- <a href="{prevlink}">{LANG_prevlink}</a> -->
+<!--   Alternative layout to use Images -->  
+<a href="{prevlink}">
+	<img src="{site_url}/forum/image_set/prev.gif" style="border:none; vertical-align:middle;" alt="{$LANG_GF01[PREVTOPIC]}" title="{$LANG_GF01[PREVTOPIC]}"{xhtml}>
+</a>
+<!-- END prevtopic_link -->
+
+<!-- BEGIN nexttopic_link -->
+<!-- <a href="{nextlink}">{LANG_nextlink}</a> -->
+<!--   Alternative layout to use Images -->  
+<a href="{nextlink}"> 
+	<img src="{site_url}/forum/image_set/next.gif" style="border:none; vertical-align:middle;" alt="{$LANG_GF01[NEXTTOPIC]}" title="{$LANG_GF01[NEXTTOPIC]}"{xhtml}>
+</a>
+<!-- END nexttopic_link -->
+
+<!-- BEGIN website_link -->
+<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{websitelink}" target="_blank" rel="nofollow">{websitelinktext}</a></td>
+<!-- END website_link -->
+
+<!-- BEGIN pm_link -->
+<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{pmlink}">{pmlinktext}</a></td>
+<!-- END pm_link -->
+
+<!-- BEGIN profile_link -->
+<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{profilelink}">{profilelinktext}</a></td>
+<!-- END profile_link -->
+
+<!-- BEGIN email_link -->
+<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{emaillink}">{emaillinktext}</a></td>
+<!-- END email_link -->
+
+<!-- BEGIN quotetopic_link -->
+<td style="padding-top:3px;"><a class="profilebutton" href="{quotelink}"><img style="margin: 0 0.5em 0.1em 0;" src="{site_url}/forum/image_set/quotes.png" alt=""{xhtml}>&nbsp;{quotelinktext}</a></td>
+<!-- END quotetopic_link -->
+
+<!-- BEGIN edittopic_link -->
+<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{editlink}">{editlinktext}</a></td>
+<!-- END edittopic_link -->
+
+(# Report Links #}
+
+<!-- BEGIN return_link -->
+<a href="{returnlink}">{LANG_return}</a>
+<!-- END return_link -->
+
+<!-- BEGIN returnmarkread_link -->
+<a href="{returnmarkreadlink}" onclick="return confirm('{$LANG_GF02[msg302]}');">{LANG_returnmarkread}</a>
+<!-- END returnmarkread_link -->
+
+<!-- BEGIN trash_link -->
+<a title="{LANG_deleteall}" style="border:none;" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.report_table.op.value="delchecked"; document.report_table.submit();}'><img src="{imgset}/trash.png" title="{LANG_deleteall}" style="border:none;" alt=""{xhtml}></a>
+<!-- END trash_link -->
+
+<!-- BEGIN memberoption_link -->
+<a class="profilebutton" href="{memberoptionlink}"{memberoptionlink_settings}>{memberoptiontext}</a>
+<!-- END memberoption_link -->

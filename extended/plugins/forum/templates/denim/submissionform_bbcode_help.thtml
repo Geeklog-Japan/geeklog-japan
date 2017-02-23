@@ -1,0 +1,121 @@
+{# begin {templatelocation} #}
+
+<div id="modal-bbcode-help" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+        
+<h2>Forum BBCode Help</h2>        
+        
+<table class="uk-table">
+	<thead>
+		<tr>
+			<th>BBCode</th>
+			<th>Effect</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>[b]bolded text[/b]</td>
+			<td style="font-style: bold;">bolded text</td>
+		</tr>
+		<tr>
+			<td>[i]italicized text[/i]</td>
+			<td style="font-style: italic;">italicized text</td>
+		</tr>
+		<tr>
+			<td>[u]underlined text[/u]</td>
+			<td style="text-decoration: underline;">underlined text</td>
+		</tr>
+		<tr>
+			<td>[s]strikethrough text[/s]</td>
+			<td style="text-decoration: line-through;">strikethrough text</td>
+		</tr>
+		<tr>
+			<td>[img]http://www.site.com/images/forum.png[/img] 
+				<div class="uk-text-small uk-margin-left">OR</div>
+				[img h=65 w=50]http://www.site.com/images/forum.png[/img]
+			</td>
+			<td style="text-align: center;"><img src="{site_url}/forum/images/forum.png" alt=""{xhtml}></td>
+		</tr>
+		<tr>
+			<td>[url={site_url}]{site_name}[/url]</td>
+			<td><a href="{site_url}" title="{site_url}">{site_name}</a></td>
+		</tr>
+		<tr>
+			<td>[quote]quoted text[/quote]</td>
+			<td>To quote:
+				<div class="quotemain">
+					<p>quoted text</p>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>[size=15]Your Text[/size]
+				<div class="uk-text-small uk-margin-left">"12" is usually standard on message boards. Usually measured in pixels (px).</div>
+			</td>
+			<td><span style="font-size: 1.2em">Your Text</span></td>
+		</tr>
+		<tr>
+			<td>[color=red]Red Text[/color]
+				<div class="uk-text-small uk-margin-left">OR</div>
+				[color=#FF0000]Red Text[/color]
+				<div class="uk-text-small uk-margin-left">Can use many different color names or hex codes.</div>
+			</td>
+			<td style="color: rgb(204, 0, 0);">Red Text</td>
+		</tr>
+		<tr>
+			<td>[list]<br{xhtml}>
+				[*]List item 1<br{xhtml}>
+				[*]List item 2<br{xhtml}>
+				[/list]<br{xhtml}>
+				<div class="uk-text-small uk-margin-left">OR</div>
+				[list=1]<br{xhtml}>
+				[*]List item 1<br{xhtml}>
+				[*]List item 2<br{xhtml}>
+				[/list]
+			</td>
+			<td><ul>
+				<li>List item 1</li>
+				<li>List item 2</li>
+				</ul>
+				<div class="uk-text-small uk-margin-left"></div>
+				<ol>
+				<li>List item 1</li>
+				<li>List item 2</li>
+				</ol>
+			</td>
+		</tr>
+		<tr>
+			<td>[code]monospaced text[/code]</td>
+			<td>monospaced text</td>
+		</tr>
+		<tr>
+			<td>[code=XYX]formatted code[/code]
+				<div class="uk-text-small uk-margin-left">
+					Where XYZ can be any of the following:
+					<ul>
+						<li>c</li>
+						<li>css</li>
+						<li>html4strict</li>
+						<li>java</li>
+						<li>javascript</li>
+						<li>perl</li>
+						<li>php</li>
+						<li>plain</li>
+						<li>python</li>
+					</ul>
+				</div>
+			</td>
+			<td>formatted code</td>
+		</tr>
+		<tr>
+			<td>To enter a backslash (\) in your post, use \\\\</td>
+			<td>\</td>
+		</tr>
+	</tbody>
+</table>
+
+    </div>
+</div>
+
+{# end {templatelocation} #}

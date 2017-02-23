@@ -1,0 +1,94 @@
+{# begin {templatelocation} - List of icons used by the forum #}
+
+<!-- BEGIN new_icon -->
+<i class="uk-icon-file-o uk-badge uk-badge-notification"></i>
+<!-- END new_icon -->
+
+<!-- BEGIN quiet_icon -->
+<i class="uk-icon-building-o uk-badge uk-badge-notification"></i>
+<!-- END quiet_icon -->
+
+<!-- BEGIN active_icon -->
+<i class="uk-icon-building-o uk-badge uk-badge-notification uk-badge-warning"></i>
+<!-- END active_icon -->
+
+<!-- BEGIN normal_icon -->
+<i class="uk-icon-file-text-o uk-badge uk-badge-notification"></i>
+<!-- END normal_icon -->
+
+<!-- BEGIN normalnew_icon -->
+<i class="uk-icon-file-text-o uk-badge uk-badge-notification uk-badge-warning"></i>
+<!-- END normalnew_icon -->
+
+<!-- BEGIN sticky_icon -->
+<i class="uk-icon-thumb-tack uk-badge uk-badge-notification"></i>
+<!-- END sticky_icon -->
+
+<!-- BEGIN stickynew_icon -->
+<i class="uk-icon-thumb-tack uk-badge uk-badge-notification uk-badge-warning"></i>
+<!-- END stickynew_icon -->
+
+<!-- BEGIN locked_icon -->
+<i class="uk-icon-lock uk-badge uk-badge-notification"></i>
+<!-- END locked_icon -->
+
+<!-- BEGIN lockednew_icon -->
+<i class="uk-icon-lock uk-badge uk-badge-notification uk-badge-warning"></i>
+<!-- END lockednew_icon -->
+
+<!-- BEGIN status_yes -->
+<i class="uk-icon-check uk-text-success"></i>
+<!-- END status_yes -->
+
+<!-- BEGIN status_no -->
+<i class="uk-icon-close uk-text-danger"></i>
+<!-- END status_no -->
+
+<!-- BEGIN sort_desc -->
+<i class="uk-icon-arrow-circle-o-down"></i>
+<!-- END sort_desc -->
+
+<!-- BEGIN sort_desc_on -->
+<i class="uk-icon-arrow-circle-down"></i>
+<!-- END sort_desc_on -->
+
+<!-- BEGIN sort_asc -->
+<i class="uk-icon-arrow-circle-o-up"></i>
+<!-- END sort_asc -->
+
+<!-- BEGIN sort_asc_on -->
+<i class="uk-icon-arrow-circle-up"></i>
+<!-- END sort_asc_on -->
+
+<!-- BEGIN topiclocked_icon -->
+<i class="uk-icon-lock"></i>
+<!-- END topiclocked_icon -->
+
+<!-- BEGIN mood_icon -->
+	<div><img src="{moodicon}" title="{moodicontitle}" alt="{moodtitle}"{xhtml}></div>
+<!-- END mood_icon -->
+
+<!-- BEGIN memberbadge_icon -->
+<div class="uk-badge">{memberbadgetitle}</div>
+<!-- END memberbadge_icon -->
+
+<!-- BEGIN user_icon -->
+<i class="uk-icon-user"></i> 
+<!-- END user_icon -->
+
+{# User Forum Rank #}
+<!-- BEGIN rankon_icon -->
+	<i class="uk-icon-square uk-text-success" title="{ranktitle}"></i>
+<!-- END rankon_icon -->
+
+<!-- BEGIN rankoff_icon -->
+	<i class="uk-icon-square" title="{ranktitle}"></i>
+<!-- END rankoff_icon -->
+
+<!-- BEGIN rankmod_icon -->
+	<i class="uk-icon-square uk-text-warning" title="{ranktitle}"></i>
+<!-- END rankmod_icon -->
+
+<!-- BEGIN rankadmin_icon -->
+	<i class="uk-icon-square uk-text-danger" title="{ranktitle}"></i>
+<!-- END rankadmin_icon -->

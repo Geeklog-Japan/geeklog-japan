@@ -50,7 +50,6 @@ $_CONF_VALIDATE['links']['showblocks']            = array(
 $_CONF_VALIDATE['links']['usermenu']              = array(
     'rule' => array('inList', array('blockmenu', 'navbar', 'none'), true)
 );
-$_CONF_VALIDATE['forum']['use_themes_template']   = array('rule' => 'boolean');
 
 // Topic Posting Settings
 $_CONF_VALIDATE['forum']['show_subject_length']   = array('rule' => 'numeric');

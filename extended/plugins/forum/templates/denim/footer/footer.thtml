@@ -1,0 +1,13 @@
+{# begin {templatelocation} #}
+
+<div class="uk-panel uk-panel-box uk-margin">
+	{forum_time}
+	<hr{xhtml}>
+	<div class="uk-grid">
+		{forum_legend}
+		{forum_rules}
+	</div>
+	{forum_whosonline}
+</div>
+
+{# end {templatelocation} #}

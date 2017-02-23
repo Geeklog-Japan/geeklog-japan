@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form" action="{action}" method="post" name="jumpbox" onsubmit="if(document.jumpbox.forum.value == -1){return false;}">
+	<div class="uk-form-controls">
+		<select name="forum" onchange="this.form.submit();">
+			<option value="-1">{LANG_msg106}</option>
+			{selecthtml}
+		</select>
+	</div>
+ </form>
+
+{# end {templatelocation} #}

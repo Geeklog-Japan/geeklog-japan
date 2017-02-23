@@ -1,0 +1,37 @@
+{# begin {templatelocation} #}
+
+<h2>{LANG_FORUM}</h2>
+<div class="uk-panel">
+	<dl class="uk-description-list uk-description-list-line">
+		<dt>{LANG_NEWPOST}</dt>
+		{block_record}
+	</dl>
+</div>
+
+<hr class="uk-margin-bottom"{xhtml}>
+
+<!-- BEGIN block_record -->
+<dt>
+	<i class="uk-icon-folder-o"></i> <a href="{site_url}/forum/index.php?forum={forum_id}" class="uk-text-success uk-text-bold">{forum_name}</a>
+</dt>
+<dd>
+    <div class=" uk-margin-left">
+    	<i class="uk-icon-file-text-o"></i> <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}" data-uk-tooltip title="{topicinfo}">{topic_subject}</a>
+
+		<div class="uk-grid">
+			<div class="uk-width-medium-1-2">
+				{topicinfo_short}
+			</div>
+			<div class="uk-width-medium-1-2">
+				{!!if ($this->get_var('replies') == '0') !!} 
+					<span class="uk-text-right uk-text-muted uk-align-right"><a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}">{repliesinfo}</a> <i class="uk-icon-comments-o"></i></span>
+				{!else} 
+					<span class="uk-text-right uk-text-muted uk-align-right"><a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}" data-uk-tooltip title="{lastpostinfo}">{repliesinfo}</a> <i class="uk-icon-comments-o"></i></span>
+				{!endif}
+			</div>
+		</div>
+    </div>
+</dd>
+<!-- END block_record -->
+
+{# end {templatelocation} #}

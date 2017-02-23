@@ -294,7 +294,7 @@ $LANG_GF02 = array(
     'msg130' => 'View Anonymous Posts',
     'msg131' => 'Setting of No will filter out anonymous posts',
     'msg132' => 'Always Notify',
-    'msg133' => 'Setting of Yes will enable auto notifcation for any topics you create or reply',
+    'msg133' => 'Setting of Yes will enable auto notification for any topics you create or reply',
     'msg134' => 'Subscription Added',
     'msg135' => 'You will now be notified of all posts to this forum.',
     'msg136' => 'You must choose a forum to subscribe to.',
@@ -303,7 +303,7 @@ $LANG_GF02 = array(
     'msg142' => 'Notification saved.',
     'msg144' => 'Return to topic',
     'msg146' => 'Notification Deleted',
-    'msg147' => 'Forum [printable version of topic',
+    'msg147' => 'Forum [printable version of topic %s]',
     'msg148' => 'Click <a href="javascript:history.back()">HERE</a> to return',
     'msg155' => 'No user posts.',
     'msg156' => 'Total number of forum posts',
@@ -546,7 +546,7 @@ $LANG_GF96 = array(
 );
 
 
-$LANG25 = array(
+$LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
     'smile' => 'Smile',
     'frown' => 'Frown',
@@ -578,8 +578,8 @@ $PLG_forum_MESSAGE2 = 'Forum Plugin upgrade: We kunnen deze versie niet automati
 $PLG_forum_MESSAGE5 = 'Forum Plugin Upgrade gefaald - controleer error.log';
 
 // Messages for the plugin upgrade
-$PLG_polls_MESSAGE3001 = '';
-$PLG_polls_MESSAGE3002 = $LANG32[9];
+$PLG_forum_MESSAGE3001 = '';
+$PLG_forum_MESSAGE3002 = $LANG32[9];
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['forum'] = array(

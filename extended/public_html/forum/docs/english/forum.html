@@ -82,11 +82,6 @@
   <td>blockmenu</td>
   <td>The type of user menu to display. Use a Geeklog block or the navigation bar (supported by the NavMan Plugin).</td>
 </tr>
-<tr>
-  <td><a name="desc_use_themes_template">use_themes_template</a></td>
-  <td>0</td>
-  <td>When set to 1, use the forum templates in the theme directory. If set to 0 the template files found within the public_html forum directory will be used. This variable is always reinitialized to 0 on every upgrade.</td>
-</tr>
 </table>
 
 <h3><a name="config_topicposting">Topic Posting</a></h3>
@@ -98,8 +93,8 @@
 </tr>
 <tr>
   <td><a name="desc_show_subject_length">show_subject_length</a></td>
-  <td>20</td>
-  <td>Maximum length in characters for the topic subject.</td>
+  <td>75</td>
+  <td>Maximum length in characters for the topic subject. Specifying 0 means the entire subject will be showen.</td>
 </tr>
 <tr class="r2">
   <td><a name="desc_min_username_length">min_username_length</a></td>
@@ -213,7 +208,7 @@
 <tr class="r2">
   <td><a name="desc_cb_subject_size">cb_subject_size</a></td>
   <td>40</td>
-  <td>The number of characters allowed in displayed subject of the forum centerblock.</td>
+  <td>The number of characters allowed in displayed subject of the forum centerblock. Specifying 0 means the entire subject will be showen.</td>
 </tr>
 <tr>
   <td><a name="desc_centerblock_where">centerblock_where</a></td>

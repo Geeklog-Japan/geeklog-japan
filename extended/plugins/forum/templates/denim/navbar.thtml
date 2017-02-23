@@ -1,0 +1,10 @@
+{# begin {templatelocation} #}
+
+{navmenu}
+
+<div class="uk-grid">
+  <div class="uk-width-7-10">{search_forum}</div>
+  <div class="uk-width-3-10 uk-text-right">{select_forum}</div>
+</div>
+
+{# end {templatelocation} #}

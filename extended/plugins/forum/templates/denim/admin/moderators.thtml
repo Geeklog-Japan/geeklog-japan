@@ -1,0 +1,115 @@
+{# begin {templatelocation} #}
+
+<script type="text/javascript">
+    <!-- Begin
+    var allChecked;
+    function checkAll(field)
+    {
+    allChecked=true;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = true ;
+    }
+
+    function uncheckAll(field)
+    {
+    allChecked=false;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = false ;
+    }
+    function confirmSubmit(text) {
+      var yes = confirm(text);
+      if (yes) return true;
+      else return false;
+    }
+    //  End -->
+</script>
+
+<form class="uk-form" name="report_table" action="{action_url}" method="post">
+	<input type="hidden" name="recid" value=""{xhtml}>
+	<input type="hidden" name="op" value=""{xhtml}>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	
+	<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin">
+		<fieldset>
+			<legend>{LANG_addmodtitle}</legend>
+
+			<button class="uk-button uk-button-primary" name="promptadd" type="submit" value="{LANG_addmod}">{LANG_addmod}</button>
+		</fieldset>
+	</div>
+
+	<div class="uk-grid">
+		<div class="uk-width-1-1 uk-text-right">	
+			<div class="uk-form-row">		
+				<input type="radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">&nbsp;{LANG_userrecords}</label> 
+				<input type="radio" name="filtermode" id="filtermode_group" value="group" {groupfilter}{xhtml}><label for="filtermode_group" accesskey="g">&nbsp;{LANG_grouprecords}</label> 
+				&nbsp;&nbsp;			
+				<select name="sel_forum">{sel_forums}</select>
+				&nbsp;&nbsp;
+				<button class="uk-button" name="filter" type="submit" value="{LANG_filterview}">{LANG_filterview}</button>
+			</div>
+		</div>
+	</div>
+	
+	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+		<thead>
+			<tr>
+				<th class="uk-width-1-10 uk-text-center">
+					<input type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
+				</th>
+				<th class="uk-width-1-10">{LANG_HEADING2}</th>
+				<th class="uk-width-2-10">{LANG_FORUM}</th>
+				<th class="uk-width-1-10 uk-text-center">{LANG_DELETE}</th>
+				<th class="uk-width-1-10 uk-text-center">{LANG_BAN}</th>
+				<th class="uk-width-1-10 uk-text-center">{LANG_EDIT}</th>
+				<th class="uk-width-1-10 uk-text-center">{LANG_MOVE}</th>
+				<th class="uk-width-1-10 uk-text-center">{LANG_STICK}</th>
+				<th class="uk-width-1-10 uk-text-center">{LANG_OP}</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td class="uk-text-center">
+					{trash_link}				
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			<tr>
+		</tfoot>			
+		<tbody>                                
+			{report_record}
+			{no_records_message}
+		</tbody>
+	</table>
+</form>
+
+<!-- BEGIN report_record -->
+<tr>
+	<td class="uk-text-center"><input type="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
+	<td>{name}</td>
+	<td>{forum}</td>
+	<td class="uk-text-center"><input type="checkbox" name="chk_delete{id}" value="1" {delete_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" name="chk_ban{id}" value="1" {ban_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" name="chk_edit{id}" value="1" {edit_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" name="chk_move{id}" value="1" {move_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" name="chk_stick{id}" value="1" {stick_yes}{xhtml}></td>
+	<td class="uk-text-center uk-text-nowrap">
+		<a class="uk-button uk-button-small" href="#" onclick="document.report_table.recid.value='{id}';document.report_table.op.value='update';document.report_table.submit();return false;">{LANG_UPDATE}</a>
+		<a class="uk-button uk-button-small" href="#" onclick="document.report_table.recid.value='{id}';document.report_table.op.value='delete';document.report_table.submit();return false;">{LANG_DELETE}</a>
+	</td>
+</tr>
+<!-- END report_record -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td></td>
+	<td colspan="8">{records_message}</td>
+</tr>
+<!-- END no_records_message -->
+
+{# end {templatelocation} #}
