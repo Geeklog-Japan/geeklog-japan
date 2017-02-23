@@ -8,7 +8,7 @@
  *
  */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'siteconfig.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], 'siteconfig.php') !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -37,18 +37,16 @@ $_CONF['site_enabled'] = true;
 $_CONF['path'] = '/path/to/Geeklog/';
 $_CONF['path_system'] = $_CONF['path'] . 'system/';
 
-$_CONF['default_charset'] = 'utf-8';
+$_CONF['default_charset'] = 'iso-8859-1';
 
 $_CONF_FCK['imagelibrary'] = '/images/library';
-
 
 // Useful Stuff
 
 if (!defined('LB')) {
   define('LB',"\n");
 }
-if (!defined('VERSION')) {
-  define('VERSION', '2.1.1');
-}
 
-?>
+if (!defined('VERSION')) {
+  define('VERSION', '2.1.2');
+}
