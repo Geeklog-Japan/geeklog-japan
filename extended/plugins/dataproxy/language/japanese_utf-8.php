@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/language/japanese_utf-8.php                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -32,12 +32,12 @@
 
 $LANG_DPXY = array(
 	'plugin'            => 'Dataproxyプラグイン',
-	'access_denied'     => 'アクセスできません',
-	'access_denied_msg' => 'このページにはRootユーザーだけがアクセスできます。あなたのユーザー名とIPアドレスを記録しました。',
+	'access_denied'     => 'アクセスは拒否されました。',
+	'access_denied_msg' => 'このページにアクセスできるのはRootユーザーだけです。あなたのユーザー名とIPアドレスは記録されました。',
 	'admin'             => 'Dataproxyプラグイン管理',
 	'install_success'   => 'Dataproxyプラグインのインストールに成功しました。',
 	'install_fail'		=> 'Dataproxyプラグインのインストールに失敗しました。詳細はエラーログ(error.log)をご覧ください。',
-	'uninstall_success' => 'Dataproxyプラグインのアンインストールに成功しました。',
+	'uninstall_success' => 'Dataproxyプラグインはアンインストールされました。',
 	'uninstall_fail'    => 'Dataproxyプラグインのアンインストールに失敗しました。詳細はエラーログ(error.log)をご覧ください。',
 	'menu_label'        => 'Dataproxy',
 );

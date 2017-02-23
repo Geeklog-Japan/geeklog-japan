@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/download.class.php                      |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'download.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -58,19 +58,19 @@ class dpxyDriver_Download extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	*  )
 	*/
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if ($pid === FALSE) {
+		if ($pid === false) {
 			$pid = 0;
 		}
 		
 		$sql = "SELECT * "
 			 . "  FROM {$_TABLES['download_category']} "
-			 . "WHERE (pid = '" . addslashes($pid) . "') ";
+			 . "WHERE (pid = '" . $this->escapeString($pid) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getPermSQL('AND', Dataproxy::uid());
@@ -83,14 +83,14 @@ class dpxyDriver_Download extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = (int) $A['cid'];
 			$entry['pid']       = (int) $A['pid'];
 			$entry['title']     = stripslashes($A['title']);
 			$entry['uri']       = $_CONF['site_url'] . '/download/index.php?cid='
 								. $entry['id'];
-			$entry['date']      = FALSE;
+			$entry['date']      = false;
 			$entry['image_uri'] = $A['imgurl'];
 			$entries[] = $entry;
 		}
@@ -108,7 +108,7 @@ class dpxyDriver_Download extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -118,7 +118,7 @@ class dpxyDriver_Download extends dpxyDriver
 			 . "  FROM {$_TABLES['download_filedetail']} AS f "
 			 . "  LEFT JOIN {$_TABLES['download_category']} AS c "
 			 . "    ON f.cid = c.cid "
-			 . "WHERE (lid = '" . addslashes($id) . "') "
+			 . "WHERE (lid = '" . $this->escapeString($id) . "') "
 			 . "  AND (is_released = 1) "
 			 . "  AND (date <= UNIX_TIMESTAMP(NOW())) ";
 		
@@ -133,7 +133,7 @@ class dpxyDriver_Download extends dpxyDriver
 		}
 		
 		if (DB_numRows($result) == 1) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			
 			$retval['id']        = $id;
@@ -144,7 +144,7 @@ class dpxyDriver_Download extends dpxyDriver
 			$retval['image_uri'] = $A['logourl'];
 			
 			if (empty($retval['image_uri'])) {
-				$retval['image_uri'] = FALSE;
+				$retval['image_uri'] = false;
 			}
 			
 			$retval['raw_data']  = $A;
@@ -162,7 +162,7 @@ class dpxyDriver_Download extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($cid, $all_langs = FALSE)
+	public function getItems($cid, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -172,7 +172,7 @@ class dpxyDriver_Download extends dpxyDriver
 			 . "  FROM {$_TABLES['download_filedetail']} AS f "
 			 . "  LEFT JOIN {$_TABLES['download_category']} AS c "
 			 . "    ON f.cid = c.cid "
-			 . "WHERE (f.cid = '" . addslashes($cid) . "') "
+			 . "WHERE (f.cid = '" . $this->escapeString($cid) . "') "
 			 . "  AND (is_released = 1) "
 			 . "  AND (date <= UNIX_TIMESTAMP(NOW())) ";
 		
@@ -186,12 +186,11 @@ class dpxyDriver_Download extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['lid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = $_CONF['site_url'] . '/download/index.php?id='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/download/index.php?id=' . $entry['id'];
 			$entry['date']      = (int) $A['date'];
 			$entry['image_uri'] = $A['logourl'];
 			$entries[] = $entry;
@@ -209,13 +208,13 @@ class dpxyDriver_Download extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	function getItemsByDate($cid = '', $all_langs = FALSE)
+	function getItemsByDate($cid = '', $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -229,7 +228,7 @@ class dpxyDriver_Download extends dpxyDriver
 			 . "' AND '" . Dataproxy::$endDate . "') ";
 		
 		if (!empty($cid)) {
-			$sql .= "AND (f.cid = '" . addslashes($cid) . "') ";
+			$sql .= "AND (f.cid = '" . $this->escapeString($cid) . "') ";
 		}
 		
 		if (!Dataproxy::isRoot()) {
@@ -242,12 +241,11 @@ class dpxyDriver_Download extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['lid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = $_CONF['site_url'] . '/download/index.php?id='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/download/index.php?id=' . $entry['id'];
 			$entry['date']      = (int) $A['date'];
 			$entry['image_uri'] = $A['logourl'];
 			$entries[] = $entry;

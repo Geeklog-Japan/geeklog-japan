@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/config.php                                      |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,21 +31,18 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'config.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
 global $_DB_table_prefix, $_TABLES, $_DPXY_CONF;
 
-// Sets plugin table prefix the same as Geeklog's
-$_DPXY_table_prefix = $_DB_table_prefix;
-
 // Adds to $_TABLES array the tables your plugin uses
-$_TABLES['dpxy_notify'] = $_DPXY_table_prefix . 'dpxy_notify';
+$_TABLES['dpxy_notify'] = $_DB_table_prefix . 'dpxy_notify';
 
 $_DPXY_CONF = array();
 
 // Plugin info
-$_DPXY_CONF['pi_version'] = '2.0.1';					// Plugin Version
+$_DPXY_CONF['pi_version'] = '2.1.0';					// Plugin Version
 $_DPXY_CONF['gl_version'] = '1.6.0';					// GL Version plugin for
-$_DPXY_CONF['pi_url']     = 'http://mystral-kk.net/';	// Plugin Homepage
+$_DPXY_CONF['pi_url']     = 'https://mystral-kk.net/';	// Plugin Homepage

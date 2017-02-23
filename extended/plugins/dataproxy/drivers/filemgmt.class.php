@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/filemgmt.class.php                      |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'filemgmt.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -58,19 +58,19 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	*  )
 	*/
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES, $_FM_TABLES;
 		
 		$entries = array();
 		
-		if ($pid === FALSE) {
+		if ($pid === false) {
 			$pid = 0;
 		}
 		
 		$sql = "SELECT * "
 			 . "  FROM {$_FM_TABLES['filemgmt_cat']} "
-			 . "WHERE (pid = '" . addslashes($pid) . "') ";
+			 . "WHERE (pid = '" . $this->escapeString($pid) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$current_groups = SEC_getUserGroups(Dataproxy::uid());
@@ -84,14 +84,13 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = (int) $A['cid'];
 			$entry['pid']       = (int) $A['pid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = $_CONF['site_url'] . '/filemgmt/viewcat.php?cid='
-								. $entry['id'];
-			$entry['date']      = FALSE;
+			$entry['uri']       = $_CONF['site_url'] . '/filemgmt/viewcat.php?cid=' . $entry['id'];
+			$entry['date']      = false;
 			$entry['image_uri'] = $A['imgurl'];
 			$entries[] = $entry;
 		}
@@ -109,7 +108,7 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES, $_FM_TABLES;
 		
@@ -119,7 +118,7 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 			 . "  FROM {$_FM_TABLES['filemgmt_filedetail']} AS f "
 			 . "  LEFT JOIN {$_FM_TABLES['filemgmt_cat']} AS c "
 			 . "    ON f.cid = c.cid "
-			 . "WHERE (f.lid = '" . addslashes($id) . "') ";
+			 . "WHERE (f.lid = '" . $this->escapeString($id) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= "AND (c.grp_access IN ("
@@ -133,17 +132,16 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 		}
 		
 		if (DB_numRows($result) == 1) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			$retval['id']        = $id;
 			$retval['title']     = $A['title'];
-			$retval['uri']       = $_CONF['site_url']
-				. '/filemgmt/index.php?id=' . $id;
+			$retval['uri']       = $_CONF['site_url'] . '/filemgmt/index.php?id=' . $id;
 			$retval['date']      = (int) $A['date'];
 			$retval['image_uri'] = $A['logourl'];
 			
 			if (empty($retval['image_uri'])) {
-				$retval['image_uri'] = FALSE;
+				$retval['image_uri'] = false;
 			}
 			
 			$retval['raw_data']  = $A;
@@ -161,7 +159,7 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($cid, $all_langs = FALSE)
+	public function getItems($cid, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES, $_FM_TABLES;
 		
@@ -171,7 +169,7 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 			 . "  FROM {$_FM_TABLES['filemgmt_filedetail']} AS f "
 			 . "  LEFT JOIN {$_FM_TABLES['filemgmt_cat']} AS c "
 			 . "    ON f.cid = c.cid "
-			 . "WHERE (f.cid = '" . addslashes($cid) . "') ";
+			 . "WHERE (f.cid = '" . $this->escapeString($cid) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= "AND (c.grp_access IN ("
@@ -184,14 +182,13 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['lid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = $_CONF['site_url'] . '/filemgmt/index.php?id='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/filemgmt/index.php?id=' . $entry['id'];
 			$entry['date']      = $A['date'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		
@@ -207,13 +204,13 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($cid = '', $all_langs = FALSE)
+	public function getItemsByDate($cid = '', $all_langs = false)
 	{
 	    global $_CONF, $_TABLES, $_FM_TABLES;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -225,7 +222,7 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 			 . "' AND '" . Dataproxy::$endDate . "') ";
 		
 		if (!empty($cid)) {
-			$sql .= "AND (f.cid = '" . addslashes($cid) . "') ";
+			$sql .= "AND (f.cid = '" . $this->escapeString($cid) . "') ";
 		}
 		
 		if (!Dataproxy::isRoot()) {
@@ -239,14 +236,13 @@ class dpxyDriver_Filemgmt extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['lid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = $_CONF['site_url'] . '/filemgmt/index.php?id='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/filemgmt/index.php?id=' . $entry['id'];
 			$entry['date']      = $A['date'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		

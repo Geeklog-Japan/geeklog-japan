@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/dataproxy.php                                   |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'dataproxy.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
@@ -56,7 +56,7 @@ abstract class dpxyDriver
 	/**
 	* Returns the location of index.php of each plugin
 	*
-	* @return  mixed  uri(string) / FALSE(no entry)
+	* @return  mixed  uri(string) / false(no entry)
 	*/
 	abstract public function getEntryPoint();
 	
@@ -64,8 +64,8 @@ abstract class dpxyDriver
 	* Returns meta data of child categories
 	*
 	* @param  mixed    $pid        id (int/string) of the parent category.
-	*                              FALSE means the top category (with no parent).
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	*                              false means the top category (with no parent).
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	* @return array(
 	*   'id'        => $id (string),
 	*   'pid'       => $pid (string: id of its parent)
@@ -75,14 +75,14 @@ abstract class dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	abstract public function getChildCategories($pid = FALSE, $all_langs = FALSE);
+	abstract public function getChildCategories($pid = false, $all_langs = false);
 	
 	/**
 	* Returns meta data of child categories recursively
 	*
 	* @param  mixed    $pid        id (int/string) of the parent category.
-	*                              FALSE means the top category (with no parent).
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	*                              false means the top category (with no parent).
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	* @return array(
 	*   'id'        => $id (string),
 	*   'pid'       => $pid (string: id of its parent)
@@ -92,12 +92,12 @@ abstract class dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	protected function _getChildCategoriesRecursive($pid = FALSE, $all_langs = FALSE)
+	protected function _getChildCategoriesRecursive($pid = false, $all_langs = false)
 	{
 		$retval = array();
 		$entries = $this->getChildCategories($pid, $all_langs);
 		
-		if (is_array($entries) AND (count($entries) > 0)) {
+		if (is_array($entries) && (count($entries) > 0)) {
 			foreach ($entries as $entry) {
 				$retval[] = $entry;
 				$retval = array_merge(
@@ -110,7 +110,7 @@ abstract class dpxyDriver
 	}
 	
 	/**
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	* @return array(
 	*   'id'        => $id (string),
 	*   'pid'       => $pid (string: id of its parent)
@@ -120,24 +120,24 @@ abstract class dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getAllCategories($all_langs = FALSE)
+	public function getAllCategories($all_langs = false)
 	{
-		return $this->_getChildCategoriesRecursive(FALSE, $all_langs);
+		return $this->_getChildCategoriesRecursive(false, $all_langs);
 	}
 	
 	/**
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	*/
-	public function getAllCategoriesAsLinks($all_langs = FALSE)
+	public function getAllCategoriesAsLinks($all_langs = false)
 	{
 		$retval = array();
 		$entries = $this->getAllCategories($all_langs);
 		
-		if (is_array($entries) AND (count($entries) > 0)) {
+		if (is_array($entries) && (count($entries) > 0)) {
 			foreach ($entries as $entry) {
 				$link = '';
 				
-				if ($entry['date'] !== FALSE) {
+				if ($entry['date'] !== false) {
 					$link .= date($this->date_format, $entry['date']);
 				}
 				
@@ -153,7 +153,7 @@ abstract class dpxyDriver
 	/**
 	* Returns the info of the corresponding item
 	*
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	* @return array of (
 	*   'id'        => $id (string),
 	*   'title'     => $title (string),
@@ -163,12 +163,12 @@ abstract class dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	*)
 	*/
-	abstract public function getItemById($id, $all_langs = FALSE);
+	abstract public function getItemById($id, $all_langs = false);
 	
 	/**
 	* Returns meta data of items under a given category
 	*
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	* @return array of (
 	*   'id'        => $id (string),
 	*   'title'     => $title (string),
@@ -177,12 +177,12 @@ abstract class dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	*)
 	*/
-	abstract public function getItems($category, $all_langs = FALSE);
+	abstract public function getItems($category, $all_langs = false);
 	
 	/**
 	* Returns meta data of items under a given date
 	*
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	* @return array of (
 	*   'id'        => $id (string),
 	*   'title'     => $title (string),
@@ -191,24 +191,24 @@ abstract class dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	*)
 	*/
-	public function getItemsByDate($category = '', $all_langs = FALSE)
+	public function getItemsByDate($category = '', $all_langs = false)
 	{
 		return array();
 	}
 	
 	/**
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	*/
-	public function getItemsAsLinks($category = '', $all_langs = FALSE)
+	public function getItemsAsLinks($category = '', $all_langs = false)
 	{
 		$retval  = array();
 		$entries = $this->getItems($category, $all_langs);
 		
-		if (is_array($entries) AND (count($entries) > 0)) {
+		if (is_array($entries) && (count($entries) > 0)) {
 			foreach ($entries as $entry) {
 				$link = '';
 				
-				if ($entry['date'] !== FALSE) {
+				if ($entry['date'] !== false) {
 					$link .= date($this->_options['date_format'], $entry['date']);
 				}
 				
@@ -222,14 +222,14 @@ abstract class dpxyDriver
 	}
 	
 	/**
-	* @param  boolean  $all_langs  TRUE = all languages, FALSE = current language
+	* @param  boolean  $all_langs  true = all languages, false = current language
 	*/
-	public function getAllItems($all_langs = FALSE)
+	public function getAllItems($all_langs = false)
 	{
-		$retval = $this->getItems(FALSE, $all_langs);
+		$retval = $this->getItems(false, $all_langs);
 		$cats   = $this->getAllCategories($all_langs);
 		
-		if (is_array($cats) AND (count($cats > 0))) {
+		if (is_array($cats) && (count($cats > 0))) {
 			foreach ($cats as $cat) {
 				$retval = array_merge($retval, $this->getItems($cat['id'], $all_langs));
 			}
@@ -259,7 +259,7 @@ abstract class dpxyDriver
 				$str = mb_convert_encoding($str, 'utf-8', Dataproxy::encoding());
 			} else if (is_callable('iconv')) {
 				$str = iconv(Dataproxy::encoding(), 'utf-8', $str);
-			} else if ((strcasecmp(Dataproxy::encoding(), 'iso-8859-1') === 0) AND
+			} else if ((strcasecmp(Dataproxy::encoding(), 'iso-8859-1') === 0) &&
 					    is_callable('utf8_encode')) {
 				$str = utf8_encode($str);
 			} else {
@@ -270,6 +270,28 @@ abstract class dpxyDriver
 		return $str;
 	}
 	
+	/**
+	* Call back function for cleanUrl method
+	*
+	* @param  array $matches
+	* @return string
+	*/
+	public function cleanUrlCallBack($matches)
+	{
+		return chr(hexdec($matches[1]));
+	}
+	
+	/**
+	* Another call back function for cleanUrl method
+	*
+	* @param  array $matches
+	* @return string
+	*/
+	public function cleanUrlCallBack2($matches)
+	{
+		return chr($matches[1]);
+	}
+
 	/**
 	* Cleans a URL
 	*
@@ -284,13 +306,13 @@ abstract class dpxyDriver
 		*/
 		
 		// %dd --> chr(0xdd)
-		$url = preg_replace('/%([\dA-F]{2})/ie', "chr(hexdec('\\1'))", $url);
+		$url = preg_replace_callback('/%([\dA-F]{2})/i', array($this, 'cleanUrlCallBack'), $url);
 		
 		// \xdd --> chr(0xdd)
-		$url = preg_replace('/\\\\x([\dA-F]{2})/ie', "chr(hexdec('\\1'))", $url);
+		$url = preg_replace_callback('/\\\\x([\dA-F]{2})/i', array($this, 'cleanUrlCallBack'), $url);
 		
 		// \udddd --> chr(0xdddd)
-		$url = preg_replace('/\\\\u([\dA-F]{4})/ie', "chr(hexdec('\\1'))", $url);
+		$url = preg_replace_callback('/\\\\u([\dA-F]{4})/i', array($this, 'cleanUrlCallBack'), $url);
 		
 		// &[lL][tT](;) --> &
 		$search  = array('/&lt;?/i', '/&gt;?/i', '/&quot;?/i', '/&raquo;?/i');
@@ -298,10 +320,10 @@ abstract class dpxyDriver
 		$url = preg_replace($search, $replace, $url);
 		
 		// &#\d{1,7}(;) --> d
-		$url = preg_replace('/&#(\d{1,7});?/e', "chr('\\1')", $url);
+		$url = preg_replace_callback('/&#(\d{1,7});?/', array($this, 'cleanUrlCallBack2'), $url);
 		
 		// &#x[0-9a-fA-F]{1,7}(;) --> d
-		$url = preg_replace('/&#x([\dA-F]{1,7});?/ie', "chr(hexdec('\\1'))", $url);
+		$url = preg_replace_callback('/&#x([\dA-F]{1,7});?/i', array($this, 'cleanUrlCallBack'), $url);
 		
 		/**
 		* Starts cleaning
@@ -331,6 +353,11 @@ abstract class dpxyDriver
 		
 		return $url;
 	}
+	
+	public function escapeString($str)
+	{
+		return is_callable('DB_escapeString') ? DB_escapeString($str) : addslashes($str);
+	}
 }
 
 /**
@@ -342,11 +369,11 @@ class Dataproxy
 	static private $_encoding = 'utf-8';
 	static private $_options  = array();
 	
-	static public $startDate  = NULL;
-	static public $endDate    = NULL;
-	static public $isGL150    = TRUE;
-	static public $isGL170    = TRUE;
-	static public $isGL200    = TRUE;
+	static public $startDate  = null;
+	static public $endDate    = null;
+	static public $isGL150    = true;
+	static public $isGL170    = true;
+	static public $isGL200    = true;
 	
 	/**
 	* Dataproxy drivers are loaded in the following order
@@ -403,13 +430,13 @@ class Dataproxy
 		foreach (self::$_supported_drivers as $driver) {
 			$file = $driver;
 			
-			if (($file === 'article') AND self::$isGL200) {
+			if (($file === 'article') && self::$isGL200) {
 				$file = 'article2';
 			}
 			
 			$path = $base_path . DIRECTORY_SEPARATOR . $file . '.class.php';
 			
-			if (is_file($path) AND in_array($driver, $enabled_plugins)) {
+			if (is_file($path) && in_array($driver, $enabled_plugins)) {
 				require_once $path;
 				$class_name = 'dpxyDriver_' . ucfirst($driver);
 				self::$_loaded_drivers[$driver] = new $class_name(self::$_options);
@@ -426,9 +453,9 @@ class Dataproxy
 	*/
 	static public function getInstance($uid = 1, $encoding = 'utf-8', $options = array())
 	{
-		static $instance = NULL;
+		static $instance = null;
 		
-		if ($instance === NULL) {
+		if ($instance === null) {
 			$instance = new self($uid, $encoding, $options);
 		}
 		
@@ -474,51 +501,27 @@ class Dataproxy
 		return (self::$_uid === 1);
 	}
 	
-	/**
-	* Checks if a given string is a validate date expression
-	*
-	* @param   string   &$date  a string to be checked
-	* @return  boolean          true = valid, false = otherwise
-	*/
-	private function _checkDate(&$date)
-	{
-		$retval = false;
-		$date = trim($date);
-		
-		if (strlen($date) === 8) {	// Maybe without delimiters
-			$date = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-'
-				  . substr($date, 6, 2);
-		}
-		
-		if (strlen($date) > 4) {
-			$delim = substr($date, 4, 1);
-			$parts = explode($delim, $date, 3);
-			
-			if (count($parts) === 3) {
-				$retval = checkdate($parts[1], $parts[2], $parts[0]);
-				
-				if ($retval) {
-					$date = sprintf('%4d-%02d-%02d', $parts[0], $parts[1], $parts[2]);
-				}
-			}
-		}
-		
-		return $retval;
-	}
-	
 	public function setDateStart($datestart = '')
 	{
-		if ($this->_checkDate($datestart)) {
-			$DS = explode('-', $datestart);
-			self::$startDate = mktime(0, 0, 0, $DS[1], $DS[2], $DS[0]);
+		if (!empty($datestart)) {
+			$delim = substr($datestart, 4, 1);
+			
+			if (!empty($delim)) {
+				$DS = explode($delim, $datestart);
+				self::$startDate = mktime(0, 0, 0, $DS[1], $DS[2], $DS[0]);
+			}
 		}
 	}
 	
 	public function setDateEnd($dateend = '')
 	{
-		if ($this->_checkDate($dateend)) {
-			$DE = explode('-', $dateend);
-			self::$endDate = mktime(23, 59, 59, $DE[1], $DE[2], $DE[0]);
+		if (!empty($dateend)) {
+			$delim = substr($dateend, 4, 1);
+			
+			if (!empty($delim)) {
+				$DE = explode($delim, $dateend);
+				self::$endDate = mktime(23, 59, 59, $DE[1], $DE[2], $DE[0]);
+			}
 		}
 	}
 	

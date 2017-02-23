@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/article.class.php                       |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'article.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -40,20 +40,20 @@ class dpxyDriver_Article extends dpxyDriver
 	/**
 	* Returns the location of index.php of each plugin
 	*
-	* @return mixed uri(string) / FALSE(no entry)
+	* @return mixed uri(string) / false(no entry)
 	*/
 	public function getEntryPoint()
 	{
-		return FALSE;
+		return false;
 	}
 	
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$retval = array();
 		
-		if ($pid !== FALSE) {
+		if ($pid !== false) {
 			return $retval;
 		}
 		
@@ -82,8 +82,7 @@ class dpxyDriver_Article extends dpxyDriver
 		}
 
 		// Adds lang id.  When uid is 0, then it means access as Root
-		if (!Dataproxy::isRoot() AND function_exists('COM_getLangSQL') AND
-			$all_langs === FALSE) {
+		if (!Dataproxy::isRoot() && function_exists('COM_getLangSQL') && $all_langs === false) {
 			$temp = COM_getLangSQL('tid', '');
 			
 			if (!empty($temp)) {
@@ -107,12 +106,12 @@ class dpxyDriver_Article extends dpxyDriver
 			return $retval;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = stripslashes($A['tid']);
 			$entry['title']     = stripslashes($A['topic']);
 			$entry['uri']       = $_CONF['site_url'] . '/index.php?topic=' . $entry['id'];
-			$entry['date']      = FALSE;
+			$entry['date']      = false;
 			$entry['image_uri'] = stripslashes($A['imageurl']);
 			$retval[] = $entry;
 		}
@@ -121,7 +120,7 @@ class dpxyDriver_Article extends dpxyDriver
 	}
 	
 	/**
-	* @param $all_langs boolean: TRUE = all languages, TRUE = current language
+	* @param $all_langs boolean: true = all languages, true = current language
 	* Returns array of (
 	*   'id'        => $id (string),
 	*   'title'     => $title (string),
@@ -131,7 +130,7 @@ class dpxyDriver_Article extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
@@ -139,14 +138,14 @@ class dpxyDriver_Article extends dpxyDriver
 		
 		$sql = "SELECT * "
 			 . "FROM {$_TABLES['stories']} "
-			 . "WHERE (sid ='" . addslashes($id) . "') "
+			 . "WHERE (sid ='" . $this->escapeString($id) . "') "
 			 . "AND (draft_flag = 0) AND (date <= NOW()) ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getTopicSql('AND', Dataproxy::uid())
 				 .  COM_getPermSql('AND', Dataproxy::uid());
 			
-			if (function_exists('COM_getLangSQL') AND ($all_langs === FALSE)) {
+			if (function_exists('COM_getLangSQL') && ($all_langs === false)) {
 				$sql .= COM_getLangSQL('sid', 'AND');
 			}
 		}
@@ -158,16 +157,14 @@ class dpxyDriver_Article extends dpxyDriver
 		}
 		
 		if (DB_numRows($result) == 1) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			
 			$retval['id']        = $id;
 			$retval['title']     = $A['title'];
-			$retval['uri']       = COM_buildUrl(
-				$_CONF['site_url'] . '/article.php?story=' . $id
-			);
+			$retval['uri']       = COM_buildUrl($_CONF['site_url'] . '/article.php?story=' . $id);
 			$retval['date']      = strtotime($A['date']);
-			$retval['image_uri'] = FALSE;
+			$retval['image_uri'] = false;
 			$retval['raw_data']  = $A;
 		}
 		
@@ -183,20 +180,20 @@ class dpxyDriver_Article extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($tid, $all_langs = FALSE)
+	public function getItems($tid, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$retval = array();
 		$sql = "SELECT sid, title, UNIX_TIMESTAMP(date) AS day "
 			 . "FROM {$_TABLES['stories']} WHERE (draft_flag = 0) AND (date <= NOW()) "
-			 . "AND (tid = '" . addslashes($tid) . "') ";
+			 . "AND (tid = '" . $this->escapeString($tid) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getTopicSql('AND', Dataproxy::uid())
 			     .  COM_getPermSql('AND', Dataproxy::uid());
 			
-			if (function_exists('COM_getLangSQL') AND ($all_langs === FALSE)) {
+			if (function_exists('COM_getLangSQL') && ($all_langs === false)) {
 				$sql .= COM_getLangSQL('sid', 'AND');
 			}
 		}
@@ -210,16 +207,13 @@ class dpxyDriver_Article extends dpxyDriver
 		
 		$entries = array();
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']       = stripslashes($A['sid']);
 			$entry['title']    = stripslashes($A['title']);
-			$entry['uri']      = COM_buildUrl(
-				$_CONF['site_url'] . '/article.php?story='
-				 . stripslashes($A['sid'])
-			);
+			$entry['uri']      = COM_buildUrl($_CONF['site_url'] . '/article.php?story=' . stripslashes($A['sid']));
 			$entry['date']     = $A['day'];
-			$entry['imageurl'] = FALSE;
+			$entry['imageurl'] = false;
 			$retval[] = $entry;
 		}
 		
@@ -235,13 +229,13 @@ class dpxyDriver_Article extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($tid = '', $all_langs = FALSE)
+	public function getItemsByDate($tid = '', $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -252,14 +246,14 @@ class dpxyDriver_Article extends dpxyDriver
 			 . "' AND '" . Dataproxy::$endDate . "') ";
 		
 		if (!empty($tid)) {
-			$sql .= "AND (tid = '" . addslashes($tid) . "') ";
+			$sql .= "AND (tid = '" . $this->escapeString($tid) . "') ";
 		}
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getTopicSql('AND', Dataproxy::uid())
 				 .  COM_getPermSql('AND', Dataproxy::uid());
 			
-			if (function_exists('COM_getLangSQL') AND ($all_langs === FALSE)) {
+			if (function_exists('COM_getLangSQL') && ($all_langs === false)) {
 				$sql .= COM_getLangSQL('sid', 'AND');
 			}
 		}
@@ -270,16 +264,13 @@ class dpxyDriver_Article extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']       = stripslashes($A['sid']);
 			$entry['title']    = stripslashes($A['title']);
-			$entry['uri']      = COM_buildUrl(
-				$_CONF['site_url'] . '/article.php?story='
-				 . stripslashes($A['sid'])
-			);
+			$entry['uri']      = COM_buildUrl($_CONF['site_url'] . '/article.php?story=' . stripslashes($A['sid']));
 			$entry['date']     = $A['day'];
-			$entry['imageurl'] = FALSE;
+			$entry['imageurl'] = false;
 			$entries[] = $entry;
 		}
 		

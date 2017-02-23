@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/calendarjp.class.php                    |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2011 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'calendarjp.class.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -46,7 +46,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 		return $_CONF['site_url'] . '/calendarjp/index.php';
 	}
 	
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
@@ -97,7 +97,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 		$retval = array();
 		$sql = "SELECT * "
 			 . "FROM {$_TABLES['eventsjp']} "
-			 . "WHERE (eid = '" . addslashes($id) . "') ";
+			 . "WHERE (eid = '" . $this->escapeString($id) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getPermSql('AND', Dataproxy::uid());
@@ -114,8 +114,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 			$A = array_map('stripslashes', $A);
 			$retval['id']        = $id;
 			$retval['title']     = $A['title'];
-			$retval['uri']       = $_CONF['site_url']
-				. '/calendarjp/event.php?eid=' . $id;
+			$retval['uri']       = $_CONF['site_url'] . '/calendarjp/event.php?eid=' . $id;
 			$retval['date']      = strtotime($A['datestart']) + strtotime($A['timestart']);
 			$retval['image_uri'] = false;
 			$retval['raw_data']  = $A;
@@ -134,14 +133,14 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($category, $all_langs = false)
+	public function getItems($category = '', $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
 		$entries = array();
 		$sql = "SELECT eid, title, UNIX_TIMESTAMP(datestart) AS day1, UNIX_TIMESTAMP(timestart) AS day2 "
 			 . "FROM {$_TABLES['eventsjp']} "
-			 . "WHERE (event_type = '" . addslashes($category) . "') ";
+			 . "WHERE (event_type = '" . $this->escapeString($category) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getPermSql('AND', Dataproxy::uid());
@@ -159,8 +158,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 			
 			$entry['id']        = $A['eid'];
 			$entry['title']     = stripslashes( $A['title'] );
-			$entry['uri']       = $_CONF['site_url'] . '/calendarjp/event.php?eid='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/calendarjp/event.php?eid=' . $entry['id'];
 			$entry['date']      = (int) $A['day1'] + (int) $A['day2'];
 			$entry['image_uri'] = false;
 			
@@ -186,7 +184,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 		
 		$entries = array();
 
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -198,7 +196,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 			 . "') ";
 		
 		if (!empty($event_type)) {
-			$sql .= "AND (event_type = '" . addslashes($event_type) . "') ";
+			$sql .= "AND (event_type = '" . $this->escapeString($event_type) . "') ";
 		}
 		
 		if (!Dataproxy::isRoot()) {
@@ -212,14 +210,13 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['eid'];
 			$entry['title']     = stripslashes( $A['title'] );
-			$entry['uri']       = $_CONF['site_url'] . '/calendarjp/event.php?eid='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/calendarjp/event.php?eid=' . $entry['id'];
 			$entry['date']      = (int) $A['day1'] + (int) $A['day2'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		

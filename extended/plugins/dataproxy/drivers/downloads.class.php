@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/downloads.class.php                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'downloads.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -58,22 +58,22 @@ class dpxyDriver_Downloads extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	*  )
 	*/
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if ($pid === FALSE) {
+		if ($pid === false) {
 			$pid = 'root';
 		}
 		
 		$sql = "SELECT * "
 			 . "  FROM {$_TABLES['downloadcategories']} "
-			 . "WHERE (pid = '" . addslashes($pid) . "') "
+			 . "WHERE (pid = '" . $this->escapeString($pid) . "') "
 			 . "  AND (is_enabled = 1) ";
 		
-		if ($all_langs === FALSE) {
+		if ($all_langs === false) {
 			$sql .= COM_getLangSQL('cid', 'AND');
 		}
 		
@@ -88,14 +88,13 @@ class dpxyDriver_Downloads extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['cid'];
 			$entry['pid']       = $A['pid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = $_CONF['site_url'] . '/downloads/index.php?cid='
-								. $entry['id'];
-			$entry['date']      = FALSE;
+			$entry['uri']       = $_CONF['site_url'] . '/downloads/index.php?cid=' . $entry['id'];
+			$entry['date']      = false;
 			$entry['image_uri'] = $A['imgurl'];
 			$entries[] = $entry;
 		}
@@ -113,7 +112,7 @@ class dpxyDriver_Downloads extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -123,13 +122,13 @@ class dpxyDriver_Downloads extends dpxyDriver
 			 . "  FROM {$_TABLES['downloads']} AS f "
 			 . "  LEFT JOIN {$_TABLES['downloadcategories']} AS c "
 			 . "    ON f.cid = c.cid "
-			 . "WHERE (f.lid = '" . addslashes($id) . "') "
+			 . "WHERE (f.lid = '" . $this->escapeString($id) . "') "
 			 . "  AND (c.is_enabled = 1) "
 			 . "  AND (f.is_released = 1) "
 			 . "  AND (f.is_listing = 1) "
 			 . "  AND (f.date <= UNIX_TIMESTAMP(NOW())) ";
 		
-		if ($all_langs === FALSE) {
+		if ($all_langs === false) {
 			$sql .= COM_getLangSQL('cid', 'AND', 'c');
 		}
 		
@@ -144,17 +143,16 @@ class dpxyDriver_Downloads extends dpxyDriver
 		}
 		
 		if (DB_numRows($result) == 1) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			$retval['id']        = $id;
 			$retval['title']     = $A['title'];
-			$retval['uri']       = $_CONF['site_url'] . '/downloads/index.php?id='
-								 . $id;
+			$retval['uri']       = $_CONF['site_url'] . '/downloads/index.php?id=' . $id;
 			$retval['date']      = (int) $A['date'];
 			$retval['image_uri'] = $A['logourl'];
 			
 			if (empty($retval['image_uri'])) {
-				$retval['image_uri'] = FALSE;
+				$retval['image_uri'] = false;
 			}
 			
 			$retval['raw_data']  = $A;
@@ -172,7 +170,7 @@ class dpxyDriver_Downloads extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($cid, $all_langs = FALSE)
+	public function getItems($cid, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -182,13 +180,13 @@ class dpxyDriver_Downloads extends dpxyDriver
 			 . "  FROM {$_TABLES['downloads']} AS f "
 			 . "  LEFT JOIN {$_TABLES['downloadcategories']} AS c "
 			 . "    ON f.cid = c.cid "
-			 . "WHERE (f.cid = '" . addslashes($cid) . "') "
+			 . "WHERE (f.cid = '" . $this->escapeString($cid) . "') "
 			 . "  AND (c.is_enabled = 1) "
 			 . "  AND (f.is_released = 1) "
 			 . "  AND (f.is_listing = 1) "
 			 . "  AND (f.date <= UNIX_TIMESTAMP(NOW())) ";
 		
-		if ($all_langs === FALSE) {
+		if ($all_langs === false) {
 			$sql .= COM_getLangSQL('cid', 'AND', 'c');
 		}
 		
@@ -202,13 +200,11 @@ class dpxyDriver_Downloads extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['lid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = COM_buildUrl(
-				$_CONF['site_url'] . '/downloads/index.php?id=' . $entry['id']
-			);
+			$entry['uri']       = COM_buildUrl($_CONF['site_url'] . '/downloads/index.php?id=' . $entry['id']);
 			$entry['date']      = (int) $A['date'];
 			$entry['image_uri'] = $A['logourl'];
 			$entries[] = $entry;
@@ -226,13 +222,13 @@ class dpxyDriver_Downloads extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($cid = '', $all_langs = FALSE)
+	public function getItemsByDate($cid = '', $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -248,7 +244,7 @@ class dpxyDriver_Downloads extends dpxyDriver
 		
 		if (!empty($cid)) {
 			$sql .= "  AND (c.is_enabled = 1) "
-				 .  "  AND (f.cid = '" . addslashes($cid) . "') ";
+				 .  "  AND (f.cid = '" . $this->escapeString($cid) . "') ";
 			
 			if ($all_langs === FALSE) {
 				$sql .= COM_getLangSQL('cid', 'AND', 'c');
@@ -265,13 +261,11 @@ class dpxyDriver_Downloads extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['lid'];
 			$entry['title']     = stripslashes($A['title']);
-			$entry['uri']       = COM_buildUrl(
-				$_CONF['site_url'] . '/downloads/index.php?id=' . $entry['id']
-			);
+			$entry['uri']       = COM_buildUrl($_CONF['site_url'] . '/downloads/index.php?id=' . $entry['id']);
 			$entry['date']      = (int) $A['date'];
 			$entry['image_uri'] = $A['logourl'];
 			$entries[] = $entry;

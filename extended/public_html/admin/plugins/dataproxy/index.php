@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/dataproxy/index.php                             |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -39,12 +39,20 @@ require_once '../../../lib-common.php';
 if (!SEC_hasRights('dataproxy.admin')) {
     // Someone is trying to illegally access this page
     COM_errorLog( "Someone has tried to illegally access the dataproxy Admin page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1 );
-    $display = COM_siteHeader()
-			 . COM_startBlock(DPXY_str('access_denied'))
-			 . DPXY_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
-    echo $display;
+	$content = COM_startBlock(DPXY_str('access_denied')) . DPXY_str('access_denied_msg') . COM_endBlock();
+	
+	if (is_callable('COM_createHTMLDocument')) {
+		$display = COM_createHTMLDocument($content);
+	} else {
+	    $display = COM_siteHeader() . $content . COM_siteFooter();
+	}
+
+	if (is_callable('COM_output')) {
+		COM_output($display);
+	} else {
+		echo $display;
+	}
+	
     exit;
 }
  
@@ -55,21 +63,30 @@ if (!defined('XHTML')) {
 	define('XHTML', '');
 }
 
-$display = COM_siteHeader();
 $T = new Template($_CONF['path'] . 'plugins/dataproxy/templates');
 $T->set_file('admin', 'admin.thtml');
 $T->set_var('xhtml', XHTML);
 $T->set_var('site_url', $_CONF['site_url']);
 $T->set_var('site_admin_url', $_CONF['site_admin_url']);
- $T->set_var('icon_url', $_CONF['site_admin_url'] . '/plugins/dataproxy/images/dataproxy.gif');
+$T->set_var('icon_url', $_CONF['site_admin_url'] . '/plugins/dataproxy/images/dataproxy.gif');
 $T->set_var('header', DPXY_str('admin'));
 $T->set_var('plugin', 'dataproxy');
 
 // put your code here
 
 
-$T->parse('output', 'admin');
-$display .= $T->finish($T->get_var('output'))
-		 .  COM_siteFooter();
 
-echo $display;
+$T->parse('output', 'admin');
+$content = $T->finish($T->get_var('output'))
+
+if (is_callable('COM_createHTMLDocument')) {
+	$display = COM_createHTMLDocument($content);
+} else {
+    $display = COM_siteHeader() . $content . COM_siteFooter();
+}
+
+if (is_callable('COM_output')) {
+	COM_output($display);
+} else {
+	echo $display;
+}

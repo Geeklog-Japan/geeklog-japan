@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/calendar.class..php                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'calendar.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -47,13 +47,13 @@ class dpxyDriver_Calendar extends dpxyDriver
 		return $_CONF['site_url'] . '/calendar/index.php';
 	}
 	
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if ($pid !== FALSE) {
+		if ($pid !== false) {
 			return $entries;
 		}
 		
@@ -66,14 +66,14 @@ class dpxyDriver_Calendar extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = stripslashes($A['event_type']);
-			$entry['pid']       = FALSE;
+			$entry['pid']       = false;
 			$entry['title']     = $entry['id'];
-			$entry['uri']       = FALSE;
-			$entry['date']      = FALSE;
-			$entry['image_uri'] = FALSE;
+			$entry['uri']       = false;
+			$entry['date']      = false;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		
@@ -90,14 +90,14 @@ class dpxyDriver_Calendar extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
 		$retval = array();
 		$sql = "SELECT * "
 			 . "  FROM {$_TABLES['events']} "
-			 . "WHERE (eid = '" . addslashes($id) . "') ";
+			 . "WHERE (eid = '" . $this->escapeString($id) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getPermSql('AND', Dataproxy::uid());
@@ -110,14 +110,13 @@ class dpxyDriver_Calendar extends dpxyDriver
 		}
 		
 		if (DB_numRows($result == 1)) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			$retval['id']        = $id;
 			$retval['title']     = $A['title'];
-			$retval['uri']       = $_CONF['site_url']
-				. '/calendar/event.php?eid=' . $id;
+			$retval['uri']       = $_CONF['site_url'] . '/calendar/event.php?eid=' . $id;
 			$retval['date']      = strtotime($A['datestart']) + strtotime($A['timestart']);
-			$retval['image_uri'] = FALSE;
+			$retval['image_uri'] = false;
 			$retval['raw_data']  = $A;
 		}
 		
@@ -125,7 +124,7 @@ class dpxyDriver_Calendar extends dpxyDriver
 	}
 	
 	/**
-	* @param $all_langs boolean: TRUE = all languages, TRUE = current language
+	* @param $all_langs boolean: true = all languages, true = current language
 	* Returns an array of (
 	*   'id'        => $id (string),
 	*   'title'     => $title (string),
@@ -134,7 +133,7 @@ class dpxyDriver_Calendar extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($category, $all_langs = FALSE)
+	public function getItems($category = '', $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -142,7 +141,7 @@ class dpxyDriver_Calendar extends dpxyDriver
 		$sql = "SELECT eid, title, UNIX_TIMESTAMP(datestart) AS day1, "
 			 . "  UNIX_TIMESTAMP(timestart) AS day2 "
 			 . "  FROM {$_TABLES['events']} "
-			 . "WHERE (event_type = '" . addslashes($category) . "') ";
+			 . "WHERE (event_type = '" . $this->escapeString($category) . "') ";
 		
 		if (!Dataproxy::isRoot()) {
 			$sql .= COM_getPermSql('AND', Dataproxy::uid());
@@ -155,14 +154,13 @@ class dpxyDriver_Calendar extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['eid'];
 			$entry['title']     = stripslashes( $A['title'] );
-			$entry['uri']       = $_CONF['site_url'] . '/calendar/event.php?eid='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/calendar/event.php?eid=' . $entry['id'];
 			$entry['date']      = (int) $A['day1'] + (int) $A['day2'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		
@@ -170,7 +168,7 @@ class dpxyDriver_Calendar extends dpxyDriver
 	}
 	
 	/**
-	* @param $all_langs boolean: TRUE = all languages, TRUE = current language
+	* @param $all_langs boolean: true = all languages, true = current language
 	* Returns an array of (
 	*   'id'        => $id (string),
 	*   'title'     => $title (string),
@@ -179,13 +177,13 @@ class dpxyDriver_Calendar extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($event_type = '', $all_langs = FALSE)
+	public function getItemsByDate($event_type = '', $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
 		$entries = array();
 
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -197,7 +195,7 @@ class dpxyDriver_Calendar extends dpxyDriver
 			 . "') ";
 		
 		if (!empty($event_type)) {
-			$sql .= "AND (event_type = '" . addslashes($event_type) . "') ";
+			$sql .= "AND (event_type = '" . $this->escapeString($event_type) . "') ";
 		}
 		
 		if (!Dataproxy::isRoot()) {
@@ -211,14 +209,13 @@ class dpxyDriver_Calendar extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['eid'];
 			$entry['title']     = stripslashes( $A['title'] );
-			$entry['uri']       = $_CONF['site_url'] . '/calendar/event.php?eid='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/calendar/event.php?eid=' . $entry['id'];
 			$entry['date']      = (int) $A['day1'] + (int) $A['day2'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		

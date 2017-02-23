@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/forum.class.php                         |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'forum.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -47,13 +47,13 @@ class dpxyDriver_Forum extends dpxyDriver
 		return $_CONF['site_url'] . '/forum/index.php';
 	}
 	
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if ($pid !== FALSE) {
+		if ($pid !== false) {
 			return $entries;
 		}
 		
@@ -72,15 +72,14 @@ class dpxyDriver_Forum extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = (int) $A['forum_id'];
-			$entry['pid']       = FALSE;
+			$entry['pid']       = false;
 			$entry['title']     = stripslashes($A['forum_name']);
-			$entry['uri']       = $_CONF['site_url'] . '/forum/index.php?forum='
-								. $entry['id'];
-			$entry['date']      = FALSE;
-			$entry['image_uri'] = FALSE;
+			$entry['uri']       = $_CONF['site_url'] . '/forum/index.php?forum=' . $entry['id'];
+			$entry['date']      = false;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		
@@ -97,7 +96,7 @@ class dpxyDriver_Forum extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -105,7 +104,7 @@ class dpxyDriver_Forum extends dpxyDriver
 		
 		$sql = "SELECT * "
 			 . "  FROM {$_TABLES['gf_topic']} "
-		     . "WHERE (id = '" . addslashes($id) . "')";
+		     . "WHERE (id = '" . $this->escapeString($id) . "')";
 		$result = DB_query($sql);
 		
 		if (DB_error()) {
@@ -113,14 +112,13 @@ class dpxyDriver_Forum extends dpxyDriver
 		}
 		
 		if (DB_numRows($result) == 1) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			$retval['id']        = $id;
 			$retval['title']     = $A['subject'];
-			$retval['uri']       = $_CONF['site_url']
-				. '/forum/viewtopic.php?showtopic=' . $id;
+			$retval['uri']       = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic=' . $id;
 			$retval['date']      = (int) $A['date'];
-			$retval['image_uri'] = FALSE;
+			$retval['image_uri'] = false;
 			$retval['raw_data']  = $A;
 		}
 		
@@ -136,14 +134,14 @@ class dpxyDriver_Forum extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($forum_id, $all_langs = FALSE)
+	public function getItems($forum_id, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
 		$sql = "SELECT id, subject, date FROM {$_TABLES['gf_topic']} "
-		     . "  WHERE (pid = 0) AND (forum = '" . addslashes($forum_id) ."') "
+		     . "  WHERE (pid = 0) AND (forum = '" . $this->escapeString($forum_id) ."') "
 			 . "ORDER BY date DESC";
 		$result = DB_query($sql);
 		
@@ -151,14 +149,13 @@ class dpxyDriver_Forum extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['id'];
 			$entry['title']     = stripslashes($A['subject']);
-			$entry['uri']       = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic=' . $entry['id'];
 			$entry['date']      = $A['date'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		
@@ -174,19 +171,19 @@ class dpxyDriver_Forum extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($forum_id = '', $all_langs = FALSE)
+	public function getItemsByDate($forum_id = '', $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
 		$sql = "SELECT id, subject, date "
 			 . "  FROM {$_TABLES['gf_topic']} "
-		     . "WHERE (pid = 0) AND (forum = '" . addslashes($forum_id) ."') "
+		     . "WHERE (pid = 0) AND (forum = '" . $this->escapeString($forum_id) ."') "
 			 . "  AND (date BETWEEN '" . Dataproxy::$startDate
 			 . "' AND '" . Dataproxy::$endDate . "') "
 			 . "ORDER BY date DESC";
@@ -196,14 +193,13 @@ class dpxyDriver_Forum extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = $A['id'];
 			$entry['title']     = stripslashes($A['subject']);
-			$entry['uri']       = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic='
-								. $entry['id'];
+			$entry['uri']       = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic=' . $entry['id'];
 			$entry['date']      = $A['date'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		

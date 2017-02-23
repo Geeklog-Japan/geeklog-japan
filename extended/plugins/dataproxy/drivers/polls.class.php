@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/polls.class.php                         |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'polls.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -57,7 +57,7 @@ class dpxyDriver_Polls extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -66,7 +66,7 @@ class dpxyDriver_Polls extends dpxyDriver
 		if (Dataproxy::$isGL150) {
 			$sql = "SELECT * "
 				 . "  FROM {$_TABLES['polltopics']} "
-				 . "WHERE (pid = '" . addslashes($id) . "') ";
+				 . "WHERE (pid = '" . $this->escapeString($id) . "') ";
 			
 			if (!Dataproxy::isRoot()) {
 				$sql .= COM_getPermSQL('AND', Dataproxy::uid());
@@ -84,18 +84,18 @@ class dpxyDriver_Polls extends dpxyDriver
 				
 				$retva['id']         = $id;
 				$retval['title']     = $A['topic'];
-				$retval['uri']       = $_CONF['site_url']
-									 . '/polls/index.php?pid=' . urlencode($id);
+				$retval['uri']       = $_CONF['site_url'] . '/polls/index.php?pid=' . urlencode($id);
 				$retval['date']      = Dataproxy::$isGL170
 									 ? strtotime($A['modified'])
 									 : strtotime($A['date']);
-				$retval['image_uri'] = FALSE;
+				$retval['image_uri'] = false;
+				
 				$retval['raw_data']  = $A;
 			}
 		} else {
 			$sql = "SELECT * "
 				 . "  FROM {$_TABLES['pollquestions']} "
-				 . "WHERE (qid = '" . addslashes($id) . "') ";
+				 . "WHERE (qid = '" . $this->escapeString($id) . "') ";
 			
 			if (!Dataproxy::isRoot()) {
 				$sql .= COM_getPermSQL('AND', Dataproxy::uid());
@@ -108,16 +108,16 @@ class dpxyDriver_Polls extends dpxyDriver
 			}
 			
 			if (DB_numRows($result) == 1) {
-				$A = DB_fetchArray($result, FALSE);
+				$A = DB_fetchArray($result, false);
 				$A = array_map('stripslashes', $A);
 				
 				$retva['id']         = $id;
 				$retval['title']     = $A['question'];
-				$retval['uri']       = $_CONF['site_url']
-									 . '/polls/index.php?qid=' . urlencode($id)
+				$retval['uri']       = $_CONF['site_url'] . '/polls/index.php?qid=' . urlencode($id)
 									 . '&amp;aid=-1';
 				$retval['date']      = strtotime($A['date']);
-				$retval['image_uri'] = FALSE;
+				$retval['image_uri'] = false;
+				
 				$retval['raw_data']  = $A;
 			}
 		}
@@ -128,7 +128,7 @@ class dpxyDriver_Polls extends dpxyDriver
 	/**
 	* Returns meta data of child categories
 	*
-	* @param $pid       int/string/boolean: id of the parent category.  FALSE
+	* @param $pid       int/string/boolean: id of the parent category.  false
 	*                   means the top category (with no parent)
 	* @param $all_langs boolean: TRUE = all languages, FALSE = current language
 	* @return array(
@@ -140,7 +140,7 @@ class dpxyDriver_Polls extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = FALSE, $all_langs = false)
 	{
 		return array();
 	}
@@ -154,7 +154,7 @@ class dpxyDriver_Polls extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($category, $all_langs = FALSE)
+	public function getItems($category, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
@@ -180,14 +180,13 @@ class dpxyDriver_Polls extends dpxyDriver
 				return $entries;
 			}
 			
-			while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+			while (($A = DB_fetchArray($result, false)) !== false) {
 				$entry = array();
 				$entry['id']        = $A['pid'];
 				$entry['title']     = stripslashes($A['topic']);
-				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?pid='
-									. urlencode($entry['id']);
+				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?pid=' . urlencode($entry['id']);
 				$entry['date']      = $A['day'];
-				$entry['image_uri'] = FALSE;
+				$entry['image_uri'] = false;
 				$entries[] = $entry;
 			}
 		} else {
@@ -205,14 +204,13 @@ class dpxyDriver_Polls extends dpxyDriver
 				return $entries;
 			}
 		
-			while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+			while (($A = DB_fetchArray($result, false)) !== false) {
 				$entry = array();
 				$entry['id']        = $A['qid'];
 				$entry['title']     = stripslashes($A['question']);
-				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?qid='
-									. urlencode($entry['id']) . '&amp;aid=-1';
+				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?qid=' . urlencode($entry['id']) . '&amp;aid=-1';
 				$entry['date']      = $A['day'];
-				$entry['image_uri'] = FALSE;
+				$entry['image_uri'] = false;
 				$entries[] = $entry;
 			}
 		}
@@ -229,13 +227,13 @@ class dpxyDriver_Polls extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($category = '', $all_langs = FALSE)
+	public function getItemsByDate($category = '', $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -267,14 +265,13 @@ class dpxyDriver_Polls extends dpxyDriver
 				return $entries;
 			}
 			
-			while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+			while (($A = DB_fetchArray($result, false)) !== false) {
 				$entry = array();
 				$entry['id']        = $A['pid'];
 				$entry['title']     = stripslashes($A['topic']);
-				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?pid='
-									. urlencode($entry['id']);
+				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?pid=' . urlencode($entry['id']);
 				$entry['date']      = $A['day'];
-				$entry['image_uri'] = FALSE;
+				$entry['image_uri'] = false;
 				$entries[] = $entry;
 			}
 		} else {
@@ -293,14 +290,13 @@ class dpxyDriver_Polls extends dpxyDriver
 				return $entries;
 			}
 			
-			while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+			while (($A = DB_fetchArray($result, false)) !== false) {
 				$entry = array();
 				$entry['id']        = $A['qid'];
 				$entry['title']     = stripslashes($A['question']);
-				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?qid='
-									. urlencode($entry['id']) . '&amp;aid=-1';
+				$entry['uri']       = $_CONF['site_url'] . '/polls/index.php?qid=' . urlencode($entry['id']) . '&amp;aid=-1';
 				$entry['date']      = $A['day'];
-				$entry['image_uri'] = FALSE;
+				$entry['image_uri'] = false;
 				$entries[] = $entry;
 			}
 		}

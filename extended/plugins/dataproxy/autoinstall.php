@@ -1,6 +1,5 @@
 <?php
 
-/* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
 // | Data Proxy Plugin for Geeklog - The Ultimate Weblog                       |
 // +---------------------------------------------------------------------------+
@@ -8,7 +7,7 @@
 // |                                                                           |
 // | This file provides helper functions for the automatic plugin install.     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2016 by the following authors:                         |
+// | Copyright (C) 2009-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Hiroron           - hiroron AT hiroron DOT com                   |
 // |          mystral-kk        - geeklog AT mystral-kk DOT net                |
@@ -36,7 +35,7 @@
 * @package DataProxy
 */
 
-require_once dirname(__FILE__) . '/config.php';
+require_once __DIR__ . '/config.php';
 
 /**
 * Plugin autoinstall function
@@ -64,54 +63,52 @@ function plugin_autoinstall_dataproxy($pi_name) {
     );
 
     $features = array(
-        $pi_name . '.admin'      => $pi_admin
+        $pi_name . '.admin' => $pi_admin
     );
 
     $mappings = array(
-        $pi_name . '.admin'      => array($pi_admin)
+        $pi_name . '.admin' => array($pi_admin)
     );
 
     $tables = array(
         'dpxy_notify'
     );
 
-    $inst_parms = array(
+    return array(
         'info'      => $info,
         'groups'    => $groups,
         'features'  => $features,
         'mappings'  => $mappings,
         'tables'    => $tables
     );
-
-    return $inst_parms;
 }
 
 /**
 * Check if the plugin is compatible with this Geeklog version
 *
 * @param    string   $pi_name    Plugin name
-* @return   boolean              TRUE: plugin compatible; FALSE: not compatible
+* @return   boolean              true: plugin compatible; false: not compatible
 */
 function plugin_compatible_with_this_version_dataproxy($pi_name) {
     global $_CONF, $_DB_dbms;
 
     if (!function_exists('SEC_getGroupDropdown')) {
-        return FALSE;
+        return false;
     }
 
     if (!function_exists('SEC_createToken')) {
-        return FALSE;
+        return false;
     }
 
     if (!function_exists('COM_showMessageText')) {
-        return FALSE;
+        return false;
     }
 
     if (!function_exists('COM_setLangIdAndAttribute')) {
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 /**
@@ -120,7 +117,7 @@ function plugin_compatible_with_this_version_dataproxy($pi_name) {
 * We're inserting our default data here since it depends on other stuff that
 * has to happen first ...
 *
-* @return   boolean     TRUE = proceed with install, FALSE = an error occured
+* @return   boolean     true = proceed with install, false = an error occured
 */
 function plugin_postinstall_dataproxy($pi_name) {
     global $_TABLES;
@@ -135,9 +132,9 @@ function plugin_postinstall_dataproxy($pi_name) {
 
     $DP_SQL = array();
     $DP_SQL[] = "CREATE TABLE {$_TABLES['dpxy_notify']} ("
-              . "id int(10) NOT NULL AUTO_INCREMENT,"
-              . "callback_name VARCHAR(30) NOT NULL DEFAULT '',"
-              . "type VARCHAR(255) NOT NULL DEFAULT '',"
+              . "id int(10) NOT null AUTO_INCREMENT,"
+              . "callback_name VARCHAR(30) NOT null DEFAULT '',"
+              . "type VARCHAR(255) NOT null DEFAULT '',"
               . "KEY id(id)"
               . ")";
 
@@ -149,9 +146,9 @@ function plugin_postinstall_dataproxy($pi_name) {
 		
         if (DB_error()) {
             COM_errorLog("SQL error in DataProxy plugin postinstall, SQL: " . $sql);
-            return FALSE;
+            return false;
         }
     }
 
-    return TRUE;
+    return true;
 }

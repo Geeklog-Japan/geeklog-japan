@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/drivers/staticpages.class.php                   |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,13 +31,13 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'staticpages.class.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
 class dpxyDriver_Staticpages extends dpxyDriver
 {
-	private $_isSP162 = FALSE;	// Whether Staticpages-1.6.2 or later
+	private $_isSP162 = false;	// Whether Staticpages-1.6.2 or later
 	
 	/**
 	* Constructor
@@ -59,11 +59,11 @@ class dpxyDriver_Staticpages extends dpxyDriver
 	/**
 	* Returns the location of index.php of each plugin
 	*
-	* @return mixed uri(string) / FALSE(no entry)
+	* @return mixed uri (string) / false (no entry)
 	*/
 	public function getEntryPoint()
 	{
-		return FALSE;
+		return false;
 	}
 	
 	/**
@@ -76,7 +76,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 	*   'raw_data'  => raw data of the item (stripslashed)
 	* )
 	*/
-	public function getItemById($id, $all_langs = FALSE)
+	public function getItemById($id, $all_langs = false)
 	{
 	    global $_CONF, $_TABLES;
 		
@@ -84,7 +84,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 		
 		$sql = "SELECT * "
 			 . "FROM {$_TABLES['staticpage']} "
-			 . "WHERE (sp_id = '" . addslashes($id) . "') ";
+			 . "WHERE (sp_id = '" . $this->escapeString($id) . "') ";
 		
 		if ($this->_isSP162) {
 			$sql .= "AND (draft_flag = 0) ";
@@ -101,7 +101,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 		}
 		
 		if (DB_numRows($result) == 1) {
-			$A = DB_fetchArray($result, FALSE);
+			$A = DB_fetchArray($result, false);
 			$A = array_map('stripslashes', $A);
 			
 			$retval['id']        = $id;
@@ -114,7 +114,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 			$retval['date'] = Dataproxy::$isGL170
 							? strtotime($A['modified'])
 							: strtotime($A['sp_date']);
-			$retval['image_uri'] = FALSE;
+			$retval['image_uri'] = false;
 			$retval['raw_data']  = $A;
 		}
 		
@@ -126,7 +126,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 	*
 	* @note MUST BE OVERRIDDEN IN CHILD CLASSES
 	*
-	* @param $pid       int/string/boolean: id of the parent category.  FALSE
+	* @param $pid       int/string/boolean: id of the parent category.  false
 	*                   means the top category (with no parent)
 	* @param $all_langs boolean: TRUE = all languages, FALSE = current language
 	* @return array(
@@ -138,7 +138,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getChildCategories($pid = FALSE, $all_langs = FALSE)
+	public function getChildCategories($pid = FALSE, $all_langs = false)
 	{
 		return array();
 	}
@@ -156,7 +156,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItems($category, $all_langs = FALSE)
+	public function getItems($category, $all_langs = false)
 	{
 		global $_CONF, $_TABLES, $_SP_CONF;
 		
@@ -188,7 +188,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 		
 		$crit = 'sp_' . $crit;
 		
-		if (Dataproxy::$isGL170 AND ($crit === 'sp_date')) {
+		if (Dataproxy::$isGL170 && ($crit === 'sp_date')) {
 			$crit = 'modified';
 		}
 		
@@ -199,7 +199,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = stripslashes($A['sp_id']);
 			$entry['title']     = stripslashes($A['sp_title']);
@@ -208,7 +208,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 				. rawurlencode($entry['id'])
 			);
 			$entry['date']      = $A['day'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		
@@ -228,13 +228,13 @@ class dpxyDriver_Staticpages extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getItemsByDate($category = '', $all_langs = FALSE)
+	public function getItemsByDate($category = '', $all_langs = false)
 	{
 		global $_CONF, $_TABLES, $_SP_CONF;
 		
 		$entries = array();
 		
-		if (empty(Dataproxy::$startDate) OR empty(Dataproxy::$endDate)) {
+		if (empty(Dataproxy::$startDate) || empty(Dataproxy::$endDate)) {
 			return $entries;
 		}
 		
@@ -268,7 +268,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 		
 		$crit = 'sp_' . $crit;
 		
-		if (Dataproxy::$isGL170 AND ($crit === 'sp_date')) {
+		if (Dataproxy::$isGL170 && ($crit === 'sp_date')) {
 			$crit = 'modified';
 		}
 		
@@ -279,7 +279,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 			return $entries;
 		}
 		
-		while (($A = DB_fetchArray($result, FALSE)) !== FALSE) {
+		while (($A = DB_fetchArray($result, false)) !== false) {
 			$entry = array();
 			$entry['id']        = stripslashes($A['sp_id']);
 			$entry['title']     = stripslashes($A['sp_title']);
@@ -288,7 +288,7 @@ class dpxyDriver_Staticpages extends dpxyDriver
 				. rawurlencode($entry['id'])
 			);
 			$entry['date']      = $A['day'];
-			$entry['image_uri'] = FALSE;
+			$entry['image_uri'] = false;
 			$entries[] = $entry;
 		}
 		

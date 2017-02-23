@@ -3,7 +3,7 @@
 // +---------------------------------------------------------------------------+
 // | Data Proxy Plugin for Geeklog - The Ultimate Weblog                       |
 // +---------------------------------------------------------------------------+
-// | geeklog/plugins/dataproxy/language/english.php                            |
+// | geeklog/plugins/dataproxy/language/english_utf-8.php                      |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |

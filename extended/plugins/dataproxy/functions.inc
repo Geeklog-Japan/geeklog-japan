@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dataproxy/functions.inc                                   |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'functions.inc') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file cannot be used on its own.');
 }
 
@@ -67,10 +67,10 @@ function plugin_getmenuitems_dataproxy() {
 /**
 * Check to see if this Plugin uses comments
 *
-* @return   boolean TRUE or FALSE
+* @return   boolean TRUE or false
 */
 function plugin_commentsupport_dataproxy() {
-	return FALSE;
+	return false;
 }
 
 /**
@@ -121,14 +121,14 @@ function plugin_chkVersion_dataproxy() {
 /**
 * Upgrade the plugin
 *
-* @return   boolean TRUE (= success)
+* @return   boolean true (= success)
 *
 */
 function plugin_upgrade_dataproxy() {
 	global $_CONF, $_TABLES, $_DPXY_CONF;
 
 	$result = DB_query("SELECT pi_version FROM {$_TABLES['plugins']} WHERE (pi_name = 'dataproxy')");
-	$A = DB_fetchArray($result, FALSE);
+	$A = DB_fetchArray($result, false);
 	$pi_version = $A['pi_version'];		// Version info stored in database
 	
 	// Do upgrading
@@ -147,7 +147,7 @@ function plugin_upgrade_dataproxy() {
 	$result = DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = \"{$_DPXY_CONF['pi_version']}\" WHERE (pi_name = 'dataproxy')");
 	COM_errorLog(ucfirst("dataproxy") . " plugin was successfully updated to version {$_DPXY_CONF['pi_version']}.");
 	
-	return TRUE;
+	return true;
 }
 
 /**
@@ -178,9 +178,9 @@ function plugin_autouninstall_dataproxy() {
 function DPXY_encoding() {
 	global $_CONF, $LANG_CHARSET;
 	
-	static $encoding = NULL;
+	static $encoding = null;
 	
-	if ($encoding === NULL) {
+	if ($encoding === null) {
 		if (isset($LANG_CHARSET)) {
 			$encoding = $LANG_CHARSET;
 		} else if (isset($_CONF['default_charset'])) {
@@ -208,7 +208,7 @@ function DPXY_esc($str) {
 /**
 * Returns a lang var, escaped if necessary
 */
-function DPXY_str($index, $noesc = FALSE) {
+function DPXY_str($index, $noesc = false) {
 	global $LANG_DPXY;
 	
 	if (isset($LANG_DPXY[$index])) {
@@ -236,7 +236,7 @@ function plugin_itemsaved_dataproxy($id, $type) {
 		COM_errorLog("plugin_itemsaved_dataproxy('{$id}', '{$type}')");
 	}
 	
-	return FALSE;
+	return false;
 }
 
 /**
