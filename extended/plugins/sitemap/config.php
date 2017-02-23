@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/sitemap/config.php                                        |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-k DOT net         |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-k DOT net         |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'config.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
@@ -46,9 +46,9 @@ $_TABLES['smap_config'] = $_SMAP_table_prefix . 'smap_config';
 $_SMAP_CONF = array();
 
 // Plugin info
-$_SMAP_CONF['pi_version'] = '2.0.0';					// Plugin Version
+$_SMAP_CONF['pi_version'] = '2.1.0';					// Plugin Version
 $_SMAP_CONF['gl_version'] = '1.6.0';					// GL Version plugin for
-$_SMAP_CONF['pi_url']     = 'http://mystral-kk.net/';	// Plugin Homepage
+$_SMAP_CONF['pi_url']     = 'https://mystral-kk.net/';	// Plugin Homepage
 $_SMAP_CONF['GROUPS']     = array(
 		'Sitemap Admin' => 'Users in this group can administer the Sitemap plugin',
 );

@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/sitemap/index.php                                             |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-k DOT net         |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-k DOT net         |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -40,14 +40,14 @@ if (!defined('XHTML')) {
 // Checks if user has right to access this page
 $uid = 1;
 
-if (isset($_USER['uid']) AND is_numeric($_USER['uid'])) {
+if (isset($_USER['uid']) && is_numeric($_USER['uid'])) {
 	$uid = (int) $_USER['uid'];
 } else {
 	$_USER['uid']   = 1;
 	$_USER['theme'] = $_CONF['theme'];
 }
 
-if (($_SMAP_CONF['anon_access'] === FALSE) AND ($uid === 1)) {
+if (($_SMAP_CONF['anon_access'] === false) && ($uid === 1)) {
     // Anonymous user is not allowed to access this page
 	echo COM_refresh($_CONF['site_url']);
 	exit;
@@ -91,8 +91,7 @@ function SITEMAP_getSelectForm($selected = 'all') {
 	
 	if (count($disp_orders) > 0) {
 		foreach ($disp_orders as $driver_name) {
-			if (empty($driver_name) OR
-				($_SMAP_CONF['sitemap_' . $driver_name] === FALSE)) {
+			if (empty($driver_name) || ($_SMAP_CONF['sitemap_' . $driver_name] === false)) {
 				continue;
 			}
 			
@@ -148,9 +147,9 @@ function SITEMAP_buildItems($driver, $pid) {
 				$temp = $driver->getItemById($item['id']);
 				$raw  = $temp['raw_data'];
 				
-				if ((($_SMAP_CONF['sp_type'] == 1) AND ($raw['sp_centerblock'] != 1)) OR
-					(($_SMAP_CONF['sp_type'] == 2) AND ($raw['sp_centerblock'] == 1))) {
-					$num_items --;
+				if ((($_SMAP_CONF['sp_type'] == 1) && ($raw['sp_centerblock'] != 1)) ||
+					(($_SMAP_CONF['sp_type'] == 2) && ($raw['sp_centerblock'] == 1))) {
+					$num_items--;
 					continue;
 				}
 			}
@@ -159,12 +158,12 @@ function SITEMAP_buildItems($driver, $pid) {
 				  . $driver->escape($item['title']) . '</a>';
 			$T->set_var('item', $link);
 			
-			if (($item['date'] !== FALSE) AND ($item['date'] !== '')) {
-				$date = date($_SMAP_CONF['date_format'], $item['date']);
+			if (($item['date'] !== false) && ($item['date'] !== '')) {
+				$date = date($_SMAP_CONF['date_format'], (int) $item['date']);
 				$T->set_var('date', $date);
 			}
 			
-			$T->parse('items', 't_item', TRUE);
+			$T->parse('items', 't_item', true);
 		}
 		
 		$T->parse('item_list', 't_item_list');
@@ -255,7 +254,7 @@ if (isset($_POST['type'])) {
 // Decides templates to be used
 $theme = $_CONF['theme'];
 
-if (isset($_USER['theme']) AND in_array($_USER['theme'], COM_getThemes())) {
+if (isset($_USER['theme']) && in_array($_USER['theme'], COM_getThemes())) {
 	$theme = $_USER['theme'];
 }
 
@@ -293,8 +292,8 @@ foreach (Dataproxy::getAllDriverNames() as $driver) {
 ksort($disp_orders);
 
 foreach ($disp_orders as $disp_order => $driver_name) {
-	if (($_SMAP_CONF['sitemap_' . $driver_name] === FALSE) OR
-		(($selected !== 'all') AND ($selected !== $driver_name))) {
+	if (($_SMAP_CONF['sitemap_' . $driver_name] === false) ||
+		(($selected !== 'all') && ($selected !== $driver_name))) {
 		continue;
 	}
 	
@@ -302,7 +301,7 @@ foreach ($disp_orders as $disp_order => $driver_name) {
 	$driver = $dataproxy->$driver_name;
 	$entry  = $driver->getEntryPoint();
 	
-	if ($entry === FALSE) {
+	if ($entry === false) {
 		$entry = SITEMAP_str($driver_name);
 	} else {
 		$entry = '<a href="' . $entry . '">' . SITEMAP_str($driver_name)
@@ -313,7 +312,7 @@ foreach ($disp_orders as $disp_order => $driver_name) {
 	$categories = $driver->getChildCategories(false);
 	
 	if (count($categories) === 0) {
-		list($num_items, $items) = SITEMAP_buildItems($driver, FALSE);
+		list($num_items, $items) = SITEMAP_buildItems($driver, false);
 		$T->set_var('category_list', $items);
 	} else {
 		$cats = '';
@@ -329,7 +328,7 @@ foreach ($disp_orders as $disp_order => $driver_name) {
 	}
 	
 	$T->set_var('num_items', $num_items);
-	$T->parse('data_sources', 't_data_source', TRUE);
+	$T->parse('data_sources', 't_data_source', true);
 }
 
 $T->set_var('lang_sitemap', SITEMAP_str('sitemap'));

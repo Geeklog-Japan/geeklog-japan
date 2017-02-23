@@ -3,7 +3,7 @@
 // +---------------------------------------------------------------------------+
 // | Sitemap Plugin for Geeklog - The Ultimate Weblog                          |
 // +---------------------------------------------------------------------------+
-// | private/plugins/sitemap/language/english.php                              |
+// | private/plugins/sitemap/language/english_utf-8.php                        |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-k DOT net         |
 // |                                                                           |

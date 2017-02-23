@@ -10,7 +10,7 @@
 <body>
 	<h1>Geeklog sitemapプラグインのインストール/アンインストール</h1>
 	
-	<h2>Sitemapプラグイン[ver. 2.0.0: 2012-06-11]の概要</h2>
+	<h2>Sitemapプラグイン[ver. 2.1.0: 2017-01-10]の概要</h2>
 	
 	<p>制作者：mystral-kk - geeklog AT mystral-kk DOT net</p>
 	<p>GeeklogサイトのサイトマップとGoogleサイトマップを作成します。Google sitemap generatorをインストールされていた方は、事前に削除しておいてください。</p>
@@ -34,14 +34,14 @@
 		<li>sitemapプラグインのアーカイブを<span class="geeklog">&lt;geeklog_dir&gt;</span>/pluginsディレクトリに展開します。sitemapという名前のディレクトリができます。</li>
 		<li>public_htmlディレクトリとadminディレクトリを作ります。htmlファイルを納めるディレクトリ（普通は <span class="public">&lt;public_html&gt;</span>）の下に、sitemapという名前のディレクトリを作ります。<span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下にも sitemapという名前のディレクトリを作ります。</li>
 		<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/sitemap/ ディレクトリに移動します。adminディレクトリの内容を、3.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/ ディレクトリにコピーします。public_htmlディレクトリの内容を、3.で作成した <span class="public">&lt;public_html&gt;</span>/sitemap/ ディレクトリにコピーします。</li>
-		<li>Rootユーザーとしてログインし、プラグインエディターからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、sitemap プラグインはインストールされ、機能しているはずです。sitemap アイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
-		<li>セキュリティを設定します。インストール直後には、sitemapプラグインの管理権限を持っているのは、Rootユーザーだけです。ユーザーエディターやグループエディターを使用して、管理権限を他の人やグループに委譲することができます</li>
+		<li>Rootユーザーとしてログインし、プラグインエディタからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、sitemap プラグインはインストールされ、機能しているはずです。sitemap アイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
+		<li>セキュリティを設定します。インストール直後には、sitemapプラグインの管理権限を持っているのは、Rootユーザーだけです。ユーザーエディタやグループエディタを使用して、管理権限を他の人やグループに委譲することができます</li>
 	</ol>
 
 	<h2>アンインストール:</h2>
 
 	<ol>
-		<li>プラグインエディターから、sitemap プラグインをアンインストールします。このとき、sitemapプラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
+		<li>プラグインエディタから、sitemap プラグインをアンインストールします。このとき、sitemapプラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
 		<li>インストールの過程で作成した3つのディレクトリ（<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/sitemap/ <span class="public">&lt;public_html&gt;</span>/sitemap/ and <span class="admin">&lt;admin&gt;</span>/plugins/sitemap/ を削除します。</li>
 	</ol>
 
@@ -109,6 +109,13 @@
 			<th>内容</th>
 		</tr>
 		<tr>
+			<td align="right">2.1.0</td>
+			<td>2017-01-10</td>
+			<td>
+				<span class="fixed">修正</span> PHP-7とGeeklog-2.1.2に対応しました。
+			</td>
+		</tr>
+		<tr>
 			<td align="right">2.0.0</td>
 			<td>2012-06-11</td>
 			<td>
@@ -163,7 +170,7 @@
 			<td align="right">1.1.6</td>
 			<td>2009-08-27</td>
 			<td>
-				<span class="new">新規</span> dengen氏の作業により、カレンダーjpプラグインに対応していただきました。
+				<span class="new">新規</span> dengen氏の作業により、カレンダjpプラグインに対応していただきました。
 			</td>
 		</tr>
 		<tr>

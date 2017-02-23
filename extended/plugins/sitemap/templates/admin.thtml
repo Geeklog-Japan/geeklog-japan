@@ -1,5 +1,3 @@
-{# begin {templatelocation} #}
-
 <img src="{icon_url}" border="0"{xhtml}>
 &nbsp;&nbsp;<h2>{lang_admin}</h2>
 
@@ -72,5 +70,3 @@
 	
 	<input name="submit" type="submit" value="{lang_submit}"{xhtml}>
 </form>
-
-{# end {templatelocation} #}

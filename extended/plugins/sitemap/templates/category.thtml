@@ -1,5 +1,1 @@
-{# begin {templatelocation} #}
-
 <li><span class="sitemap_category">{category}</span>({num_items}){child_categories}{items}</li>
-
-{# end {templatelocation} #}

@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/sitemap/functions.inc                                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-k DOT net         |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-k DOT net         |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'functions.inc') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
@@ -75,10 +75,10 @@ function plugin_getmenuitems_sitemap() {
 /**
 * Check to see if this Plugin uses comments
 *
-* @return   boolean TRUE or FALSE
+* @return   boolean true or false
 */
 function plugin_commentsupport_sitemap() {
-    return FALSE;
+    return false;
 }
 
 /**
@@ -192,7 +192,6 @@ function plugin_upgrade_sitemap() {
 				// Nothing done from 1.1.6 -> 1.1.7
 				// Nothing done from 1.1.7 -> 1.1.8
 				// Nothing done from 1.1.8 -> 1.1.9
-			
 				$pi_version = '1.1.9';
 				break;
 		
@@ -209,9 +208,10 @@ function plugin_upgrade_sitemap() {
 			case '1.2.0':
 			case '1.2.1':
 			case '1.2.2':
+			case '2.0.0':
 				DB_query("UPDATE {$_TABLES['features']} SET ft_descr = 'Sitemap Admin' WHERE (ft_name = 'sitemap.admin')");
 				DB_query("UPDATE {$_TABLES['groups']} SET grp_name = 'Sitemap Admin' WHERE (grp_name = 'sitemap Admin')");
-				$pi_version = '2.0.0';
+				$pi_version = '2.1.0';
 				break;
 			
 			default:
@@ -223,12 +223,12 @@ function plugin_upgrade_sitemap() {
 	// Update plugin info
 	
 	$sql = "UPDATE {$_TABLES['plugins']} "
-		 . "  SET pi_version = '" . addslashes($_SMAP_CONF['pi_version']) . "' "
-		 . "WHERE (pi_name = 'sitemap')";
+		 . "  SET pi_version = '" . SITEMAP_escapeString($_SMAP_CONF['pi_version']) . "' "
+		 . "  WHERE (pi_name = 'sitemap')";
 	$result = DB_query($sql);
 	COM_errorLog("Sitemap plugin was successfully updated to version {$_SMAP_CONF['pi_version']}.");
 	
-	return TRUE;
+	return true;
 }
 
 /**
@@ -253,6 +253,10 @@ function plugin_autouninstall_sitemap() {
 	return $out;
 }
 
+function SITEMAP_escapeString($str) {
+	return is_callable('DB_escapeString') ? DB_escapeString($str) : addslashes($str);
+}
+
 /**
 * Loads vars from DB into $_SMAP_CONF[]
 */
@@ -267,13 +271,13 @@ function SITEMAP_loadConfig() {
 		exit;
 	}
 	
-	while (($A = DB_fetchArray($result)) !== FALSE) {
+	while (($A = DB_fetchArray($result)) !== false) {
 		list($name, $value) = $A;
 		
 		if ($value === 'true') {
-			$value = TRUE;
+			$value = true;
 		} else if ($value === 'false') {
-			$value = FALSE;
+			$value = false;
 		}
 		
 		if ($name === 'date_format') {
@@ -298,9 +302,9 @@ function SITEMAP_saveConfig() {
 	
 	foreach ($_SMAP_CONF as $name => $value) {
 		if (!in_array($name, $excepts)) {
-			if ($value === TRUE) {
+			if ($value === true) {
 				$value = 'true';
-			} else if ($value === FALSE) {
+			} else if ($value === false) {
 				$value = 'false';
 			}
 			
@@ -309,8 +313,8 @@ function SITEMAP_saveConfig() {
 				$value = '[' . $value . ']';
 			}
 			
-			$name  = addslashes($name);
-			$value = addslashes($value);
+			$name  = SITEMAP_escapeString($name);
+			$value = SITEMAP_escapeString($value);
 			
 			$sql = "UPDATE {$_TABLES['smap_config']} "
 				 . "SET value = '{$value}' "
@@ -330,9 +334,9 @@ function SITEMAP_saveConfig() {
 function SITEMAP_getEncodingt() {
 	global $_CONF, $LANG_CHARSET;
 	
-	static $encoding = NULL;
+	static $encoding = null;
 	
-	if ($encoding === NULL) {
+	if ($encoding === null) {
 		$encoding = COM_getCharset();
 	}
 	
@@ -352,7 +356,7 @@ function SITEMAP_escape($str) {
 	return htmlspecialchars($str, ENT_QUOTES, SITEMAP_getEncodingt());
 }
 
-function SITEMAP_str($index, $noesc = FALSE) {
+function SITEMAP_str($index, $noesc = false) {
 	global $LANG_SMAP;
 	
 	if (isset($LANG_SMAP[$index])) {
@@ -400,7 +404,7 @@ function SITEMAP_convertDate($timestamp) {
 function SITEMAP_write($filename, $sitemap) {
 	global $_CONF, $_SMAP_CONF;
 	
-	$retval = FALSE;
+	$retval = false;
 	
 	/**
 	* for Google Mobile Sitemap
@@ -424,30 +428,30 @@ function SITEMAP_write($filename, $sitemap) {
 	if (!file_exists($path)) {
 		$fh = @fopen($path, 'wb');
 		
-		if ($fh === FALSE) {
+		if ($fh === false) {
 			COM_errorLog('Sitemap: cannot create Google sitemap file.  Please create the file "' . $path . '" manually.');
-			return FALSE;
+			return false;
 		}
 	} else {
 		$fh = @fopen($path, 'r+b');
 		
-		if ($fh === FALSE) {
+		if ($fh === false) {
 			COM_errorLog('Sitemap: Google sitemap file is NOT writable: ' . $path);
-			return FALSE;
+			return false;
 		}
 	}
 	
-	if (flock($fh, LOCK_EX) === TRUE) {
+	if (flock($fh, LOCK_EX) === true) {
 		ftruncate($fh, 0);
 		rewind($fh);
 		$result = @fwrite($fh, $sitemap);
 		
-		if (($result === FALSE) OR ($result != strlen($sitemap))) {
+		if (($result === false) || ($result != strlen($sitemap))) {
 			COM_errorLog('Sitemap: cannot write into Google sitemap file fully: ' . $path);
 		}
 		
 		@flock($fh, LOCK_UN);
-		$retval = TRUE;
+		$retval = true;
 	} else {
 		COM_errorLog('Sitemap: cannot write-lock Google sitemap file: ' . $path);
 	}
@@ -463,7 +467,7 @@ function SITEMAP_write($filename, $sitemap) {
 function SITEMAP_createGoogleSitemap() {
 	global $_CONF, $_SMAP_CONF;
 	
-	$retval = FALSE;
+	$retval = false;
 	
 	// Header
 	$sitemap = '<?xml version="1.0" encoding="UTF-8"?>' . LB
@@ -474,14 +478,14 @@ function SITEMAP_createGoogleSitemap() {
 	$sp_excepts = explode(' ', $_SMAP_CONF['sp_except']);
 	
 	foreach (Dataproxy::getAllDriverNames() as $driver) {
-		if (($driver === 'trackback') OR ($driver === 'comments') OR
-			($_SMAP_CONF['gsmap_' . $driver] === FALSE)) {
+		if (($driver === 'trackback') || ($driver === 'comments') ||
+			($_SMAP_CONF['gsmap_' . $driver] === false)) {
 			continue;
 		}
 		
-		$items = $dataproxy->$driver->getAllItems(TRUE);
+		$items = $dataproxy->$driver->getAllItems(true);
 		
-		if (!is_array($items) OR (count($items) === 0)) {
+		if (!is_array($items) || (count($items) === 0)) {
 			continue;
 		}
 		
@@ -494,8 +498,8 @@ function SITEMAP_createGoogleSitemap() {
 				$temp = $dataproxy->$driver->getItemById($item['id']);
 				$raw  = $temp['raw_data'];
 				
-				if ((($_SMAP_CONF['sp_type'] == 1) AND ($raw['sp_centerblock'] != 1)) OR
-					(($_SMAP_CONF['sp_type'] == 2) AND ($raw['sp_centerblock'] == 1))) {
+				if ((($_SMAP_CONF['sp_type'] == 1) && ($raw['sp_centerblock'] != 1)) ||
+					(($_SMAP_CONF['sp_type'] == 2) && ($raw['sp_centerblock'] == 1))) {
 					continue;
 				}
 			}
@@ -503,7 +507,7 @@ function SITEMAP_createGoogleSitemap() {
 			$sitemap .= '  <url>' . LB
 					 .  '    <loc>' . $item['uri'] . '</loc>' . LB;
 			
-			if ($item['date'] !== FALSE) {
+			if ($item['date'] !== false) {
 				$sitemap .= '    <lastmod>' . SITEMAP_convertDate( $item['date'] ) . '</lastmod>' . LB;
 			} else {
 				$sitemap .= '    <lastmod>' . SITEMAP_convertDate(time()) . '</lastmod>' . LB;
@@ -526,7 +530,7 @@ function SITEMAP_createGoogleSitemap() {
 	
 	// Writes into the Google Sitemap
 	foreach (explode(';', $_SMAP_CONF['google_sitemap_name']) as $filename) {
-		$retval = ($retval OR !SITEMAP_write($filename, $sitemap));
+		$retval = $retval || !SITEMAP_write($filename, $sitemap);
 	}
 	
 	return !$retval;
@@ -538,7 +542,7 @@ function SITEMAP_createGoogleSitemap() {
 * @param  string   id          a static page id
 * @param  string   sp_excepts  an array of regular expressions WITH delimiters
 *                              being '/'
-* @return boolean  TRUE = excepted, FALSE = otherwise
+* @return boolean  true = excepted, false = otherwise
 */
 function SITEMAP_isExcepted($id, $sp_excepts) {
 	foreach ($sp_excepts as $except) {
@@ -548,12 +552,12 @@ function SITEMAP_isExcepted($id, $sp_excepts) {
 			}
 			
 			if (preg_match($except , $id)) {
-				return TRUE;
+				return true;
 			}
 		}
 	}
 	
-	return FALSE;
+	return false;
 }
 
 /**

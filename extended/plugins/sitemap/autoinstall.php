@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/sitemap/autoinstall.php                                   |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2012 mystral-kk - geeklog AT mystral-kk DOT net             |
+// | Copyright (C) 2012-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
@@ -26,7 +26,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file cannot be used on its own!');
 }
 
@@ -39,7 +39,7 @@ if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== FALSE) {
 function plugin_autoinstall_sitemap($pi_name) {
 	global $_SMAP_CONF;
 	
-	require_once dirname(__FILE__) . '/config.php';
+	require_once __DIR__ . '/config.php';
 	
 	$pi_name         = 'sitemap';
 	$pi_display_name = 'Sitemap';
@@ -83,8 +83,8 @@ function plugin_compatible_with_this_version_sitemap($pi_name) {
 			. $_DB_dbms . '_install.php';
 	
 	if (!file_exists($dbFile)) {
-		return FALSE;
+		return false;
 	}
 	
-	return TRUE;
+	return true;
 }

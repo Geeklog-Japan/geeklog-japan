@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/sitemap/index.php                               |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2007-2012 mystral-kk - geeklog AT mystral-k DOT net         |
+// | Copyright (C) 2007-2017 mystral-kk - geeklog AT mystral-k DOT net         |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -56,7 +56,7 @@ if (!SEC_hasRights('sitemap.admin')) {
 	}
 	
     exit;
-} else if (!in_array('dataproxy', $_PLUGINS)) {
+} elseif (!in_array('dataproxy', $_PLUGINS)) {
     COM_errorLog(SITEMAP_str('dataproxy_unavailable'));
     $content = SITEMAP_str('dataproxy_unavailable');
 	
@@ -147,7 +147,7 @@ function SITEMAP_changeOrder($driver, $op) {
 	
 	$all_supported_drivers = Dataproxy::getAllSupportedDriverNames();
 	
-	if ((($op === 'up') OR ($op === 'down')) AND
+	if ((($op === 'up') || ($op === 'down')) &&
 		in_array($driver, $all_supported_drivers)) {
 		$me = (int) $_SMAP_CONF['order_' . $driver];
 		
@@ -189,7 +189,7 @@ if (!defined('XHTML')) {
 define('THIS_SCRIPT', $_CONF['site_admin_url'] . '/plugins/sitemap/index.php');
 
 // Loads Dataproxy plugin
-if (isset($_USER['uid']) AND ($_USER['uid'] >= 1)) {
+if (isset($_USER['uid']) && ($_USER['uid'] >= 1)) {
 	$uid = $_USER['uid'];
 } else {
 	$uid = 1;
@@ -205,14 +205,14 @@ $_GET  = SITEMAP_stripslashes($_GET);
 $_POST = SITEMAP_stripslashes($_POST);
 
 // Changes display order
-if (isset($_GET['op']) AND isset($_GET['driver'])) {
+if (isset($_GET['op']) && isset($_GET['driver'])) {
 	$op     = COM_applyFilter($_GET['op']);
 	$driver = COM_applyFilter($_GET['driver']);
 	SITEMAP_changeOrder($driver, $op);
 }
 
 // Saves vars
-if (isset($_POST['submit']) AND ($_POST['submit'] === $LANG_SMAP['submit'])) {
+if (isset($_POST['submit']) && ($_POST['submit'] === $LANG_SMAP['submit'])) {
 	if (!is_array($_POST['drivers'])) {
 		$_POST['drivers'] = (array) $_POST['drivers'];
 	}
@@ -234,7 +234,7 @@ if (isset($_POST['submit']) AND ($_POST['submit'] === $LANG_SMAP['submit'])) {
 		$priority = trim($_POST['priority_' . $driver]);
 		$priority = (float) preg_replace("/[^0-9.-]/", '', $priority);
 		
-		if (($priority < 0.0) OR ($priority > 1.0)) {
+		if (($priority < 0.0) || ($priority > 1.0)) {
 			$priority = 0.5;
 		}
 		
@@ -250,7 +250,7 @@ if (isset($_POST['submit']) AND ($_POST['submit'] === $LANG_SMAP['submit'])) {
 	// Since version 1.1.4
 	$sp_type = (int) $_POST['sp_type'];
 	
-	if (($sp_type < 0) OR ($sp_type > 2)) {
+	if (($sp_type < 0) || ($sp_type > 2)) {
 		$sp_type = 2;
 	}
 	
@@ -329,7 +329,7 @@ for ($i = 1; $i <= $num_drivers; $i ++) {
 			 .  '" name="sitemap_drivers[]" ' . 'type="checkbox" value="'
 			 .  SITEMAP_escape($supported_driver) . '"';
 	
-	if ($_SMAP_CONF['sitemap_' . $supported_driver] === TRUE) {
+	if ($_SMAP_CONF['sitemap_' . $supported_driver] === true) {
 		$drivers .= ' checked="checked"';
 	}
 	
@@ -349,7 +349,7 @@ foreach (Dataproxy::getAllSupportedDriverNames() as $supported_driver) {
 				   .  '" name="gsmap_drivers[]" type="checkbox" value="'
 				   .  SITEMAP_escape($supported_driver) . '"';
 	
-	if ($_SMAP_CONF['gsmap_' . $supported_driver] === TRUE) {
+	if ($_SMAP_CONF['gsmap_' . $supported_driver] === true) {
 		$gsmap_drivers .= ' checked="checked"';
 	}
 	
@@ -378,14 +378,14 @@ $T->set_var('google_sitemap_name', $_SMAP_CONF['google_sitemap_name']);
 // Shows the last updated time of the Google sitemap
 $filename = $_SMAP_CONF['google_sitemap_name'];
 
-if (($pos = strpos($filename, ';')) !== FALSE) {
+if (($pos = strpos($filename, ';')) !== false) {
 	$filename = substr($filename, 0, $pos);
 }
 
 clearstatcache();
 $last_updated = @filemtime($_CONF['path_html'] . $filename);
 
-if ($last_updated === FALSE) {
+if ($last_updated === false) {
 	$last_updated = SITEMAP_str('unknown');
 } else {
 	$last_updated = date('Y-m-d H:i:s', $last_updated);
