@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/japanize/index.php                              |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2016 by the following authors:                         |
+// | Copyright (C) 2009-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tsuchi           - tsuchi AT geeklog DOT jp                      |
 // |          mystral-kk       - geeklog AT mystral-kk DOT net                 |
@@ -57,11 +57,11 @@ if (isset($_POST['japanize_all']) &&
         ($_POST['japanize_all'] === JAPANIZE_str('japanize_all'))) {
     $A = 63;
     $needChange = true;
-} else if (isset($_POST['restore_all']) &&
+} elseif (isset($_POST['restore_all']) &&
         ($_POST['restore_all'] === JAPANIZE_str('restore_all'))) {
     $A = 0;
     $needChange = true;
-} else if (isset($_POST['execute']) &&
+} elseif (isset($_POST['execute']) &&
         ($_POST['execute'] === JAPANIZE_str('execute')) &&
         isset($_POST['A']) && is_array($_POST['A'])) {
     $A = 0;
@@ -107,6 +107,11 @@ if ($needChange && SEC_checkToken()) {
             $msgs[] = JAPANIZE_str('msg_' . $lang . '_' . $type);
         }
     }
+	
+	// Clear cached data
+	if (is_callable('CTL_clearCache')) {
+		CTL_clearCache();
+	}
 } else {
     $new = $current;
 }

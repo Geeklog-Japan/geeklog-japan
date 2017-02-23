@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/japanize/functions.inc                                    |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2016 by the following authors:                         |
+// | Copyright (C) 2009-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tsuchi           - tsuchi AT geeklog DOT jp                      |
 // |          mystral-kk       - geeklog AT mystral-kk DOT net                 |
@@ -26,7 +26,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
@@ -45,8 +45,9 @@ if (!is_callable('CUSTOM_convertEncoding') &&
     !is_callable('CUSTOM_emailEscape') &&
     !is_callable('CUSTOM_formatEmailAddress') &&
     !is_callable('CUSTOM_splitAddress') &&
-    !is_callable('CUSTOM_mail')) {
-    require_once 'custom/custom_mail_japanize.php';
+    !is_callable('CUSTOM_mail') &&
+    version_compare(VERSION, '2.1.2', '<=')) {
+    require_once dirname(__FILE__) . '/custom/custom_mail_japanize.php';
 }
 
 /**
@@ -114,7 +115,7 @@ function JAPANIZE_languageToLangId($language) {
 *
 * @param   object  $template
 */
-function JAPANIZE_setHtmlAttribute(&$template) {
+function JAPANIZE_setHtmlAttribute($template) {
     global  $_USER, $_CONF;
     
     $langId = COM_getLanguageId();

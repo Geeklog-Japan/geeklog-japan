@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/japanize/japanize_data.php                                |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2016 by the following authors:                         |
+// | Copyright (C) 2009-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tsuchi           - tsuchi AT geeklog DOT jp                      |
 // |          mystral-kk       - geeklog AT mystral-kk DOT net                 |
@@ -26,7 +26,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'japanize_data.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
@@ -35,11 +35,11 @@ $locale = array();
 
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
     $locale['ja'] = array(
-        'locale'    => 'C',
+        'locale'    => (version_compare(VERSION, '2.1.2', '>=') ? 'ja_JP' : 'C'),
         'date'      => '%Y年%m月%d日 %H:%M',
         'daytime'   => '%m月%d日 %H:%M',
-        'shortdate' => '%d',
-        'dateonly'  => '%m%d',
+        'shortdate' => '%d日',
+        'dateonly'  => '%m月%d日',
         'timeonly'  => '%H:%M',
     );
 } else {
@@ -225,13 +225,13 @@ $_JAPANIZE_DATA[1] = array(
             . DB_escapeString($_CONF['site_url']) . "' "
             . "WHERE (uid = 2) ",
         'en' => "UPDATE {$_TABLES['users']} "
-            . "SET fullname= 'Geeklog SuperUser', homepage='http://www.geeklog.net/' "
+            . "SET fullname= 'Geeklog SuperUser', homepage='https://www.geeklog.net/' "
             . "WHERE (uid = 2) ",
     ),
     array(
         'ja' => "UPDATE {$_TABLES['stories']} "
             . "SET title = '" . DB_escapeString('Geeklogへようこそ!') . "', "
-            . "introtext = '" . DB_escapeString("<p>無事インストールが完了したようですね。おめでとうございます。できれば、<a href=\"docs/japanese/index.html\">docs ディレクトリ</a>のすべての文書に一通り目を通しておいてください。Geeklogはユーザーを中心としたセキュリティモデルを実装しています。Geeklogを管理・運用するにはこの仕組みを理解する必要があります。</p>\n<p>サイトにログインするには、次のアカウントを使用してください:</p>\n<p>ユーザー名: <strong>Admin</strong><br />\nパスワード: <strong>password</strong></p><p><strong>ログインしたら、忘れずに<a href=\"{$_CONF['site_url']}/usersettings.php?mode=edit\">パスワードを変更</a>してください。</strong></p><p>Geeklogのサポートは、<a href=\"http://www.geeklog.jp\">Geeklog Japanese</a>へ。追加ドキュメントは <a href=\"http://wiki.geeklog.jp\">Geeklog Wiki ドキュメント</a>をどうぞ。</p>") . "' "
+            . "introtext = '" . DB_escapeString("<p>無事インストールが完了したようですね。おめでとうございます。できれば、<a href=\"docs/japanese/index.html\">docs ディレクトリ</a>のすべての文書に一通り目を通しておいてください。Geeklogはユーザーを中心としたセキュリティモデルを実装しています。Geeklogを管理・運用するにはこの仕組みを理解する必要があります。</p>\n<p>サイトにログインするには、次のアカウントを使用してください:</p>\n<p>ユーザー名: <strong>Admin</strong><br />\nパスワード: <strong>password</strong></p><p><strong>ログインしたら、忘れずに<a href=\"{$_CONF['site_url']}/usersettings.php?mode=edit\">パスワードを変更</a>してください。</strong></p><p>Geeklogのサポートは、<a href=\"https://www.geeklog.jp\">Geeklog Japanese</a>へ。追加ドキュメントは <a href=\"https://wiki.geeklog.jp\">Geeklog Wiki ドキュメント</a>をどうぞ。</p>") . "' "
                     . "WHERE (sid = 'welcome') ",
         'en' => "UPDATE {$_TABLES['stories']} "
             . "SET title = 'Welcome to Geeklog!', "
@@ -294,7 +294,7 @@ if (DB_checkTableExists('links')) {
                 . "(lid, cid, url, description, title, hits, date, "
                 . "owner_id, group_id, perm_owner, perm_group, "
                 . "perm_members, perm_anon) "
-                . "VALUES ('geeklog.jp', 'geeklog-sites', 'http://www.geeklog.jp/', "
+                . "VALUES ('geeklog.jp', 'geeklog-sites', 'https://www.geeklog.jp/', "
                 . "'" . DB_escapeString('Geeklog日本公式サイト') . "', '"
                 . DB_escapeString('Geeklog Japanese') . "', 0, NOW(), 1, {$group_id}, "
                 . "3, 3, 2, 2) ",
@@ -545,7 +545,7 @@ $_JAPANIZE_DATA[3] = array(
                     . "SET title = 'About Geeklog', content = '" . DB_escapeString('<p><strong>Welcome to Geeklog!</strong></p><p>If you\'re already familiar with Geeklog - and especially if you\'re not: There have been many improvements to Geeklog since earlier versions that you might want to read up on. Please read the <a href="docs/changes.html">release notes</a>. If you need help, please see the <a href="docs/support.html">support options</a>.</p>') . "' "
                     . "WHERE (name = 'first_block') ",
         'ja'   => "UPDATE {$_TABLES['blocks']} "
-                    . "SET title = 'Geeklogについて', content = '" . DB_escapeString('<p><strong>ようこそ、Geeklogへ!</strong><p>Geeklogについてのサポートは、 <a href="http://www.geeklog.jp">Geeklog Japanese</a>へ。ドキュメントは <a href="http://wiki.geeklog.jp">Geeklog Wiki ドキュメント</a>をどうぞ。') . "' "
+                    . "SET title = 'Geeklogについて', content = '" . DB_escapeString('<p><strong>ようこそ、Geeklogへ!</strong><p>Geeklogについてのサポートは、 <a href="https://www.geeklog.jp">Geeklog Japanese</a>へ。ドキュメントは <a href="https://wiki.geeklog.jp">Geeklog Wiki ドキュメント</a>をどうぞ。') . "' "
                     . "WHERE (name = 'first_block') ",
     ),
 );

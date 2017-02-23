@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/japanize/autoinstall.php                                  |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2009-2016 by the following authors:                         |
+// | Copyright (C) 2009-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tsuchi           - tsuchi AT geeklog DOT jp                      |
 // |          mystral-kk       - geeklog AT mystral-kk DOT net                 |
@@ -26,7 +26,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'autoinstall.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own.');
 }
 
@@ -46,8 +46,8 @@ function plugin_autoinstall_japanize($pi_name) {
             'pi_name'         => 'japanize',
             'pi_display_name' => 'Japanize',
             'pi_version'      => $_JPN_CONF['version'],
-            'pi_gl_version'   => '2.1.1',
-            'pi_homepage'     => 'http://www.geeklog.jp/filemgmt/index.php?id=340',
+            'pi_gl_version'   => '2.1.2',
+            'pi_homepage'     => 'https://www.geeklog.jp/filemgmt/index.php?id=340',
         ),
         'groups'          => array(
             'Japanize Admin' => 'Has full access to Japanize features',

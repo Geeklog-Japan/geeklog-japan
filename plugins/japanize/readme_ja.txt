@@ -11,9 +11,10 @@ tsuchi AT geeklog DOT jp
 2015/06/13          Changed $_CONF['url_rewrite'] setting to true
 2016/01/19 v2.1.1   Modified to use {welcome_msg} instead of {welcome_msg_jp}
 2016/01/30 v2.1.1.1 Modified to use {lang_attribute} instead of {html_attribute}
+2017/01/10 v2.1.2   Updated to work with Geeklog-2.1.2
 
 --------------------------------------------------------------------------------
-概要: Geeklog-2.1.1 を日本人流にするプラグインです
+概要: Geeklog-2.1.2 を日本人流にするプラグインです
        詳細については管理画面をご参照ください
 --------------------------------------------------------------------------------
 ファイル構成
