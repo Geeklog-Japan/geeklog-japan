@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dbman/autoinstall.php                                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011-2014 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2011-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
@@ -27,7 +27,7 @@
 // +---------------------------------------------------------------------------+
 
 if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
-	die('This file can not be used on its own!');
+	die('This file cannot be used on its own!');
 }
 
 /**
@@ -97,5 +97,8 @@ function plugin_load_configuration_dbman($pi_name) {
 function plugin_compatible_with_this_version_dbman($pi_name) {
 	global $_CONF, $_DB_dbms;
 	
-	return (strcasecmp($_DB_dbms, 'mysql') === 0) && (@version_compare(VERSION, '1.6.0') >= 0);
+	clearstatcache();
+	$driverFile = dirname(__FILE__) . '/sql/dbman-' . strtolower($_DB_dbms) . '.inc.php';
+	
+	return version_compare(VERSION, '1.6.0', '>=') && file_exists($driverFile);
 }

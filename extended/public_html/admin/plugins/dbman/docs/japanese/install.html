@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<th>最新版</th>
-		<td>0.7.2 (2014-02-09)</td>
+		<td>0.8.0 (2016-08-12)</td>
 	</tr>
 	<tr>
 		<th>システム要件</th>
@@ -49,14 +49,14 @@
 	<li>Dbmanプラグインのターボールを <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins ディレクトリに展開(解凍)します。dbmanというディレクトリができます。</li>
 	<li><span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下に dbmanというディレクトリを作成します。</li>
 	<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/dbman/admin ディレクトリに移動し、その中身を手順2.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/dbman ディレクトリにコピーします。</li>
-	<li>管理者としてGeeklogにログインし、プラグインエディターからDbmanをインストールします。インストールできなかった場合は、エラーログ(logs/error.log)をご覧ください。</li>
+	<li>管理者としてGeeklogにログインし、プラグインエディタからDbmanをインストールします。インストールできなかった場合は、エラーログ(logs/error.log)をご覧ください。</li>
 	<li>管理者メニューの「コンフィギュレーション」からDbmanの設定を行います。</li>
 </ol>
 
 <h2>アンインストール</h2>
 
 <ol>
-	<li>管理者としてGeeklogにログインし、プラグインエディターからDbmanプラグインをアンインストールします。</li>
+	<li>管理者としてGeeklogにログインし、プラグインエディタからDbmanプラグインをアンインストールします。</li>
 	<li>インストール時に作成した <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/dbman ディレクトリと <span class="admin">&lt;admin&gt;</span>/plugins/dbman ディレクトリを削除します。</li>
 </ol>
 
@@ -69,14 +69,9 @@
 		<th>詳細</th>
 	</tr>
 	<tr>
-		<td>0.7.2</td>
-		<td>2014-02-09</td>
-		<td>管理画面が$_CONF['site_url'] + '/admin/'下にない場合に対応しました。</td>
-	</tr>
-	<tr>
-		<td>0.7.1</td>
-		<td>2012-09-30</td>
-		<td>管理画面以外でdbman.jsを読み込まないようにしました。</td>
+		<td>0.8.0</td>
+		<td>2016-08-12</td>
+		<td>Geeklog-2.1.xで作動するようリファクタリングしました。</td>
 	</tr>
 	<tr>
 		<td>0.7.0</td>
@@ -136,7 +131,7 @@
 	<tr>
 		<td>0.4.6</td>
 		<td>2007-10-28</td>
-		<td>権限を持たないユーザーに対してもDbmanのアイコンが表示されていたバグを修正しました。</td>
+		<td>権限を持たないユーザに対してもDbmanのアイコンが表示されていたバグを修正しました。</td>
 	</tr>
 	<tr>
 		<td>0.4.5</td>

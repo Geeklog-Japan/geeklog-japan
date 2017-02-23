@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dbman/language/english.php                                |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2014 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2008-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -133,7 +133,7 @@ $LANG_fs['dbman'] = array(
 
 // Note: entries 0, 1, 9, and 12 are the same as in $LANG_configselects['Core']
 $LANG_configselects['dbman'] = array(
-	0 => array('Yes' => TRUE, 'No' => FALSE),
+	0 => array('Yes' => true, 'No' => false),
 	1 => array(
 			'1(Lowest)' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6,
 			'7' => 7, '8(Default)' => 8, '9(Highest)' => 9

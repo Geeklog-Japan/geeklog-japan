@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/dbman/download.php                              |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2014 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2008-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -42,11 +42,16 @@ if (!in_array('dbman', $_PLUGINS)) {
 if (!SEC_hasRights('dbman.edit')) {
 	// Someone is trying to illegally access this page
 	COM_errorLog("Dbman: Someone has tried to illegally access the Dbman page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-	$display = COM_siteHeader()
-			 . COM_startBlock($LANG_DBMAN['access_denied'])
+	$content = COM_startBlock($LANG_DBMAN['access_denied'])
 			 . DBMAN_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
+			 . COM_endBlock();
+	
+	if (is_callable('COM_createHTMLDocument')) {
+		$display = COM_createHTMLDocument($content);
+	} else {
+		$display = COM_siteHeader() . $content . COM_siteFooter();
+	}
+	
 	echo $display;
 	exit;
 }
@@ -58,11 +63,16 @@ if (($filename !== basename($filename)) ||
 	(!preg_match('/\.sql$/i', $filename) && !preg_match('/\.sql\.gz$/i', $filename))) {
 	// Invalid file name was designated.
 	COM_errorLog("Invalid file name was designated for download.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-	$display = COM_siteHeader()
-			 . COM_startBlock($LANG_DBMAN['access_denied'])
-			 . DBMAN_str('invalid_filename')
-			 . COM_endBlock()
-			 . COM_siteFooter();
+	$content = COM_startBlock($LANG_DBMAN['access_denied'])
+			 . DBMAN_str('access_denied_msg')
+			 . COM_endBlock();
+
+	if (is_callable('COM_createHTMLDocument')) {
+		$display = COM_createHTMLDocument($content);
+	} else {
+		$display = COM_siteHeader() . $content . COM_siteFooter();
+	}
+
 	echo $display;
 	exit;
 }
@@ -74,11 +84,16 @@ clearstatcache();
 if (!file_exists($filename)) {
 	// The designated file doesn't exist
 	COM_errorLog("Dbman: The file you designated doesn't exist.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-	$display = COM_siteHeader()
-			 . COM_startBlock($LANG_DBMAN['access_denied'])
+	$content = COM_startBlock($LANG_DBMAN['access_denied'])
 			 . $LANG_DBMAN['file_not_found']
-			 . COM_endBlock()
-			 . COM_siteFooter();
+			 . COM_endBlock();
+
+	if (is_callable('COM_createHTMLDocument')) {
+		$display = COM_createHTMLDocument($content);
+	} else {
+		$display = COM_siteHeader() . $content . COM_siteFooter();
+	}
+
 	echo $display;
 	exit;
 }

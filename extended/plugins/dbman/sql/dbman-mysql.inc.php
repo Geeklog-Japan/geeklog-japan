@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dbman/sql/dbman-mysql.inc                                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2014 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2008-2012 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -28,199 +28,237 @@
 // | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'dbman-mysql.inc.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], 'dbman-mysql.inc.php') !== false) {
 	die('This file cannot be used on its own.');
 }
 
-/*
-* Dbman plugin DB-specific functions file for MySQL
-*/
-if (!defined('LB')) {
-	define('LB', "\n");
-}
-
-// Data types to be quoted with dbman_quoteString()
-$dbman_string_types = array(
-	'CHAR', 'VARCHAR', 'DATE', 'TIME', 'DATETIME', 'TIMESTAMP', 'TINYTEXT',
-	'TEXT', 'MEDIUMTEXT', 'LONGTEXT', 'ENUM',
-);
-
-// Data types to be identified with BLOB
-$dbman_blob_types = array(
-	'BLOB', 'TINYBLOB', 'MEDIUMBLOB', 'LONGBLOB',
-);
-
-/**
-* Returns DB server version
-*/
-function dbman_getDBVersion() {
-	$rst = DB_query("SHOW VARIABLES");
+class Dbman
+{
+	const LB = "\n";
 	
-	if (!DB_error()) {
-		while (($r = DB_fetchArray($rst)) !== FALSE) {
-			if ($r['Variable_name'] === 'version') {
-				return $r['Value'];
+	// Data types to be quoted with dbman_quoteString()
+	public static $stringTypes = array(
+		'CHAR', 'VARCHAR', 'DATE', 'TIME', 'DATETIME', 'TIMESTAMP', 'TINYTEXT',
+		'TEXT', 'MEDIUMTEXT', 'LONGTEXT', 'ENUM',
+	);
+
+	// Data types to be identified with BLOB
+	public static $blobTypes = array(
+		'BLOB', 'TINYBLOB', 'MEDIUMBLOB', 'LONGBLOB',
+	);
+
+	/**
+	* Return DB server version
+	*
+	* @return string
+	*/
+	public static function getDBVersion()
+	{
+		$rst = DB_query("SHOW VARIABLES");
+	
+		if (!DB_error()) {
+			while (($r = DB_fetchArray($rst)) !== false) {
+				if ($r['Variable_name'] === 'version') {
+					return $r['Value'];
+				}
 			}
 		}
+	
+		return 'unavailable';
 	}
-	
-	return 'unavailable';
-}
 
-/**
-* Returns table definition used in the current database
-*/
-function dbman_getTableDef($table_name) {
-	$rst = DB_query("SHOW CREATE TABLE {$table_name}");
+	/**
+	* Returns table definition used in the current database
+	*
+	* @param  string $table_name
+	* @return string|false
+	*/
+	public static function getTableDefinition($table_name)
+	{
+		$rst = DB_query("SHOW CREATE TABLE {$table_name}");
 	
-	if ($rst !== FALSE) {
-		$r = DB_fetchArray($rst);
+		if ($rst !== false) {
+			$r = DB_fetchArray($rst);
 		
-		if ($r !== FALSE) {
-			$retval = rtrim($r['Create Table']);
-			$retval = str_replace(array("\r\n", "\r"), LB, $retval);
+			if ($r !== false) {
+				$retval = rtrim($r['Create Table']);
+				$retval = str_replace(array("\r\n", "\r"), self::LB, $retval);
 			
-			return $retval . ';';
+				return $retval . ';';
+			}
 		}
+	
+		return false;
 	}
-	
-	return FALSE;
-}
 
-/**
-* Returns table definition extracted from backup file
-*/
-function dbman_extractTableDefFromBackup($table_name, $filename) {
+	/**
+	* Return table definition extracted from backup file
+	*
+	* @param  string $table_name
+	* @param  string $filename
+	* @return string
+	*/
+	public static function extractTableDefinitionFromBackup($table_name, $filename)
+	{
+		$retval = array();
 	
-	$retval = array();
+		$table_name = dbman_quoteItem($table_name);
+		$data = file_get_contents($filename);
+		$data = str_replace(array("\r\n", "\r"), self::LB, trim($data));
+		$data = explode(self::LB, $data);
+		$num_data = count($data);
 	
-	$table_name = dbman_quoteItem($table_name);
-	$data = file_get_contents($filename);
-	$data = str_replace(array("\r\n", "\r"), LB, trim($data));
-	$data = explode(LB, $data);
-	$num_data = count($data);
-	
-	for ($i = 0; $i < $num_data; $i ++) {
-		if (preg_match("/^[ \t]*CREATE[ \t]+TABLE[ \t]+/i" . $table_name, $data[$i], $dummy)) {
-			$retval[] = $data[$i];
-			$lbrc = substr_count($data[$i], '(');
-			$rbrc = substr_count($data[$i], ')');
-			
-			while ($lbrc !== $rbrc) {
-				$i ++;
+		for ($i = 0; $i < $num_data; $i ++) {
+			if (preg_match("/^[ \t]*CREATE[ \t]+TABLE[ \t]+/i" . $table_name, $data[$i], $dummy)) {
 				$retval[] = $data[$i];
-				$lbrc += substr_count($data[$i], '(');
-				$rbrc += substr_count($data[$i], ')');
-			}
+				$lbrc = substr_count($data[$i], '(');
+				$rbrc = substr_count($data[$i], ')');
 			
-			return implode(LB, $retval);
-		}
-	}
-	
-	return FALSE;
-}
-
-/**
-* Returns an array of table names
-*/
-function dbman_getTableList() {
-	global $_DB_name, $_DB_table_prefix;
-	
-	$retval = array();
-	
-	$sql = 'SHOW TABLES LIKE "'
-		 . addslashes(str_replace('_', '\\_', $_DB_table_prefix)) . '%"';
-	$rst = DB_query($sql);
-	
-	if ($rst !== FALSE) {
-		while (($r = DB_fetchArray($rst, MYSQL_NUM)) !== FALSE) {
-			$table_name = $r[0];
-			$retval[$table_name]['name'] = $table_name;
-		}
-	}
-	
-	return $retval;
-}
-
-/**
-* Returns quoted name of database, table and column
-*/
-function dbman_quoteItem($item) {
-	return '`' . $item . '`';
-}
-
-/**
-* Returns quoted string.
-*/
-function dbman_quoteString($item) {
-	$item = str_replace(array("\r", "\n"), array('\\r', '\\n'), $item);
-	
-	if (!get_magic_quotes_gpc()) {
-		$item = addslashes($item);
-		$item = str_replace(array('\\\\r', '\\\\n'), array('\\r', '\\n'), $item);
-	}
-	
-	return "'" . $item . "'";
-}
-
-/**
-* Checks if the designated table has any BLOB field
-*
-* @param   string   $table_name  the table name to check for
-* @return  boolean               TRUE = has a BLOB field, FALSE = none
-*/
-function dbman_isHasBLOBField($table_name) {
-	global $dbman_blob_types;
-	
-	$defs = explode(LB, dbman_getTableDef($table_name));
-	
-	foreach ($defs as $def) {
-		if (preg_match('/^[ ]*`(.*)`[ ]+([a-zA-Z0-9_]*).*$/i', $def, $match)) {
-			$column_name = $match[1];
-			$column_def  = strtoupper(trim($match[2]));
+				while ($lbrc !== $rbrc) {
+					$i ++;
+					$retval[] = $data[$i];
+					$lbrc += substr_count($data[$i], '(');
+					$rbrc += substr_count($data[$i], ')');
+				}
 			
-			if (in_array($column_def, $dbman_blob_types)) {
-				return TRUE;
+				return implode(self::LB, $retval);
 			}
 		}
+	
+		return false;
+	}
+
+	/**
+	* Return an array of table names
+	*
+	* @return array
+	*/
+	public static function getTableList()
+	{
+		global $_DB_name, $_DB_table_prefix;
+	
+		$retval = array();
+	
+		$sql = 'SHOW TABLES LIKE "'
+			 . self::escapeString(str_replace('_', '\\_', $_DB_table_prefix)) . '%"';
+		$rst = DB_query($sql);
+	
+		if ($rst !== false) {
+			while (($r = DB_fetchArray($rst, MYSQL_NUM)) !== false) {
+				$table_name = $r[0];
+				$retval[$table_name]['name'] = $table_name;
+			}
+		}
+	
+		return $retval;
 	}
 	
-	return FALSE;
-}
-
-/**
-* Returns tables name included in the {$filename} file
-*
-* @note  backquote char '`' may be mysql-specific
-*/
-function dbman_getTableNameFromBackup($filename) {
-	$retval = array();
-	
-	if (substr($filename, -3) === '.gz') {
-		$fh = gzopen($filename, 'r');
-		
-		if ($fh === FALSE) {
-			return $retval;
+	/**
+	* Escape a string
+	*
+	* @param  string $str
+	* @return string
+	*/
+	public static function escapeString($str)
+	{
+		if (is_callable('DB_escapeString')) {
+			return DB_escapeString($str);
 		} else {
-			$f = '';
+			return addslashes($str);
+		}
+	}
+
+	/**
+	* Return a quoted name of database, table and column
+	*
+	* @param  string $item
+	* @return string
+	*/
+	public function quoteIdentifier($item)
+	{
+		return '`' . $item . '`';
+	}
+
+	/**
+	* Return quoted string
+	*
+	* @param  string $item
+	* @return string
+	*/
+	public static function quoteString($item) {
+		$item = str_replace(array("\r", "\n"), array('\\r', '\\n'), $item);
+	
+		if (!get_magic_quotes_gpc()) {
+			$item = self::escapeString($item);
+			$item = str_replace(array('\\\\r', '\\\\n'), array('\\r', '\\n'), $item);
+		}
+	
+		return "'" . $item . "'";
+	}
+
+	/**
+	* Checks if the designated table has any BLOB field
+	*
+	* @param   string   $table_name  the table name to check for
+	* @return  boolean               true = has a BLOB field, false = none
+	*/
+	public function dbman_isHasBLOBField($table_name)
+	{
+		global $dbman_blob_types;
+	
+		$defs = explode(self::LB, dbman_getTableDef($table_name));
+	
+		foreach ($defs as $def) {
+			if (preg_match('/^[ ]*`(.*)`[ ]+([a-zA-Z0-9_]*).*$/i', $def, $match)) {
+				$column_name = $match[1];
+				$column_def  = strtoupper(trim($match[2]));
 			
-			while (!gzeof($fh)) {
-				$f .= gzread($fh, 10000);
+				if (in_array($column_def, $dbman_blob_types)) {
+					return true;
+				}
 			}
-			gzclose($fh);
 		}
-	} else {
-		$f = file_get_contents($filename);
+	
+		return false;
 	}
+
+	/**
+	* Returns tables name included in the {$filename} file
+	*
+	* @param  string $filename
+	* @return string
+	* @note   backquote char '`' may be mysql-specific
+	*/
+	public function getTableNameFromBackup($filename)
+	{
+		$retval = array();
 	
-	$f = str_replace(array("\r\n", "\r"), LB, $f);
-	$f = explode(LB, trim($f));
-	
-	foreach ($f as $line) {
-		if (preg_match("/CREATE[ ]+TABLE[ ]+`(.*)`[ ]*\(/i", $line, $match)) {
-			$retval[] = $match[1];
+		if (substr($filename, -3) === '.gz') {
+			$fh = gzopen($filename, 'r');
+		
+			if ($fh === false) {
+				return $retval;
+			} else {
+				$f = '';
+			
+				while (!gzeof($fh)) {
+					$f .= gzread($fh, 10000);
+				}
+				gzclose($fh);
+			}
+		} else {
+			$f = @file_get_contents($filename);
 		}
-	}
 	
-	return $retval;
+		$f = str_replace(array("\r\n", "\r"), self::LB, $f);
+		$f = explode(self::LB, trim($f));
+	
+		foreach ($f as $line) {
+			if (preg_match("/CREATE[ ]+TABLE[ ]+`(.*)`[ ]*\(/i", $line, $match)) {
+				$retval[] = $match[1];
+			}
+		}
+	
+		return $retval;
+	}
 }
