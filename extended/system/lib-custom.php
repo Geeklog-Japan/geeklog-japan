@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.8                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-custom.php                                                            |
 // |                                                                           |
@@ -43,7 +43,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -52,12 +52,12 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
 // lib-common.php and see how $_COM_VERBOSE was used throughout the code
 $_CST_VERBOSE = false;
 
-
 /**
  * Sample PHP Block function
  * this is a sample function used by a PHP block.  This will show the rights that
  * a user has in the "What you have access to" block.
  */
+/*
 function phpblock_showrights()
 {
     global $_RIGHTS, $_CST_VERBOSE;
@@ -82,14 +82,17 @@ function phpblock_showrights()
 }
 */
 
+
 /**
  * Include any code in this function that will be called by the internal CRON API
  * The interval between runs is determined by $_CONF['cron_schedule_interval']
  */
+/*
 function CUSTOM_runScheduledTask()
 {
 
 }
+*/
 
 
 /**
@@ -99,6 +102,7 @@ function CUSTOM_runScheduledTask()
  * This example redirects to the front page with a extra passed variable plus the message
  * Note: Message could be a string but in this case maps to $MESSAGE[81] as a default - edit in language file
  */
+/*
 function CUSTOM_loginErrorHandler($msg = '')
 {
     global $_CONF, $MESSAGE;
@@ -112,6 +116,7 @@ function CUSTOM_loginErrorHandler($msg = '')
     echo $retval;
     exit;
 }
+*/
 
 
 /**
@@ -136,6 +141,7 @@ function CUSTOM_loginErrorHandler($msg = '')
  * @return   void
  * @see      PLG_templateSetVars
  */
+/*
 function CUSTOM_templateSetVars($templatename, $template)
 {
     // define a {hello_world} variable available in header.thtml and
@@ -189,6 +195,7 @@ function CUSTOM_templateSetVars($templatename, $template)
  * @param    boolean $batchImport true during Batch User Import (admin/user.php)
  * @return   boolean              true on success, otherwise false
  */
+/*
 function CUSTOM_userCreate($uid, $batchImport = false)
 {
     global $_CONF, $_TABLES;
@@ -222,12 +229,17 @@ function CUSTOM_userCreate($uid, $batchImport = false)
 
     return true;
 }
+*/
+
 
 // Delete any records from custom tables you may have used
+/*
 function CUSTOM_userDelete($uid)
 {
     return true;
 }
+*/
+
 
 /* Called from users.php - when user is displaying a member profile.
  * This function can now return any extra fields that need to be shown.
@@ -235,6 +247,7 @@ function CUSTOM_userDelete($uid)
  * to your templates
  * Template: path_layout/users/profile.thtml
  */
+/*
 function CUSTOM_userDisplay($uid)
 {
     global $_CONF, $_TABLES;
@@ -249,6 +262,7 @@ function CUSTOM_userDisplay($uid)
 
     return $retval;
 }
+*/
 
 
 /* Function called when editing user profile. */
@@ -261,7 +275,7 @@ function CUSTOM_userDisplay($uid)
 /* This example shows adding the Cookie Timeout setting and extra text field */
 /* As noted: You need to add the {customfields} template variable. */
 /* For the edituser.thtml - maybe it would be added about the {group_edit} variable. */
-
+/*
 function CUSTOM_userEdit($uid)
 {
     global $_CONF, $_TABLES;
@@ -285,9 +299,12 @@ function CUSTOM_userEdit($uid)
 
     return $retval;
 }
+*/
+
 
 /* Function called when saving the user profile. */
 /* This function can now update any extra fields  */
+/*
 function CUSTOM_userSave($uid)
 {
     global $_CONF, $_TABLES;
@@ -301,6 +318,8 @@ function CUSTOM_userSave($uid)
         DB_query("UPDATE {$_TABLES['users']} SET cookietimeout = $cookTime WHERE uid = $uid");
     }
 }
+*/
+
 
 /**
  * Main Form used for Custom membership when member is registering
@@ -310,6 +329,7 @@ function CUSTOM_userSave($uid)
  * @param    string $msg an error message to display or the word 'new'
  * @return   string          HTML for the registration form
  */
+/*
 function CUSTOM_userForm($msg = '')
 {
     global $_CONF, $_TABLES, $LANG04;
@@ -363,6 +383,8 @@ function CUSTOM_userForm($msg = '')
 
     return $retval;
 }
+*/
+
 
 /**
  * Geeklog is about to create a new user or edit an existing user.
@@ -378,6 +400,7 @@ function CUSTOM_userForm($msg = '')
  *                                  files By default $MESSAGE[400] will appear if a non-numeric is returned to
  *                                  usersettings.php - saveuser function
  */
+/*
 function CUSTOM_userCheck($username, $email = '')
 {
     global $MESSAGE;
@@ -393,6 +416,8 @@ function CUSTOM_userCheck($username, $email = '')
 
     return $retval;
 }
+*/
+
 
 /**
  * Custom function to retrieve and return a formatted list of blocks
@@ -407,6 +432,7 @@ function CUSTOM_userCheck($username, $email = '')
  * @param   array $showblocks An array of block names to retrieve and format
  * @return  string                 Formated HTML containing site footer and optionally right blocks
  */
+/*
 function CUSTOM_showBlocks($showblocks)
 {
     global $_CONF, $_USER, $_TABLES;
@@ -439,6 +465,7 @@ function CUSTOM_showBlocks($showblocks)
 
     return $retval;
 }
+*/
 
 
 /**
@@ -552,79 +579,77 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
 }
 */
 
+
 /**
-  * 日本語拡張版提供　PHPブロック関数およびカスタム関数
-  * Additional Custom Functions: PHP block functions and custom functions
-  */
+ * 日本語拡張版提供　PHPブロック関数およびカスタム関数
+ * Additional Custom Functions: PHP block functions and custom functions
+ */
 
 // 静的ページコンテンツの内容を返す 
 // Return Staticpage content
-if (file_exists( $_CONF['path'].'system/custom/custom_getstaticpage.php')) {
-    require_once( 'custom/custom_getstaticpage.php' );
+if (file_exists($_CONF['path'] . 'system/custom/custom_getstaticpage.php')) {
+    require_once $_CONF['path'] . 'custom/custom_getstaticpage.php';
 }
 
 // テーマ変更時にデフォルトテーマをセットしているユーザのテーマも強制的に変更する
 // Force user's theme when site theme is changed
-if (file_exists($_CONF['path'].'system/custom/custom_forcethemechange.php')) {
-	require_once( 'custom/custom_forcethemechange.php' );
+if (file_exists($_CONF['path'] . 'system/custom/custom_forcethemechange.php')) {
+	require_once $_CONF['path'] . 'custom/custom_forcethemechange.php';
 }
 
 // 新着記事リストを表示する 
 // List new articles
-if (file_exists($_CONF['path'].'system/custom/phpblock_lastarticles.php')) {
-	require_once( 'custom/phpblock_lastarticles.php' );
+if (file_exists($_CONF['path'] . 'system/custom/phpblock_lastarticles.php')) {
+	require_once $_CONF['path'] . 'custom/phpblock_lastarticles.php';
 }
 
 // アクセス数を表示する 
 // Display access number
-if (file_exists($_CONF['path'].'system/custom/phpblock_stats.php')) {
-	require_once( 'custom/phpblock_stats.php' );
+if (file_exists($_CONF['path'] . 'system/custom/phpblock_stats.php')) {
+	require_once $_CONF['path'] . 'custom/phpblock_stats.php';
 }
 
 // 404
-if (file_exists($_CONF['path'].'system/custom/custom_handle404.php')) {
-  require_once( 'custom/custom_handle404.php' );
+if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
+  require_once $_CONF['path'] . 'custom/custom_handle404.php';
 }
 
 // Optional custom functions
 
-// テーマ変数をセットする 
+// テーマ変数をセットする
 // Set theme variables
-if (file_exists($_CONF['path'].'system/custom/custom_templatesetvars.php')) {
-	 require_once( 'custom/custom_templatesetvars.php' ); 
-}
+// if (file_exists($_CONF['path'] . 'system/custom/custom_templatesetvars.php')) {
+// 	 require_once $_CONF['path'] . 'custom/custom_templatesetvars.php';
+// }
 
-// ユーザーエージェント判定のテンプレート変数を追加する 
+// ユーザーエージェント判定のテンプレート変数を追加する
 // Add theme variable of useragent
-if (file_exists($_CONF['path'].'system/custom/useragent.class.php')) {
-	require_once( 'custom/useragent.class.php' );
-}
+// if (file_exists($_CONF['path'] . 'system/custom/useragent.class.php')) {
+// 	require_once $_CONF['path'] . 'custom/useragent.class.php';
+// }
 
 // ログインユーザの権限を表示する 
 // Show rights
-if (file_exists($_CONF['path'].'system/custom/phpblock_showrights.php')) {
-//	require_once( 'custom/phpblock_showrights.php' );
-}
+// if (file_exists($_CONF['path'] . 'system/custom/phpblock_showrights.php')) {
+//	require_once $_CONF['path'] . 'custom/phpblock_showrights.php';
+// }
 
 // サイトのテーマを変更する 
 // Change site theme
-if (file_exists( $_CONF['path'].'system/custom/phpblock_themetester.php')) {
-	require_once( 'custom/phpblock_themetester.php' );
-}
+// if (file_exists($_CONF['path'] . 'system/custom/phpblock_themetester.php')) {
+// 	require_once $_CONF['path'] . 'custom/phpblock_themetester.php';
+// }
 
 // RSS Aggregator
-//if (file_exists($_CONF['path'].'system/custom/phpblock_rssaggregator.php')) {
-//   require_once( 'custom/phpblock_rssaggregator.php' );
+//if (file_exists($_CONF['path'] . 'system/custom/phpblock_rssaggregator.php')) {
+//   require_once $_CONF['path'] . 'custom/phpblock_rssaggregator.php';
 //}
 
 // Forum Center Block
-if (file_exists($_CONF['path'].'system/custom/custom_centerblock_forum.php')) {
-   require_once( 'custom/custom_centerblock_forum.php' );
-}
+// if (file_exists($_CONF['path'] . 'system/custom/custom_centerblock_forum.php')) {
+//    require_once 'custom/custom_centerblock_forum.php';
+// }
 // Uses: Install autotag plugin and create autotag
 // autotag: (title) forumcenterblock
 //          (mode) Use PHP
 //          (content) return CUSTOM_centerblock_forum ($p1);
-
-
-?>
