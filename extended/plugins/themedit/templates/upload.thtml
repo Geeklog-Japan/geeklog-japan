@@ -1,5 +1,3 @@
-{# begin {templatelocation} #}
-
 <img src="{temp_site_admin_url}/plugins/themedit/images/themedit.gif" alt="" border="0"{xhtml}>
 &nbsp;&nbsp; <b><font size="4"> {temp_header} </font></b>&nbsp;&nbsp;<a href="{site_admin_url}/plugins/themedit/index.php?thm_theme={temp_theme}">{temp_lang_return_to_editor}</a>
 <noscript>
@@ -36,5 +34,3 @@
 		<input name="thm_delete" type="submit" value="{temp_lang_delete}"{xhtml}>
 	</p>
 </form>
-
-{# end {templatelocation} #}

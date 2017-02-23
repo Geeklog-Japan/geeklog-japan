@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/themedit/index.php                              |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2006-2013 - geeklog AT mystral-kk DOT net                   |
+// | Copyright (C) 2006-2017 - geeklog AT mystral-kk DOT net                   |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -32,6 +32,7 @@
 // +---------------------------------------------------------------------------+
 
 require_once '../../../lib-common.php';
+require_once dirname(__FILE__) . '/compat.php';
 
 if (!defined('XHTML')) {
 	define('XHTML', '');
@@ -43,12 +44,11 @@ if (!defined('XHTML')) {
 if (!SEC_hasRights('themedit.admin')) {
     // Someone is trying to illegally access this page
     COM_errorLog("Someone has tried to illegally access the themedit Admin page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-    $display = COM_siteHeader()
-			 . COM_startBlock(THM_str('access_denied'))
+	$content = COM_startBlock(THM_str('access_denied'))
 			 . THM_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
-    echo $display;
+			 . COM_endBlock();
+	$display = COM_createHTMLDocument($content);
+	COM_output($display);
     exit;
 }
  
@@ -73,7 +73,7 @@ switch (strtolower($_THM_CONF['resync_database'])) {
 	case 'auto':
 		$diff = THM_isAddedOrRemoved();
 		
-		if ((count($diff['added']) > 0) OR (count($diff['removed']) > 0)) {
+		if ((count($diff['added']) > 0) || (count($diff['removed']) > 0)) {
 			THM_updateAll();
 		}
 		break;
@@ -81,7 +81,7 @@ switch (strtolower($_THM_CONF['resync_database'])) {
 	case 'manual':
 		$diff = THM_isAddedOrRemoved();
 		
-		if ((count($diff['added']) > 0) OR (count($diff['removed']) > 0)) {
+		if ((count($diff['added']) > 0) || (count($diff['removed']) > 0)) {
 			$link = $_CONF['site_admin_url'] . '/plugins/themedit/index.php?op=updateall';
 			$sys_message .= str_replace('%s', $link, $LANG_THM['file_changed']);
 		}
@@ -100,7 +100,7 @@ $theme = @$theme_names[0];
 // Theme name
 if (isset($_POST['thm_theme'])) {
 	$req_theme = COM_applyFilter($_POST['thm_theme']);
-} else if (isset($_GET['thm_theme'])) {
+} elseif (isset($_GET['thm_theme'])) {
 	$req_theme = COM_applyFilter($_GET['thm_theme']);
 } else {
 	$req_theme = '';
@@ -115,7 +115,7 @@ if (in_array($req_theme, $theme_names)) {
 // File name
 if (isset($_POST['thm_file'])) {
 	$req_file = COM_applyFilter($_POST['thm_file']);
-} else if (isset($_GET['thm_file'])) {
+} elseif (isset($_GET['thm_file'])) {
 	$req_file = COM_applyFilter($_GET['thm_file']);
 } else {
 	$req_file = '';
@@ -130,11 +130,11 @@ if (in_array($req_file, $_THM_CONF['allowed_files'])) {
 // Operation
 if (isset($_POST['thm_op'])) {
 	$op = COM_applyFilter($_POST['thm_op']);
-} else if (isset($_GET['op'])) {
+} elseif (isset($_GET['op'])) {
 	$op = COM_applyFilter($_GET['op']);
 }
 
-if (($op == '') AND ($file != '')) {
+if (($op == '') && ($file != '')) {
 	$op = 'load';
 }
 
@@ -221,7 +221,7 @@ if ($op === $LANG_THM['preview']) {
 		if ($is_css) {
 			$fh = fopen($_CONF['path_html'] . 'admin/plugins/themedit/preview.css', 'wb');
 			
-			if ($fh !== FALSE) {
+			if ($fh !== false) {
 				fwrite($fh, $contents);
 				fclose($fh);
 			}
@@ -233,7 +233,7 @@ if ($op === $LANG_THM['preview']) {
 	
 	$preview = THM_getPreview();
 	
-	if (!empty($file) AND !$is_css) {
+	if (!empty($file) && !$is_css) {
 		THM_saveFile($theme, $file, $org_contents);
 	}
 	
@@ -252,7 +252,7 @@ if ($op === $LANG_THM['preview']) {
 		$pos = strpos(strtolower($preview), strtolower($css_path));
 		COM_errorLog('$preview: ' . $preview . "\r\n" . '$css_path: ' . $css_path);
 		
-		if ($pos !== FALSE) {
+		if ($pos !== false) {
 			$preview = substr($preview, 0, $pos) . $alt_css_path
 					 . substr($preview, $pos + strlen($css_path));
 		}
@@ -267,7 +267,7 @@ if ($op === $LANG_THM['preview']) {
 	
 	$fh = fopen($_CONF['path_html'] . 'admin/plugins/themedit/preview.html', 'wb');
 	
-	if ($fh !== FALSE) {
+	if ($fh !== false) {
 		fwrite($fh, $preview);
 		fclose($fh);
 	}
@@ -381,12 +381,10 @@ $T->set_var('temp_lang_image', THM_str('image'));
 $T->set_var('temp_lang_init', THM_str('init'));
 $T->set_var('temp_token_name', CSRF_TOKEN);
 $ttl = DB_getItem(
-	$_TABLES['users'], 'cookietimeout', "(uid='" . addslashes($_USER['uid']) . "')"
+	$_TABLES['users'], 'cookietimeout', "(uid='" . DB_escapeString($_USER['uid']) . "')"
 );
 $T->set_var('temp_token_value', SEC_createToken($ttl));
 $T->parse('output','admin');
-
-$display = COM_siteHeader()
-		 . $T->finish($T->get_var('output'))
-		 . COM_siteFooter();
-echo $display;
+$content = $T->finish($T->get_var('output'));
+$display = COM_createHTMLDocument($content);
+COM_output($display);

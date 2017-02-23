@@ -4,13 +4,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Style-Type" content="text/css">
 	<link rel="stylesheet" type="text/css" href="../docstyle.css">
-	<title>Geeklog テーマエディタープラグイン</title>
+	<title>Geeklog テーマエディタプラグイン</title>
 </head>
 
 <body>
-<h1>Geeklogテーマエディタープラグイン [v1.2.2]</h1>
+<h1>Geeklogテーマエディタプラグイン [v1.2.2]</h1>
 by mystral-kk [<a href="mailto:geeklog@mystral-kk.net">geeklog@mystral-kk.net</a>]<br>
-2013年 9月 7日
+2017年 1月10日
 
 <h2>目次</h2>
 
@@ -26,7 +26,7 @@ by mystral-kk [<a href="mailto:geeklog@mystral-kk.net">geeklog@mystral-kk.net</a
 </ul>
 
 <a name="description"></a><h3>概要</h3>
-<p>テーマエディターを使うと、オンラインでテンプレートファイル(*.thtml)とカスケィディングスタイルシートファイル(*.css)を編集できます。このプラグインを使えば、テンプレートファイルを変更する度にアップロードする必要はなくなります。</p>
+<p>テーマエディタを使うと、オンラインでテンプレートファイル(*.thtml)とカスケィディングスタイルシートファイル(*.css)を編集できます。このプラグインを使えば、テンプレートファイルを変更する度にアップロードする必要はなくなります。</p>
 
 <a name="version"></a><h3>改訂履歴</h3>
 <table border="1">
@@ -34,7 +34,7 @@ by mystral-kk [<a href="mailto:geeklog@mystral-kk.net">geeklog@mystral-kk.net</a
 		<th>日付</th><th>バージョン</th><th>説明</th>
 	</tr>
 	<tr>
-		<td>2013年 9月 7日</td><td>1.2.2</td><td><span class="fixed">修正</span> 不要なHTTPヘッダーが出力されていたバグを修正しました。</td>
+		<td>2017年 1月10日</td><td>1.2.2</td><td><span class="fixed">修正</span> PHP-7とGeeklog-2.1.2で動くようになりました。</td>
 	</tr>
 	<tr>
 		<td>2012年 4月22日</td><td>1.2.1</td><td><span class="fixed">修正</span> アンインストール時に、環境によってはエラーが発生するバグを修正しました。</td>
@@ -94,31 +94,31 @@ by mystral-kk [<a href="mailto:geeklog@mystral-kk.net">geeklog@mystral-kk.net</a
 <p>を表しています。</p>
 
 <ol>
-	<li>テーマエディタープラグインはテーブルを追加するので、管理者メニューの「DBのバックアップ」やphpMyAdminを使用して、事前にGeeklogのデータベースをバックアップしておきます。</li>
-	<li>テーマエディタープラグインのアーカイブを<span class="geeklog">&lt;geeklog_dir&gt;</span>/pluginsディレクトリに展開します。themeditという名前のディレクトリができます。</li>
+	<li>テーマエディタプラグインはテーブルを追加するので、管理者メニューの「DBのバックアップ」やphpMyAdminを使用して、事前にGeeklogのデータベースをバックアップしておきます。</li>
+	<li>テーマエディタプラグインのアーカイブを<span class="geeklog">&lt;geeklog_dir&gt;</span>/pluginsディレクトリに展開します。themeditという名前のディレクトリができます。</li>
 	<li>adminディレクトリを作ります。<span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下に themeditという名前のディレクトリを作ります。</li>
 	<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/themedit/ ディレクトリに移動します。adminディレクトリの内容を、3.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/themedit/ ディレクトリにコピーします。</li>
 	<li>themeditディレクトリの config.php ファイルを編集し、データベースのテーブルのプレフィックスと編集対象テーマ、編集対象ファイルなどを設定します。デフォルトでは、Geeklogのテーブルのプレフィックスを使用し、themedit admin以外のアクセスを認めないようになっています。</li>
-	<li>Rootユーザーとしてログインし、プラグインエディターからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、テーマエディタープラグインはインストールされ、機能しているはずです。テーマエディターアイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
-	<li>セキュリティを設定します。インストール直後には、テーマエディタープラグインの管理権限(themedit admin)を持っているのは、Rootユーザーだけです。ユーザーエディターやグループエディターを使用して、管理権限を他の人やグループに委譲することができます</li>
+	<li>Rootユーザーとしてログインし、プラグインエディタからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、テーマエディタプラグインはインストールされ、機能しているはずです。テーマエディタアイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
+	<li>セキュリティを設定します。インストール直後には、テーマエディタプラグインの管理権限(themedit admin)を持っているのは、Rootユーザーだけです。ユーザーエディタやグループエディタを使用して、管理権限を他の人やグループに委譲することができます</li>
 	<li><strong>[***** 注意1 *****]</strong>　編集するテーマが入っているディレクトリのパーミッションを<strong>757</strong>、編集するファイルのパーミッションを<strong>646</strong>に変更する必要があります。</li>
 	<li><strong>[***** 注意2 *****]</strong>　<span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリ内の preview.html と preview.css のパーミッションを<strong>646</strong>に変更する必要があります。</li>
 </ol>
-<p>注意: テーマエディタープラグインではかなりJavaScriptを使用しています。快適な操作性を得るには、JavaScriptをオンにすることを強くお勧めします。</p>
+<p>注意: テーマエディタプラグインではかなりJavaScriptを使用しています。快適な操作性を得るには、JavaScriptをオンにすることを強くお勧めします。</p>
 
 <a name="uninstall"></a><h3>プラグインのアンインストール</h3>
 
 <ol>
-	<li>プラグインエディターから、テーマエディタープラグインをアンインストールします。このとき、テーマエディタープラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
+	<li>プラグインエディタから、テーマエディタプラグインをアンインストールします。このとき、テーマエディタプラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
 	<li>インストールの過程で作成した 2つのディレクトリ（<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/themedit/ と <span class="admin">&lt;admin&gt;</span>/plugins/themedit/ を削除します。</li>
 	<li><strong>[***** 注意 *****]</strong>　インストール時に変更したディレクトリとファイルのパーミッションを元に戻します。たとえば、ディレクトリは<strong>755</strong>、ファイルは<strong>644</strong>に変更します。</li>
 </ol>
 
 <a name="upgrade"></a><h3>プラグインのアップグレード</h3>
-<p>新しいアーカイブを展開（解凍）してできたファイルをすべてWebサーバにアップロードし、プラグインエディターから「編集」-「更新」を実行するだけです。</p>
+<p>新しいアーカイブを展開（解凍）してできたファイルをすべてWebサーバにアップロードし、プラグインエディタから「編集」-「更新」を実行するだけです。</p>
 
 <a name="usage"></a><h3>使用法</h3>
-<p>テーマエディタープラグインはとてもシンプルなので、ほとんど直感的に使えます。</p>
+<p>テーマエディタプラグインはとてもシンプルなので、ほとんど直感的に使えます。</p>
 <ol>
 	<li>編集したいテーマをドロップダウンリストから選択します。<br><strong>注意</strong>：選択できるテーマ名は <tt>config.php</tt> 中の <tt>$_THM_CONF['allowed_themes']</tt> で定義されています。必要に応じて変更してください。</li>
 	<li>編集したいファイルをドロップダウンリストから選択します。<br><strong>注意</strong>：選択できるファイル名は <tt>config.php</tt> 中の <tt>$_THM_CONF['allowed_files']</tt> で定義されています。必要に応じて変更してください。</li>
@@ -127,12 +127,12 @@ by mystral-kk [<a href="mailto:geeklog@mystral-kk.net">geeklog@mystral-kk.net</a
 	<li>「プレビュー」ボタンをクリックすると、編集内容のプレビューが別のページで表示されます。</li>
 	<li>「保存」ボタンをクリックすると、編集内容がWeb上に保存されます。</li>
 	<li>「初期設定に戻す」ボタンをクリックすると、ファイルの内容はこのプラグインがインストールされた時点の内容に戻ります。</li>
-	<li>「画像」ボタンをクリックすると、シンプルな画像ブラウザーが表示されます。サポートされている画像タイプは'jpg', 'jpeg', 'png', 'gif'です。テーマ名とディレクトリ名のドロップダウンリストを選択することでブラウズできます。画像をアップロードするときには、「参照...」ボタンをクリックして選択し、「アップロード」ボタンをクリックします。画像ファイルを削除したい場合は、該当のファイルにチェックを入れて、「削除」ボタンをクリックします。<strong>削除は確認なしに行われるので、注意してください。</strong>やり直しはできません。</li>
+	<li>「画像」ボタンをクリックすると、シンプルな画像ブラウザが表示されます。サポートされている画像タイプは'jpg', 'jpeg', 'png', 'gif'です。テーマ名とディレクトリ名のドロップダウンリストを選択することでブラウズできます。画像をアップロードするときには、「参照...」ボタンをクリックして選択し、「アップロード」ボタンをクリックします。画像ファイルを削除したい場合は、該当のファイルにチェックを入れて、「削除」ボタンをクリックします。<strong>削除は確認なしに行われるので、注意してください。</strong>やり直しはできません。</li>
 </ol>
 
 <a name="license"></a><h3>ライセンス</h3>
-<p>テーマエディタープラグインはGPLv2以降です。</p>
+<p>テーマエディタプラグインはGPLv2以降です。</p>
 
-<div id="copyright">Copyright &copy; 2006-2013 mystral-kk</div>
+<div id="copyright">Copyright &copy; 2006-2017 mystral-kk</div>
 </body>
 </html>

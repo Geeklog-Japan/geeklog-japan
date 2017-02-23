@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/themedit/upload.php                             |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2006-2013 - geeklog AT mystral-kk DOT net                   |
+// | Copyright (C) 2006-2017 - geeklog AT mystral-kk DOT net                   |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -32,6 +32,7 @@
 // +---------------------------------------------------------------------------+
 
 require_once '../../../lib-common.php';
+require_once dirname(__FILE__) . '/compat.php';
 
 /**
 * Security check
@@ -39,12 +40,11 @@ require_once '../../../lib-common.php';
 if (!SEC_hasRights('themedit.admin')) {
     // Someone is trying to illegally access this page
     COM_errorLog( "Someone has tried to illegally access the themedit uploader.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-    $display = COM_siteHeader()
-			 . COM_startBlock(THM_str('access_denied'))
+	$content = COM_startBlock(THM_str('access_denied'))
 			 . THM_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
-    echo $display;
+			 . COM_endBlock();
+    $display = COM_createHTMLDocument($content);
+	COM_output($display);
     exit;
 }
 
@@ -59,7 +59,7 @@ $theme = '';
 
 if (isset($_GET['thm_theme'])) {
 	$theme = COM_applyFilter($_GET['thm_theme']);
-} else if (isset($_POST['thm_theme'])) {
+} elseif (isset($_POST['thm_theme'])) {
 	$theme = COM_applyFilter($_POST['thm_theme']);
 }
 
@@ -133,8 +133,8 @@ $T->set_var('temp_lang_delete', THM_str('delete'));
 $T->set_var('max_upload_size', THM_str('upload_max_size'));
 
 // Processes uploaded files if any
-if (isset($_POST['submit']) AND ($_POST['submit'] == $LANG_THM['upload'])
- AND isset($_FILES['thmfile']) AND ($_FILES['thmfile']['size'] > 0)) {
+if (isset($_POST['submit']) && ($_POST['submit'] == $LANG_THM['upload']) &&
+		isset($_FILES['thmfile']) && ($_FILES['thmfile']['size'] > 0)) {
 	$u_name = $_FILES['thmfile']['name'];
 	$u_size = $_FILES['thmfile']['size'];
 	$u_tmp  = $_FILES['thmfile']['tmp_name'];
@@ -142,9 +142,9 @@ if (isset($_POST['submit']) AND ($_POST['submit'] == $LANG_THM['upload'])
 	
 	if ($u_size > $_THM_CONF['upload_max_size']) {
 		$T->set_var('temp_sys_message', "<span style='color: red; font-weight: bold;'>{$LANG_THM['file_too_large']}</a>");
-	} else if (!in_array(strtolower($path_parts['extension']), array('jpg', 'jpeg', 'gif', 'png'))) {
+	} elseif (!in_array(strtolower($path_parts['extension']), array('jpg', 'jpeg', 'gif', 'png'))) {
 		$T->set_var('temp_sys_message', "<span style='color: red; font-weight: bold;'>{$LANG_THM['file_type_unsupported']}</p>");
-	} else if (is_uploaded_file($u_tmp)) {
+	} elseif (is_uploaded_file($u_tmp)) {
 		$dest = $_CONF['path_themes'] . $theme . '/' . $selected_dir
 			  . basename($u_name);
 		
@@ -159,17 +159,16 @@ if (isset($_POST['submit']) AND ($_POST['submit'] == $LANG_THM['upload'])
 }
 
 // Deletes checked files if any
-if (isset($_POST['thm_delete']) AND ($_POST['thm_delete'] == $LANG_THM['delete'])
- AND isset($_POST['ch'])) {
+if (isset($_POST['thm_delete']) && ($_POST['thm_delete'] == $LANG_THM['delete']) && isset($_POST['ch'])) {
 	$success = $fail = 0;
 	
 	foreach ($_POST['ch'] as $checked_file) {
 		$entry = $_CONF['path_themes'] . $theme . '/' . $selected_dir . $checked_file;
 		
 		if (@unlink($entry)) {
-			$success ++;
+			$success++;
 		} else {
-			$fail ++;
+			$fail++;
 		}
 	}
 	
@@ -196,8 +195,8 @@ $images  = '';
 $num_col = 0;
 $dh = @opendir($basedir);
 
-if ($dh !== FALSE) {
-	while (($entry = readdir($dh)) !== FALSE) {
+if ($dh !== false) {
+	while (($entry = readdir($dh)) !== false) {
 		if (is_file($basedir . '/' . $entry)) {
 			if (preg_match('/\.(gif|png|jpg|jpeg)$/i', $entry)) {
 				if ($num_col == 0) {
@@ -209,8 +208,7 @@ if ($dh !== FALSE) {
 				$T->set_var('temp_img_src', $_CONF['site_url'] . '/layout/' . $theme . '/' . $selected_dir . $entry);
 				$T->set_var('temp_filename', $entry);
 				list($width, $height, $type, $dummy) = @getimagesize($basedir . '/' . $entry);
-				if ($width > $_THM_CONF['image_width']
-				 OR $height > $_THM_CONF['image_height']) {
+				if ($width > $_THM_CONF['image_width'] || $height > $_THM_CONF['image_height']) {
 					if ($width / $_THM_CONF['image_width'] > $height / $_THM_CONF['image_height']) {
 						$height = floor($height * ($_THM_CONF['image_width'] / $width));
 						$width  = $_THM_CONF['image_width'];
@@ -243,7 +241,6 @@ if ($num_col > 0) {
 
 $T->set_var('temp_images', $images);
 $T->parse('output','upload');
-$display .= $T->finish($T->get_var('output'))
-		 .  COM_siteFooter();
-
-echo $display;
+$content = $T->finish($T->get_var('output'));
+$display = COM_createHTMLDocument($content);
+COM_output($display);

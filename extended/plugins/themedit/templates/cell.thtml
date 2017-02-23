@@ -1,5 +1,3 @@
-{# begin {templatelocation} #}
-
 <table style="width: {temp_cell_width}px; height: {temp_cell_height}px; border: solid 1px #9999ff; padding: 0px; border-collapse: collapse;">
 	<tr>
 		<td style="border: none; margin: 0px; padding: 0px; text-align: center; vertical-align: middle; background-color: #ccccff;">
@@ -12,5 +10,3 @@
 		</td>
 	</tr>
 </table>
-
-{# end {templatelocation} #}

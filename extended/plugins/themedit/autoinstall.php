@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/themedit/autoinstall.php                                  |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2013 mystral-kk - geeklog AT mystral-kk DOT net             |
+// | Copyright (C) 2011-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
@@ -26,7 +26,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file can not be used on its own!');
 }
 
@@ -73,7 +73,7 @@ function plugin_autoinstall_themedit($pi_name) {
 * Load plugin configuration from database
 *
 * @param    string  $pi_name    Plugin name
-* @return   boolean             TRUE on success, otherwise FALSE
+* @return   boolean             true on success, otherwise false
 */
 function plugin_load_configuration_themedit($pi_name) {
     global $_CONF;
@@ -97,8 +97,8 @@ function plugin_compatible_with_this_version_themedit($pi_name) {
 			. $_DB_dbms . '_install.php';
 	
 	if (!file_exists($dbFile)) {
-		return FALSE;
+		return false;
 	}
 	
-	return TRUE;
+	return true;
 }

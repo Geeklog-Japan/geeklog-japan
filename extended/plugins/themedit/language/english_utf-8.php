@@ -3,7 +3,7 @@
 // +---------------------------------------------------------------------------+
 // | Theme Editor Plugin for Geeklog - The Ultimate Weblog                     |
 // +---------------------------------------------------------------------------|
-// | geeklog/plugins/themedit/language/english.php                             |
+// | geeklog/plugins/themedit/language/english_utf-8.php                       |
 // +---------------------------------------------------------------------------|
 // | Copyright (C) 2006-2017 - geeklog AT mystral-kk DOT net                   |
 // |                                                                           |
