@@ -37,7 +37,7 @@ $_CONF['site_enabled'] = true;
 $_CONF['path'] = '/path/to/Geeklog/';
 $_CONF['path_system'] = $_CONF['path'] . 'system/';
 
-$_CONF['default_charset'] = 'iso-8859-1';
+$_CONF['default_charset'] = 'utf-8';
 
 $_CONF_FCK['imagelibrary'] = '/images/library';
 
