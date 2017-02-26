@@ -140,7 +140,7 @@ class dpxyDriver_Polls extends dpxyDriver
 	*   'image_uri' => $image_uri (string)
 	* )
 	*/
-	public function getChildCategories($pid = FALSE, $all_langs = false)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		return array();
 	}

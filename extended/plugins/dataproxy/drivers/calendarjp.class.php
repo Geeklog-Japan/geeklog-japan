@@ -46,7 +46,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 		return $_CONF['site_url'] . '/calendarjp/index.php';
 	}
 	
-	public function getChildCategories($pid, $all_langs = false)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		global $_CONF, $_TABLES;
 		

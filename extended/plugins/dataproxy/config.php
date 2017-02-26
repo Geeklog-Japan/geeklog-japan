@@ -43,6 +43,6 @@ $_TABLES['dpxy_notify'] = $_DB_table_prefix . 'dpxy_notify';
 $_DPXY_CONF = array();
 
 // Plugin info
-$_DPXY_CONF['pi_version'] = '2.1.0';					// Plugin Version
+$_DPXY_CONF['pi_version'] = '2.1.1';					// Plugin Version
 $_DPXY_CONF['gl_version'] = '1.6.0';					// GL Version plugin for
 $_DPXY_CONF['pi_url']     = 'https://mystral-kk.net/';	// Plugin Homepage
