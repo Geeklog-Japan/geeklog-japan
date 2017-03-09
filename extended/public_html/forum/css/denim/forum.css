@@ -36,4 +36,11 @@ div .css { height:300px; overflow:auto; width:auto; min-height:100px; }
     font-weight: bold;
 }
 
+/* Remove Topic iframe preview background if one set (which is the background of the main website) */
+.glforum-preview-html, 
+.glforum-preview-body {
+    background-image: none;
+    background: none;
+}
+
 /* END of Forum Plugin CSS */

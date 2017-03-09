@@ -321,8 +321,8 @@ function gf_cleanHTML($message) {
         return $message;
     }
     
-    // If user has story edit previlages then can use html allowed by admins
-    return gf_htmLawed($str, 'story.edit');
+    // If user has story edit privileges then can use html allowed by admins
+    return gf_htmLawed($message, 'story.edit');
     
 }
 
