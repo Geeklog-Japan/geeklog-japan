@@ -47,7 +47,7 @@ function theme_config_horizon()
     return array(
         'image_type' => 'png',
         'doctype'    => 'html5',
-        'etag' => true,
+        'etag' => false,
         'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
     );
 }
