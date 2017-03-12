@@ -130,7 +130,7 @@ function bbstyle(bbnumber) {
             txtarea.value += bbtags[butnumber + 1];
             buttext = eval('document.forumpost.addbbcode' + butnumber + '.value');
             eval('document.forumpost.addbbcode' + butnumber + '.className ="uk-button"'); // Used for uikit themes
-            // eval('document.forumpost.addbbcode' + butnumber + '.value ="' + buttext.substr(0,(buttext.length - 1)) + '"'); // Used by normal theme
+            eval('document.forumpost.addbbcode' + butnumber + '.value ="' + buttext.substr(0,(buttext.length - 1)) + '"');
         }
         imageTag = false; // All tags are closed including image tags :D
         txtarea.focus();
@@ -177,7 +177,7 @@ function bbstyle(bbnumber) {
         if (imageTag && (bbnumber != 14)) {        // Close image tag before adding another
             txtarea.value += bbtags[15];
             lastValue = arraypop(bbcode) - 1;    // Remove the close image tag from the list
-            document.forumpost.addbbcode14.value = "Img";    // Return button back to normal state
+            document.forumpost.addbbcode14.value = "";    // Return button back to normal state
             imageTag = false;
         }
 

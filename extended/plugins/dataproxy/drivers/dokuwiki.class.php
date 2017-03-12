@@ -46,7 +46,7 @@ class dpxyDriver_Dokuwiki extends dpxyDriver
 		return $_CONF['site_url'] . '/dokuwiki/doku.php';
 	}
 	
-	public function getChildCategories($pid = FALSE, $all_langs = false)
+	public function getChildCategories($pid = false, $all_langs = false)
 	{
 		return array();
 	}

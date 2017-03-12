@@ -42,7 +42,7 @@ if (!in_array('forum', $_PLUGINS)) {
 
 require_once $_CONF['path_system'] . 'classes/timer.class.php';
 $mytimer = new timerobject();
-$mytimer->setPercision(2);
+$mytimer->setPrecision(2);
 $mytimer->startTimer();
 
 require_once $CONF_FORUM['path_include'] . 'gf_showtopic.php';
@@ -103,7 +103,7 @@ if ($onlytopic == 1) {
         $display .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' . LB;
         break;
     }
-    $display .= '<html>' . LB;
+    $display .= '<html class="glforum-preview-html">' . LB;
     $display .= '<head>' . LB;
     $display .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$LANG_CHARSET\"" . XHTML . ">" . LB;
     $display .= '<meta name="robots" content="NOINDEX"' . XHTML . '>' . LB;
@@ -131,7 +131,7 @@ if ($onlytopic == 1) {
     } else {
         $display .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$_CONF['site_url']}/layout/{$_CONF['theme']}/style.css\"></head>\n";
     }
-    $display .= '<body class="forum-sitebody">';
+    $display .= '<body class="glforum-preview-body">';
 } else {
     //Check is anonymous users can access
     forum_chkUsercanAccess();

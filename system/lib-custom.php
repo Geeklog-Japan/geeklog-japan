@@ -563,30 +563,30 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
 // 静的ページコンテンツの内容を返す 
 // Return Staticpage content
 if (file_exists($_CONF['path'] . 'system/custom/custom_getstaticpage.php')) {
-    require_once $_CONF['path'] . 'custom/custom_getstaticpage.php';
+    require_once $_CONF['path'] . 'system/custom/custom_getstaticpage.php';
 }
 
 // テーマ変更時にデフォルトテーマをセットしているユーザのテーマも強制的に変更する
 // Force user's theme when site theme is changed
 if (file_exists($_CONF['path'] . 'system/custom/custom_forcethemechange.php')) {
-	require_once $_CONF['path'] . 'custom/custom_forcethemechange.php';
+	require_once $_CONF['path'] . 'system/custom/custom_forcethemechange.php';
 }
 
 // 新着記事リストを表示する 
 // List new articles
 if (file_exists($_CONF['path'] . 'system/custom/phpblock_lastarticles.php')) {
-	require_once $_CONF['path'] . 'custom/phpblock_lastarticles.php';
+	require_once $_CONF['path'] . 'system/custom/phpblock_lastarticles.php';
 }
 
 // アクセス数を表示する 
 // Display access number
 if (file_exists($_CONF['path'] . 'system/custom/phpblock_stats.php')) {
-	require_once $_CONF['path'] . 'custom/phpblock_stats.php';
+	require_once $_CONF['path'] . 'system/custom/phpblock_stats.php';
 }
 
 // 404
 if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
-  require_once $_CONF['path'] . 'custom/custom_handle404.php';
+  require_once $_CONF['path'] . 'system/custom/custom_handle404.php';
 }
 
 // Optional custom functions
@@ -594,35 +594,35 @@ if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
 // テーマ変数をセットする
 // Set theme variables
 // if (file_exists($_CONF['path'] . 'system/custom/custom_templatesetvars.php')) {
-// 	 require_once $_CONF['path'] . 'custom/custom_templatesetvars.php';
+// 	 require_once $_CONF['path'] . 'system/custom/custom_templatesetvars.php';
 // }
 
 // ユーザーエージェント判定のテンプレート変数を追加する
 // Add theme variable of useragent
 // if (file_exists($_CONF['path'] . 'system/custom/useragent.class.php')) {
-// 	require_once $_CONF['path'] . 'custom/useragent.class.php';
+// 	require_once $_CONF['path'] . 'system/custom/useragent.class.php';
 // }
 
 // ログインユーザの権限を表示する 
 // Show rights
 // if (file_exists($_CONF['path'] . 'system/custom/phpblock_showrights.php')) {
-//	require_once $_CONF['path'] . 'custom/phpblock_showrights.php';
+//	require_once $_CONF['path'] . 'system/custom/phpblock_showrights.php';
 // }
 
 // サイトのテーマを変更する 
 // Change site theme
 // if (file_exists($_CONF['path'] . 'system/custom/phpblock_themetester.php')) {
-// 	require_once $_CONF['path'] . 'custom/phpblock_themetester.php';
+// 	require_once $_CONF['path'] . 'system/custom/phpblock_themetester.php';
 // }
 
 // RSS Aggregator
 //if (file_exists($_CONF['path'] . 'system/custom/phpblock_rssaggregator.php')) {
-//   require_once $_CONF['path'] . 'custom/phpblock_rssaggregator.php';
+//   require_once $_CONF['path'] . 'system/custom/phpblock_rssaggregator.php';
 //}
 
 // Forum Center Block
 // if (file_exists($_CONF['path'] . 'system/custom/custom_centerblock_forum.php')) {
-//    require_once 'custom/custom_centerblock_forum.php';
+//    require_once $_CONF['path'] . 'system/custom/custom_centerblock_forum.php';
 // }
 // Uses: Install autotag plugin and create autotag
 // autotag: (title) forumcenterblock
