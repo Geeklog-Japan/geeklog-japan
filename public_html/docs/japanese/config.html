@@ -243,23 +243,23 @@
 
 <h3><a name="site_database">Site: Database</a></h3>
 
-<table border="1" width="100%">
-<tr><th style="width:8%">Variable</th>
-    <th style="width:29%">Default Value</th>
-    <th style="width:63%">Description</th></tr>
-<tr><td valign="top"><a name="desc_dbdump_filename_prefix">dbdump_filename_prefix</a></td>
+<table>
+<tr><th style="width:25%">項目(変数)</th>
+    <th style="width:25%">デフォルト</th>
+    <th style="width:50%">説明</th></tr>
+<tr><td valign="top"><a name="desc_dbdump_filename_prefix">バックアップファイル名の接頭子</a></td>
     <td valign="top">geeklog_db_backup</td>
-    <td valign="top">Prefix to use for the names of the backup files. Default file name will be "geeklog_db_backup_date_time.sql".</td></tr>
-<tr><td valign="top"><a name="desc_dbdump_tables_only">dbdump_tables_only</a></td>
+    <td valign="top">バックアップファイル名の接頭子。デフォルトは "geeklog_db_backup_date_time.sql".</td></tr>
+<tr><td valign="top"><a name="desc_dbdump_tables_only">テーブルのみ</a></td>
     <td valign="top">0</td>
-    <td valign="top">Enable or disable dumping of table structure only, else dump both table and table data (1 = on,
+    <td valign="top">テーブル構造のみバックアップ。そうでなければテーブルとデータ両方をバックアップ。 (1 = on,
         0 = off).</td></tr>
-<tr><td valign="top"><a name="desc_dbdump_gzip">dbdump_gzip</a></td>
+<tr><td valign="top"><a name="desc_dbdump_gzip">圧縮</a></td>
     <td valign="top">1</td>
-    <td valign="top">Compress database dump if gzip is available.</td></tr>
+    <td valign="top">可能なら圧縮ファイル(GZip)を使用する</td></tr>
 <tr><td valign="top"><a name="desc_dbdump_max_files">dbdump_max_files</a></td>
     <td valign="top">10</td>
-    <td valign="top">Limit the number of backup files to keep. Use "0" to disable purging.</td></tr>
+    <td valign="top">バックアップファイルの最大保持数。 "0"なら無制限</td></tr>
 </table>
 
 <h3><a name="site_search">サイト: 検索</a></h3>
