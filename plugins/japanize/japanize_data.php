@@ -258,7 +258,7 @@ $_JAPANIZE_DATA[1] = array(
     ),
 );
 
-if (DB_checkTableExists('events')) {
+if (in_array('calendar', $_PLUGINS) && DB_checkTableExists('events')) {
     // イベントの郵便番号を16桁に
     $_JAPANIZE_DATA[1][] = array(
         'ja' => "ALTER TABLE {$_TABLES['events']} MODIFY zipcode VARCHAR(16)",
@@ -274,7 +274,7 @@ if (DB_checkTableExists('events')) {
     );
 }
 
-if (DB_checkTableExists('linkcategories')) {
+if (in_array('links', $_PLUGINS) && DB_checkTableExists('linkcategories')) {
     $_JAPANIZE_DATA[1][] = array(
         'ja' => "UPDATE {$_TABLES['linkcategories']} "
             . "SET description = '" . DB_escapeString('Geeklog関係のサイト') . "' "
@@ -286,7 +286,7 @@ if (DB_checkTableExists('linkcategories')) {
     );
 }
 
-if (DB_checkTableExists('links')) {
+if (in_array('links', $_PLUGINS) && DB_checkTableExists('links')) {
     if (DB_count($_TABLES['links'], 'lid', 'geeklog.jp') == 0) {
         $group_id = DB_getItem($_TABLES['groups'], 'grp_id', "grp_name = 'Links Admin'");
         $_JAPANIZE_DATA[1][] = array(

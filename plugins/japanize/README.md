@@ -5,6 +5,7 @@ Geeklog 日本語化(Japanize)プラグイン
 --------
 
 * tsuchi AT geeklog DOT jp
+* geeklog AT mystral-kk DOT net
 * 2008/09/27
 * 2011/02/07 update
 * 2012/12/31 v2.0.0   modified & updated by mystral-kk (geeklog AT mystral-kk DOT net)
@@ -16,6 +17,7 @@ Geeklog 日本語化(Japanize)プラグイン
 * 2016/01/19 v2.1.1   Modified to use {welcome_msg} instead of {welcome_msg_jp}
 * 2016/01/30 v2.1.1.1 Modified to use {lang_attribute} instead of {html_attribute}
 * 2017/01/10 v2.1.2   Updated to work with Geeklog-2.1.2
+* 2017/03/21 v2.1.3   Fixed a bug that occurred when the Links plugin and/or the Calendar plugin was disabled
 
 概要
 ----

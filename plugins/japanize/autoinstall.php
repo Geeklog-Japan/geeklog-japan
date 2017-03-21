@@ -46,7 +46,7 @@ function plugin_autoinstall_japanize($pi_name) {
             'pi_name'         => 'japanize',
             'pi_display_name' => 'Japanize',
             'pi_version'      => $_JPN_CONF['version'],
-            'pi_gl_version'   => '2.1.2',
+            'pi_gl_version'   => '2.1.3',
             'pi_homepage'     => 'https://www.geeklog.jp/filemgmt/index.php?id=340',
         ),
         'groups'          => array(
