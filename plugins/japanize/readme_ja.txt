@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------
 Geeklog 日本語化（Japanize)プラグイン
 tsuchi AT geeklog DOT jp
 geeklog AT mystral-kk DOT net
@@ -15,6 +15,8 @@ geeklog AT mystral-kk DOT net
 2017/01/10 v2.1.2   Updated to work with Geeklog-2.1.2
 2017/03/21 v2.1.3   Fixed a bug that occurred when the Links plugin and/or the
                     Calendar plugin was disabled
+2017/05/01 v2.1.3.1 Fixed a bug which prevented the Japanize plugin from being 
+                    installed on Geeklog 2.1.2
 
 --------------------------------------------------------------------------------
 概要: Geeklog-2.1.2 を日本人流にするプラグインです
