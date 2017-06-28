@@ -40,14 +40,10 @@ require_once ('../../../lib-common.php');
 require_once ('../../auth.inc.php');
 
 if (!SEC_hasRights ('autotags.edit')) {
-    $display = COM_siteHeader ('menu');
-    $display .= COM_startBlock ($LANG_AUTO['access_denied'], '',
-                        COM_getBlockTemplate ('_msg_block', 'header'));
-    $display .= $LANG_AUTO['access_denied_msg'];
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display .= COM_siteFooter ();
-    COM_accessLog ("User {$_USER['username']} tried to illegally access the autotags administration screen.");
-    echo $display;
+    $display .= COM_showMessageText($MESSAGE[29], $MESSAGE[30]);
+    $display = COM_createHTMLDocument($display, array('pagetitle' => $MESSAGE[30]));
+    COM_accessLog("User {$_USER['username']} tried to illegally access the autotags administration screen.");
+    COM_output($display);
     exit;
 }
 
@@ -59,26 +55,21 @@ if (!SEC_hasRights ('autotags.edit')) {
 * @param    string  $error  Error message to display
 *
 */ 
-function form ($A, $error = false) 
+function form($A, $error = false) 
 {
-    global $_CONF, $LANG_AUTO, $_AUTO_CONF, $LANG_ACCESS, $_TABLES;
+    global $_CONF, $LANG_AUTO, $_AUTO_CONF, $LANG_ACCESS, $LANG_ADMIN, $MESSAGE, $_TABLES;
 
     $retval = '';
 
     if ($error) {
-        $retval .= $error . '<br' . XHTML . '><br' . XHTML . '>';
+        $retval .= $error;
     } else {
-        $template_path = autotags_templatePath ('admin');
-        $at_template = new Template ($template_path);
-
-        $at_template->set_file ('form', 'autotags.thtml');
-        $at_template->set_var('layout_url', $_CONF['layout_url']);
-        $at_template->set_var( 'xhtml', XHTML );
-        $at_template->set_var('site_url', $_CONF['site_url']);
-        $at_template->set_var('site_admin_url', $_CONF['site_admin_url']);
+        $at_template = COM_newTemplate(CTL_plugin_templatePath('autotags', 'admin'));        
+        $at_template->set_file('form', 'autotags.thtml');
+        
         $at_template->set_var('start_block_editor',
-                COM_startBlock($LANG_AUTO['autotagseditor']), '',
-                        COM_getBlockTemplate ('_admin_block', 'header'));
+            COM_startBlock($LANG_AUTO['autotagseditor']), '',
+            COM_getBlockTemplate ('_admin_block', 'header'));
 
         $at_template->set_var('lang_tag', $LANG_AUTO['tag']);
         $at_template->set_var('tag', $A['tag']);
@@ -88,11 +79,22 @@ function form ($A, $error = false)
         $at_template->set_var('description', $A['description']);
 
         $at_template->set_var('lang_enabled', $LANG_AUTO['enabled']);
-        if ($A['is_enabled'] == 1)
+        
+        if ($A['is_enabled'] == 'on') {$A['is_enabled'] = 1;} // just in case coming back from edit form and not db
+        if ($A['is_enabled'] == 1) {
             $at_template->set_var('is_enabled_checked', 'checked="checked"');
-        else
+        } else {
             $at_template->set_var('is_enabled_checked', '');
-
+        }
+        
+        $at_template->set_var('lang_close_tag', $LANG_AUTO['close_tag']);
+        if ($A['close_tag'] == 'on') {$A['close_tag'] = 1;} // just in case coming back from edit form and not db
+        if ($A['close_tag'] == 1) {
+            $at_template->set_var('close_tag_checked', 'checked="checked"');
+        } else {
+            $at_template->set_var('close_tag_checked', '');
+        }
+        
         $at_template->set_var('lang_replacement', $LANG_AUTO['replacement']);
         $at_template->set_var('replacement', $A['replacement']);
         $at_template->set_var('lang_replace_explain', $LANG_AUTO['replace_explain']);
@@ -100,14 +102,12 @@ function form ($A, $error = false)
         $at_template->set_var('lang_function', $LANG_AUTO['function']);
         if (($_AUTO_CONF['allow_php'] == 1) && SEC_hasRights ('autotags.PHP'))
         {
-            $is_function_checkbox = '<td valign="top"><input type="checkbox" name="is_function"';
-            if ($A['is_function'] == 1)
-            {
-                $is_function_checkbox .= ' checked="checked"';
+            if ($A['is_function'] == 'on') {$A['is_function'] = 1;} // just in case coming back from edit form and not db
+            if ($A['is_function'] == 1) {
+                $at_template->set_var('is_function_checked', 'checked="checked"');
             }
-            $is_function_checkbox .= XHTML . '>&nbsp;&nbsp;</td>';
                     
-            $at_template->set_var('is_function_checkbox', $is_function_checkbox);
+            $at_template->set_var('is_function_checkbox', true);
             $at_template->set_var ('php_msg', $LANG_AUTO['php_msg_enabled']);
         }
         else
@@ -115,7 +115,6 @@ function form ($A, $error = false)
             $at_template->set_var('is_function_checkbox', '');
             $at_template->set_var ('php_msg', $LANG_AUTO['php_msg_disabled']);
         }
-        
         
         // user access info
         $at_template->set_var('lang_accessrights', $LANG_ACCESS['accessrights']);
@@ -134,16 +133,26 @@ function form ($A, $error = false)
         $at_template->set_var('lang_permissionskey', $LANG_ACCESS['permissionskey']);
         //$at_template->set_var('lang_perm_key', $LANG_ACCESS['permissionskey']);
         $at_template->set_var('lang_perm_key', $LANG_AUTO['usagepermissionskey']);
+        
+        // Convert array values to numeric permission values
+        if (is_array($A['perm_owner']) OR is_array($A['perm_group']) OR is_array($A['perm_members']) OR is_array($A['perm_anon'])) {
+            list($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon']) = SEC_getPermissionValues($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon']);
+        }        
         $at_template->set_var('permissions_editor', autotags_SEC_getUsagePermissionsHTML($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon']));
         $at_template->set_var('lang_permissions_msg', $LANG_ACCESS['permmsg']);
         
-        
         $at_template->set_var('lang_save', $LANG_AUTO['save']);
         $at_template->set_var('lang_cancel', $LANG_AUTO['cancel']);
-        $at_template->set_var('delete_option', '<input type="submit" value="' . $LANG_AUTO['delete'] . '" name="mode">');        
+        
+        if (!empty($A['old_tag']) && ($access == 3) && !empty($A['owner_id'])) {
+            $at_template->set_var('allow_delete', true);
+            $at_template->set_var('lang_delete', $LANG_AUTO['delete']);
+            $at_template->set_var('confirm_message', $MESSAGE[76]);
+            // Old delete option to support older themes
+            $at_template->set_var('delete_option', '<input type="submit" value="' . $LANG_AUTO['delete'] . '" name="mode" onclick="return confirm(' . "'" .  $MESSAGE[76] . "'" .  ');">');
+        }
 
-        $at_template->set_var('end_block',
-                COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer')));
+        $at_template->set_var('end_block', COM_endBlock(COM_getBlockTemplate ('_admin_block', 'footer')));
         $retval .= $at_template->parse('output','form');
     }
 
@@ -170,9 +179,7 @@ function autotags_SEC_getUsagePermissionsHTML($perm_owner, $perm_group, $perm_me
 
     $retval = '';
 
-    //$perm_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/common');
-    $template_path = autotags_templatePath ('admin');
-    $perm_templates = COM_newTemplate($template_path);
+    $perm_templates = COM_newTemplate(CTL_plugin_templatePath('autotags', 'admin'));
     $perm_templates->set_file(array('editor' => 'usage_permissions.thtml'));
 
     $perm_templates->set_var('lang_owner', $LANG_ACCESS['owner']);
@@ -249,7 +256,7 @@ function listautotags()
 
     $retval .= ADMIN_list ("autotags", "plugin_getListField_autotags", $header_arr, $text_arr,
                             $query_arr, $defsort_arr, '', '', '', $form_arr);
-		$retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 		
     return $retval;
 
@@ -274,13 +281,14 @@ function autotagseditor ($tag, $mode = '')
         $A['tag'] = '';
         $A['old_tag'] = '';
         $A['is_enabled'] = '0';
+        $A['close_tag'] = '0';
         $A['owner_id'] = $_USER['uid'];
         if (isset ($_GROUPS['Autotags Admin'])) {
             $A['group_id'] = $_GROUPS['Autotags Admin'];
         } else {
             $A['group_id'] = SEC_getFeatureGroup ('autotags.edit');
         }
-        SEC_setDefaultPermissions ($A, $_AUTO_CONF['default_autotag_permissions']);        
+        SEC_setDefaultPermissions ($A, $_AUTO_CONF['default_autotag_permissions']);
     } else {
         $A = $_POST;
         $A['tag'] = COM_applyFilter($A['tag']);
@@ -292,7 +300,7 @@ function autotagseditor ($tag, $mode = '')
 * Saves a Auto Tag to the database
 *
 */
-function saveautotags ($tag, $old_tag, $description, $is_enabled, $is_function, $replacement, $owner_id, $group_id, $perm_owner, $perm_group, $perm_members, $perm_anon)
+function saveautotags ($tag, $old_tag, $description, $is_enabled, $is_function, $close_tag, $replacement, $owner_id, $group_id, $perm_owner, $perm_group, $perm_members, $perm_anon)
 {
     global $_CONF, $LANG_AUTO, $_AUTO_CONF, $_TABLES;
     
@@ -317,23 +325,27 @@ function saveautotags ($tag, $old_tag, $description, $is_enabled, $is_function, 
     }
 
     $is_function = ($is_function == 'on') ? 1 : 0;
+    
+    $close_tag = ($close_tag == 'on') ? 1 : 0;
 
     // If user does not have php edit perms, then set php flag to 0.
     if (($_AUTO_CONF['allow_php'] != 1) || !SEC_hasRights ('autotags.PHP')) {
         $is_function = 0;
     }
 
-    $retval = '';
+    $display = '';
     if ($duplicate_id) {
-        $retval .= COM_siteHeader ();
-        $retval .= COM_errorLog ($LANG_AUTO['duplicate_tag'], 2);
-        $retval .= autotagseditor ($tag);
-        $retval .= COM_siteFooter ();
+        $display .= COM_errorLog($LANG_AUTO['duplicate_tag'], 2);
+        $display .= autotagseditor($tag);
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_AUTO['autotagseditor']));
     } elseif (!empty($tag) && in_array($tag, autotags_existing_tags())) {
-        $retval .= COM_siteHeader ();
-        $retval .= COM_errorLog ($LANG_AUTO['disallowed_tag'], 2);
-        $retval .= autotagseditor ('');
-        $retval .= COM_siteFooter ();
+        $display .= COM_errorLog($LANG_AUTO['disallowed_tag'], 2);
+        $display .= autotagseditor('');
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_AUTO['autotagseditor']));
+    } elseif(preg_match('/[^-_A-Za-z0-9]/', $tag)) {
+        $display .= COM_errorLog($LANG_AUTO['invalid_tag'], 2);
+        $display .= autotagseditor('');
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_AUTO['autotagseditor']));
     } elseif (!empty($tag) && (!empty($replacement) || $is_function == 1)) {
         if ($is_enabled == 'on') {
             $is_enabled = 1;
@@ -342,24 +354,28 @@ function saveautotags ($tag, $old_tag, $description, $is_enabled, $is_function, 
         }
 
         // Clean up the text
-        $description = strip_tags($description);
+        $description = GLText::stripTags(COM_stripslashes($description));
+        $replacement = COM_stripslashes($replacement);
 
-        $description = addslashes($description);
-        $replacement = addslashes($replacement);
-
-        DB_save($_TABLES['autotags'], 'tag,description,is_enabled,is_function,replacement,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon', "'$tag','$description',$is_enabled,$is_function,'$replacement',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon");
+        $description = GLText::remove4byteUtf8Chars($description);
+        $replacement = GLText::remove4byteUtf8Chars($replacement);
+        
+        $description = DB_escapeString($description);
+        $replacement = DB_escapeString($replacement);
+        
+        DB_save($_TABLES['autotags'], 'tag,description,is_enabled,is_function,close_tag,replacement,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon', "'$tag','$description',$is_enabled,$is_function,$close_tag,'$replacement',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon");
+        
         if ($delete_old_page && !empty ($old_tag)) {
             DB_delete($_TABLES['autotags'], 'tag', $old_tag);
         }
-        $retval = COM_refresh($_CONF['site_admin_url']
+        $display = COM_redirect($_CONF['site_admin_url']
                           . '/plugins/autotags/index.php');
     } else {
-        $retval .= COM_siteHeader ();
-        $retval .= COM_errorLog ($LANG_AUTO['no_tag_or_replacement'], 2);
-        $retval .= autotagseditor ($tag);
-        $retval .= COM_siteFooter ();
+        $display .= COM_errorLog($LANG_AUTO['no_tag_or_replacement'], 2);
+        $display .= autotagseditor($tag);
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_AUTO['autotagseditor']));
     }
-    return $retval;
+    return $display;
 }
 
 function autotags_existing_tags()
@@ -421,15 +437,10 @@ function changeTagStatus($enabledtags, $visibletags)
 }
 
 // MAIN
-$mode = '';
-if (isset($_REQUEST['mode'])) {
-    $mode = COM_applyFilter ($_REQUEST['mode']);
-}
 
-$tag = '';
-if (isset($_REQUEST['tag'])) {
-    $tag = COM_applyFilter ($_REQUEST['tag']);
-}
+$mode = Geeklog\Input::fRequest('mode', '');
+
+$tag = Geeklog\Input::fRequest('tag', '');
 
 if (isset($_POST['tagenabler'])) {
     $enabledtags = array();
@@ -443,36 +454,36 @@ if (isset($_POST['tagenabler'])) {
     changeTagStatus($enabledtags, $visibletags);
 }
 
-
 if (($mode == $LANG_AUTO['delete']) && !empty ($LANG_AUTO['delete'])) {
     DB_delete ($_TABLES['autotags'], 'tag', $tag,
             $_CONF['site_admin_url'] . '/plugins/autotags/index.php');
     exit;
 } else if ($mode == 'edit') {
-    $display .= COM_siteHeader('menu', $LANG_AUTO['autotagseditor']);
-    $display .= autotagseditor($tag, $mode);
-    $display .= COM_siteFooter();
+    $display = autotagseditor($tag, $mode);
+    $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_AUTO['autotagseditor']));
 } else if (($mode == $LANG_AUTO['save']) && !empty ($LANG_AUTO['save'])) {
     if (!empty ($tag)) {
         $display = saveautotags($tag,
-            COM_applyFilter($_POST['old_tag']),
-            COM_applyFilter($_POST['description']),
-            COM_applyFilter($_POST['is_enabled']),
-            COM_applyFilter($_POST['is_function']),
-            COM_stripslashes($_POST['replacement']),
-            COM_applyFilter ($_POST['owner_id'], true),
-            COM_applyFilter ($_POST['group_id'], true),
-            $_POST['perm_owner'], $_POST['perm_group'],
-            $_POST['perm_members'], $_POST['perm_anon']);                     
+            Geeklog\Input::post('old_tag'),
+            Geeklog\Input::post('description'),
+            Geeklog\Input::post('is_enabled'),
+            Geeklog\Input::post('is_function'),
+            Geeklog\Input::post('close_tag'),
+            Geeklog\Input::post('replacement'),
+            (int) Geeklog\Input::post('owner_id'),
+            (int) Geeklog\Input::post('group_id'),
+            Geeklog\Input::post('perm_owner'),
+            Geeklog\Input::post('perm_group'),
+            Geeklog\Input::post('perm_members'),
+            Geeklog\Input::post('perm_anon'));      
     } else {
-        $display = COM_refresh ($_CONF['site_admin_url'] . '/index.php');
+        $display = COM_redirect($_CONF['site_admin_url'] . '/index.php');
     }
 } else {
-    $display .= COM_siteHeader ('menu', $LANG_AUTO['list_all_title']);
-    $display .= listautotags();
-    $display .= COM_siteFooter ();
+    $display = listautotags();
+    $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_AUTO['list_all_title']));
 }
 
-echo $display;
+COM_output($display);
 
 ?>

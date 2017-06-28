@@ -145,7 +145,6 @@ function plugin_upgrade_autotags()
 
     $installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
                                     "pi_name = 'autotags'");
-	$installed_version = preg_replace('/jp.*$/', '', $installed_version);
     $code_version = plugin_chkVersion_autotags();
     if ($installed_version == $code_version) {
         // nothing to do
@@ -198,8 +197,15 @@ function plugin_upgrade_autotags()
             break;
             
         case '1.1.0':
+            if (isset($_UPDATES[$current_version])) {
+                $_SQL = $_UPDATES[$current_version];
+                foreach ($_SQL as $sql) {
+                    DB_query($sql);
+                }
+            }
+            
             $current_version = '1.1.1';
-            break;
+            break;            
 
         default:
             $done = true;
@@ -366,6 +372,16 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
         if (is_array($tagname)) {
             return $tagname;
         }
+    } elseif ($op == 'closetag') {
+        foreach ($_AUTOTAGS as $tag) {
+            if ($tag['close_tag']) {
+                $closetag[] = $tag['tag']; 
+            }
+        }
+        
+        if (is_array($closetag)) {
+            return $closetag;
+        }          
     } elseif ($op == 'description') {
         foreach ($_AUTOTAGS as $tag) {
             $autotag_desc[$tag['tag']] = $tag['description'];
@@ -375,8 +391,12 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
             return $autotag_desc;
         }        
     } else if ($op == 'parse') {
+        // [tag:parameter1 And the rest here is parameter2]This is parameter3 if exist.[/tag]
         $p1 = $autotag['parm1'];
         $p2 = $autotag['parm2'];
+        if (isset($autotag['parm3'])) {
+            $p3 = $autotag['parm3'];
+        }
         
         if (empty($p2)) $p2 = $p1;
         
@@ -394,7 +414,14 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
                     }
                 } else {
                     $evalstring = '$p1 = "' . $p1 . '";';
-                    $evalstring .= '$p2 = "' . $p2 . '";';
+                    // $p2 could have ' or " in it so addslashes to get variable in evaluate and then remove right after so doesn't change anything else
+                    $evalstring .= '$p2 = "' . addslashes($p2) . '";';
+                    $evalstring .= '$p2 = stripslashes($p2);';
+                    if (isset($p3)) {
+                        // $p3 could have ' in it so addslashes to get variable in evaluate and then remove right after so doesn't change anything else
+                        $evalstring .= '$p3 = "' . addslashes($p3) . '";';
+                        $evalstring .= '$p3 = stripslashes($p3);';
+                    }
                     $evalstring .= '$tagstr = "' . $tagstr . '";';
                     $evalstring .= $record['replacement'];
                     $replace = eval($evalstring);
@@ -403,46 +430,24 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
             } else {
                 $p0 = substr($autotag['tagstr'], strlen($autotag['tag']) + 2);
                 $p0 = substr($p0, 0, strlen($p0)-1);
-                $replace = Array('#U', '#1', '#2', '#0');
-                $with = Array($_CONF['site_url'], $p1, $p2, $p0);
                 
-                $subject = $record['replacement'];
+                if (isset($p3)) {
+                    $replace = Array('#U', '#1', '#2', '#0', '#3');
+                    $with = Array($_CONF['site_url'], $p1, $p2, $p0, $p3);
+                } else {
+                    $replace = Array('#U', '#1', '#2', '#0');
+                    $with = Array($_CONF['site_url'], $p1, $p2, $p0);
+                }
+                
+                $subject = $record['replacement']; 
                 $subject = str_replace($replace, $with, $subject);
-                $content = str_replace($autotag['tagstr'], $subject, $content);
+                $content = str_replace($autotag['tagstr'], $subject, $content, $count);
             }
         }
         return $content;
     }
 }
 
-/**
-* Get path for the template files.
-*
-* @param    string  $path   subdirectory within the base template path
-* @return   string          full path to template directory
-*
-*/
-function autotags_templatePath ($path = '')
-{
-    global $_CONF;
-
-    if (empty ($path)) {
-        $layout_path = $_CONF['path_layout'] . 'autotags';
-    } else {
-        $layout_path = $_CONF['path_layout'] . 'autotags' . '/' . $path;
-    }
-
-    if (is_dir ($layout_path)) {
-        $retval = $layout_path;
-    } else {
-        $retval = $_CONF['path'] . 'plugins/autotags/templates';
-        if (!empty ($path)) {
-            $retval .= '/' . $path;
-        }
-    }
-
-    return $retval;
-}
 
 /*
  *  Sample function-based autotags. These functions are only available
