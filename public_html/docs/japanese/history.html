@@ -18,6 +18,68 @@
 
 <p><a href="../history">public_html/docs/history</a>をHTML化し、翻訳したものです。</p>
 
+<h2>June 22, 2017 (2.1.3)</h2>
+
+<ul>
+<li>[Feature] SMTPS protocol のメール対応（Google APPSなどで必須） [Ivy] [Tom]</li>
+<li>[Feature] 記事内の画像のスタイル設定機能 [Tom]</li>
+<li>[Feature] 管理者はユーザー属性を追加編集ができる</li>
+<li>[Feature] プラグインは自動的にユーザーのプロフィール属性を追加</li>
+<li>[Feature] 静的ページのテンプレートが、caching template library対応。静的ページがロジックプロセスを処理できる。</li>
+<li>[Feature] 自動タグは必要に応じてクローズタグを利用できる</li>
+<li>[Bug] 記事と静的ページにscript tagが使えなくなっていたバグをFIX</li>
+<li>[Bug] 印刷用の記事と静的ページのCSSバグをFIX</li>
+<li>[Bug] フッターコピーの名前のバグをFIX</li>
+<li>[Bug] Spam-X Plugin アイテムバグをFIX</li>
+<li>[Bug] Censor Exact Match improved</li>
+<li>[Bug] リンクプラグインのリンクURLをURLリライト対応</li>
+<li>[Bug] 言語管理の検索バグをFIX</li>
+<li>[Bug] ブロックのCache timeを0にできないバグをFIX</li>
+<li>[Bug] ポータルブロックでもCache timeを利用できるようにした</li>
+<li>[Bug] ポータルブロックをバグをFIX. COM_rdfCheck をlib-common.php since not needed anymore (uses cache time instead)</li>
+<li>[Bug] 静的ページとテンプレートでscriptタグを利用できないバグをFIX</li>
+<li>[Bug] HTMLモードでのコメント投稿をバグFIX</li>
+<li>[Bug] HTMLモードでのコメント投稿時のメール通知をバグFIX</li>
+</ul>
+
+<h2>March 1, 2017 (2.1.2)</h2>
+
+<ul>
+<li>[Feature] アンケートプラグインの複数回答機能追加 [Mystralkk]</li>
+<li>[Feature] 記事の関連表示 [Mystralkk]</li>
+<li>[Feature] 言語のオーバーライド機能 [Mystralkk]</li>
+<li>[Feature] コメントの管理画面の追加 [Mystralkk]</li>
+<li>[Feature] URL-routing 機能の追加。 public_html/index.php のフロントコントローラー [Mystralkk]</li>
+<li>[Feature] Spam-X プラグインにモジュール追加[Dirk]
+<li>[Feature] 話題別にテンプレート割り当て機能の追加 [Mystralkk]</li>
+<li>[Feature] GitHub OAuth Login機能の追加 [Tom]</li>
+<li>[Feature] $_CONF['theme_oauth_icons'] でテーマ別のOAuth icons指定機能追加 [Tom]</li>
+<li>[Feature] ブロックを表示する自動タグを追加 [Tom]</li>
+<li>[Feature] ブロック管理画面のレイアウト改善 [Tom]</li>
+<li>[Feature] ビジターのデバイス別の表示機能 (mobile または computer)  [Tom]</li>
+<li>[Feature] ビジターのデバイス別のブロック表示コントロール [Tom]</li>
+<li>[Feature] テーマ変数{device_movile} がtrueならモバイルにも表示 (電話とタブレット) [Tom]</li>
+<li>[Feature] Geeklogのデータベースバックアップ機能を外部機能を使わず内蔵 [Tom]</li>
+<li>[Feature] 静的ページ個々に表示数や日付を表示するかどうかの設定 [Tom]</li>
+<li>[Feature] インストーラーの改善 [Mystralkk]</li>
+<li>[Feature] インストーラーのメッセージ追加 [Tom]</li>
+<li>[Feature] インストール完了後、インストールファイルの削除 [Mystralkk]</li>
+<li>[Feature] PHP 7のサポート [Mystralkk]</li>
+<li>[Feature] MySQL 5.7のデフォルト設定 [Mystralkk]</li>
+<li>[Feature] UIkit をDenim themeで活用 [Dengen]</li>
+<li>[Feature] 新Denim Curve テーマはModern CurveをDenimの子テーマとして追加 [Dengen]</li>
+<li>[Feature] 管理画面でデータベースバージョンチェック機能の追加 [Tom]</li>
+<li>[Update] MSSQL サポートの終了 [Mystralkk]</li>
+<li>[Update] Professional と Professional CSS テーマの終了 [Tom]</li>
+<li>[Update] UIkit framework to version 2.27.2 [Dengen]</li>
+<li>[Update] jQuery version 3.1.1、jQuery UI 1.12.1にアップデート [Tom]</li>
+<li>[Update] CKEditorversion 4.6.1にアップデート [Tom]</li>
+<li>[Update] OAuth class version 1.152にアップデート [Tom]</li>
+<li>[Bug] Geeklog が絵文字アイコンと４バイト文字に対応。They can either be removed from the input or saved (depending on website setup) [Mystralkk]</li>
+<li>[Bug] 記事のデイリーダイジェスト URLs は絶対 URLsに変更 [Mystralkk]</li>
+<li>[Bug] 話題IDと名前は、utf8mb4_xxx_ci MySQL キャラクターセット対応のため、75文字に削減。 [Tom]</li>
+</ul>
+
 <h2>December 9, 2015 (2.1.1)</h2>
 
 <ul>

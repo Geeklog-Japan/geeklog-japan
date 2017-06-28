@@ -47,7 +47,7 @@
         <!--[if !IE]> #centerblocks { <![endif]-->
         {# Center Block Container #}
         <div id="centerblocks">
-          <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
+          <p class="welcome_msg">{welcome_msg_jp}&nbsp;{datetime}</p>
           <div id="centerblocks-content" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
           {breadcrumb_trail}
 

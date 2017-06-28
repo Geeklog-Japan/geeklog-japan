@@ -76,6 +76,6 @@
       <!-- Center Block Container -->
       <div id="centerblocks">
         <main id="main-content" role="main" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
-          <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
+          <p class="welcome_msg">{welcome_msg_jp}&nbsp;{datetime}</p>
           {breadcrumb_trail}
 
